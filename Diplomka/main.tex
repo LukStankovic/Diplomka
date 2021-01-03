@@ -93,21 +93,21 @@ Cílem praktické části práce je analyzovat nástroje pro správu nasbíraný
 Dle Iana Sommervilla \cite{ref:sommerrville_sw_process} je softwarový proces sekvence souvisejících aktivit, které vedou k produkci softwarovécho produktu. Tyto aktivity mohou probíhat buď v rámci vývoj softwarového produkt od nuly nebo úpravě již existujícího softwarového produktu. Existuje nespočet různých softwarových procesů. Všechny softwarové procesy by měly obsahovat následující čtyři aktivity:
 
 \begin{enumerate}
-\item Specifikace - během této aktivity je nutné zjistit a definovat požadavky zákazníka na budoucí software.
-\item Návrh a implementace softwaru - na základě specifikovaných zákaznických požadavků je software navrhnut a poté implementován.
-\item Validace softwaru - je nutné software validovat, aby bylo zajištěno, že jeho funkcionalita odpovídá předem specifikovaným požadavkům.
-\item Evoluce softwaru - software se během používání mění, aby vyhovoval novým potřebám zákazníka.
+\item \textit{Specifikace} -- během této aktivity je nutné zjistit a definovat požadavky zákazníka na budoucí software.
+\item \textit{Návrh a implementace softwaru} -- na základě specifikovaných zákaznických požadavků je software navrhnut a poté implementován.
+\item \textit{Validace softwaru }-- je nutné software validovat, aby bylo zajištěno, že jeho funkcionalita odpovídá předem specifikovaným požadavkům.
+\item \textit{Evoluce softwaru} -- software se během používání mění, aby vyhovoval novým potřebám zákazníka.
 \end{enumerate}
 
 Softwarové procesy je nutné vždy používat na základě vyvíjeného produktu. V praxi neexistuje žádný softwarový proces, který by pokrýval a řešil veškeré problémy při vývoji softwaru. Pro zjednodušení softwarového procesu slouží různé softwarové modely. Ty se dělí na plánované, inkrementální a agilní. Při vývoji velkého systému se můžou jednotlivé modely softwarových procesů kombinovat. Vyspělost společnosti v používání softwarových procesů můžeme hodnotit podle stupnice SEI (Software
 Engineering Institute). Model hodnocení vyspělosti používání softwarového procesu dané společnosti se nazývá CMM (Capability Maturity Model), přičemž můžeme společnost hodnotit od 1 do 5 \cite{ref:sw_process_vondrak}:
 
 \begin{enumerate}
-\item Počáteční - společnost nepoužívá žádný softwarový proces. Jelikož žádný softwarový proces není definován tak každý projekt je vyvíjen případ od případu.
-\item Opakovatelná - sledovaná společnost identifikovala ve svých projektech postupy, které se často opakují. Tyto prováděné opakované činnosti poté systémově opakuje v každém novém projektu.
-\item Definovaná - používaný softwarový proces je definovaná a dokumentován na základě vysledovaných opakovatelných kroků.
-\item Řízená - jakmile má daná společnost definovaný a dokumentovaný softwarový proces, je společnost schopna daný proces řídit a monitorovat. 
-\item Optimalizovaná - na základě dlouhodobě vysledovaných dat při používání softwarového procesu je společnost schopná daný softwarový proces optimalizovat a vylepšit tak, aby více vyhovoval celému vývoji.
+\item \textit{Počáteční} -- společnost nepoužívá žádný softwarový proces. Jelikož žádný softwarový proces není definován tak každý projekt je vyvíjen případ od případu.
+\item \textit{Opakovatelná} -- sledovaná společnost identifikovala ve svých projektech postupy, které se často opakují. Tyto prováděné opakované činnosti poté systémově opakuje v každém novém projektu.
+\item \textit{Definovaná} -- používaný softwarový proces je definovaná a dokumentován na základě vysledovaných opakovatelných kroků.
+\item \textit{Řízená} -- jakmile má daná společnost definovaný a dokumentovaný softwarový proces, je společnost schopna daný proces řídit a monitorovat. 
+\item \textit{Optimalizovaná} -- na základě dlouhodobě vysledovaných dat při používání softwarového procesu je společnost schopná daný softwarový proces optimalizovat a vylepšit tak, aby více vyhovoval celému vývoji.
 \end{enumerate}
 
 
@@ -126,11 +126,11 @@ Hlavním důvodem pro monitorování procesu je, že výkonnost a daného proces
 Obecně lze monitorovat tři typy metrik určitého procesu:
 
 \begin{enumerate}
-\item Čas potřebný k dokončení určitého procesu -- můžeme zde zařadit například celkový čas strávený na úkolech a požadavcích potřebných k dokončení vývoje, čas strávený testováním a další.
+\item \textit{Čas potřebný k dokončení určitého procesu} -- můžeme zde zařadit například celkový čas strávený na úkolech a požadavcích potřebných k dokončení vývoje, čas strávený testováním a další.
 
-\item Prostředky potřebné pro určitý proces -- řadíme zde různé prostředky, které jsou nutné pro úspěšné dokončení procesu. Jde například o cestovní náklady pro manažera, výpočetní zdroje a další.
+\item \textit{Prostředky potřebné pro určitý proces} -- řadíme zde různé prostředky, které jsou nutné pro úspěšné dokončení procesu. Jde například o cestovní náklady pro manažera, výpočetní zdroje a další.
 
-\item Počet výskytů nějaké definované události -- v rámci tohoto typu můžeme zařadit například počty nalezených chyb, počet zbývajících nedokončených úkolů, počet schválených požadavků, celkový počet požadavků a mnoho dalšího.
+\item \textit{Počet výskytů nějaké definované události} -- v rámci tohoto typu můžeme zařadit například počty nalezených chyb, počet zbývajících nedokončených úkolů, počet schválených požadavků, celkový počet požadavků a mnoho dalšího.
 \end{enumerate}
 
 Monitorování procesu představuje způsob, pomocí kterého můžeme vytvářet doklady o daném procesu a jeho změnách. Pomocí monitorování dokážeme určit, zda je proces efektivní a zda případné změny procesu mají na proces pozitivní dopad. Pro správnou interpretaci změn by mělo být měření pouhou částí. Abychom si byli jisti správnostmi změn procesu, musíme měření kombinovat s kvalitativním hodnocením změn a správnou komunikací o zavedených změnách s účastníky procesu. Díky správné komunikaci dokážeme zjistit jejich názory na efektivitu provedených změn procesu a dokážeme odhalit další faktory, které by mohly proces negativně ovlivnit. Pomocí monitorování chování týmu po zavedené změně dokážeme pozorovat jak daný tým změny přijal a jaká panuje v týmu nálada.
@@ -159,7 +159,7 @@ Z tohoto modelu vychází novější vývojový model CMMI, který slouží prim
 \subsubsection{Vodopádový model}
 Jde o jeden z nejstarších vývojových procesů, který byl poprvé publikován v článku v roce 1970 Winstonem W. Roycem a vychází z obecných vývojových procesů. Vodopádovým modelem je nazýván, protože jednotlivé fáze procesu postupně kaskádovitě navazují na sebe a celý model poté vypadá jako vodopád. Veškeré kroky musí být pečlivě analyzovány a naplánovány. K další vývojové fázi se přistupuje až poté, co jsou veškeré předchozí kroky splněny, schváleny a uzavřeny. \cite{ref:sommerrville_waterfall} Aby byl projekt podle modelu úspěšný je nutné věnovat prvním fázím dostatek času. Vodopádový model je možné vidět na obrázku \ref{fig:waterfall}.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=1\textwidth]{Figures/waterfall.png}
     \caption{Vodopádový model (převzato z \cite{ref:sommerrville_waterfall})}
@@ -169,15 +169,15 @@ Jde o jeden z nejstarších vývojových procesů, který byl poprvé publiková
 Základní fáze vodopádového modelu vychází ze standardních potřeb vývoje softwaru:
 
 \begin{enumerate}
-\item Specifikace požadavků - na základě jednotlivých požadavků zákazníka jsou požadavky detailně sepsány a analyzovány.
+\item \textit{Specifikace požadavků} -- na základě jednotlivých požadavků zákazníka jsou požadavky detailně sepsány a analyzovány.
 
-\item Systémový a softwarový návrh - jednotlivé požadavky zákazníka určují náročnost na systém. Návrh zahrnuje také celkovou architekturu systému. 
+\item \textit{Systémový a softwarový návrh} -- jednotlivé požadavky zákazníka určují náročnost na systém. Návrh zahrnuje také celkovou architekturu systému. 
 
-\item Implementace a unit testování - v rámci této fáze se systém realizuje a každá jednotka je samostatně testována, zda splňuje určité požadavky.
+\item \textit{Implementace a unit testování} -- v rámci této fáze se systém realizuje a každá jednotka je samostatně testována, zda splňuje určité požadavky.
 
-\item Integrace a testování systému - jednotlivé vyvinuté části systému se integrují a otestují jako kompletní systém. Tímto je zajištěno, že celý systém splňuje definované požadavky. Jakmile je produkt kompletně otestován, je předán zákazníkovi.
+\item \textit{Integrace a testování systému} -- jednotlivé vyvinuté části systému se integrují a otestují jako kompletní systém. Tímto je zajištěno, že celý systém splňuje definované požadavky. Jakmile je produkt kompletně otestován, je předán zákazníkovi.
 
-\item Provoz a údržba - během této fáze se systém nasazuje do ostrého prostředí. Během fáze probíhá oprava chyb a vylepšování funkcí.
+\item \textit{Provoz a údržba} -- během této fáze se systém nasazuje do ostrého prostředí. Během fáze probíhá oprava chyb a vylepšování funkcí.
 
 \end{enumerate}
 
@@ -187,10 +187,10 @@ V praxi je složité jednotlivé fáze pečlivě oddělit a postupovat v další
 Rational Unified Process (RUP) je iterativní model vývoje softwaru vytvořený firmou Rational Software Corporation. RUP byl vytvořen a odvozen z osvědčených praktik při vývoji softwaru. Mezi tyto praktiky například patří řízení změn, komponentová architektura, aktivní správa požadavků nebo například ověřování kvality software. Model obsahuje čtyři fáze, které se iterují dle potřeby. Jednotlivé fáze oproti vodopádovému modelu nesouvisejí s technickými hledisky ale spíše se soustředí na podniková hlediska. \cite{ref:rup_ibm_about} Fáze jsou následující:
 
 \begin{enumerate}
-\item Zahájení - cíl této fáze je vytvořit podnikový případ systému. V rámci této fáze je potřeba identifikovat veškeré osoby a další systémy které budou s daným systémem pracovat či komunikovat.
-\item Příprava - během této fáze se vytvoří architektura systému. Dále se vytvoří celkový plán projektu a identifikují se klíčová rizika, která mohou na projektu nastat. Během fáze vznikne například plán vývoje, UML diagramy nebo popis systému.
-\item Konstrukce - tato fáze obsahuje návrh systému, samotné programování a testování, přičemž se zároveň jednotlivé části systému integrují. Dále během této fáze vzniká dokumentace. Na konci fáze je hotový funkční produkt připravený na dodání zákazníkovi.
-\item Předávání - v závěrečné fázi je funkční produkt spolu s dokumentací předán zákazníkovi. Produkt je nasazen do ostrého prostředí a zprovozněn.
+\item \textit{Zahájení} -- cíl této fáze je vytvořit podnikový případ systému. V rámci této fáze je potřeba identifikovat veškeré osoby a další systémy které budou s daným systémem pracovat či komunikovat.
+\item \textit{Příprava} -- během této fáze se vytvoří architektura systému. Dále se vytvoří celkový plán projektu a identifikují se klíčová rizika, která mohou na projektu nastat. Během fáze vznikne například plán vývoje, UML diagramy nebo popis systému.
+\item \textit{Konstrukce} -- tato fáze obsahuje návrh systému, samotné programování a testování, přičemž se zároveň jednotlivé části systému integrují. Dále během této fáze vzniká dokumentace. Na konci fáze je hotový funkční produkt připravený na dodání zákazníkovi.
+\item \textit{Předávání} -- v závěrečné fázi je funkční produkt spolu s dokumentací předán zákazníkovi. Produkt je nasazen do ostrého prostředí a zprovozněn.
 \end{enumerate}
 
 U modelu RUP je možné provádět inkrementaci jednak samostatným opakováním jednotlivých fází ale i celého procesu. Kromě čtyřech fází RUP definuje jednotlivé disciplíny, které jsou v rámci fázích prováděny. Velkou výhodou je, že tyto disciplíny nejsou navázány na jednotlivé fáze. Disciplíny jsou činnosti, prováděné během celého vývoje produktu. Disciplíny jsou následující:
@@ -209,7 +209,7 @@ U modelu RUP je možné provádět inkrementaci jednak samostatným opakováním
 
 Výše popsané fáze společně s disciplínami je možné vidět na obrázku \ref{fig:rup}. Vidíme, že různé disciplíny mají v jednotlivých fázích vyšší důležitost než jiné.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.75\textwidth]{Figures/rup.png}
     \caption{Grafické znázornění fází a disciplín RUP (převzato z \cite{ref:rup_ibm})}
@@ -256,7 +256,7 @@ Veškerý vývoj produktu probíhá v pravidelných iteracích nazývané \texti
 
 Jak je možné vidět na obrázku \ref{fig:scrum_cyklus} na začátku každého sprintu probíhá seznámení s úkoly na daný sprint a plánování, které úkoly musí tým daný sprint doručit. Během sprintu probíhají různé druhy schůzek. Každý den probíhá rychlá schůzka \textit{Standup}, během které v rychlosti členové týmu představí co budou daný den řešit. Na konci každého sprintu probíhá pravidelná kontrola, která se nazývá retrospektiva a dále samotné zhodnocení sprintu. Na této schůzce je řešeno jaké adaptace by měl tým provést, aby následující sprint proběhl lépe. 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=1\textwidth]{Figures/scrum.png}
     \caption{Vývojový cyklus řízený pomocí metodiky Scrum (převzato z \cite{ref:scrum_myslin_cyklus_img})}
@@ -281,7 +281,7 @@ V-Model je graficky definován do tvaru velkého písmene V. Na levé straně mo
 
 Na pravé straně jsou fáze validační, ve kterých se produkt testuje a validuje jeho funkčnost. Jednotlivé fáze jsou vzájemně propojené. Na nejnižší vrstvě probíhá jednotkové testování, které testuje chování malých modulů. Dále probíhá integrační testování, které je prováděno proti návrhu architektury. Jakmile je úspěšně provedeno integrační testování, tak je testován návrh systému systémovými testy. Na nejvyšší úrovní probíhá akceptační testování, které ověřuje, zda jsou správně naimplementovány veškeré definované požadavky zákazníka. Každý přechod do jiné fáze probíhá jakmile je kompletně splněna předchozí fáze.
 
- \begin{figure}[!h]
+ \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/v-model-in-software-testing.png}
     \caption{Grafické znázornění V-Modelu (převzato z \cite{ref:vmodel_Tierno2016})}
@@ -307,11 +307,11 @@ Tyto metriky slouží jako statistické údaje pro kontrolu daného softwarovéh
 Podle Iana Sommervilla \cite{ref:kontrolni_metriky} lze shromažďovat tři typy kontrolních metrik:
 
 \begin{enumerate}
-\item Zbývající čas, který je potřebný k dokončení definovaného procesu -- v rámci této kategorie můžeme zařadit měření zbývajícího času k dokončení procesu, čas strávený testováním systému a další. V rámci této kategorie dokážeme určit efektivitu daného procesu. Z naměřených hodnot tedy dokážeme zjistit, zda se efektivita zvýšila nebo snížila.
+\item \textit{Zbývající čas, který je potřebný k dokončení definovaného procesu} -- v rámci této kategorie můžeme zařadit měření zbývajícího času k dokončení procesu, čas strávený testováním systému a další. V rámci této kategorie dokážeme určit efektivitu daného procesu. Z naměřených hodnot tedy dokážeme zjistit, zda se efektivita zvýšila nebo snížila.
 
-\item Prostředky, které jsou nutné pro dokončení definovaného procesu -- můžeme měřit například počet programátorů k dokončení určitého procesu, náklady spojené s vývojem systému a další. V této kategorii také dokážeme měřit efektivitu procesu například zda potřebné zdroje k dosažení výsledku klesají či nikoliv.
+\item \textit{Prostředky, které jsou nutné pro dokončení definovaného procesu} -- můžeme měřit například počet programátorů k dokončení určitého procesu, náklady spojené s vývojem systému a další. V této kategorii také dokážeme měřit efektivitu procesu například zda potřebné zdroje k dosažení výsledku klesají či nikoliv.
 
-\item Počet zjištěných výskytů definované události -- měříme a monitorujeme počet určitých vzniklých událostí, které můžou přímo nebo nepřímo ovlivňovat určitý proces. Můžeme zde uvést například počet nalezených chyb při testování, počet změněných požadavků, počet řádků kódu pro jeden požadavek a mnoho dalšího.
+\item \textit{Počet zjištěných výskytů definované události} -- měříme a monitorujeme počet určitých vzniklých událostí, které můžou přímo nebo nepřímo ovlivňovat určitý proces. Můžeme zde uvést například počet nalezených chyb při testování, počet změněných požadavků, počet řádků kódu pro jeden požadavek a mnoho dalšího.
 
 \end{enumerate}
 
@@ -349,16 +349,16 @@ BIRT je open source softwarový projekt vyvíjený konsorciem Eclipse Foundation
 Projekt BIRT také obsahuje mapovací modul, který je plně integrován do návrháře sestav a může být použit samostatně k integraci grafů do aplikace. Pomocí technologie BIRT je výstupy možné generovat kromě grafů ve formátu SVG, také jako seznamy dat (například pomocí tabulky) nebo jako textové dokumenty. Sestavy BIRT se skládají ze čtyř hlavních částí \cite{ref:birt_about}: 
 
 \begin{itemize}
-\item Data - poskytuje podporu pro přístup k datům pomocí JDBC, XML, webových služeb prostých databázových souborů. Vytvořená sestava může dále zobrazovat data z libovolného počtu zdrojů dat. BIRT využívá ODA (Open Data Access), který umožňuje komukoli vytvořit novou sestavu pro jakýkoli druh tabulkových dat.
-\item Transformace dat - vygenerované reporty reprezentují shrnutá, seřazená, filtrovaná a seskupená data podle definovaných potřeb uživatele. Tato data jsou poté připravena pro vizualizaci.
-\item Obchodní logika - jelikož jsou data v reálném světě málokdy strukturovaná přesně tak, aby vyhovovaly z byznysového hlediska pro jednotlivé reporty, je nutné je nejprve strukturovat tak, aby pro transformaci a vizualizaci vyhovovala. Tato strukturalizace je možná buď přímo pomocí BIRT v jazyku JavaScript, nebo externě pomocí zdrojového kódu v programovacím jazyku Java.
+\item \textit{Data} -- poskytuje podporu pro přístup k datům pomocí JDBC, XML, webových služeb prostých databázových souborů. Vytvořená sestava může dále zobrazovat data z libovolného počtu zdrojů dat. BIRT využívá ODA (Open Data Access), který umožňuje komukoli vytvořit novou sestavu pro jakýkoli druh tabulkových dat.
+\item \textit{Transformace dat} -- vygenerované reporty reprezentují shrnutá, seřazená, filtrovaná a seskupená data podle definovaných potřeb uživatele. Tato data jsou poté připravena pro vizualizaci.
+\item \textit{Obchodní logika} -- jelikož jsou data v reálném světě málokdy strukturovaná přesně tak, aby vyhovovaly z byznysového hlediska pro jednotlivé reporty, je nutné je nejprve strukturovat tak, aby pro transformaci a vizualizaci vyhovovala. Tato strukturalizace je možná buď přímo pomocí BIRT v jazyku JavaScript, nebo externě pomocí zdrojového kódu v programovacím jazyku Java.
 
-\item Vizualizace - Jakmile jsou data pro vizualizaci připraveny je možné je vizualizovat například pomocí grafů nebo tabulek. Jedna připravená sada dat může být vizualizována více způsoby.
+\item \textit{Vizualizace} -- Jakmile jsou data pro vizualizaci připraveny je možné je vizualizovat například pomocí grafů nebo tabulek. Jedna připravená sada dat může být vizualizována více způsoby.
 \end{itemize}
 
 Architektura BIRT se skládá z \textit{Report Designeru}, který zajišťuje vytváření reportů, které vygeneruje do formátu XML. Dále se skládá z \textit{Report enginu}, který vygeneruje jednotlivé vizualizace dat do definovaných formátů, jako například PDF, HTML, Excel, Word a další. Celkovou architekturu systému BIRT je možné vidět na obrázku \ref{fig:birtarch}.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/birtarch.png}
     \caption{Architektura BIRT (převzato z \cite{ref:birt_about})}
@@ -403,7 +403,7 @@ Referenční procesní model definuje několik procesů ve třech základních k
 \end{itemize}
 
 Jednotlivé kategorie procesů a samotné procesy jsou detailně probrány v kapitole \ref{sec:aspice_processes} a je možné je graficky seskupené vidět na obrázku \ref{fig:prm}. 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=1\textwidth]{Figures/prm.png}
     \caption{Referenční procesní model (převzato z \cite{ref:aspice_download_prm})}
@@ -570,7 +570,7 @@ F  & Plně dosaženo & dosažení  85 \% až 100 \% & V projektu se úplně a sy
 \subsection{Metriky a monitorování procesu}
 Automotive SPICE klade velké nároky na kvalitní výsledky při vývoji a dodržování standardu. Proto jsou také v rámci standardu definovány procesy, které sledují dodržování kvality jiných procesů a podporují měření a monitorování samotného vývoje.
 
-Pro 
+
 
 \section{Application Lifecycle Management}
 
@@ -584,7 +584,7 @@ Application Lifecycle Management je možné rozdělit na tři základní aspekty
   \item provoz.
 \end{itemize}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=1\textwidth]{Figures/alm.png}
     \caption{Aspkety ALM a jejich fáze \cite{alm_chappell}}
