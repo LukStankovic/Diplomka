@@ -26,15 +26,15 @@
 
 % Zadame cestu a jmeno souboru ci nekolika souboru s digitalizovanou podobou zadani prace.
 % Pokud toto makro zapoznamkujeme sazi se stranka s upozornenim.
-\ThesisAssignmentImagePath{Figures/Assignment}
+\ThesisAssignmentImagePath{Diplomka/Figures/Assignment}
 
 % Zadame soubor s digitalizovanou podobou prohlaseni autora zaverecne prace.
 % Pokud toto makro zapoznamkujeme sazi se cisty text prohlaseni.
-\AuthorDeclarationImageFile{Figures/AuthorDeclaration.jpg}
+\AuthorDeclarationImageFile{Diplomka/Figures/AuthorDeclaration.jpg}
 
 % Zadame soubor s digitalizovanou podobou souhlasu spolupracujici prav. nebo fyz. osoby.
 % Pokud toto makro zapoznamkujeme sazi se cisty text souhlasu.
-\CooperatingPersonsDeclarationImageFile{Figures/CoopPersonDeclaration.jpg}
+\CooperatingPersonsDeclarationImageFile{Diplomka/Figures/CoopPersonDeclaration.jpg}
 
 \CzechAbstract{}
 
@@ -161,7 +161,7 @@ Jde o jeden z nejstarších vývojových procesů, který byl poprvé publiková
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=1\textwidth]{Figures/waterfall.png}
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/waterfall.png}
     \caption{Vodopádový model (převzato z \cite{ref:sommerrville_waterfall})}
     \label{fig:waterfall}
 \end{figure}
@@ -211,7 +211,7 @@ Výše popsané fáze společně s disciplínami je možné vidět na obrázku \
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.75\textwidth]{Figures/rup.png}
+    \includegraphics[width=0.75\textwidth]{Diplomka/Figures/rup.png}
     \caption{Grafické znázornění fází a disciplín RUP (převzato z \cite{ref:rup_ibm})}
     \label{fig:rup}
 \end{figure}
@@ -258,7 +258,7 @@ Jak je možné vidět na obrázku \ref{fig:scrum_cyklus} na začátku každého 
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=1\textwidth]{Figures/scrum.png}
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/scrum.png}
     \caption{Vývojový cyklus řízený pomocí metodiky Scrum (převzato z \cite{ref:scrum_myslin_cyklus_img})}
     \label{fig:scrum_cyklus}
 \end{figure}
@@ -283,7 +283,7 @@ Na pravé straně jsou fáze validační, ve kterých se produkt testuje a valid
 
  \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.7\textwidth]{Figures/v-model-in-software-testing.png}
+    \includegraphics[width=0.7\textwidth]{Diplomka/Figures/v-model-in-software-testing.png}
     \caption{Grafické znázornění V-Modelu (převzato z \cite{ref:vmodel_Tierno2016})}
     \label{fig:v_model}
 \end{figure}
@@ -327,18 +327,19 @@ Druhou třídou produktových metrik jsou dynamické metriky, pro která se data
 \subsection{Reprezentace a vizualizace metrik}
 Metriku si můžeme představit jako sled čísel, které nám slouží jako ukazatele stavu procesu. Metriky můžeme tedy reprezentovat tak, abychom dokázali určit stav daného procesu nebo vyvíjeného systému. Pomocí metriky se může manažer rozhodovat o krocích, které budou podniknuty, aby byl proces efektivní a systém vytvořen v definované kvalitě a času. Nejčastěji si metriku můžeme představit jako tabulku a nebo pomocí grafické vizualizace, která vychází z dat tabulky.
 
-Pro vizualizaci grafem můžeme použít několik typů grafů. Pro vizualizaci grafem můžeme použít několik typů grafů. Pro vizualizaci dat je možné použít z několika stovek různých frameworků.
+
 
 
 % Bude napsáno o tom jak můžou metriky vypadat (tabulka, graf, ...) a jak je lze vizualizovat (birt + odkaz na praktickou část).
 
 \subsubsection{Zobrazení pomocí tabulky}
-
+Každou metriku si můžeme představit jako tabulku nasbíraných dat během procesu. Je to tedy základní vizualizace nasbíraných surových dat. Nevýhodou tabulkového zobrazení je, že při některých metrikách je složité a náročné si představit, co daná čísla reprezentují a zda číslo, které vidíme je dobré nebo špatné. Většinou se proto zobrazení tabulky kombinuje s grafem, pomocí kterého můžeme lépe pochopit daný kontext měřené veličiny.
 
 \subsubsection{Vizualizace grafem}
-
+Vizualizace pomocí grafu bývá jedna z nejčastějších možností, jak metriku zobrazit a následně pochopit. Pro kýženou vizualizaci grafem můžeme použít několik typů grafů. Vizualizace většinou vychází buď přímo ze surových dat nebo z připravených dat používaných pro zobrazení v tabulce. Pro vizualizaci dat je možné použít z několika stovek různých frameworků, které graf vytvoří a vizualizují. Mezi nejčastěji používané grafy patří různé variace sloupcového, spojnicového a koláčového grafu. V rámci IBM Jazz a aplikacích, které jsou naprogramované pomocí jazyka Java můžeme nalézt použitý framewrok BIRT, kterému se věnuji v rámci kapitoly \ref{sec:birt}. Druhou možností vizualizací na webových stránkách je pomocí JavaScriptové knihovny. V rámci této práce porovnávám dvě knihovny s názvem Google Charts a amCharts v kapitolách \ref{sec:google_charts} a \ref{sec:amcharts}.
 
 \subsubsection{BIRT}
+\label{sec:birt}
 BIRT je open source softwarový projekt vyvíjený konsorciem Eclipse Foundation a původně sponzorovaná společností Actuate s pomocí společnosti IBM, který poskytuje platformu pro vytváření vizualizací dat. Je určený zejména pro webové a klientské aplikace, které jsou založených na prostředí Java a Java EE. BIRT se skládá ze dvou hlavních komponent \cite{ref:birt_about}:
 
 \begin{itemize}
@@ -360,10 +361,29 @@ Architektura BIRT se skládá z \textit{Report Designeru}, který zajišťuje vy
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{Figures/birtarch.png}
+    \includegraphics[width=0.8\textwidth]{Diplomka/Figures/birtarch.png}
     \caption{Architektura BIRT (převzato z \cite{ref:birt_about})}
     \label{fig:birtarch}
 \end{figure}
+\subsubsection{Metabase}
+Podobně jako BIRT je Metabase možné použít jako nástroj pro zobrazování a vizualizaci neagregovaných dat. Je to moderní aplikace, kterou je možné spustit pomocí virtualizace Docker. Grafy je možné vytvářet pomocí SQL dotazů. Aplikace je poskytovaná jak zdarma, tak i za poplatek v případě hostování v cloudu nebo jako \textit{Enterprise} licence pro velké společnosti. Aplikaci je také možné použít jako celý \textit{Business intelligence}. Metabase je možné napojit na velké množství typů databází včetně MySQL, MongoDB, Oracle a další. Výstupní zprávy dokáže posílat také pomocí zpráv v aplikaci Slack. 
+
+[CT https://www.metabase.com/]
+
+
+\subsubsection{Google Charts}
+\label{sec:google_charts}
+Je to veřejně dostupná interaktivní webová služba, která dokáže vytvořit grafy z poskytnutých dat. Knihovna je vyvinutá společností Google a je plně bezplatná.  Velkou výhodou knihovny je, že je plně přizpůsobitelná a funguje pomocí HTML5 a SVG. Zobrazení grafů je tedy kompatibilní na všech zařízení včetně mobilních telefonů a tabletů. Další výhodou je velká variace různých typů grafů, které mohou být zobrazovány dynamicky a při zobrazení měněny a lehce upravovány. Velkou nevýhodou je, že grafy nejsou plně interaktivní a není možné je za běhu bez nutnosti obnovení stránky měnit a jednoduše filtrovat. Oproti BIRT (viz kapitola \ref{sec:birt}) knihovna poskytuje pouze vizualizaci poskytnutých agregovaných dat.
+
+Služba funguje jako JavaScriptová knihovna. Uživatel tedy dodá data pro JavaScript, který potřebný graf následně vykreslí. Služba vychází z původní Google Chart API, která fungovala čistě pomocí HTTP metod a není kompatibilní s aktuálním Google Charts. \cite{ref:google_charts}
+
+\subsubsection{amCharts}
+\label{sec:amcharts}
+Je to jedna z mnoha knihoven fungujících na jazyku JavaScript pro vykreslování grafů na webových stránkách. Samotná knihovna je vytvořena v jazyku TypeScript. Vykreslování probíhá pomocí dynamického zobrazování SVG obrázků, které jsou plně kompatibilní jak s ovládáním pomocí myši, tak pomocí dotyků na mobilních zařízeních. Knihovna nepoužívá žádné jiné knihovny třetích stran a podporuje konfiguraci jak pomocí objektů v TypeScriptu nebo JavaScriptu, tak pomocí univerzálního JSONu. Knihovna obahuje obrovské množství různých typů grafů a jejich variací. Kromě klasických grafů nabízí také mapy, rozmanité diagramy a další variace různých typů grafů. Jednotlivé grafy je možné jakkoliv upravovat dle vlastního uvážení včetně typů písem a dalších vlastností. Grafy v amCharts vypadají moderně a obsahují mnoho volitelných animací a různě barevné šablony.  V základu také nabízí manipulaci s daty, které je možné skrývat či zobrazovat. Knihovna je v základní verzi se zobrazením loga v rohu každého grafu zdarma, pro odstranění loga je nutné zaplatit licenci. Podobně jako u služby Google Charts je nutné dodat data již připravené a agregované. [CT https://www.amcharts.com/]
+
+\subsubsection{Chart.js}
+Chart.js je jednoduchá knihovna určená pro zobrazování grafů na webových stránkách. Knihovnu je možné získat plně zdarma a je dostupná jako otevřený software. Nabízí osm typů grafů, které mohou být animované a přizpůsobitelné. Grafy jsou generovány pomocí HTML5 Canvas a jsou tedy dostupné ve všech novějších prohlížečích. Komponenta je plně responzivní a je tedy možné ji použít na všechna možná zařízení. Nevýhodou je až moc velká jednoduchost a omezenost, která je však vykoupena rychlým nasazením do již existujících webových stránek. [CT https://www.chartjs.org/]
+
 
 
 \section{Automotive SPICE}
@@ -405,7 +425,7 @@ Referenční procesní model definuje několik procesů ve třech základních k
 Jednotlivé kategorie procesů a samotné procesy jsou detailně probrány v kapitole \ref{sec:aspice_processes} a je možné je graficky seskupené vidět na obrázku \ref{fig:prm}. 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=1\textwidth]{Figures/prm.png}
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/prm.png}
     \caption{Referenční procesní model (převzato z \cite{ref:aspice_download_prm})}
     \label{fig:prm}
 \end{figure}
@@ -586,7 +606,7 @@ Application Lifecycle Management je možné rozdělit na tři základní aspekty
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=1\textwidth]{Figures/alm.png}
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/alm.png}
     \caption{Aspkety ALM a jejich fáze \cite{alm_chappell}}
     \label{fig:alm}
 \end{figure}
@@ -665,7 +685,7 @@ Pdf, excel. Definování vlastního reportu, automatické ukládáni na projekt 
 \section{Závěr}
 TODO 
 
-\begin{thebibliography}{21}
+\begin{thebibliography}{22}
 
 \bibitem{ref:sommerrville_sw_process}
 SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~28-29. ISBN 978-0-13-703515-1.
@@ -684,6 +704,9 @@ Software measurement and metrics. SOMMERVILLE, Ian. \textit{Software engineering
 
 \bibitem{ref:birt_about}
 BIRT Design Overview. \textit{BIRT} [online]. Ottawa: The Eclipse Foundation, 2014, 2014 [cit. 2020-11-28]. Dostupné z: https://www.eclipse.org/birt/about/
+
+\bibitem{ref:google_charts}
+Charts | Google Developers. \textit{Google} [online]. [cit. 2021-01-08]. Dostupné z: https://developers.google.com/chart
 
 \bibitem{alm_chappell}
 \textit{What is Application Lifecycle Management?} [online]. 2014, , 2-4 [cit. 2020-11-15]. Dostupné z: http://davidchappell.com/writing/white\_papers/What-is-ALM--Chappell.pdf
