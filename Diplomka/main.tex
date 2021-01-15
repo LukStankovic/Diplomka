@@ -151,6 +151,15 @@ Automotive SPICE používá pro hodnocení, úpravu a zlepšování procesů vla
 Z tohoto modelu vychází novější vývojový model CMMI, který slouží primárně jako architektura pro následné zlepšení procesů v jakékoli organizaci. Stejně jako vývojový model SPICE obsahuje úrovně způsobilosti, které hodnotí vyškolený hodnotitel. Úrovně způsobilosti jsou definovány jako škála 0 až 5, přičemž je možné hodnotit desítky oblastí procesu. Na základě tohoto hodnocení mohou poté probíhat úpravy a vylepšování používaného procesu nebo zavedení úplně nových procesů. Veškeré cíle a postupy, které jsou doporučovány a upravovány v rámci procesu jsou obecné a nejsou tedy technicky zaměřené.
 
 \subsubsection{PDCA}
+Je to iterativní metoda, jejíž cílem je dosáhnout stálého zdokonalování procesů, zvýšení kvality výsledného systému, zlepšení služeb a další. Metoda je založena na čtyřech základních krocích, které se pravidelně opakují. Existuje také varianta s pěti kroky nazývána OPDCA. Metodu PDCA je možné použít prakticky ve všech oborech, kde se vyvíjí nějaký systém, nebo produkt.  Jednotlivé kroky metody PDCA jsou následující:
+
+\begin{enumerate}
+\item \textit{Naplánuj} -- Během prvního kroku se na základě stávajících podmínek a procesů naplánuje a definují nezbytné kroky pro následující změnu. Nezbytnou součástí každého plánu musí být konkrétní způsoby, jak změny realizovat. Další důležitým bodem, který musí být promyšlen je zajištění zdrojů pro provedení dané změny.
+\item \textit{Proveď} -- V rámci tohoto koku je prováděna realizace naplánovaných a navržených úprav z prvního kroku. Důležité je také v tomto kroku provést dokumentaci všech změn, které byly provedeny. Během tohoto kroku se provádí měření všech provedených změn pro následnou analýzu.
+\item \textit{Ověř} -- Tento krok je důležitý pro kontrolu provedených změn. Kontrola probíhá pomocí analýzy nasbíraných dat během druhého kroku. Velmi důležité je zjistit, zda se po provedených změnách proces zlepšil, nebo ne a změny byly negativního rázu. Pro vizualizaci a porovnání naměřených dat můžeme použít například grafy. Veškeré zjištěné informace se následně využijí v následujícím kroku.
+\item \textit{Jednej} -- Poslední krok je založen na logickém postupu, kdy pokud bylo v předchozím kroku ověření prokázáno, že provedené změny pozitivně přispěly ke zdokonalení procesu, pak se tento upravený proces stává standardem, kterým se bude nově společnost řídit. Pokud se ukáže, že provedené změny mají negativní nebo neutrální přínos, tak se proces nezmění a společnost se řídí starým neupraveným procesem. Může se také stát, že změny přinesou nějaký neočekávaný výsledek, se kterým se v prvním plánovacím kroku nepočítalo. V takovém případě, i když mají změny pozitivní vliv, není změna přijata, ale je zahrnuta do nového cyklu a podrobně znova prozkoumána.
+\end{enumerate}
+
 
 \subsubsection{SEL/NASA}
 
@@ -366,9 +375,7 @@ Architektura BIRT se skládá z \textit{Report Designeru}, který zajišťuje vy
     \label{fig:birtarch}
 \end{figure}
 \subsubsection{Metabase}
-Podobně jako BIRT je Metabase možné použít jako nástroj pro zobrazování a vizualizaci neagregovaných dat. Je to moderní aplikace, kterou je možné spustit pomocí virtualizace Docker. Grafy je možné vytvářet pomocí SQL dotazů. Aplikace je poskytovaná jak zdarma, tak i za poplatek v případě hostování v cloudu nebo jako \textit{Enterprise} licence pro velké společnosti. Aplikaci je také možné použít jako celý \textit{Business intelligence}. Metabase je možné napojit na velké množství typů databází včetně MySQL, MongoDB, Oracle a další. Výstupní zprávy dokáže posílat také pomocí zpráv v aplikaci Slack. 
-
-[CT https://www.metabase.com/]
+Podobně jako BIRT je Metabase možné použít jako nástroj pro zobrazování a vizualizaci neagregovaných dat. Je to moderní aplikace, kterou je možné spustit pomocí virtualizace Docker. Grafy je možné vytvářet a skládat pomocí SQL dotazů. Aplikace je poskytovaná jak zdarma, tak i za poplatek v případě hostování v cloudu nebo jako \textit{Enterprise} licence pro velké společnosti. Aplikaci je také možné použít jako celý \textit{Business intelligence}. Metabase je možné napojit na velké množství typů databází včetně MySQL, MongoDB, Oracle a další. Výstupní zprávy dokáže posílat také pomocí zpráv v aplikaci Slack. Není to tedy pouze knihovna sloužící pro vykreslení grafů, ale kompletní řešení. \cite{ref:metabase}
 
 
 \subsubsection{Google Charts}
@@ -379,10 +386,10 @@ Služba funguje jako JavaScriptová knihovna. Uživatel tedy dodá data pro Java
 
 \subsubsection{amCharts}
 \label{sec:amcharts}
-Je to jedna z mnoha knihoven fungujících na jazyku JavaScript pro vykreslování grafů na webových stránkách. Samotná knihovna je vytvořena v jazyku TypeScript. Vykreslování probíhá pomocí dynamického zobrazování SVG obrázků, které jsou plně kompatibilní jak s ovládáním pomocí myši, tak pomocí dotyků na mobilních zařízeních. Knihovna nepoužívá žádné jiné knihovny třetích stran a podporuje konfiguraci jak pomocí objektů v TypeScriptu nebo JavaScriptu, tak pomocí univerzálního JSONu. Knihovna obahuje obrovské množství různých typů grafů a jejich variací. Kromě klasických grafů nabízí také mapy, rozmanité diagramy a další variace různých typů grafů. Jednotlivé grafy je možné jakkoliv upravovat dle vlastního uvážení včetně typů písem a dalších vlastností. Grafy v amCharts vypadají moderně a obsahují mnoho volitelných animací a různě barevné šablony.  V základu také nabízí manipulaci s daty, které je možné skrývat či zobrazovat. Knihovna je v základní verzi se zobrazením loga v rohu každého grafu zdarma, pro odstranění loga je nutné zaplatit licenci. Podobně jako u služby Google Charts je nutné dodat data již připravené a agregované. [CT https://www.amcharts.com/]
+Je to jedna z mnoha knihoven fungujících na jazyku JavaScript pro vykreslování grafů na webových stránkách. Samotná knihovna je vytvořena v jazyku TypeScript. Vykreslování probíhá pomocí dynamického zobrazování SVG obrázků, které jsou plně kompatibilní jak s ovládáním pomocí myši, tak pomocí dotyků na mobilních zařízeních. Knihovna nepoužívá žádné jiné knihovny třetích stran a podporuje konfiguraci jak pomocí objektů v TypeScriptu nebo JavaScriptu, tak pomocí univerzálního JSONu. Knihovna obahuje obrovské množství různých typů grafů a jejich variací. Kromě klasických grafů nabízí také mapy, rozmanité diagramy a další variace různých typů grafů. Jednotlivé grafy je možné jakkoliv upravovat dle vlastního uvážení včetně typů písem a dalších vlastností. Grafy v amCharts vypadají moderně a obsahují mnoho volitelných animací a různě barevné šablony.  V základu také nabízí manipulaci s daty, které je možné skrývat či zobrazovat. Knihovna je v základní verzi se zobrazením loga v rohu každého grafu zdarma, pro odstranění loga je nutné zaplatit licenci. Podobně jako u služby Google Charts je nutné dodat data již připravené a agregované. \cite{ref:amcharts_web}
 
 \subsubsection{Chart.js}
-Chart.js je jednoduchá knihovna určená pro zobrazování grafů na webových stránkách. Knihovnu je možné získat plně zdarma a je dostupná jako otevřený software. Nabízí osm typů grafů, které mohou být animované a přizpůsobitelné. Grafy jsou generovány pomocí HTML5 Canvas a jsou tedy dostupné ve všech novějších prohlížečích. Komponenta je plně responzivní a je tedy možné ji použít na všechna možná zařízení. Nevýhodou je až moc velká jednoduchost a omezenost, která je však vykoupena rychlým nasazením do již existujících webových stránek. [CT https://www.chartjs.org/]
+Chart.js je jednoduchá knihovna určená pro zobrazování grafů na webových stránkách. Knihovnu je možné získat plně zdarma a je dostupná jako otevřený software. Nabízí osm typů grafů, které mohou být animované a přizpůsobitelné. Grafy jsou generovány pomocí HTML5 Canvas a jsou tedy dostupné ve všech novějších prohlížečích. Komponenta je plně responzivní a je tedy možné ji použít na všechna možná zařízení. Nevýhodou je až moc velká jednoduchost a omezenost, která je však vykoupena rychlým nasazením do již existujících webových stránek. \cite{ref:chartjs}
 
 
 
@@ -685,7 +692,7 @@ Pdf, excel. Definování vlastního reportu, automatické ukládáni na projekt 
 \section{Závěr}
 TODO 
 
-\begin{thebibliography}{22}
+\begin{thebibliography}{26}
 
 \bibitem{ref:sommerrville_sw_process}
 SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~28-29. ISBN 978-0-13-703515-1.
@@ -693,11 +700,11 @@ SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-We
 \bibitem{ref:sw_process_vondrak}
 \textit{Úvod do softwarového inženýrství} [online]. In: VONDRÁK, Ivo. Ostrava, 2002, s. 3 [cit. 2020-11-30]. Dostupné z: http://vondrak.cs.vsb.cz/download/Uvod\_do\_softwaroveho\_inzenyrstvi.pdf
 
-\bibitem{ref:metric_definition}
-Software measurement and metrics. SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~668. ISBN 978-0-13-703515-1.
-
 \bibitem{ref:cmm_cmmi}
 Software measurement and metrics. SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~721-722. ISBN 978-0-13-703515-1.
+
+\bibitem{ref:metric_definition}
+Software measurement and metrics. SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~668. ISBN 978-0-13-703515-1.
 
 \bibitem{ref:kontrolni_metriky}
 Software measurement and metrics. SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~711-7114. ISBN 978-0-13-703515-1.
@@ -705,8 +712,17 @@ Software measurement and metrics. SOMMERVILLE, Ian. \textit{Software engineering
 \bibitem{ref:birt_about}
 BIRT Design Overview. \textit{BIRT} [online]. Ottawa: The Eclipse Foundation, 2014, 2014 [cit. 2020-11-28]. Dostupné z: https://www.eclipse.org/birt/about/
 
+\bibitem{ref:metabase}
+\textit{Metabase} [online]. San Francisco: Metabase, c2021 [cit. 2021-01-15]. Dostupné z: https://www.metabase.com/
+
 \bibitem{ref:google_charts}
 Charts | Google Developers. \textit{Google} [online]. [cit. 2021-01-08]. Dostupné z: https://developers.google.com/chart
+
+\bibitem{ref:amcharts_web}
+\textit{JavaScript Charts \& Maps - amCharts} [online]. amCharts, c2006-2021 [cit. 2021-01-15]. Dostupné z: https://www.amcharts.com/
+
+\bibitem{ref:chartjs}
+\textit{Chart.js | Open source HTML5 Charts for your website} [online]. https://www.chartjs.org/, c2021 [cit. 2021-01-15]. Dostupné z: https://www.chartjs.org/
 
 \bibitem{alm_chappell}
 \textit{What is Application Lifecycle Management?} [online]. 2014, , 2-4 [cit. 2020-11-15]. Dostupné z: http://davidchappell.com/writing/white\_papers/What-is-ALM--Chappell.pdf
