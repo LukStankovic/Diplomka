@@ -455,41 +455,41 @@ Kategorie primárních procesů životního cyklu sestává z procesů, které m
 Mezi první podkategorii primárních procesů patří akviziční procesy. Do této podkategorie patří procesy, které jsou prováděny zákazníkem případně dodavatelem, který je v roli zákazníka, který požaduje  službu nebo produkt. Tato podkategorie akvizičních procesů obsahuje sedm procesů:
 
 \begin{itemize}
-	\item ACQ.3 -- Dohoda o smlouvě
-	\item ACQ.4 -- Monitorování dodavatele
-	\item ACQ.11 -- Technické požadavky
-	\item ACQ.12 -- Právní a administrativní požadavky
-	\item ACQ.13 -- Požadavky na projekt
-	\item ACQ.14 -- Žádost o návrhy
-	\item ACQ.15 -- Kvalifikace dodavatele
+	\item ACQ.3 -- Dohoda o smlouvě. Během tohoto procesu probíhá dohoda o samotné smlouvě a schválení smlouvy. Po úspěšném dokončení procesu je dohodnutá smlouva podepsaná a odsouhlasena všemi stranami.
+	\item ACQ.4 -- Monitorování dodavatele. V průběhu procesu se monitoruje, zda dodavatel plní předem definované požadavky.
+	\item ACQ.11 -- Technické požadavky. Jsou zde definovány technické požadavky, které je nutné plnit a kontrolovat. Do technických požadavků můžeme zařadit jak funkční, tak nefunkční požadavky na systém.
+	\item ACQ.12 -- Právní a administrativní požadavky. V rámci tohoto procesu jsou řešeny veškeré právní závazky, definované jak ve smlouvě, tak i  na základě zákonů.
+	\item ACQ.13 -- Požadavky na projekt. V průběhu procesu jsou definovány a ověřeny veškeré požadavky, které souvisejí s celým projektem. Můžeme zde zařadit například personální obsazení a další organizační aktivity.
+	\item ACQ.14 -- Žádost o návrhy.  Během tohoto procesu jsou řešeny přípravy a vydání požadavků na daný systém.
+	\item ACQ.15 -- Kvalifikace dodavatele. V tomto procesu jsou kontrolovány způsobilosti a kvalifikace dodavatele. V rámci procesu se ověřuje, zda dodavatel splňuje potřebné kvality pro výběrové řízení.
 \end{itemize}
 
 Dalším typem procesů jsou dodavatelské procesy. Tyto procesy jsou prováděny dodavatelem a výsledkem je dodání služby nebo produktu.
 
 \begin{itemize}
-	\item SPL.1 -- Výběrové řízení na dodavatele
-	\item SPL.2 -- Vydání produktu
+	\item SPL.1 -- Výběrové řízení na dodavatele. Hlavní myšlenkou tohoto procesu je příprava a vytvoření nabídky do výběrového řízení.  Dále je v tomto procesu řešeno samotné podání nabídky do výběrového řízení.
+	\item SPL.2 -- Vydání produktu. V rámci tohoto procesu se provádí předávání vyvinutého produktu zákazníkovi. Předávání produktu probíhá řízeně pomocí definovaných podprocesů. Během tohoto procesu se také vytváří předávací dokumentace. 
 \end{itemize}	
 
 Procesní skupina systémového inženýrství se skládá z procesů zaměřených na získávání a správu zákaznických a interních požadavků. Dále tyto procesy definují samotnou architekturu vyvíjeného systému. Procesy také řeší celkovou integraci systému a testování produktu na systémové úrovni.
 
 \begin{itemize}
-	\item SYS.1 -- Vyvolání požadavků
-	\item SYS.2 -- Analýza systémových požadavků
-	\item SYS.3 -- Architektonický design systému
-	\item SYS.4 -- Systémová integrace a test integrace
-	\item SYS.5 -- Test kvalifikace systému
+	\item SYS.1 -- Získání požadavků. Během procesu jsou požadavky nejen od zákazníka získány a zadefinování do projektu. Řadíme zde i další požadavky, jako jsou například interní a systémové. 
+	\item SYS.2 -- Analýza systémových požadavků. V rámci tohoto procesu probíhá samotná analýza již nadefinovaných požadavků v předešlém procesu.
+	\item SYS.3 -- Návrh architektury systému. Dochází k navrhnutí a vytvoření systémové architektury na základě definovaných požadavků na celý systém.
+	\item SYS.4 -- Systémová integrace a testování integrace. Během procesu se provádí integrace jednotlivých částí systému a následné testování provedené integrace. Výsledkem procesu je otestovaný a zintegrovaný systém.
+	\item SYS.5 -- Testování kvalifikace systému. V rámci procesu je provedeno otestování a schválení, zda výsledný systém splňuje všechny systémové požadavky. Výsledkem procesu je schválený systém, který je nachystaný pro samotné předání zákazníkovi.
 \end{itemize}
 
 Mezi poslední typ procesů primárních procesů patří procesy softwarového inženýrství. Tyto procesy se starají o správu softwarových požadavků, mezi které například patří například analýza softwarových požadavků, softwarová architektura a další.
 
 \begin{itemize}
-	\item SWE.1 -- Analýza softwarových požadavků
-	\item SWE.2 -- Softwarový architektonický design
-	\item SWE.3 -- Podrobný design softwaru a konstrukce jednotky
-	\item SWE.4 -- Ověření softwarové jednotky
-	\item SWE.5 -- Integrace softwaru a test integrace
-	\item SWE.6 -- Test kvalifikace softwaru
+	\item SWE.1 -- Analýza softwarových požadavků, Během tohoto procesu dochází k analýze veškerých softwarových požadavků na systém, které vznikají ze systémových požadavků.
+	\item SWE.2 -- Softwarový architektonický návrh. V procesu dochází k vytvoření architektonického návrhu. Dále se během procesu určí, které požadavky z procesu \textit{SWE.1} patří k jednotlivým částem systému. 
+	\item SWE.3 -- Podrobný návrh softwaru a konstrukce jednotky. V rámci procesu je vytvořen podrobný návrh systémových komponent a jednotek.
+	\item SWE.4 -- Ověření softwarových jednotek. Během procesu dochází k verifikaci navržených softwarových jednotek. Toto ověření probíhá na základě porovnání s funkčními a nefunkčními požadavky na systém.
+	\item SWE.5 -- Integrace softwaru a test integrace. Dochází zejména k integraci navržených softwarových jednotek do celého systému, který je poté zevrubně kompletně otestován. 
+	\item SWE.6 -- Kvalifikační testy softwaru. Během procesu je prováděno kvalifikační testování celého integrovaného systému ve shodě se všemi požadavky.
 \end{itemize}
 
 % \paragraph{Test Modified Paragraph}
@@ -498,13 +498,13 @@ Mezi poslední typ procesů primárních procesů patří procesy softwarového 
 Procesy zařazené v rámci sekce podpůrných procesů jsou použity v kterémkoli procesu v různých bodech celého vývojového životního cyklu. Procesy v této kategorii mají zkratku SUP.
 
 \begin{itemize}
-	\item SUP.1 -- Zajištění kvality
-	\item SUP.2 -- Ověření
-	\item SUP.4 -- Společná kontrola
-	\item SUP.7 -- Dokumentace
-	\item SUP.8 -- Správa konfigurace
-	\item SUP.9 -- Správa řešení problémů
-	\item SUP.10 -- Správa požadavků na změnu
+	\item SUP.1 -- Zajištění kvality. Proces zajišťuje, že veškeré používané procesy a pracovní nástroje splňují předem stanovené plány a potřebné kvality.
+	\item SUP.2 -- Ověření. Proces je také nazýván verifikace a zajišťuje, že všechny pracovní nástroje a procesy splňují to co je požadováno.
+	\item SUP.4 -- Společná kontrola. V rámci procesu probíhá společná kontrola a revize mezi všemi stranami, které se na projektu podílí. Je tedy zajištěno, že všechny strany vývoj systému a následný výsledek uspokojuje.
+	\item SUP.7 -- Dokumentace. Během procesu je vytvářená důležitá dokumentace všech informací vzniklých během procesů.
+	\item SUP.8 -- Správa konfigurace. Proces zajišťuje vytváření a údržbu všech pracovních nástrojů a produktů procesů nebo daného projektu.
+	\item SUP.9 -- Správa řešení problémů. Veškeré problémy vzniklé během celého vývoje systému musí být identifikované a poté analyzované. V rámci procesu se poté také pracuje se samotnou správou a vyřešení problémů. 
+	\item SUP.10 -- Správa požadavků na změnu. Dodržení procesu zajišťuje, že veškeré změny, které jsou navrženy jsou řízeny a sledovány.
 \end{itemize}
 
 \subsubsection{Organizační procesy}
@@ -513,21 +513,21 @@ Poslední skupinou v rámci Automotive SPICE jsou organizační procesy, které 
 Skupina procesů řízení se skládá z procesů, které může použít kdokoli, kdo v rámci vývojového životního cyklu řídí jakýkoli typ projektu nebo procesu. Tato skupina procesů má zkratku MAN.
 
 \begin{itemize}
-	\item MAN.3 -- Projektový management
-	\item MAN.5 -- Řízení rizik
-	\item MAN.6 -- Měření
+	\item MAN.3 -- Projektový management. Proces zahrnuje celé projektové řízení a je důležitý pro nalezení aktivit a nutné zdroje k vytvoření celého systému.
+	\item MAN.5 -- Řízení rizik. Veškeré rizika spojené s vývojem systému musí být identifikovány a poté řízeny, tak aby nedošlo k problémům.
+	\item MAN.6 -- Měření. V rámci procesu jsou měřeny a sbírány data týkající se celého vývoje. Na základě naměřených dat můžeme zajistit lepší a efektivnější směrování celého projektu. Dále měřením můžeme reflektovat určitou kvalitu celého nebo části systému.
 \end{itemize}
 
 Další skupinou v rámci organizačních procesů je skupina vylepšení procesů se zkratkou PIM. V této skupině existuje jeden proces. Tento proces obsahuje postupy pro zlepšení jednotlivých procesů prováděných v rámci společnosti.
 
 \begin{itemize}
-	\item PIM.3 -- Vylepšení procesu
+	\item PIM.3 -- Vylepšení procesu. Proces je velmi důležitý pro zajištění neustálého zlepšování efektivity při vykonávání všech ostatních procesů v rámci celé společnosti vyvíjející daný systém. Proces nám zajistí, že veškeré procesy jsou efektivní a vyhovující.
 \end{itemize}
 
 Poslední skupinou organizačních procesů je skupina procesu opětovného použití. Tato skupina má zkratku REU a obsahuje pouze jeden proces. Tento proces slouží k zavádění opětovného použití procesů v rámci společnosti.
 
 \begin{itemize}
-	\item REU.2 -- Opětovné použití správy programu
+	\item REU.2 -- Opětovné použití správy programu. Během procesu je zajištěna celá správa znovupoužití programu v celé společnosti vyvíjející daný systém. Důležité je zajistit, že použitý program je využíván systematicky a efektivně.
 \end{itemize}
 
 
