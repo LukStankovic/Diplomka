@@ -161,7 +161,11 @@ Je to iterativní metoda, jejíž cílem je dosáhnout stálého zdokonalování
 \end{enumerate}
 
 
-\subsection{Sekvenční a iterativní přístupy vývoje}
+\subsection{Sekvenční a iterativní metodiky vývoje}
+V rámci sekvenčních metodik vývoje softwaru probíhají veškeré aktivity lineárně po sobě, tak že každá fáze je plně dokončena a otestována. Tato podmínka je velmi důležitá pro bezproblémový vývoj a následnou udržitelnost vyvíjeného systému. Je tedy důležité věnovat počátečním fázím návrhu dostatek času a úsilí. Sekvenční metodiky jsou vhodné pro systémy, které mají pevně dané požadavky na začátku vývoje a během samotného vývoje jsou prakticky neměnné. Další výhoda sekvenčních metodik je  v jednoduchosti z hlediska řízení vývoje. Nevýhoda je kromě již zmíněné nemožnosti řádně modifikovat požadavky například v tom, že zákazník vidí spustitelnou verzi až v úplně poslední fázi verifikace. Veškeré nové požadavky mohou vést k razantnímu navyšování výsledného rozpočtu celého projektu.
+
+Iterativní metodiky sekvenční přístup vylepšují tím, že jednotlivé sekvenční aktivity probíhají opakovaně v cyklech. Není poté potřeba dbát takový důraz na počáteční fáze vývoje, konkrétně na analýzu a návrh. Iterativní metodiky se tedy hodí všechny druhy vývoje, kdy víme, že se můžou podmínky a požadavky za běhu měnit. Výhodou iterativních přístupů je že je metoda pružnější pro opravu či implementaci změněných požadavků. Nevýhodou je, že oproti sekvenčním přístupům iterativní přístup žádá vyšší nároky na vedení a řízení celého vývoje. 
+
 \subsubsection{Vodopádový model}
 Jde o jeden z nejstarších vývojových procesů, který byl poprvé publikován v článku v roce 1970 Winstonem W. Roycem a vychází z obecných vývojových procesů. Vodopádovým modelem je nazýván, protože jednotlivé fáze procesu postupně kaskádovitě navazují na sebe a celý model poté vypadá jako vodopád. Veškeré kroky musí být pečlivě analyzovány a naplánovány. K další vývojové fázi se přistupuje až poté, co jsou veškeré předchozí kroky splněny, schváleny a uzavřeny. \cite{ref:sommerrville_waterfall} Aby byl projekt podle modelu úspěšný je nutné věnovat prvním fázím dostatek času. Vodopádový model je možné vidět na obrázku \ref{fig:waterfall}.
 
@@ -222,7 +226,7 @@ Výše popsané fáze společně s disciplínami je možné vidět na obrázku \
     \label{fig:rup}
 \end{figure}
 
-\subsection{Agilní přístupy vývoje}
+\subsection{Agilní metodiky vývoje}
 Aktuální trh se softwarem se rychle mění a proto je potřeba reagovat na měnící se prostředí. Agilní přístupy patří k inkrementálním způsobům vývoje. Software vytvářený pomocí vodopádového modelu může být v době vydání již velmi zastaralý. Z tohoto důvodu jsou agilní přístupy vývoje v poslední době velmi oblíbené. Takto vyvíjený software je většinou dodán rychleji, ale za to může být dodán s horší kvalitou. Takový přístup se ovšem nehodí u kritických systémů, u kterých je kladen velký důraz například na bezpečnost a spolehlivost. Software se během agilního vývoje vytváří ve verzích, kdy každá nová verze obsahuje nové funkcionality. Jednotlivé vývojové procesy se prolínají a většinou neexistuje podrobná specifikace a dokumentace systému. V dokumentaci obvykle bývají pouze základní a nejdůležitější prvky systému. Tento nedostatek se může ovšem rychle vymstít při následné údržbě daného softwaru.
 
 Filozofie agilních metodik vychází z manifestu, na kterém se shodli vývojáři těchto vývojových metod. Manifest popisuje čtyři základní hodnoty, kterých si autoři cení \cite{ref:agilne_manifesto}:
