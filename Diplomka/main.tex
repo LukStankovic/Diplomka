@@ -630,11 +630,29 @@ Každá část životního aplikačního cyklu se liší dle použitého vývojo
 
 % ALM aplikace se používají pro plánování a monitorování procesu. Na základě zmonitorovaných dat je poté proces upravován a měněn tak aby bylo možné produkt dokončit úspěšně za co nejmenších nákladů. Aplikací .
 
-\subsection{codeBeamer}
+\subsection{codeBeamer Application Lifecycle Management}
+Aplikace codeBeamer obsahuje několik nástrojů používaných pro úplnou správu celého životního cyklu systému, který začíná vývojem systému a pokračuje až do vydání funkční verze systému. Prakticky životní cyklus systému nekončí vydáním první funkční verze, ale systém je dále udržován a zlepšován dokud je konkurence schopný nebo využitelný v daném prostředí. V rámci aplikace codeBeamer tedy existuje mnoho nástrojů jak zajistit správu celého životního cyklu jako například správa požadavků, správa testů, správa kvality, správa zacházení s riziky a mnoho dalších nástrojů. Aplikace je vhodná pro všechny varianty agilního přístupu vývoje. Aplikace také podporuje verzování vyvíjeného systému a následnou práci s jednotlivými verzemi. \cite{ref:about_codebeamer}
+
+CodeBeamer je koncipován jako jedna velká aplikace, obsahující všechny nástroje pro správu životního cyklu aplikace na jednom místě. Velká výhoda tohoto přístupu je v tom, že máme na jednom místě veškeré informace od úplného začátku životního cyklu až do konce životního cyklu aplikace. Můžeme tedy i zpětně trasovat jednotlivé fáze celého vývoje. CodeBeamer poskytuje několik předefinovaných šablon pro různé typy vývoje. Mezi ty patří například pro vývoj v leteckém průmyslu, automobilovém průmyslu (šablona pro standard ASPICE) nebo například pro zdravotnictví. Obsahuje také šablony pro různé ostatní procesy jako například pro testování, zákaznickou podporu nebo SCRUM.  \cite{ref:codebeamer_templates} Šablony jsou užitečné jednak pro začínající tým, který s vývojem začíná, ale jsou také vhodné pro zajištění dodržování daných procesů, standardů a také pro snížení celkových nákladů na samotný vývoj.
+
+Další výhodou nástroje codeBeamer je, že nabízí velké množství přídavných aplikací či propojení s jinými nejen vývojovými nástroji. Toto je vhodné například pro propojení s nástroji zákazníka, nebo s ostatními nástroji poskytující služby, které codeBeamer neobsahuje. Mezi platformy a nástroje, které lze propojit patří například Jira, Git, JUnit, Docker, IBM Rational DOORS, Slack a mnoho dalších nástrojů používáných v rámci celého životního cyklu vyvíjeného systému či aplikace.
+
+CodeBeamer je placený nástroj, který je možné používat buď jako aplikaci nainstalovanou na vlastním serveru, nebo s cloudovou licencí přímo na serverech společnosti Intland, která codeBeamere vyvíjí. Nástroj nabízí pro vyzkoušení třiceti denní zkušební licenci zdarma. 
+
+\subsubsection{Sběr a správa požadavků}
+
+
+\subsubsection{Monitorování procesů}
+
+\subsubsection{Export dat}
+
 
 \subsection{Siemens Polarion}
 
+
+
 \subsection{IBM Jazz}
+
 
 \subsubsection{Sběr požadavků}
 
@@ -693,7 +711,7 @@ Pdf, excel. Definování vlastního reportu, automatické ukládáni na projekt 
 \section{Závěr}
 TODO 
 
-\begin{thebibliography}{26}
+\begin{thebibliography}{29}
 
 \bibitem{ref:sommerrville_sw_process}
 SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~28-29. ISBN 978-0-13-703515-1.
@@ -780,6 +798,11 @@ Automotive SPICE | Download. \textit{Automotive SPICE} [online]. 2005, 2018 [cit
 \bibitem{alm_chappell}
 \textit{What is Application Lifecycle Management?} [online]. 2014, , 2-4 [cit. 2020-11-15]. Dostupné z: http://davidchappell.com/writing/white\_papers/What-is-ALM--Chappell.pdf
 
+\bibitem{ref:about_codebeamer}
+CodeBeamer ALM: Application Lifecycle Management Software. \textit{CodeBeamer ALM \& Intland Retina }[online]. Stuttgart: Intland Software, c1998-2021 [cit. 2021-01-20]. Dostupné z: https://intland.com/codebeamer/application-lifecycle-management/
+
+\bibitem{ref:codebeamer_templates}
+Templates. \textit{CodeBeamer ALM \& Intland Retina} [online]. Stuttgart: Intland Software, c1998-2021 [cit. 2021-01-20]. Dostupné z: https://intland.com/intland-templates/
 
 \end{thebibliography}
 
