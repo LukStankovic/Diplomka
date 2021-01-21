@@ -631,20 +631,47 @@ Každá část životního aplikačního cyklu se liší dle použitého vývojo
 % ALM aplikace se používají pro plánování a monitorování procesu. Na základě zmonitorovaných dat je poté proces upravován a měněn tak aby bylo možné produkt dokončit úspěšně za co nejmenších nákladů. Aplikací .
 
 \subsection{codeBeamer Application Lifecycle Management}
+\label{sec:codebeamer}
 Aplikace codeBeamer obsahuje několik nástrojů používaných pro úplnou správu celého životního cyklu systému, který začíná vývojem systému a pokračuje až do vydání funkční verze systému. Prakticky životní cyklus systému nekončí vydáním první funkční verze, ale systém je dále udržován a zlepšován dokud je konkurence schopný nebo využitelný v daném prostředí. V rámci aplikace codeBeamer tedy existuje mnoho nástrojů jak zajistit správu celého životního cyklu jako například správa požadavků, správa testů, správa kvality, správa zacházení s riziky a mnoho dalších nástrojů. Aplikace je vhodná pro všechny varianty agilního přístupu vývoje. Aplikace také podporuje verzování vyvíjeného systému a následnou práci s jednotlivými verzemi. \cite{ref:about_codebeamer}
 
 CodeBeamer je koncipován jako jedna velká aplikace, obsahující všechny nástroje pro správu životního cyklu aplikace na jednom místě. Velká výhoda tohoto přístupu je v tom, že máme na jednom místě veškeré informace od úplného začátku životního cyklu až do konce životního cyklu aplikace. Můžeme tedy i zpětně trasovat jednotlivé fáze celého vývoje. CodeBeamer poskytuje několik předefinovaných šablon pro různé typy vývoje. Mezi ty patří například pro vývoj v leteckém průmyslu, automobilovém průmyslu (šablona pro standard ASPICE) nebo například pro zdravotnictví. Obsahuje také šablony pro různé ostatní procesy jako například pro testování, zákaznickou podporu nebo SCRUM.  \cite{ref:codebeamer_templates} Šablony jsou užitečné jednak pro začínající tým, který s vývojem začíná, ale jsou také vhodné pro zajištění dodržování daných procesů, standardů a také pro snížení celkových nákladů na samotný vývoj.
 
-Další výhodou nástroje codeBeamer je, že nabízí velké množství přídavných aplikací či propojení s jinými nejen vývojovými nástroji. Toto je vhodné například pro propojení s nástroji zákazníka, nebo s ostatními nástroji poskytující služby, které codeBeamer neobsahuje. Mezi platformy a nástroje, které lze propojit patří například Jira, Git, JUnit, Docker, IBM Rational DOORS, Slack a mnoho dalších nástrojů používáných v rámci celého životního cyklu vyvíjeného systému či aplikace.
+Další výhodou nástroje codeBeamer je, že nabízí velké množství přídavných aplikací či propojení s jinými nejen vývojovými nástroji. Toto je vhodné například pro propojení s nástroji zákazníka, nebo s ostatními nástroji poskytující služby, které codeBeamer neobsahuje. Mezi platformy a nástroje, které lze propojit patří například Jira, Git, JUnit, Docker, IBM Rational DOORS, Slack a mnoho dalších nástrojů používaných v rámci celého životního cyklu vyvíjeného systému či aplikace.
 
-CodeBeamer je placený nástroj, který je možné používat buď jako aplikaci nainstalovanou na vlastním serveru, nebo s cloudovou licencí přímo na serverech společnosti Intland, která codeBeamere vyvíjí. Nástroj nabízí pro vyzkoušení třiceti denní zkušební licenci zdarma. 
+CodeBeamer je placený nástroj, který nabízí výběr z několika stupňů typu licencí.  Nástroj je možné používat buď jako aplikaci nainstalovanou na vlastním serveru, nebo s cloudovou licencí přímo na serverech společnosti Intland, která codeBeamer vyvíjí. Nástroj nabízí pro vyzkoušení třiceti denní testovací licenci zdarma. CloudBeamer je možné používat buď jako webovou aplikaci přímo v prohlížeči, nebo jako desktopovou aplikaci na operačním systému Windows a Linux. \cite{ref:codebeamer_pricing}
 
 \subsubsection{Sběr a správa požadavků}
+Aplikace codeBeamer ALM poskytuje v plné licenci mnoho možností pro sběr a následnou správu požadavků všech různých typů. Správa požadavků obsahuje také správu návaznosti a propojení různých typů artefaktů napříč celým životním cyklem daného projektu či systému s jinými artefakty a požadavky. Veškerým požadavkům je možné přiřadit buď již před chystané atributy, nebo vytvořit také nové vlastní atributy. 
 
+Pro navigaci v rámci celé aplikace a projektu slouží vrchní horizontální menu, které obsahuje položky pro dokumentaci, verzování, administraci a správa požadavků, která se nachází pod položkou \textit{Trackers}. Po rozkliknutí této položky se zobrazí úvodní nástěnka s konfigurovatelnými bloky, na kterých se můžou umístit různé grafy. Jednotlivým grafům můžeme nastavovat data, ze kterých mají čerpat. Tedy například počet softwarových požadavků v různých stavech, počet všech požadavků na dané vydání a mnoho dalšího. Celá nástěnka je zobrazena na obrázku \ref{fig:codebeamer_trackers}.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/codebeamer_trackers.png}
+    \caption{Nástěnka požadavků aplikace codeBeamer ALM}
+    \label{fig:codebeamer_trackers}
+\end{figure}
+
+Na levé straně obrazovky se nachází navigace, obsahující kategorie jednotlivých artefaktů. Po otevření jedné z kategorie se nám zobrazí seznam artefaktů společně a ve výchozím zobrazení společně se stavy artefaktu a zodpovědné osoby jako je možné vidět na obrázku \ref{fig:codebeamer_requirments}. Dle potřeby je možné sloupce přidávat a upravovat.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/codebeamer_requirments.png}
+    \caption{Seznam požadavků v aplikaci codeBeamer ALM}
+    \label{fig:codebeamer_requirments}
+\end{figure}
+
+Místo seznamu je možné také zobrazit artefakty ve formátu jako dokument, kdy jsou viditelné názvy artefaktů, popis a komentáře. Takové formátování je vhodné pro přehledný výpis a editaci popisů, zadání a komentování artefaktů. Třetí dostupné zobrazení je zobrazení kanban tabule, kde jsou artefakty zobrazeny jako lístečky ve sloupcích, které jsou ve výchozím nastavení \textit{ToDo}, \textit{In progress}, \textit{To verify} a \textit{Done}. Artefakty ve formě lístečků můžeme libovolně přesouvat mezi sloupečky, dle definovaného procesu v rámci projektu. Poslední možné zobrazení \textit{Test coverage} poskytuje vyobrazení, kolik procent artafaktů v jednotlivých fázích vývoje jsou pokryty testy, kolik z nich je vyhovujících a kolik testy neprochází. 
+
+U artefaktů můžeme nastavovat velké množství jak přednastavených atributů, tak si můžeme definovat i atributy vlastní. Toto nastavení je možné provádět v detailním zobrazení daného artefaktu nebo v pravém sloupci po kliknutí na artefakt na výpise všech artefaktů. Na detailu artefaktu můžeme také přidávat komentáře, přílohy a nebo spojovat artefakt s jinými artefakty. Každý artefakt má svůj vlastní identifikátor, pomocí kterého ho můžeme sdílet mezi ostatní kolegy v rámci vývoje. 
 
 \subsubsection{Monitorování procesů}
+Procesy můžeme v rámci nástroje codeBeamer ALM monitorovat například pomocí metrik.
 
 \subsubsection{Export dat}
+Jak již bylo zmíněno v předešlé kapitole \ref{sec:codebeamer}, artefakty a celý systém je možné propojit s mnoha jinými vývojovými nástroji. 
+
+Kromě komplexních exportů pomocí REST API do jiných vývojových nástrojů můžeme také jednotlivé artefakty exportovat do formátu pro Microsoft Office Word a Excel, do formátu CSV a nebo do prostého PDF.
 
 
 \subsection{Siemens Polarion}
@@ -711,7 +738,7 @@ Pdf, excel. Definování vlastního reportu, automatické ukládáni na projekt 
 \section{Závěr}
 TODO 
 
-\begin{thebibliography}{29}
+\begin{thebibliography}{30}
 
 \bibitem{ref:sommerrville_sw_process}
 SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~28-29. ISBN 978-0-13-703515-1.
@@ -803,6 +830,9 @@ CodeBeamer ALM: Application Lifecycle Management Software. \textit{CodeBeamer AL
 
 \bibitem{ref:codebeamer_templates}
 Templates. \textit{CodeBeamer ALM \& Intland Retina} [online]. Stuttgart: Intland Software, c1998-2021 [cit. 2021-01-20]. Dostupné z: https://intland.com/intland-templates/
+
+\bibitem{ref:codebeamer_pricing}
+CodeBeamer Subscription Pricing \& Features. \textit{CodeBeamer ALM \& Intland Retina} [online]. Stuttgart: Intland Software, c1998-2021 [cit. 2021-01-21]. Dostupné z: https://intland.com/codebeamer/pricing/
 
 \end{thebibliography}
 
