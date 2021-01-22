@@ -665,13 +665,15 @@ Místo seznamu je možné také zobrazit artefakty ve formátu jako dokument, kd
 
 U artefaktů můžeme nastavovat velké množství jak přednastavených atributů, tak si můžeme definovat i atributy vlastní. Toto nastavení je možné provádět v detailním zobrazení daného artefaktu nebo v pravém sloupci po kliknutí na artefakt na výpise všech artefaktů. Na detailu artefaktu můžeme také přidávat komentáře, přílohy a nebo spojovat artefakt s jinými artefakty. Každý artefakt má svůj vlastní identifikátor, pomocí kterého ho můžeme sdílet mezi ostatní kolegy v rámci vývoje. 
 
-\subsubsection{Monitorování procesů}
-Procesy můžeme v rámci nástroje codeBeamer ALM monitorovat například pomocí metrik.
+\subsubsection{Monitorování}
+Procesy můžeme v rámci nástroje codeBeamer ALM monitorovat například pomocí metrik. Ty jsou v grafické podobě bohužel dostupné pouze na nástěnce. Na všech ostatních místech nástroje je zobrazení agregovaných dat pouze textové. Mezi textové metriky můžeme zařadit například pokrytí požadavků testy. Další velká nevýhoda nástroje codeBeamer je, že neexistuje zobrazení metriky v určitém časovém období. Pokud si uživatel nebude pravidelně exportovat a manuálně porovnávat jednotlivé metriky, nemůže nijak vyhodnotit postupný vývoj systému. 
+
+Z naměřených dat v rámci procesu je možné vytvářet tzv. \textit{reporty}. Ty lze vytvářet pomocí speciálního vlastního dotazovacího jazyka podobného SQL. Pomocí napsaných dotazů můžeme naměřená data filtrovat a agregovat dle potřeby a exportovat. Tento dotaz lze uložit a poté ho pouze spouštět a tím filtrovaná data zobrazit. Tato data je možné použít pro vygenerování metriky. Nevýhoda tohoto přístupu však je, že je potřeba dotaz vždy ručně načíst a spustit.
 
 \subsubsection{Export dat}
-Jak již bylo zmíněno v předešlé kapitole \ref{sec:codebeamer}, artefakty a celý systém je možné propojit s mnoha jinými vývojovými nástroji. 
+Jak již bylo zmíněno v předešlé kapitole \ref{sec:codebeamer}, artefakty a celý systém je možné propojit s mnoha jinými vývojovými nástroji. Nejkomplexnější řešení je exportovat data pravidelně pomocí REST API. Ve výchozím stavu je napojení pro všechny uživatele vypnuté a je nutné jej povolit v nastavení účtu. Velkou výhodou napojení pomocí REST API je, že můžeme data nejen o jednotlivých artefaktech stahovat pravidelně dle naší potřeby. Veškerá data, které API vrátí jsou ve formátu JSON. API poskytuje velké množství metod, pro různá data. Tyto jednotlivé metody jsou velmi dobře zdokumentované a popsané v dokumentaci codeBeameru, která je volně dostupná na internetu.  \cite{ref:codebeamer_rest}
 
-Kromě komplexních exportů pomocí REST API do jiných vývojových nástrojů můžeme také jednotlivé artefakty exportovat do formátu pro Microsoft Office Word a Excel, do formátu CSV a nebo do prostého PDF.
+Kromě komplexních exportů pomocí REST API do jiných vývojových nástrojů můžeme také jednotlivé artefakty exportovat do formátu pro Microsoft Office Word a Excel, do formátu CSV a nebo do prostého PDF. Takto lze artefakty exportovat manuálně buď jeden artefakt za druhým nebo najednou všechny artefakty v dané kategorii. Nevýhoda těchto exportů je, že mohou být provedeny pouze manuálně v projektu a nelze je automatizovat. Takto exportované artefakty mohou sloužit pro budoucí pouze textovou zálohu artefaktů, jelikož v datech nelze jednoduše vyhledávat a pracovat s nimi tak detailně jako při exportu pomocí REST API. 
 
 
 \subsection{Siemens Polarion}
@@ -738,7 +740,7 @@ Pdf, excel. Definování vlastního reportu, automatické ukládáni na projekt 
 \section{Závěr}
 TODO 
 
-\begin{thebibliography}{30}
+\begin{thebibliography}{31}
 
 \bibitem{ref:sommerrville_sw_process}
 SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~28-29. ISBN 978-0-13-703515-1.
@@ -833,6 +835,10 @@ Templates. \textit{CodeBeamer ALM \& Intland Retina} [online]. Stuttgart: Intlan
 
 \bibitem{ref:codebeamer_pricing}
 CodeBeamer Subscription Pricing \& Features. \textit{CodeBeamer ALM \& Intland Retina} [online]. Stuttgart: Intland Software, c1998-2021 [cit. 2021-01-21]. Dostupné z: https://intland.com/codebeamer/pricing/
+
+\bibitem{ref:codebeamer_rest}
+REST API. \textit{CodeBeamer ALM \& Intland Retina} [online]. Stuttgart: Intland Software, c1998-2021 [cit. 2021-01-22]. Dostupné z: https://codebeamer.com/cb/wiki/117612
+
 
 \end{thebibliography}
 
