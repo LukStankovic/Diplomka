@@ -677,7 +677,7 @@ Kromě komplexních exportů pomocí REST API do jiných vývojových nástrojů
 
 
 \subsection{Siemens Polarion ALM}
-Aplikace Polarion slouží jako jednotné řešení, které umožňuje propojit všechny možné účastníky všech procesů v dané společnosti. Pomocí vestavěných nástrojů dokáže propojit různé týmy vyvíjející určitý systém. Je vhodná pro vývoj velkých systémů nebo aplikací. Mezi takové systémy můžeme zařadit i vývoj nějakého systému v automobilovém průmyslu. Aplikace stejně jako codeBeamer ALM obsahuje veškeré nástroje pro správu celého životního cyklu vyvíjeného produktu mezi které patří například správa požadavků, správa kvality systému, správa zacházení s riziky, správa testů a pokrytí testy a mnoho dalšího. Dále aplikace Polarion nabízí automatizaci jednotlivých procesů.
+Aplikace Polarion slouží jako jednotné řešení, které umožňuje propojit všechny možné účastníky všech procesů v dané společnosti. Pomocí vestavěných nástrojů dokáže propojit různé týmy vyvíjející určitý systém. Je vhodná pro vývoj velkých systémů nebo aplikací. Mezi takové systémy můžeme zařadit i vývoj nějakého systému v automobilovém průmyslu. Aplikace stejně jako codeBeamer ALM obsahuje veškeré nástroje pro správu celého životního cyklu vyvíjeného produktu mezi které patří například správa požadavků, správa kvality systému, správa zacházení s riziky, správa testů a pokrytí testy a mnoho dalšího. Dále aplikace Polarion nabízí automatizaci jednotlivých procesů. \cite{ref:polarion_about}
 
 Siemens Polarion je navržen jako jedna aplikace obsahující mnoho nástrojů pro správu životního cyklu. Tyto nástroje jsou v navigaci prakticky na jednom místě. Vývojový tým tedy nemusí mít stejně v případě codeBeameru více aplikací a nástrojů pro správu projektu. Aplikace je placená a je možné ji provozovat buď jako webovou aplikaci v prohlížeči nebo jako klasickou aplikaci přímo v systému Windows a Linux. Stejně jako v případě aplikace codeBeamer obsahuje Polarion kromě čisté šablony několik šablon, ze kterých je možné vytvořit projekt. Šablony je možné si libovolně upravovat a použít při dalších vyvíjených projektech. Proces vytváření nového projektu z šablony, nebo případně založení čistého a prázdného projektu je možné vidět na obrázku \ref{fig:polarion_new_project}. Vytvořené šablony jsou z různých prostředí vývoje jako například obecný agilní projekt, zdravotnictví nebo i Automotive SPICE. 
 
@@ -704,12 +704,30 @@ Aplikace obsahuje vertikální navigaci, pomocí které je možné přecházet d
     \label{fig:polarion_requirements}
 \end{figure}
 
-Výhoda oproti aplikaci codeBeamer je, že abychom si zobrazili detail samotného požadavku nemusíme otevírat celou novou stránku, ale požadavek je nám zobrazen v menším okně v dolní části obrazovky. Pokud chceme otevřít požadavek v nové stránce je třeba jej otevřít pomocí dvojkliku.
-
+Výhoda oproti aplikaci codeBeamer je, že abychom si zobrazili detail samotného požadavku nemusíme otevírat celou novou stránku, ale požadavek je nám zobrazen v menším okně v dolní části obrazovky. Pokud chceme otevřít požadavek v nové stránce je třeba jej otevřít pomocí dvojkliku. V detailu každého požadavku můžeme nastavovat námi definované atributy. Samozřejmostí je unikátní číslo každého požadavku, které navíc obsahuje předponu, kterou si můžeme definovat v rámci projektu. Jednotlivé požadavky je možné schvalovat, propojovat a přepínat do různých stavů.
 
 \subsubsection{Monitorování}
+Aplikace Polarion nabízí monitorování procesů pomocí metrik, které je možné zobrazit na vícero místech. První místo kde je možné metriku zobrazit je na nástěnce. Zde se ve výchozím stavu v šabloně pro agilní projekt zobrazuje graf, kolik úkolů je třeba ještě do dalšího vydání dokončit, kolik chyb bylo nalezeno a mnoho dalšího. Veškeré metriky na nástěnce jsou zobrazeny graficky. Grafy není možné bohužel nijak filtrovat a jde pouze o rychlé informace, které poskytnou lepší orientaci v jakém stavu se projekt nachází. Nástěnku je možné vidět na obrázku \ref{fig:polarion_dashboard}.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/polarion_dashboard.png}
+    \caption{Nástěnka a metriky v aplikaci Siemens Polarion ALM}
+    \label{fig:polarion_dashboard}
+\end{figure}
+
+Další místo, kde je možné metriky zobrazit je v záložce \textit{Plans}. Zde je možné zobrazit metriky jak v grafickém tak tabulkovém zobrazení. Uživatel si může metriku definovat a vytvořit pomocí filtrů v horní části obrazovky. Do jednotlivých metrik si uživatel může navolit různé typy artefaktů. Metriky není zde bohužel možné nijak rychle filtrovat a upravovat. Celý výpis metrik je možné si exportovat do formátu PDF. Bohužel není možné exportovat jen určité grafy a výpisy, ale pouze celou stránku s metrikami.
+
+Grafické zobrazení průběhu vývoje projektu je možné zobrazit napříč celou aplikací Siemens Polarion. Je možné například zobrazit si graficky vývoj testování vyvíjeného systému, nové verze k vydání, vytvářet různé reporty s definovanými pravidly a mnoho dalšího. Velkou nevýhodou však je, že na žádném místě není možné nijak podrobněji filtrovat a upravovat grafy.
 
 \subsubsection{Export dat}
+K aplikaci Siemens Polarion je možné pomocí doplňků připojit velké množství jiných vývojových nástrojů. Existuje například doplněk pro propojení s aplikací Jira. Většina těchto doplňků je placených. \cite{ref:polarion_extensions}
+
+Další možnosti exportu dat je pomocí manuálního exportu jednotlivých artefaktů do formátu PDF. Takto provedený export nejde použít pro agregování dat, ale jen pro prostou dokumentaci či zálohu. Druhá nevýhoda je v tom, že proces nejde nijak zautomatizovat a je potřeba PDF exportovat manuálně v aplikaci. Do PDF je možné exportovat prakticky každý artefakt, výpis dat nebo celou stránku s metrikami.
+
+Siemens Polarion nabízí export dat pomocí webových služeb. Ty jsou podrobě zdokumentované na veřejně přístupné dokumentaci. \cite{ref:polarion_documentation} Výhodou tohoto přístupu je, že můžeme proces exportu dat automatizovat a data si z aplikace stahovat kdykoli potřebujeme. Takto můžeme z Polarionu vyexportovat velké množství informací. Nevýhodou této metody je, že může být export složitější oproti použití například REST API.
+
+Poslední a dle autorů aplikace nejkomplexnější možností exportu dat je čtení dat přímo z databáze Polarionu. Pomocí exportu dat z databáze můžeme také tento proces automatizovat a spouštět dotazy nad databází prakticky kdykoliv. Dokumentace obsahuje kompletní architekturu databáze včetně ukázkových SQL dotazů. \cite{ref:polarion_documentation} V dokumentaci se kromě propojení jednotlivých tabulek nachází také popis všech objektů v databázi. Velká výhoda této metody je možnost exportovat jakékoliv data, ke kterým máme v databázi přístup. Nevýhodou je, že pro vytvoření exportu potřebujeme znát architekturu databáze, abychom mohli napsat SQL dotaz, který nám data zobrazí. Jelikož je databáze velmi komplexní, může studování architektury a psaní SQL dotazů výrazně navýšit náročnost vytváření exportů.
 
 \subsection{IBM Jazz}
 
@@ -723,6 +741,7 @@ Výhoda oproti aplikaci codeBeamer je, že abychom si zobrazili detail samotnéh
 
 \subsection{Porovnání aplikací}
 
+codebeamer - artefakty vše v jednom, siemens samostatně.
 \newpage % ODSTRANIT
 \section{Business intelligence aplikace}
 
@@ -771,7 +790,7 @@ Pdf, excel. Definování vlastního reportu, automatické ukládáni na projekt 
 \section{Závěr}
 TODO 
 
-\begin{thebibliography}{31}
+\begin{thebibliography}{34}
 
 \bibitem{ref:sommerrville_sw_process}
 SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~28-29. ISBN 978-0-13-703515-1.
@@ -870,6 +889,14 @@ CodeBeamer Subscription Pricing \& Features. \textit{CodeBeamer ALM \& Intland R
 \bibitem{ref:codebeamer_rest}
 REST API. \textit{CodeBeamer ALM \& Intland Retina} [online]. Stuttgart: Intland Software, c1998-2021 [cit. 2021-01-22]. Dostupné z: https://codebeamer.com/cb/wiki/117612
 
+\bibitem{ref:polarion_about}
+Polarion ALM. \textit{Siemens} [online]. Munich: Siemens Industry Software, c2020 [cit. 2021-01-23]. Dostupné z: https://polarion.plm.automation.siemens.com/products/polarion-alm
+
+\bibitem{ref:polarion_extensions}
+Polarion Extension Portal. \textit{Polarion Extensions} [online]. Munich: Siemens Industry Software, c2020 [cit. 2021-01-23]. Dostupné z: https://extensions.polarion.com/
+
+\bibitem{ref:polarion_documentation}
+Polarion ALM Software Development Kit. \textit{Siemens Polarion} [online]. Munich: Polarion, c2020 [cit. 2021-01-23]. Dostupné z: https://almdemo.polarion.com/polarion/sdk/index.html
 
 \end{thebibliography}
 
