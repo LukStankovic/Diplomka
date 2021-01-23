@@ -630,7 +630,7 @@ Každá část životního aplikačního cyklu se liší dle použitého vývojo
 
 % ALM aplikace se používají pro plánování a monitorování procesu. Na základě zmonitorovaných dat je poté proces upravován a měněn tak aby bylo možné produkt dokončit úspěšně za co nejmenších nákladů. Aplikací .
 
-\subsection{codeBeamer Application Lifecycle Management}
+\subsection{codeBeamer ALM}
 \label{sec:codebeamer}
 Aplikace codeBeamer obsahuje několik nástrojů používaných pro úplnou správu celého životního cyklu systému, který začíná vývojem systému a pokračuje až do vydání funkční verze systému. Prakticky životní cyklus systému nekončí vydáním první funkční verze, ale systém je dále udržován a zlepšován dokud je konkurence schopný nebo využitelný v daném prostředí. V rámci aplikace codeBeamer tedy existuje mnoho nástrojů jak zajistit správu celého životního cyklu jako například správa požadavků, správa testů, správa kvality, správa zacházení s riziky a mnoho dalších nástrojů. Aplikace je vhodná pro všechny varianty agilního přístupu vývoje. Aplikace také podporuje verzování vyvíjeného systému a následnou práci s jednotlivými verzemi. \cite{ref:about_codebeamer}
 
@@ -676,9 +676,40 @@ Jak již bylo zmíněno v předešlé kapitole \ref{sec:codebeamer}, artefakty a
 Kromě komplexních exportů pomocí REST API do jiných vývojových nástrojů můžeme také jednotlivé artefakty exportovat do formátu pro Microsoft Office Word a Excel, do formátu CSV a nebo do prostého PDF. Takto lze artefakty exportovat manuálně buď jeden artefakt za druhým nebo najednou všechny artefakty v dané kategorii. Nevýhoda těchto exportů je, že mohou být provedeny pouze manuálně v projektu a nelze je automatizovat. Takto exportované artefakty mohou sloužit pro budoucí pouze textovou zálohu artefaktů, jelikož v datech nelze jednoduše vyhledávat a pracovat s nimi tak detailně jako při exportu pomocí REST API. 
 
 
-\subsection{Siemens Polarion}
+\subsection{Siemens Polarion ALM}
+Aplikace Polarion slouží jako jednotné řešení, které umožňuje propojit všechny možné účastníky všech procesů v dané společnosti. Pomocí vestavěných nástrojů dokáže propojit různé týmy vyvíjející určitý systém. Je vhodná pro vývoj velkých systémů nebo aplikací. Mezi takové systémy můžeme zařadit i vývoj nějakého systému v automobilovém průmyslu. Aplikace stejně jako codeBeamer ALM obsahuje veškeré nástroje pro správu celého životního cyklu vyvíjeného produktu mezi které patří například správa požadavků, správa kvality systému, správa zacházení s riziky, správa testů a pokrytí testy a mnoho dalšího. Dále aplikace Polarion nabízí automatizaci jednotlivých procesů.
+
+Siemens Polarion je navržen jako jedna aplikace obsahující mnoho nástrojů pro správu životního cyklu. Tyto nástroje jsou v navigaci prakticky na jednom místě. Vývojový tým tedy nemusí mít stejně v případě codeBeameru více aplikací a nástrojů pro správu projektu. Aplikace je placená a je možné ji provozovat buď jako webovou aplikaci v prohlížeči nebo jako klasickou aplikaci přímo v systému Windows a Linux. Stejně jako v případě aplikace codeBeamer obsahuje Polarion kromě čisté šablony několik šablon, ze kterých je možné vytvořit projekt. Šablony je možné si libovolně upravovat a použít při dalších vyvíjených projektech. Proces vytváření nového projektu z šablony, nebo případně založení čistého a prázdného projektu je možné vidět na obrázku \ref{fig:polarion_new_project}. Vytvořené šablony jsou z různých prostředí vývoje jako například obecný agilní projekt, zdravotnictví nebo i Automotive SPICE. 
 
 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Diplomka/Figures/polarion_create_project.png}
+    \caption{Vytváření projektu v aplikaci Siemens Polarion ALM}
+    \label{fig:polarion_new_project}
+\end{figure}
+
+
+Aplikace v základu obsahuje nástěnku, kde se nacházejí základní grafy, stránku s požadavky, návrhem, riziky, plánováním, vývojem, testováním a údržbou. Další položky jsou v navigaci ve výchozím stavu skryté a je nutné je povolit. Mezi další položky například patří reporty, verzování, vydávání nových verzí vyvíjeného systému a mnoho dalšího.
+
+\subsubsection{Sběr a správa požadavků}
+Polarion nabízí v rámci licence veškeré potřebné nástroje pro sběr a správu artefaktů prakticky všech typů. Samozřejmostí je propojení artefaktů s jinými a vytvoření tím návazností v rámci celého životního cyklu vytvářeného nebo spravovaného projektu. Artefakty je možné řadit do složek a oddílů dle potřeby a logiky. Artefakty je možné přizpůsobovat a přidávat jim vlastní atributy a vlastnosti.
+
+Aplikace obsahuje vertikální navigaci, pomocí které je možné přecházet do jednotlivých sekcí jako nástěnka, plánování vývoj, a mnoho dalšího. Pro zobrazení požadavků existuje položka \textit{Requirements}, která obsahuje veškeré definované skupiny požadavků v daném projektu. Na úvodní obrazovce této sekce je přehledný výpis všech kategorií požadavků. Po otevření jedné z kategorie jsou vypsány veškeré požadavky dané kategorie. Aplikace nabízí několik zobrazení. Výchozí zobrazení je zobrazení jako dokumentu, kdy jednotlivé požadavky jsou sepsány pod sebou s popisem jako v knize. Výhodou tohoto zobrazení je přehlednost. Další zobrazení je zobrazení ve stromové struktuře, kdy jsou jednotlivé požadavky odsazeny dle jejich podkategorie a nadpisu. Toto zobrazení je možné vidět na obrázku \ref{fig:polarion_requirements}. Možné je také zobrazit si veškeré požadavky nestrukturovaně v tabulce. Dále je možné si požadavky různými způsoby zobrazit graficky. Takto je možné zobrazit požadavky na časové ose celého vývoje, v živém plánu vývoje nebo v tabulce návazností všech požadavků.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/polarion_requirements.png}
+    \caption{Seznam požadavků ve stromovém zobrazení v aplikaci Siemens Polarion ALM}
+    \label{fig:polarion_requirements}
+\end{figure}
+
+Výhoda oproti aplikaci codeBeamer je, že abychom si zobrazili detail samotného požadavku nemusíme otevírat celou novou stránku, ale požadavek je nám zobrazen v menším okně v dolní části obrazovky. Pokud chceme otevřít požadavek v nové stránce je třeba jej otevřít pomocí dvojkliku.
+
+
+\subsubsection{Monitorování}
+
+\subsubsection{Export dat}
 
 \subsection{IBM Jazz}
 
