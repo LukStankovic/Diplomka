@@ -752,29 +752,52 @@ Jak již bylo zmíněno, IBM Jazz je pouze platforma, která nabízí různé n�
 Veškeré tyto aplikace je možné mít pod jednou licencí v rámci nástroje \textit{IBM Engineering Lifecycle Management} a to buď nainstalované na vlastním serveru nebo v cloudu u společnosti IBM. Veškeré dostupné aplikace je možné nalézt na webových stránkách společnosti IBM. \cite{ref:jazz_products}
 
 \subsubsection{Sběr a správa požadavků}
-% Polarion nabízí v rámci licence veškeré potřebné nástroje pro sběr a správu artefaktů prakticky všech typů. Samozřejmostí je propojení artefaktů s jinými a vytvoření tím návazností v rámci celého životního cyklu vytvářeného nebo spravovaného projektu. Artefakty je možné řadit do složek a oddílů dle potřeby a logiky. Artefakty je možné přizpůsobovat a přidávat jim vlastní atributy a vlastnosti.
+Správa požadavků v rámci platformy IBM Jazz je možná provádět v aplikaci \textit{IBM Engineering Requirements DOORS Next}. Ta obsahuje veškeré potřebné nástroje pro sběr a správu požadavků všech možných typů. Veškeré požadavky je možné jakkoliv propojovat s ostatními požadavky v rámci vyvíjeného projektu. V aplikaci je možné vytvářet vlastní typy požadavků, které je možné řadit do vlastních složek a oddílů dle potřeby a logiky daného projektu. Požadavkům je možné přidávat jakékoliv předdefinované a vlastní atributy a vlastnosti.
 
-% Aplikace obsahuje vertikální navigaci, pomocí které je možné přecházet do jednotlivých sekcí jako nástěnka, plánování vývoj, a mnoho dalšího. Pro zobrazení požadavků existuje položka \textit{Requirements}, která obsahuje veškeré definované skupiny požadavků v daném projektu. Na úvodní obrazovce této sekce je přehledný výpis všech kategorií požadavků. Po otevření jedné z kategorie jsou vypsány veškeré požadavky dané kategorie. Aplikace nabízí několik zobrazení. Výchozí zobrazení je zobrazení jako dokumentu, kdy jednotlivé požadavky jsou sepsány pod sebou s popisem jako v knize. Výhodou tohoto zobrazení je přehlednost. Další zobrazení je zobrazení ve stromové struktuře, kdy jsou jednotlivé požadavky odsazeny dle jejich podkategorie a nadpisu. Toto zobrazení je možné vidět na obrázku \ref{fig:polarion_requirements}. Možné je také zobrazit si veškeré požadavky nestrukturovaně v tabulce. Dále je možné si požadavky různými způsoby zobrazit graficky. Takto je možné zobrazit požadavky na časové ose celého vývoje, v živém plánu vývoje nebo v tabulce návazností všech požadavků.
+Stejně jako předešlé aplikace obsahuje vertikální navigaci, pomocí které je možné přecházet mezi jednotlivými typy požadavků. Po otevření jednoho z typů požadavků jsou vypsány veškeré požadavky daného typu. Aplikace nabízí několik druhů a možností zobrazení tohoto výpisu. Typy výpisů jsou prakticky identické jako v aplikaci codeBeamer a Polarion. Existuje zde například výpis typu dokument, kdy jsou požadavky vypsány jako v dokumentu v aplikaci Microsoft Word pomocí nadpisů a popisů. Takový výpis je možné vidět na obrázku \ref{fig:ibm_doors_req}. Dále zde existuje základní výpis jednotlivých požadavků v samostatných řádcích anebo ve tvaru stromu, kdy jsou požadavky odsazeny dle adresáře, do kterého patří.
 
-
-% Výhoda oproti aplikaci codeBeamer je, že abychom si zobrazili detail samotného požadavku nemusíme otevírat celou novou stránku, ale požadavek je nám zobrazen v menším okně v dolní části obrazovky. Pokud chceme otevřít požadavek v nové stránce je třeba jej otevřít pomocí dvojkliku. V detailu každého požadavku můžeme nastavovat námi definované atributy. Samozřejmostí je unikátní číslo každého požadavku, které navíc obsahuje předponu, kterou si můžeme definovat v rámci projektu. Jednotlivé požadavky je možné schvalovat, propojovat a přepínat do různých stavů.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/ibm_doors_ng_req.png}
+    \caption{Výpis požadavků v zobrazení dokumentu v aplikaci IBM Engineering Requirements DOORS Next (převzato z \cite{ref:ibm_jazz_erm_dn})}
+    \label{fig:ibm_doors_req}
+\end{figure}
+Atributy a vlastnosti k danému atributu je možné nastavit buď přímo ve výpisu požadavků anebo v detailním okně daného požadavku. V administraci aplikace je možné vytvářet nespočet typů atributů, které je možné poté požadavkům přiřazovat a filtrovat podle nich. Samozřejmostí je možné požadavkům nastavovat různé předdefinované nebo vlastní stavy a propojovat je s ostatními požadavky. U jednotlivých požadavků si můžeme zobrazit nejen veškeré přílohy a komentáře, ale také historii úprav daného požadavku. Historie úprav je bohužel pouze pro zobrazení, kdy byl daný požadavek upravován a ne co přesně bylo v danou dobu měněno. Každý požadavek má vlastní identifikátor, kterým je možné jej identifikovat napříč celou aplikací. 
 
 \subsubsection{Monitorování}
-% Aplikace Polarion nabízí monitorování procesů pomocí metrik, které je možné zobrazit na vícero místech. První místo kde je možné metriku zobrazit je na nástěnce. Zde se ve výchozím stavu v šabloně pro agilní projekt zobrazuje graf, kolik úkolů je třeba ještě do dalšího vydání dokončit, kolik chyb bylo nalezeno a mnoho dalšího. Veškeré metriky na nástěnce jsou zobrazeny graficky. Grafy není možné bohužel nijak filtrovat a jde pouze o rychlé informace, které poskytnou lepší orientaci v jakém stavu se projekt nachází. Nástěnku je možné vidět na obrázku \ref{fig:polarion_dashboard}.
+V rámci platformy IBM Jazz je možní provádět monitorování všech procesů v aplikaci \textit{Jazz Reporting Service}. Tato aplikace nám zajistí za pomocí nástroje \textit{Report builder} vytváření agregovaných a filtrovaných dat. Výhodou je, že data můžou pocházet z jakékoli aplikace platformy IBM Jazz. Nejčastěji data pochází z aplikace pro správu požadavků. Pomocí takto agregovaných dat si můžeme vytvářet a generovat metriky. Vytváření sestavy je možné vidět na obrázku \ref{fig:ibm_reporting_service}. Tato data je možné exportovat například do aplikace Microsoft Office. Definovanou metriku je možné zobrazit buď jako graf, nebo jako pouhou tabulku. Toto řešení má bohužel velkou nevýhodu ve formě chybějících historických dat. Jazz Reporting Service zobrazuje v grafu vždy pouze aktuální data a aktuální stav jednotlivých požadavků (například v jakém stavu se nacházejí). Neexistuje zde žádný způsob jak monitorovat průběh procesu a změny jednotlivých požadavků v čase. Jedinou vhodnou možností řádného monitorování je vytvoření externí aplikace napojenou na celou platformu IBM Jazz.
 
-% Další místo, kde je možné metriky zobrazit je v záložce \textit{Plans}. Zde je možné zobrazit metriky jak v grafickém tak tabulkovém zobrazení. Uživatel si může metriku definovat a vytvořit pomocí filtrů v horní části obrazovky. Do jednotlivých metrik si uživatel může navolit různé typy artefaktů. Metriky není zde bohužel možné nijak rychle filtrovat a upravovat. Celý výpis metrik je možné si exportovat do formátu PDF. Bohužel není možné exportovat jen určité grafy a výpisy, ale pouze celou stránku s metrikami.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/ibm_reporting_service.png}
+    \caption{Aplikace Jazz Reporting Service}
+    \label{fig:ibm_reporting_service}
+\end{figure}
 
-% Grafické zobrazení průběhu vývoje projektu je možné zobrazit napříč celou aplikací Siemens Polarion. Je možné například zobrazit si graficky vývoj testování vyvíjeného systému, nové verze k vydání, vytvářet různé reporty s definovanými pravidly a mnoho dalšího. Velkou nevýhodou však je, že na žádném místě není možné nijak podrobněji filtrovat a upravovat grafy.
+Další možností metrik spojených se sběrem a správou požadavků je možné zobrazit přímo na nástěnce aplikace \textit{IBM Engineering Requirements DOORS Next}. Vizualizace je takto dostupná pouze omezeně pomocí uživatelských widgetů. Ty jsou pouze náhledové a nelze v nich nijak efektivně filtrovat. Monitorování v této aplikaci není nijak pokročilé a má pouze informativní charakter pro rychlé posouzení stavu vývoje.
+
+Abychom mohli monitorovat průběh celého procesu a změny jednotlivých artefaktů je jediný způsob využít služeb třetích stran či případně si vytvořit vlastní aplikaci pro vytváření a definování metrik. Jedna možnost je využít agregování dat pomocí Jazz Reporting Service anebo tato data agregovat ve vlastní aplikaci.
 
 \subsubsection{Export dat}
-% K aplikaci Siemens Polarion je možné pomocí doplňků připojit velké množství jiných vývojových nástrojů. Existuje například doplněk pro propojení s aplikací Jira. Většina těchto doplňků je placených. \cite{ref:polarion_extensions}
+V jednotlivých aplikacích platformy IBM Jazz je možné provést exporty dat dané aplikace. V základu je možné napojit jiné aplikace třetích stran pomocí doplňků s jinými aplikacemi pro správu vývoje. Takové rozšíření si můžeme naprogramovat i sami dle dokumentace dané aplikace.
 
-% Další možnosti exportu dat je pomocí manuálního exportu jednotlivých artefaktů do formátu PDF. Takto provedený export nejde použít pro agregování dat, ale jen pro prostou dokumentaci či zálohu. Druhá nevýhoda je v tom, že proces nejde nijak zautomatizovat a je potřeba PDF exportovat manuálně v aplikaci. Do PDF je možné exportovat prakticky každý artefakt, výpis dat nebo celou stránku s metrikami.
+Další základní možností exportu dat je možnost exportu jednotlivých požadavků do PDF. Takový export probíhá manuálně a není možné jej použít pro agregaci dat a následnou práci a vizualizaci s nimi. Takové řešení je vhodné například pro dokumentaci nebo zálohu daných artefaktů a požadavků. Další možností manuálního exportu dat je export všech artefaktů do formátu CSV. Tato data je již možné agregovat a pracovat s nimi. Nevýhoda však je, že je vždy pořeba pracovník, který tato data manuálně stáhne.
 
-% Siemens Polarion nabízí export dat pomocí webových služeb. Ty jsou podrobě zdokumentované na veřejně přístupné dokumentaci. \cite{ref:polarion_documentation} Výhodou tohoto přístupu je, že můžeme proces exportu dat automatizovat a data si z aplikace stahovat kdykoli potřebujeme. Takto můžeme z Polarionu vyexportovat velké množství informací. Nevýhodou této metody je, že může být export složitější oproti použití například REST API.
+Platforma IBM Jazz nabízí několik možností přímého napojení a automatického exportování dat. V rámci této práce se věnuji exportu dat z aplikace \textit{IBM Engineering Requirements DOORS Next}, kde existují tyto možnosti napojení:
 
-% Poslední a dle autorů aplikace nejkomplexnější možností exportu dat je čtení dat přímo z databáze Polarionu. Pomocí exportu dat z databáze můžeme také tento proces automatizovat a spouštět dotazy nad databází prakticky kdykoliv. Dokumentace obsahuje kompletní architekturu databáze včetně ukázkových SQL dotazů. \cite{ref:polarion_documentation} V dokumentaci se kromě propojení jednotlivých tabulek nachází také popis všech objektů v databázi. Velká výhoda této metody je možnost exportovat jakékoliv data, ke kterým máme v databázi přístup. Nevýhodou je, že pro vytvoření exportu potřebujeme znát architekturu databáze, abychom mohli napsat SQL dotaz, který nám data zobrazí. Jelikož je databáze velmi komplexní, může studování architektury a psaní SQL dotazů výrazně navýšit náročnost vytváření exportů.
+\begin{itemize}
+\item DOORS Next Generation Rest API (RRC Reportable API),
+\item Reportable REST API,
+\item Process REST API (DraftTeamProcessRestApi),
+\item Resource Oriented Work Item API with OSLC 1.0 CM,
+\item Work Items Service provider for OSLC 2.0 CM,
+\item Reportable REST API,
+\item napojení na databázi.
+\end{itemize}
 
+Jednotlivým možnostem těchto napojení se budu věnovat v praktické části této práce. Nevýhodou je, že tato API nejsou dobře veřejně dokumentována a je potřeba tedy napojení zkoušet a procházet fóra přímo na stránkách IBM. Další nevýhoda špatné dokumentace je špatná informovanost o aktuálnosti a funkčnosti daného napojení. Data je možné také exportovat pomocí nástroje OSLC, kterému se budu praktické části této práce věnovat.
+
+Poslední možnost exportu dat je pomocí aplikace \textit{Jazz Reporting Service}. Data z této aplikace si můžeme již předem agregovat a vytvořit metriky, které je možné exportovat například do aplikace Microsoft Excel. Výhodou tohoto přístupu je, že můžeme data filtrovat a agregovat přímo na straně IBM Jazz, které obsahuje již různé předdefinované filtry a není třeba nic složitě programovat. Nevýhoda je však svázání s touto aplikací a při jakékoli změně v datech je nutné vytvářet filtry znova. Další velká nevýhoda je, že nedokážeme data jednoduše pomocí tohoto přístupu verzovat a udržovat jejich historii přímo na straně IBM. Je tedy potřeba si stejně vytvořit externí aplikaci na udržování historických dat. Tento přístup při velkém počtu dat ztrácí bez nějaké automatizace smysl a výhodu. 
 
 \subsection{Porovnání aplikací}
 
@@ -793,7 +816,7 @@ codebeamer - artefakty vše v jednom, siemens samostatně.
 \section{Vlastní aplikace}
 TODO - praktická část.
 
-Aplikace je realizována jako webová aplikace.
+Aplikace je realizována jako webová aplikace \textit{Jazz Reporting Service}.
 
 \subsection{Architektura a použité technologie}
 
@@ -827,7 +850,7 @@ Pdf, excel. Definování vlastního reportu, automatické ukládáni na projekt 
 \section{Závěr}
 TODO 
 
-\begin{thebibliography}{36}
+\begin{thebibliography}{37}
 
 \bibitem{ref:sommerrville_sw_process}
 SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~28-29. ISBN 978-0-13-703515-1.
@@ -938,9 +961,11 @@ Polarion ALM Software Development Kit. \textit{Siemens Polarion} [online]. Munic
 \bibitem{ref:jazz}
 \textit{Jazz Comunity Site} [online]. IBM, c2021 [cit. 2021-01-24]. Dostupné z: https://jazz.net/
 
-
 \bibitem{ref:jazz_products}
 IBM Jazz Products. Jazz Comunity Site [online]. IBM, c2021 [cit. 2021-01-24]. Dostupné z: https://jazz.net/products
+
+\bibitem{ref:ibm_jazz_erm_dn}
+IBM Engineering Requirements Management DOORS Next. \textit{IBM} [online]. IBM, c2021 [cit. 2021-01-24]. Dostupné z: https://www.ibm.com/products/requirements-management-doors-next
 
 \end{thebibliography}
 
