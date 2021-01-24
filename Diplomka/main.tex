@@ -730,13 +730,50 @@ Siemens Polarion nabízí export dat pomocí webových služeb. Ty jsou podrobě
 Poslední a dle autorů aplikace nejkomplexnější možností exportu dat je čtení dat přímo z databáze Polarionu. Pomocí exportu dat z databáze můžeme také tento proces automatizovat a spouštět dotazy nad databází prakticky kdykoliv. Dokumentace obsahuje kompletní architekturu databáze včetně ukázkových SQL dotazů. \cite{ref:polarion_documentation} V dokumentaci se kromě propojení jednotlivých tabulek nachází také popis všech objektů v databázi. Velká výhoda této metody je možnost exportovat jakékoliv data, ke kterým máme v databázi přístup. Nevýhodou je, že pro vytvoření exportu potřebujeme znát architekturu databáze, abychom mohli napsat SQL dotaz, který nám data zobrazí. Jelikož je databáze velmi komplexní, může studování architektury a psaní SQL dotazů výrazně navýšit náročnost vytváření exportů.
 
 \subsection{IBM Jazz}
+Je to velmi robustní a komplexní platforma poskytující podporu a zázemí během celého životního cyklu systému. Stejně jako ostatní aplikace používané pro správu životního cyklu vyvíjeného systému je hlavní cíl, aby správa a vývoj byl co nejefektivnější, aby byl životní cyklus monitorován a aby si jednotlivé vývojové týmy jednodušeji vyměňovaly potřebné informace. Celá platforma Jazz poskytuje veškeré potřebné nástroje pro organizaci celého životního cyklu produkovaného systému. Jazz dokáže například spravovat a trasovat požadavky, vizualizovat data, obsahuje metriky a mnoho dalšího. \cite{ref:jazz}
+
+IBM Jazz není jedna aplikace jako v případě aplikace codeBeamer nebo Siemens Polarion, ale velká platforma složená z několika nezávislých aplikací. Tyto aplikace nejsou nijak propojeny a jsou tedy plně nezávislé. Tato vlastnost může být brána pro některé společnosti jako nevýhoda, jelikož musí spravovat více instancí aplikací a ne pouze jednu, která obsahuje veškeré funkcionality. Jednotlivé aplikace jsou primárně koncipovány jako webové aplikace. Není tedy potřeba řešit instalaci aplikací na počítač nebo kompatibilita s různými operačními systémy. Pokud by to prostředí dané společnosti vyžadovalo, existují aplikace a rozšíření založené na nástrojích Visual Studio a Eclipse.
+
+IBM Jazz je komerční a tedy placená platforma, která může být provozována v cloudu společnosti IBM nebo na vlastním serveru. Velká nevýhoda je, že při instalaci je potřeba následovat složité manuály, jelikož platforma nedisponuje žádnou jednoduchou instalaci například pomocí virtualizace Docker. V rámci platformy IBM Jazz existují při vytváření základní šablony, ze kterých můžeme projekt vytvořit.  Na výběr jsou například šablony pro agilní vývoj pomocí metody Scrum, pro klasický tradiční vývoj bez iterací a mnoho dalších. 
 
 
-\subsubsection{Sběr požadavků}
+\subsubsection{Nástroje a aplikace IBM Jazz}
+Jak již bylo zmíněno, IBM Jazz je pouze platforma, která nabízí různé nástroje a aplikace, které nejsou na sobě závislé a jsou plně oddělené. Jelikož je nástrojů mnoho a jsou zaměřené na různá odvětví, budu se věnovat aplikacím a nástrojům určeným pro správu životního cyklu vyvíjené aplikace. \cite{ref:jazz_products}
 
-\subsubsection{Monitorování procesů}
+\begin{itemize}
+\item \textit{IBM Engineering Requirements DOORS Next} -- v rámci této aplikace dokážeme vytvářet, spravovat a analyzovat jednotlivé požadavky. V aplikaci dokážeme také evidovat propojení jednotlivých požadavků a zobrazovat metriky ohledně požadavků.
+\item \textit{IBM Engineering Workflow Management} -- aplikace obsahuje správu spolupráce mezi jednotlivými oddělení dané společnosti při vývoji. Můžeme zde zařadit například plánování, iterace procesů, verzování vyvíjeného systému, automatizace vydávání a další.
+\item \textit{IBM Engineering Test Management} -- slouží zejména pro plánování a organizaci testování vyvíjeného systému. Aplikace podporují sdílení dat mezi ostatní pracovníky.
+\item \textit{IBM Engineering Systems Design Rhapsody - Model Manager a Design Management} -- pomocí této aplikace je možno navrhovat a spravovat návrh architektury a designu celého systému.
+\item \textit{IBM Engineering Lifecycle Optimization - Publishing} -- v rámci aplikace dokážeme generovat a vytvářet dokumenty napříč všemi nástroji platformy Jazz. Výsledné dokumenty je možné exportovat do různých formátů, mezi které patří PDF, HTML, Microsoft Office a další.
+\item \textit{Jazz Reporting Service} -- aplikace je alternativou k vytváření sestav a metrik, které jsou k dispozici v jiných aplikacích v rámci IBM Jazz. Aplikace je propojená s ostatními Jazz aplikacemi a podporuje agregaci dat ze všech různých aplikací. V rámci aplikace je možné agregovaná data exportovat do různých formátů. Pro samotné vytváření a agregování existuje v aplikaci nástroj \textit{Report Builder}.
+\end{itemize}
+
+Veškeré tyto aplikace je možné mít pod jednou licencí v rámci nástroje \textit{IBM Engineering Lifecycle Management} a to buď nainstalované na vlastním serveru nebo v cloudu u společnosti IBM. Veškeré dostupné aplikace je možné nalézt na webových stránkách společnosti IBM. \cite{ref:jazz_products}
+
+\subsubsection{Sběr a správa požadavků}
+% Polarion nabízí v rámci licence veškeré potřebné nástroje pro sběr a správu artefaktů prakticky všech typů. Samozřejmostí je propojení artefaktů s jinými a vytvoření tím návazností v rámci celého životního cyklu vytvářeného nebo spravovaného projektu. Artefakty je možné řadit do složek a oddílů dle potřeby a logiky. Artefakty je možné přizpůsobovat a přidávat jim vlastní atributy a vlastnosti.
+
+% Aplikace obsahuje vertikální navigaci, pomocí které je možné přecházet do jednotlivých sekcí jako nástěnka, plánování vývoj, a mnoho dalšího. Pro zobrazení požadavků existuje položka \textit{Requirements}, která obsahuje veškeré definované skupiny požadavků v daném projektu. Na úvodní obrazovce této sekce je přehledný výpis všech kategorií požadavků. Po otevření jedné z kategorie jsou vypsány veškeré požadavky dané kategorie. Aplikace nabízí několik zobrazení. Výchozí zobrazení je zobrazení jako dokumentu, kdy jednotlivé požadavky jsou sepsány pod sebou s popisem jako v knize. Výhodou tohoto zobrazení je přehlednost. Další zobrazení je zobrazení ve stromové struktuře, kdy jsou jednotlivé požadavky odsazeny dle jejich podkategorie a nadpisu. Toto zobrazení je možné vidět na obrázku \ref{fig:polarion_requirements}. Možné je také zobrazit si veškeré požadavky nestrukturovaně v tabulce. Dále je možné si požadavky různými způsoby zobrazit graficky. Takto je možné zobrazit požadavky na časové ose celého vývoje, v živém plánu vývoje nebo v tabulce návazností všech požadavků.
+
+
+% Výhoda oproti aplikaci codeBeamer je, že abychom si zobrazili detail samotného požadavku nemusíme otevírat celou novou stránku, ale požadavek je nám zobrazen v menším okně v dolní části obrazovky. Pokud chceme otevřít požadavek v nové stránce je třeba jej otevřít pomocí dvojkliku. V detailu každého požadavku můžeme nastavovat námi definované atributy. Samozřejmostí je unikátní číslo každého požadavku, které navíc obsahuje předponu, kterou si můžeme definovat v rámci projektu. Jednotlivé požadavky je možné schvalovat, propojovat a přepínat do různých stavů.
+
+\subsubsection{Monitorování}
+% Aplikace Polarion nabízí monitorování procesů pomocí metrik, které je možné zobrazit na vícero místech. První místo kde je možné metriku zobrazit je na nástěnce. Zde se ve výchozím stavu v šabloně pro agilní projekt zobrazuje graf, kolik úkolů je třeba ještě do dalšího vydání dokončit, kolik chyb bylo nalezeno a mnoho dalšího. Veškeré metriky na nástěnce jsou zobrazeny graficky. Grafy není možné bohužel nijak filtrovat a jde pouze o rychlé informace, které poskytnou lepší orientaci v jakém stavu se projekt nachází. Nástěnku je možné vidět na obrázku \ref{fig:polarion_dashboard}.
+
+% Další místo, kde je možné metriky zobrazit je v záložce \textit{Plans}. Zde je možné zobrazit metriky jak v grafickém tak tabulkovém zobrazení. Uživatel si může metriku definovat a vytvořit pomocí filtrů v horní části obrazovky. Do jednotlivých metrik si uživatel může navolit různé typy artefaktů. Metriky není zde bohužel možné nijak rychle filtrovat a upravovat. Celý výpis metrik je možné si exportovat do formátu PDF. Bohužel není možné exportovat jen určité grafy a výpisy, ale pouze celou stránku s metrikami.
+
+% Grafické zobrazení průběhu vývoje projektu je možné zobrazit napříč celou aplikací Siemens Polarion. Je možné například zobrazit si graficky vývoj testování vyvíjeného systému, nové verze k vydání, vytvářet různé reporty s definovanými pravidly a mnoho dalšího. Velkou nevýhodou však je, že na žádném místě není možné nijak podrobněji filtrovat a upravovat grafy.
 
 \subsubsection{Export dat}
+% K aplikaci Siemens Polarion je možné pomocí doplňků připojit velké množství jiných vývojových nástrojů. Existuje například doplněk pro propojení s aplikací Jira. Většina těchto doplňků je placených. \cite{ref:polarion_extensions}
+
+% Další možnosti exportu dat je pomocí manuálního exportu jednotlivých artefaktů do formátu PDF. Takto provedený export nejde použít pro agregování dat, ale jen pro prostou dokumentaci či zálohu. Druhá nevýhoda je v tom, že proces nejde nijak zautomatizovat a je potřeba PDF exportovat manuálně v aplikaci. Do PDF je možné exportovat prakticky každý artefakt, výpis dat nebo celou stránku s metrikami.
+
+% Siemens Polarion nabízí export dat pomocí webových služeb. Ty jsou podrobě zdokumentované na veřejně přístupné dokumentaci. \cite{ref:polarion_documentation} Výhodou tohoto přístupu je, že můžeme proces exportu dat automatizovat a data si z aplikace stahovat kdykoli potřebujeme. Takto můžeme z Polarionu vyexportovat velké množství informací. Nevýhodou této metody je, že může být export složitější oproti použití například REST API.
+
+% Poslední a dle autorů aplikace nejkomplexnější možností exportu dat je čtení dat přímo z databáze Polarionu. Pomocí exportu dat z databáze můžeme také tento proces automatizovat a spouštět dotazy nad databází prakticky kdykoliv. Dokumentace obsahuje kompletní architekturu databáze včetně ukázkových SQL dotazů. \cite{ref:polarion_documentation} V dokumentaci se kromě propojení jednotlivých tabulek nachází také popis všech objektů v databázi. Velká výhoda této metody je možnost exportovat jakékoliv data, ke kterým máme v databázi přístup. Nevýhodou je, že pro vytvoření exportu potřebujeme znát architekturu databáze, abychom mohli napsat SQL dotaz, který nám data zobrazí. Jelikož je databáze velmi komplexní, může studování architektury a psaní SQL dotazů výrazně navýšit náročnost vytváření exportů.
 
 
 \subsection{Porovnání aplikací}
@@ -790,7 +827,7 @@ Pdf, excel. Definování vlastního reportu, automatické ukládáni na projekt 
 \section{Závěr}
 TODO 
 
-\begin{thebibliography}{34}
+\begin{thebibliography}{36}
 
 \bibitem{ref:sommerrville_sw_process}
 SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~28-29. ISBN 978-0-13-703515-1.
@@ -897,6 +934,13 @@ Polarion Extension Portal. \textit{Polarion Extensions} [online]. Munich: Siemen
 
 \bibitem{ref:polarion_documentation}
 Polarion ALM Software Development Kit. \textit{Siemens Polarion} [online]. Munich: Polarion, c2020 [cit. 2021-01-23]. Dostupné z: https://almdemo.polarion.com/polarion/sdk/index.html
+
+\bibitem{ref:jazz}
+\textit{Jazz Comunity Site} [online]. IBM, c2021 [cit. 2021-01-24]. Dostupné z: https://jazz.net/
+
+
+\bibitem{ref:jazz_products}
+IBM Jazz Products. Jazz Comunity Site [online]. IBM, c2021 [cit. 2021-01-24]. Dostupné z: https://jazz.net/products
 
 \end{thebibliography}
 
