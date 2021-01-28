@@ -815,16 +815,56 @@ Platforma IBM Jazz nabízí kompletně jiný přístup. Kromě stejné nástěnk
 Hlavní výhodou těchto aplikací je zachycení a správa celého vývoje celého systému. Další výhodou je možnost komunikace a spolupráce s jednotlivými týmy při vývoji. Všechny analyzované aplikace mají prakticky stejný design a liší se pouze v maličkostech. Bohužel žádná analyzovaná a jiné nalezené aplikace nesplňují požadovaný účel a funkcionality. Tedy možnost vytvářet a generovat trendové metriky a uchovávat v metrikách historická data.
 
 \newpage % ODSTRANIT
-\section{Business intelligence aplikace}
+\section{Business intelligence}
+Dnešní společnosti pracující na velkých a komplexních systémech skladují a spravují při vývoji velká množství dat. S těmito daty je nutné nejen pro potřeby analýzy pracovat a přistupovat k nim. K zajištění správných a tedy úspěšných manažerských rozhodnutí je třeba data pochopit a vyčíst z nich důležité informace. Pomocí získaných a pochopených informací dokážeme informace přeměnit ve znalosti a použít je k predikcím. Následně dokážeme odhadnout kam se může vývoj projektu nebo společnosti ubírat.
 
+Jelikož v drtivé většině jsou sbíraná a analyzovaná data velká a komplexní, nemusí pouhý pohled do tabulky obsahující data celého podniku odhalit nějaká slabá místa. Také si nemusíme takto velká data, obsahující i miliony záznamů, dostatečně představit. Z toho důvodu potřebujeme využít nástrojů a přístupů, které nám zajistí jednodušší analýzu, nebo data připraví tak, aby je mohl lidský mozek nejen pochopit ale uvědomit si souvislosti.
 
-\subsection{Qlik}
+Mezi nástroje a přístupy, pomocí kterých dokážeme data analyzovat a číst patří například dolování dat, prediktivní modelování, statistika a mnoho dalších přístupů. Mezi nejznámější a nejdůležitější však patří vizualizace dat pomocí grafů. Pomocí vizualizace můžeme provést buď analýzu, nebo pouhou prezentaci pro zjištění, jakým směrem se vývoj ubírá. Těmto oblastem se právě obor \textit{Business intelligence} zaobírá.
+
+Konkrétně dle Davida Loshina \cite{ref:bi_loshin_david} a Data Warhouse Institute \textit{Business intelligence} definují jako procesy, technologie a nástroje potřebné k přeměně data na informace, informace na znalosti a dále znalosti na plány, které podporují úspěšná rozhodnutí a ziskové obchodní akce. \textit{Business intelligence} zahrnuje obchodní analytické nástroje, datové sklady a správu obsahů a znalostí. Důležité je, že \textit{Business intelligence} nejsou pouzé nástroje a aplikace, ale celé procesy realizované správnými lidmi, kteří dokáží tyto informace proměnit v plány.
+
+Podle Davida Loshina \cite{ref:bi_loshin_david} správné použití \textit{business intelligence} může vést k mnoha pozitivním změnám, mezi které například patří:
+
+\begin{itemize}
+\item \textit{Zvýšení ziskovosti} -- business intelligence dokáže například vedoucím vyhodnotit a provést rozhodnutí, zefektivnění procesů, personální změny, které mohou vést ke zvýšení zisků celé společnosti.
+\item \textit{Snížení nákladů} -- s předchozím bodem samozřejmě souvisí i snížení nákladů, které vznikne po optimalizovaní procesů, nákladů na skladování nebo snížení investic na základě rozhodnutí dle business intelligence.
+\item \textit{Zlepšení vztahů se zákazníkem} -- tohoto benefitu můžeme dosáhnout pomocí analýzy agregovaných informacích o zákaznicích a následně vylepšit zákaznické služby.
+\item \textit{Snížení rizik} -- pomocí analýzy informací dokážeme lépe předem definovat a nalézt rizika, které mohou během vývoje nebo prodeje produktu nastat,  
+\item a mnoho dalšího.
+\end{itemize}
+
+K zajištění provedení \textit{business intelligence} nám slouží nástroje a aplikace pro tuto činnost vytvořené. Takové aplikace nám dokáží poskytnout historické, aktuální a případně budoucí zobrazení dat. Dále nám poskytují nástroje pro tvorbu sestav, metrik, grafů, nástěnek, sdílení dat mezi ostatními zaměstnanci a spousta dalších nástrojů. Mezi nejznámější aplikace patří Qlik Sense a Microsoft Power BI, které jsou podrobně popsány v kapitolách \ref{sec:qlik} a \ref{sec:microsoft_power_bi}. Tyto aplikace byly také doporučeny vedoucím práce Ing. Svatoplukem Štolfou, PhD. 
+
+\subsection{Qlik Sense}
+\label{sec:qlik}
+
 
 \subsection{Microsoft Power BI}
+\label{sec:microsoft_power_bi}
+Microsoft Power BI je komplexní platforma firmy Microsoft, jejíž cílem poskytovat interaktivní vizualizace a funkce pro celé odvětví business intelligence. Veškeré tyto funkcionality jsou vymyšleny tak, aby byly pochopitelné a lehké na nastavení i pro začínající uživatele. Mezi základní funkcionality patří nástěnka a dále jednotlivé sestavy.
 
-\subsection{Porovnání aplikací}
+Aplikace je pro uživatele dostupná buď jako webová stránka, jako klasická desktopová aplikace pro operační systém Windows nebo jako aplikace pro mobilní zařízení. Dále existují varianty a licence pro různé další služby. Mezi ty například patří: \cite{ref:microsoft_bi_general}
+\begin{itemize}
+\item \textit{Embedded} -- pomocí REST API je možné vytvořit různé nástěnky a sestavy v různých zařízeních a aplikacích mimo Microsoft Power BI.
+\item \textit{Server sestav Power BI} -- služba poskytuje uživatelům přístup a následné generování různých sestav pomoc \textit{SQL Server Reporting Services}. Při vytvoření sestavy dokážou uživatelé vizuálně zkoumat data a díky tomu například provádět důležitá rozhodnutí.
+\item \textit{Free} - verze zdarma, která je velmi omezená a neposkytuje například žádné sdílení sestav nebo nástěnek mezi uživateli Power BI.
+\item \textit{Pro} -- jde o levnější verzi licence s omezenými službami a funkcionalitami oproti licenci \textit{Premium}. Aplikace je licencovaná na uživatele s omezenými výpočetními prostředky, velikostmi datových sad, s omezenou velikostí úložiště na jednotlivého uživatele a na sdíleném serveru společnosti Microsoft. Tato licence je obecně vhodná pro střední až velké podniky a společnosti, které mají menší objem dat potřebných k analýze.
+\item \textit{Premium} -- nejvyšší možná licence, která na rozdíl od verze \textit{Free} a \textit{Pro} není licencovaná na uživatele ale na celou organizaci. V rámci této licence je pro celou organizaci vyhrazen prémiový prostor o velikosti 100 TB. Dále licence poskytuje větší množství nástěnek a sestav. Taková licence je vhodná pro opravdu velké podniky a korporace.
+\end{itemize}
 
-\newpage % ODSTRANIT
+Mezi hlavní výhody Microsoft Power BI patří zejména jednoduché napojení známých již existujících vývojových aplikací pomocí existujících doplňků, webová a mobilní aplikace, nebo například rychlé vytváření přehledů a sestav. \cite{ref:microsoft_bi_general}  Na obrázku \ref{fig:powerbi_dashboard} je možné vidět definovanou sestavu společně s vizualizovanými daty.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/powerbi-dashboard.jpg}
+    \caption{Vytvořená sestava v aplikaci Microsoft Power BI (převzato z \cite{ref:microsoft_bi_general})}
+    \label{fig:powerbi_dashboard}
+\end{figure}
+
+Pro vytvoření sestavy jsou potřeba data. Ta je možné vložit, manuálně vytvořit a nebo zvolit existující datovou sadu. Data je možné exportovat z různých, již existujících, systémů pro sběr a správu dat. Jakmile definujeme data, která chceme pro sestavu a \textit{report} použít, můžeme vybrat jaká data chceme zobrazit ve kterém grafu. Aplikace Microsoft Power BI nabízí velké množství grafických vizualizací dat, což zlepšuje následné sledování a pochopení dat.
+
+
 \section{Vlastní aplikace}
 TODO - praktická část.
 
@@ -862,7 +902,7 @@ Pdf, excel. Definování vlastního reportu, automatické ukládáni na projekt 
 \section{Závěr}
 TODO 
 
-\begin{thebibliography}{37}
+\begin{thebibliography}{39}
 
 \bibitem{ref:sommerrville_sw_process}
 SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~28-29. ISBN 978-0-13-703515-1.
@@ -978,6 +1018,13 @@ IBM Jazz Products. Jazz Comunity Site [online]. IBM, c2021 [cit. 2021-01-24]. Do
 
 \bibitem{ref:ibm_jazz_erm_dn}
 IBM Engineering Requirements Management DOORS Next. \textit{IBM} [online]. IBM, c2021 [cit. 2021-01-24]. Dostupné z: https://www.ibm.com/products/requirements-management-doors-next
+
+\bibitem{ref:bi_loshin_david}
+LOSHIN, David. \textit{Business Intelligence: The Savvy Manager's Guide}. San Francisco: Morgan Kaufmann, 2003, 1 - 9. ISBN 978-1-55860-916-7.
+
+
+\bibitem{ref:microsoft_bi_general}
+Vizualizace dat | Microsoft Power BI. \textit{Microsoft Power BI} [online]. Redmond: Microsoft, c2021 [cit. 2021-01-27]. Dostupné z: https://powerbi.microsoft.com/cs-cz/
 
 \end{thebibliography}
 
