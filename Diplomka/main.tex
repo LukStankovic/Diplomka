@@ -838,9 +838,41 @@ K zajištění provedení \textit{business intelligence} nám slouží nástroje
 
 \subsection{Qlik Sense}
 \label{sec:qlik}
-Qlik Sense je rozsáhlý analytický nástroj společnosti Qlik, zajišťující integraci dat ze široké škály datových zdrojů. Pomocí aplikace dokážeme přeměnit surová data z tabulek a databází do vizuální a srozumitelné podoby. Stejně jako u ostatních podobných \textit{business intelligence} aplikací Qlik Sense obsahuje nástěnky, tvorbu a zobrazení sestav. Aplikace podporuje připojení k široké škále různých jiných aplikací pomocí API, napojení na velké množství databází a také samozřejmě nahrávání datových souborů na přímo jako například CSV, XML, JSON a velmi velké množství dalších formátů. 
+Qlik Sense je rozsáhlý analytický nástroj společnosti Qlik, zajišťující integraci dat ze široké škály datových zdrojů. Pomocí aplikace dokážeme přeměnit surová data z tabulek a databází do vizuální a srozumitelné podoby. Stejně jako u ostatních podobných \textit{business intelligence} aplikací Qlik Sense obsahuje nástěnky, tvorbu a zobrazení sestav, nebo také propojování datových zdrojů. Aplikace podporuje připojení k široké škále různých jiných aplikací pomocí API, napojení na velké množství databází a také samozřejmě nahrávání datových souborů na přímo jako například CSV, XML, JSON a velmi velké množství dalších formátů. Mezi společnosti používající Qlik Sense patří například Cisco, BP, nebo také Samsung. \cite{ref:qlik_general}
 
-Přístup k aplikaci pro uživatele je možný jednak pomocí aplikace pro počítač a mobilní zařízení, tak zejména pomocí webové aplikace, která je dostupná přes prakticky jakýkoliv webový prohlížeč. 
+Přístup k aplikaci pro uživatele je možný jednak pomocí aplikace pro počítač a mobilní zařízení, tak zejména pomocí webové aplikace, která je dostupná přes prakticky jakýkoliv webový prohlížeč. Qlik Sense je placená aplikace, která může být provozována buď na vlastním serveru nebo v cloudu přímo u společnosti Qlik. Přičemž při provozu na vlastním serveru není cena licence vázána na počet uživatelů používající aplikaci.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/qlik_project.png}
+    \caption{Stránka projektu v Qlik Sense}
+    \label{fig:qlik_project}
+\end{figure}
+
+
+V rámci uživatelského účtu je možné udržovat více projektů. Po zvolení určitého projektu se detailní stránka daného projektu se seznamem nástěnek a prezentací. Tato stránka je zobrazena na obrázku \ref{fig:qlik_project}.  Ve vrchní vertikální navigaci se nacházejí tři oddělení:
+
+\begin{itemize}
+\item \textit{Prepare} (příprava dat) -- V rámci tohoto oddělení je možné vybrat data, která se pro daný projekt budou používat. 
+\item \textit{Analyze} (analýza a zobrazení dat) -- Na této stránce se nacházejí nástěnky (položka \textit{Sheet}) a postřehy (položka \textit{Insights}). Stránka slouží pro zobrazení a analýzu dat.
+\item \textit{Narrate} -- V této stránce je pouze oddělení \textit{Storytelling} pomocí kterého můžeme vytvořit prezentaci pro veřejnou prezentaci získaných dat.
+\end{itemize}
+
+
+Jak již bylo zmíněno, v prvním oddělení lze zobrazit datový model. To lze buď v oddělení \textit{Data manager}, kde je zobrazení tabulek realizováno pomocí takzvaných bublin, které lze libovolně propojovat, nebo v oddělení \textit{Data model viewer}, který zobrazuje tabulky podobně jako v databázovém zobrazení. Dále se v této záložce nachází \textit{Data load editor}, v rámci kterého dokážeme nahraná data modifikovat a spravovat. Kromě správy dat, lze v záložce \textit{Prepare} upravovat byznys logiku pomocí logického modelu.
+
+Na stránce s postřehy (\textit{Insights})  je možné si vložit nespočet různých vizualizací a sestav. Ty se dají pomocí levé navigace filtrovat a zobrazovat různé sestavy, které je také možné vytvářet na základě nahraných dat. Jednotlivé sestavy je možné si přidat do nástěnek (\textit{Sheet}), kterých může být v rámci projektu různý počet. Každou vizualizaci v rámci sestavy na stránce \textit{Insights} lze kromě filtrování upravit, nebo smazat. Na samotné nástěnce je sestava již pouze pro zobrazení. Stránku s postřehy je možné vidět na obrázku \ref{fig:qlik_dashboard}. Nástěnky můžou být buď veřejné, kdy je vidí kdokoli komu dáme odkaz, nebo soukromé.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.93\textwidth]{Diplomka/Figures/qlik_dashboard.png}
+    \caption{Nástěnka v aplikaci Qlik Sense s ukázkovými daty}
+    \label{fig:qlik_dashboard}
+\end{figure}
+
+Poslední záložka s názvem \textit{Storytelling} slouží pro prezentaci dat. Do prezentace je možné vložit prakticky jakákoliv data, včetně jednotlivých nástěnek, na kterých se zobrazují živá a aktuální data. Tyto prezentace jsou stejně jako nástěnky buď veřejné, nebo soukromé.
+
+V rámci celého projektu je možné pomocí e-mailové adresy pozvat libovolný počet uživatelů, kteří na projektu pracují. Mezi hlavní výhody aplikace Qlik oproti konkurenčnímu Microsoft Power BI patří například našeptávání při realizaci vizualizací, existence průvodce, který uživatele učí jak s aplikací pracovat. Další výhoda je možnost filtrovaní podobně jako v klasických internetových vyhledávačích. Nevýhoda je značná komplikovanost ovládání a navigace v rámci celé aplikace.
 
 \subsection{Microsoft Power BI}
 \label{sec:microsoft_power_bi}
@@ -855,12 +887,12 @@ Aplikace je pro uživatele dostupná buď jako webová stránka, jako klasická 
 \item \textit{Premium} -- nejvyšší možná licence, která na rozdíl od verze \textit{Free} a \textit{Pro} není licencovaná na uživatele ale na celou organizaci. V rámci této licence je pro celou organizaci vyhrazen prémiový prostor o velikosti 100 TB. Dále licence poskytuje větší množství nástěnek a sestav. Taková licence je vhodná pro opravdu velké podniky a korporace.
 \end{itemize}
 
-Mezi hlavní výhody Microsoft Power BI patří zejména jednoduché napojení známých již existujících vývojových aplikací pomocí existujících doplňků, webová a mobilní aplikace, nebo například rychlé vytváření přehledů a sestav. \cite{ref:microsoft_bi_general}  Na obrázku \ref{fig:powerbi_dashboard} je možné vidět definovanou sestavu společně s vizualizovanými daty.
+Mezi hlavní výhody Microsoft Power BI patří zejména jednoduché napojení známých již existujících vývojových aplikací pomocí existujících doplňků, webová a mobilní aplikace, nebo například rychlé vytváření přehledů a sestav. \cite{ref:microsoft_bi_general} Další velká výhoda je automatické napojení na tabulkovou aplikaci Excel. Výhodou je intuitivnost ovládání podobný jako v aplikacích Office, které jsou známé i mnoha začínajícím uživatelům. Mezi nevýhody můžeme zařadit menší možnosti exportu sestav a grafů do statických formátů, které je možné pouze do PDF. Na obrázku \ref{fig:powerbi_dashboard} je možné vidět definovanou sestavu společně s vizualizovanými daty.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1\textwidth]{Diplomka/Figures/powerbi-dashboard.jpg}
-    \caption{Vytvořená sestava v aplikaci Microsoft Power BI (převzato z \cite{ref:microsoft_bi_general})}
+    \caption{Nástěnka v aplikaci Microsoft Power BI (převzato z \cite{ref:microsoft_bi_general})}
     \label{fig:powerbi_dashboard}
 \end{figure}
 
@@ -904,7 +936,7 @@ Pdf, excel. Definování vlastního reportu, automatické ukládáni na projekt 
 \section{Závěr}
 TODO 
 
-\begin{thebibliography}{39}
+\begin{thebibliography}{40}
 
 \bibitem{ref:sommerrville_sw_process}
 SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~28-29. ISBN 978-0-13-703515-1.
@@ -1024,6 +1056,8 @@ IBM Engineering Requirements Management DOORS Next. \textit{IBM} [online]. IBM, 
 \bibitem{ref:bi_loshin_david}
 LOSHIN, David. \textit{Business Intelligence: The Savvy Manager's Guide}. San Francisco: Morgan Kaufmann, 2003, 1 - 9. ISBN 978-1-55860-916-7.
 
+\bibitem{ref:qlik_general}
+Qlik Sense | Data Analytics Platform: Agent of transformation. Qlik [online]. King of Prussia: Qlik Technologies, c1993-2021 [cit. 2021-01-30]. Dostupné z: https://www.qlik.com/us/products/qlik-sense
 
 \bibitem{ref:microsoft_bi_general}
 Vizualizace dat | Microsoft Power BI. \textit{Microsoft Power BI} [online]. Redmond: Microsoft, c2021 [cit. 2021-01-27]. Dostupné z: https://powerbi.microsoft.com/cs-cz/
