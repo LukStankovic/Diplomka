@@ -8,6 +8,7 @@
 \usepackage[thinlines]{easytable}
 \usepackage{graphicx}
 \usepackage{vcell}
+\usepackage{booktabs}
 
 %\usepackage[backend=biber, style=iso-numeric, alldates=iso]{biblatex} % bibliografie
 \usepackage{dcolumn} % sloupce tabulky s ciselnymi hodnotami
@@ -26,15 +27,15 @@
 
 % Zadame cestu a jmeno souboru ci nekolika souboru s digitalizovanou podobou zadani prace.
 % Pokud toto makro zapoznamkujeme sazi se stranka s upozornenim.
-\ThesisAssignmentImagePath{Diplomka/Figures/Assignment}
+\ThesisAssignmentImagePath{Diplomka/Figures/Assigment/assigment}
 
 % Zadame soubor s digitalizovanou podobou prohlaseni autora zaverecne prace.
 % Pokud toto makro zapoznamkujeme sazi se cisty text prohlaseni.
-\AuthorDeclarationImageFile{Diplomka/Figures/AuthorDeclaration.jpg}
+% \AuthorDeclarationImageFile{Diplomka/Figures/AuthorDeclaration.jpg}
 
 % Zadame soubor s digitalizovanou podobou souhlasu spolupracujici prav. nebo fyz. osoby.
 % Pokud toto makro zapoznamkujeme sazi se cisty text souhlasu.
-\CooperatingPersonsDeclarationImageFile{Diplomka/Figures/CoopPersonDeclaration.jpg}
+% \CooperatingPersonsDeclarationImageFile{Diplomka/Figures/CoopPersonDeclaration.jpg}
 
 \CzechAbstract{}
 
@@ -823,10 +824,24 @@ Aplikace Siemens Polarion obsahuje základní metriky taktéž na nástěnce a n
 
 Platforma IBM Jazz nabízí kompletně jiný přístup. Kromě stejné nástěnky jako v ostatních aplikacích, kde se nacházejí rychlé informace o postupu vývoje existuje samostatná aplikace \textit{Jazz Reporting Service}. V této aplikaci je možné pomocí nástroje \textit{Report Builder} vytvořit a definovat na základě filtrů metriky z jednotlivých artefaktů z jiných aplikací platformy IBM Jazz. Definované metriky je možné si zobrazit jak graficky tak v tabulce. Tato agregovaná data lze exportovat například do služby Microsoft Office. Velkou nevýhodou je, že definované metriky nezobrazují vývoj v čase, ale pouze aktuální hodnoty v daném čase. 
 
-Hlavní výhodou těchto aplikací je zachycení a správa celého vývoje celého systému. Další výhodou je možnost komunikace a spolupráce s jednotlivými týmy při vývoji. Všechny analyzované aplikace mají prakticky stejný design a liší se pouze v maličkostech. Bohužel žádná analyzovaná a jiné nalezené aplikace nesplňují požadovaný účel a funkcionality. Tedy možnost vytvářet a generovat trendové metriky a uchovávat v metrikách historická data.
+Hlavní výhodou těchto aplikací je zachycení a správa celého vývoje celého systému. Další výhodou je možnost komunikace a spolupráce s jednotlivými týmy při vývoji. Všechny analyzované aplikace mají prakticky stejný design a liší se pouze v maličkostech. Bohužel žádná analyzovaná a jiné nalezené aplikace nesplňují požadovaný účel a funkcionality. Tedy možnost vytvářet a generovat trendové metriky a uchovávat v metrikách historická data. Rychlý přehled analyzovaných aplikací a nástrojů je možné nalézt v tabulce \ref{tab:alm_porovnani}.
 
-% TODO LS tabulka
-
+\begin{table}[htp]
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{}                     & \textbf{codeBeamer ALM} & \textbf{Siemens Polarion} & \textbf{IBM Jazz} \\ \midrule
+Webová aplikace               & ano                     & ano                       & ano               \\
+PC aplikace                   & ano                     & ano                       & ne                \\
+Jedna velká robustní aplikace & ano                     & ano                       & ne                \\
+Export dat pomocí API         & ano                     & ano                       & ano               \\
+Historická data               & ano                     & ano                       & ne                \\
+Základní definice metrik      & ano                     & ano                       & ano               \\
+Pokročilejší metriky graficky & ne                      & ne                        & ano               \\
+Metrik potřebných pro ASPICE  & ne                      & ne                        & ne                \\ \bottomrule
+\end{tabular}
+\caption{Porovnání jednotlivých aplikací a nástrojů pro ALM}
+\label{tab:alm_porovnani}
+\end{table}
 \newpage % ODSTRANIT
 \section{Business intelligence}
 Dnešní společnosti pracující na velkých a komplexních systémech skladují a spravují při vývoji velká množství dat. S těmito daty je nutné, nejen pro potřeby analýzy, pracovat a přistupovat k nim. K zajištění správných a tedy úspěšných manažerských rozhodnutí je třeba data pochopit a vyčíst z nich důležité informace. Pomocí získaných a pochopených informací dokážeme informace přeměnit ve znalosti a použít je k predikcím. Následně dokážeme odhadnout kam se může vývoj projektu nebo společnosti ubírat.
