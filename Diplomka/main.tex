@@ -824,7 +824,7 @@ Aplikace Siemens Polarion obsahuje základní metriky taktéž na nástěnce a n
 
 Platforma IBM Jazz nabízí kompletně jiný přístup. Kromě stejné nástěnky jako v ostatních aplikacích, kde se nacházejí rychlé informace o postupu vývoje existuje samostatná aplikace \textit{Jazz Reporting Service}. V této aplikaci je možné pomocí nástroje \textit{Report Builder} vytvořit a definovat na základě filtrů metriky z jednotlivých artefaktů z jiných aplikací platformy IBM Jazz. Definované metriky je možné si zobrazit jak graficky tak v tabulce. Tato agregovaná data lze exportovat například do služby Microsoft Office. Velkou nevýhodou je, že definované metriky nezobrazují vývoj v čase, ale pouze aktuální hodnoty v daném čase. 
 
-Hlavní výhodou těchto aplikací je zachycení a správa celého vývoje celého systému. Další výhodou je možnost komunikace a spolupráce s jednotlivými týmy při vývoji. Všechny analyzované aplikace mají prakticky stejný design a liší se pouze v maličkostech. Bohužel žádná analyzovaná a jiné nalezené aplikace nesplňují požadovaný účel a funkcionality. Tedy možnost vytvářet a generovat trendové metriky a uchovávat v metrikách historická data. Rychlý přehled analyzovaných aplikací a nástrojů je možné nalézt v tabulce \ref{tab:alm_porovnani}.
+Hlavní výhodou těchto aplikací je zachycení a správa celého vývoje celého systému. Další výhodou je možnost komunikace a spolupráce s jednotlivými týmy při vývoji. Všechny analyzované aplikace mají prakticky stejný design a liší se pouze v maličkostech. Bohužel žádná analyzovaná a jiné nalezené aplikace nesplňují požadovaný účel a funkcionality. Tedy možnost vytvářet a generovat trendové metriky a uchovávat v metrikách historická data.
 
 \begin{table}[htp]
 \begin{tabular}{@{}lccc@{}}
@@ -834,14 +834,17 @@ Webová aplikace               & ano                     & ano                  
 PC aplikace                   & ano                     & ano                       & ne                \\
 Jedna velká robustní aplikace & ano                     & ano                       & ne                \\
 Export dat pomocí API         & ano                     & ano                       & ano               \\
-Historická data               & ano                     & ano                       & ne                \\
+Historická data               & ne                     & ano                       & ne                \\
 Základní definice metrik      & ano                     & ano                       & ano               \\
 Pokročilejší metriky graficky & ne                      & ne                        & ano               \\
-Metrik potřebných pro ASPICE  & ne                      & ne                        & ne                \\ \bottomrule
+Metriky potřebné pro ASPICE  & ne                      & ne                        & ne                \\ \bottomrule
 \end{tabular}
 \caption{Porovnání jednotlivých aplikací a nástrojů pro ALM}
 \label{tab:alm_porovnani}
 \end{table}
+
+Všechny tři aplikace obsahují možnost přístupu pomocí webové aplikace, přičemž pouze codeBeamer a Siemens Polarion poskytují přístup pomocí počítačové aplikace. Další rozdíl mezi platformou IBM Jazz a ostatními aplikacemi, které jsou řešeny jako jedna velká robustní aplikace, je v tom, že IBM Jazz je koncipována jako více menších aplikací. Všechny aplikace obsahují export dat pomocí API, přičemž Siemens Polarion nabízí export i přímo z databáze, která poskytuje více možností než jen API, které je řešeno pomocí webových služeb. IBM Jazz a codeBeamer podporují export pomocí REST API. Až na aplikaci Polarion neposkytuje IBM Jazz ani codeBeamer historické údaje v metrikách. Bohužel Siemens Polarion nabízí tyto informace pouze omezeně. Jediná platforma IBM Jazz podporuje pomocí \textit{Jazz Reporting Service} pokročilejší zobrazení metriky pomocí grafů. Ostatní dvě aplikace v základu podporují zobrazení metrik pomocí grafů limitovaně. Ani jedna z analyzovaných aplikací bohužel neposkytuje zobrazení a definice metrik pro sběr požadavků, které je nutné sledovat dle standardu Automotive SPICE. Rychlý přehled analyzovaných aplikací a nástrojů je možné nalézt v tabulce \ref{tab:alm_porovnani}. 
+
 \newpage % ODSTRANIT
 \section{Business intelligence}
 Dnešní společnosti pracující na velkých a komplexních systémech skladují a spravují při vývoji velká množství dat. S těmito daty je nutné, nejen pro potřeby analýzy, pracovat a přistupovat k nim. K zajištění správných a tedy úspěšných manažerských rozhodnutí je třeba data pochopit a vyčíst z nich důležité informace. Pomocí získaných a pochopených informací dokážeme informace přeměnit ve znalosti a použít je k predikcím. Následně dokážeme odhadnout kam se může vývoj projektu nebo společnosti ubírat.
