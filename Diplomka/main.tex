@@ -931,9 +931,26 @@ Pro vytvoření sestavy jsou potřeba data. Ta je možné vložit manuálně, vy
 
 
 \section{Vlastní aplikace}
-TODO - praktická část.
+V rámci  praktické části této diplomové práce je potřeba vytvořit  prototypový nástroj pro sledování a zobrazování metrik potřebných pro splnění standardu Automotive SPICE. To zejména znamená definovat, vytvářet a sledovat metriky v čase a následně vytvářet sestavy, které je možné exportovat do různých formátů. Vize je, aby byl nástroj místem shromáždění dat a artefaktů z platformy IBM Jazz v čase. Hlavní důvod pro vytvoření tohoto nástroje je, že platforma IBM Jazz a další podobné aplikace nepodporují sledování metrik pro splnění standardu. Zejména například generování metrik v určitém časovém období.
 
-Aplikace je realizována jako webová aplikace \textit{Jazz Reporting Service}.
+\subsection{Požadavky}
+Základním požadavkem pro aplikaci bylo, aby uživatel v aplikaci mohl definovat a následně zobrazovat metriky v čase. Nástroj bude umět definovat takové metriky, které jsou potřebné pro naplnění standardu Automotive SPICE. Dalším důležitým požadavkem je, aby aplikace byla realizovaná jako webová aplikace a byla tedy přístupná prakticky z jakéhokoli zařízení. Aplikace bude nabízet role uživatelů, na které budou navázány jednotlivé funkcionality nástroje. Přístup do nástroje bude mít pouze registrovaný uživatel.
+
+Prototypový nástroj nebude obsahovat možnost zadávání dat pro samotné metriky -- tzn. sběry dat. Ty se budou automaticky, dle definovaného plánu, stahovat z platformy IBM Jazz pomocí API, nebo jinou automatickou extrakcí z této platformy. Veškeré artefakty se budou importovat do projektů, které bude možné v nástroji vytvářet. Dále se artefakty řadí do modulů, stejně jako v platformě IBM Jazz. Importovaná data se musí řadit a seskupovat, dle data importu (tzv. sběru).
+
+Aby bylo možné zajistit případné změny ve standardu Automotive SPICE nebo dokonce i pouhou změnu potřeb měřit určité údaje, je potřeba, aby administrátor v nástroji dokázal vytvořit definice metrik a z těchto definic opakovaně různé metriky.Metriky je možné poté přiřadit k jednotlivým projektům. Metriky bude umět nástroj zobrazovat graficky a textově dle definovaných podmínek v definici metriky. Grafické zobrazení metriky bude možné zobrazit buď na nástěnce, kterou si bude moct uživatel libovolně upravovat, nebo na detailu dané metriky. Dále bude možné metriky exportovat do formátů PowerPoint a Excel. Grafické zobrazení bude podporovat základní typy grafů, které bude možné filtrovat a měnit zobrazovaný rozsah dat na grafu.
+
+Funkcionality celého nástroje lze rozdělit do funkčností, které ovládá uživatel a dále funkčností, které provádí systém automaticky. Samotný uživatel může nabývat buď role administrátora, nebo normálního uživatele. Na obrázku \ref{fig:jazz_metrics_use_case} lze vidět grafické znázornění uživatelských případu užití. Tyto případy užití tedy ovládá uživatel.
+
+Základním typem uživatele je klasický uživatel bez administrátorských práv. Kromě samozřejmosti v podobě přihlášení může uživatel spravovat metriky. Tedy může metriky vytvářet, upravovat, či případně mazat. Metriky může také pomocí speciálního nástroje v podobě dokumentu exportovat do formátu PowerPoint a Excel. Dále si může uživatel spravovat svůj účet a změnit různá nastavení. Každý uživatel má svojí nástěnku, kterou si může libovolně spravovat. Kromě změny pozic jednotlivých metrik, přidávání a mazání metrik z nástěnky může uživatel také exportovat nástěnku do formátu XML a poté ji sdílet například kolegovi pro samotný import nástěnky.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/use_case_jazz.png}
+    \caption{Diagram případu užití vlastní aplikace pro metriky}
+    \label{fig:jazz_metrics_use_case}
+\end{figure}
+Uživatel s právy administrátora má největší práva a přístup ke všem funkcionalitám, které nástroj nabízí. Kromě stejných funkcionalit jako běžný uživatel může administrátor využívat další nástroje celé aplikace. Administrátor může vytvářet ostatním uživatelům účty a přiřazovat jim jednotlivá práva a role. Důležitou funkcí administrátora je správa definic metrik. Pomocí těch administrátor může vytvářet, upravovat a mazat definice metrik, které poté uživatelé používají pro vytváření samotných metrik. Pomocí těchto definic je například poté možné vytvářet metriky v souladu se standardem Automotive SPICE. Dále je požadováno, aby administrátor mohl vytvářet projekty, do kterých budou následně automaticky importovány jednotlivé artefakty z platformy IBM Jazz. Import probíhá poté periodicky na pozadí celého nástroje dle definovaného rozvrhu. Veškeré tyto funkcionality jsou přístupné přes administraci, kde má administrátor přístup.
 
 \subsection{Architektura a použité technologie}
 
