@@ -71,6 +71,10 @@
 \AddAcronym{VDA QMC}{Quality Management Center in the German Association of Automotive Industry}
 
 
+\AddAcronym{PHP}{PHP: Hypertext Preprocessor}
+\AddAcronym{MVC}{Model-View-Controller}
+\AddAcronym{API}{Application Programming Interface}
+
 % \addbibresource{biblatex-examples.bib}
 % \addbibresource{coffee.bib}
 
@@ -964,20 +968,64 @@ Vrstva, kterou je možné považovat i za aplikační vrstvu je servisní vrstva
 
 Další nedílnou součástí celého nástroje je datová vrstva. Tato část komunikuje s aplikační vrstvou pomoci již zmíněných repositářů. Datová vrstva se ve skutečnosti používá dvě různé technologie ukládání dat. Prvním používaným úložištěm je relační databáze PostgreSQL, která slouží pro ukládání uživatelů a uživatelských rolí. Tato technologie byla zvolena pro tento účel zvolena zejména pro bezpečné a rychlé ukládání hesel, dat uživatelů a jednotlivých uživatelských rolí. Objekty namapované na relační databázi jsou nazývány entity. Druhým používaným úložištěm je \textit{NoSQL} databáze MongoDB. V tomto úložišti je uložena drtivá většina dat nástroje. Jsou zde uloženy například veškeré definice metrik, metriky, artefakty, nástěnky a další uživatelská data. Tato technologie byla zvolena po konzultaci s vedoucím práce díky vlastnostem lépe a pohodlněji ukládat celé objekty, rychlosti a lepší správě většího počtu dat. Tohoto benefitu bylo využito zejména při ukládání velkého množství artefaktů. Další velkou výhodou pro tuto technologii je možnost pohodlné správy celé struktury databáze. Velkou výhodou využití technologie MongoDB bylo při ukládání artefaktů a definic metriky, kdy celá struktura objektů je tvořena pomocí vnořených či případně propojených objektů. To má výhodu v jednodušším a pohodlnějším dotazování na objekty. Jednotlivé objekty jsou nazývány dokumenty.
  
+ \textbf{TODO OBRÁZEK ARCHITEKTURY}
+ 
 Celou aplikaci je možné provozovat buď nativně, nebo pomocí technologie Docker. Při instalaci nativně je nutné nainstalovat veškeré závislosti, které nástroj využívá. Mezi takové závislosti můžeme zařadit například databázi, přesnou verzi PHP, serveru a další. Pro pohodlnější a jednodušší instalaci je vhodné použít Docker. Výhodou použití této technologie je, že aplikace je nasazena v produkčním, testovacím a vývojovém prostředí na stejných verzích závislostí a podpůrných nástrojů. V rámci instalace pomocí Dockeru se nainstaluje i nástroj Kibana a NoSQL databázi Elasticsearch pro správu všech logů aplikace. Dále se nainstalují nástroje jako například Adminer pro správu databází,  Mongo-gui pro grafickou vizualizaci dokumentů v MongoDB databázi a další. Technologii Docker a použití využívaných nástrojů se věnuje kapitola \ref{sec:docker}.
 
 \subsubsection{Symfony}
 \label{sec:symfony}
+Základním kamenem celého nástroje pro vizualizaci metrik je framework Symfony. Ten je založen na skriptovacím jazyce PHP. Aplikace je schopná běžet na PHP od verze 7.4 a výše, tedy nejnovějších a podporovaných verzích. Symfony používá plně objektového přístupu a aplikace dále využívá veškerých moderních funkcionalit skriptovacího jazyka PHP pro kontrolu datových typů. Jednotlivé metody a proměnné jsou typovány a datové typy pečlivě kontrolovány. Framework Symfony je využíván v nejnovější verzi 5.2. Jelikož Symfony vychází z frameworku Spring jazyku Java, je práce a vývoj prakticky identický. Práce je prakticky identická jelikož i přes to, že jazyk PHP je skriptovací, je silně vyžadováno deklarování datových typů a jejich následná kontrola. Kontrola je také podpořena automatickými testy a kontroly standardů. Aplikace funguje na architektuře MVC, přičemž je plně připravená místo samotných kontrolerů používat API \textit{endopointy} a prezenční vrstvu vykreslovat pomocí technologie JavaScript. Celá aplikace využívá velké množství mezipaměti což vede k vyšší rychlosti celé aplikace. Samotnou aplikaci dokážeme zrychlit při použití nového PHP 8, využivívající \textit{just-in-time} kompilaci.
 
-\subsubsection{MongoDB}
+Důvod zvolení technologie Symfony a PHP místo technologie Spring, nebo ASP.NET bylo zejména z důvodu modernosti celé platformy, menší náročnosti na server, velké komunity vývojářů a rychlosti odezvy celého systému. Dalším benefitem byla zkušenost vývoje opravdu velkých aplikací v tomto frameworku. Jelikož je jazyk PHP nejpoužívanější jazyk spouštěný na serveru, nabízí velké množství dokumentace a podpory. \cite{ref:php_trend} Velkou výhodou je i počet vývojářů, kteří jazyk PHP znají.  V případě použití nových verzí 7.4, nebo 8 nemusí být jazyk takovou velkou potíží. Nevýhodou je špatná reputace jazyku PHP jako takového a případná reputace nevhodnosti použití pro velké podnikové aplikace. Další nevýhodou může být možnost kód psát špatně a nedbat na veškeré standardy a datové typy. Tato nevýhoda lze, stejně jako v této práci, podchytit automatickou kontrolou a opravou.
 
-\subsubsection{PostgreSQL}
+\subsubsection{Datová vrstva}
+Tato vrstva slouží k ukládání dat z celé aplikace. Jak již bylo nastíněno, v aplikaci existují dva typy úložiště:
+
+\begin{itemize}
+\item relační databáze PostgreSQL,
+\item NoSQL databáze MongoDB.
+\end{itemize}
+
+Relační databáze je používána pro základní funkcionality aplikace. Zejména pro správu uživatelských účtů a uživatelských rolí. Dále je tato databáze používána pro ukládání informací seznamu a o běhu modulů servisní vrstvy. Relační databáze je realizovaná pomocí PostgreSQL. Jednotlivé tabulky jsou realizovány jako entity, které se automaticky mapují na databázové tabulky. Aby byla zajištěna synchronizace a vytváření jednotlivých tabulek mezi všemi vývojáři případně při nové instalaci, je používáno takzvaných migrací. Migrace si můžeme představit jako jednotlivé soubory obsahující SQL dotazy pro vytvoření či úpravu tabulek.
+
+Hlavním datovým úložištěm celého nástroje je NoSQL databáze MongoDB. V této databázi jsou uložena veškerá data související s metrikami, projekty, artefakty a všeho ostatního. Přípojení k MongoDB je možné používat buď v rámci balíčku Docker, nebo využitím cloudové licence přímo na serverech společnosti MongoDB Inc. Jednotlivé objekty této databáze jsou pojmenovány jako dokumenty. Tyto dokumenty nejsou ve všech případech, jako v relační databázi, spojeny pomocí klíčů, ale jsou také vnořeny. Druhým případem propojení je pomocí odkazu na jiný dokument. Největší výhoda vnořování dokumentů spočívá v tom, že data jsou prakticky součástí jednoho dokumentu, což ulehčuje dotazování a vkládání do databáze. 
+
+
+\textbf{TODO OBRÁZEK DB}
+
+Pro oba typy úložiště je používán ORM framework Doctrine, který je ve výchozím stavu součástí Symfony. Ten slouží pro komunikaci mezi aplikací a databázemi. Framework Doctrine se skládá z abstraktní databázové části  a ORM části. Abstraktní část slouží pro připojení k různým typům databází a také zajišťuje základní přístupy a metody pro prací s databázemi. ORM část má na starost mapování objektů v aplikační části na databázový objekt a zpět. Framework Doctrine používá pro mapování objektů návrhový vzor \textit{data mapper}.
+
+
+Dále v aplikaci existuje třetí typ úložiště -- Elasticsearch. Toto úložiště slouží pouze pro ukládání logů. Neslouží pro ukládání samotných dat aplikace. Tato data je poté možno jednoduše zobrazit v aplikaci Kibana, která logy shromažďuje a pomocí ní lze v lozích hledat a filtrovat. 
 
 \subsubsection{Docker}
 \label{sec:docker}
+TODO 
 
 \subsection{Stažení dat z IBM Jazz}
-popsat jednotlivé druhy napojení na jazz, Automaticky pomocí cronu, rest api 
+% popsat jednotlivé druhy napojení na jazz, Automaticky pomocí cronu, rest api 
+Jednotlivá data a artefakty se nevytvářejí ve vytvářeném nástroji pro sledování metrik, ale importují se a stahují z platformy IBM Jazz. Tyto požadavky a artefakty je tedy nutné nejprve vložit do platformy IBM Jazz. Artefakty je vhodné zařadit do modulů dle jejich oblasti. V rámci Automotive SPICE můžeme mezi takové moduly zařadit například hardwarové požadavky se zkratkou HWRS. Používání těchto modulů je vhodné pro následné vytváření metrik a selekci pouze určitých typů artefaktů.
+
+Pro stahování dat z platformy IBM Jazz je možné použít několik druhů napojení. V rámci této kapitoly budou možná napojení rozebrána a vybráno právě jedno, které bude následně v rámci praktické části použito pro export do prototypového nástroje.
+
+\subsubsection{Manuální export do CSV}
+Jde o nejprimitivnější možnost exportu jednotlivých artefaktů. Tato úloha nelze nijak jednoduše a elegantně optimalizovat. Export může vyvolat pouze přihlášený uživatel s povolenými přístupy k artefaktům. Export je možné vyvolat buď na stránce s výpisem všech artefaktů, nebo na stránce s výpisem pouze určitých artefaktů (například při zobrazení jen daného modulu), nebo také na detailu pouze jednoho artefaktu.
+
+Výhoda tohoto exportu je v jednoduchosti exportu. Následné zpracování CSV je poté také nenáročné na implementaci. Výhoda je, že do CSV je možné vložit prakticky jakékoli údaje až na propojení s ostatními artefakty. Velká nevýhoda je však nemožnost tento proces automatizovat. Vždy by musel existovat uživatel, který CSV vygeneruje a nahraje do nástroje pro generování metrik. Tímto je tento export prakticky pro pravidelné aktualizace nepoužitelný.
+
+\subsubsection{Reportable REST API}
+Toto API, jak již název napovídá, funguje na principu architektury REST. Reportable REST API slouží pouze pro export z nástroje konfiguračního managementu, neboli na platformě IBM Jazz pojmenované jako Change and Configuration Management (CCM). Tento nástroj bohužel neobsahuje žádné artefakty a požadavky a slouží zejména pro správu projektu a zdrojového kódu.
+
+Abychom získali data z tohoto API je nutné nejprve provést autentifikaci. Po úspěšné autentifikaci lze data získat pomocí HTTP metody GET. Ta nám vrátí XML se položkami konfiguračního managamentu. Data vrácená ve formátu XML lze poté jednoduše zpracovat a uložit. Pomocí speciálních parametrů v HTTP metodě dokážeme data filtrovat. Jelikož však API neslouží pro data z oblasti správy požadavků, nemůže být pro prototypový nástroj použit.
+
+\subsubsection{Process REST API (DraftTeamProcessRestApi) }
+
+\subsubsection{DOORS Next Generation Rest API (RRC Reportable API)}
+
+\subsubsection{Work Items Service provider for OSLC 2.0 CM}
+
+\subsubsection{Napojení na databázi}
+
 
 \subsection{Uložení dat}
 Kontroly importů duplicitních, přidávání dat k importu, GUI práce nad daty, promazávání apod.
@@ -985,8 +1033,12 @@ Kontroly importů duplicitních, přidávání dat k importu, GUI práce nad dat
 \subsection{Zpracování dat}
 předpříprava dat query language
 
-\subsection{Definice metrik}
+\subsection{Definice a vytváření metrik}
 report builder
+
+
+\subsection{Nástěnka}
+s
 
 \subsection{Zobrazení metrik}
 pomocí js
@@ -994,12 +1046,12 @@ pomocí js
 
 \subsection{Výstupní reporty}
 Pdf, excel. Definování vlastního reportu, automatické ukládáni na projekt atd.
-    
+ 
 
 \section{Závěr}
 TODO 
 
-\begin{thebibliography}{40}
+\begin{thebibliography}{41}
 
 \bibitem{ref:sommerrville_sw_process}
 SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~28-29. ISBN 978-0-13-703515-1.
@@ -1124,6 +1176,9 @@ Qlik Sense | Data Analytics Platform: Agent of transformation. Qlik [online]. Ki
 
 \bibitem{ref:microsoft_bi_general}
 Vizualizace dat | Microsoft Power BI. \textit{Microsoft Power BI} [online]. Redmond: Microsoft, c2021 [cit. 2021-01-27]. Dostupné z: https://powerbi.microsoft.com/cs-cz/
+
+\bibitem{ref:php_trend}
+Historical trends in the usage statistics of server-side programming languages for websites. \textit{W3Techs} [online]. Maria Enzersdorf: Q-Success, c2009-2021 [cit. 2021-02-25]. Dostupné z: https://w3techs.com/technologies/history\_overview/programming\_language
 
 \end{thebibliography}
 
