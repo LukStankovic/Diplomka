@@ -86,6 +86,7 @@
 % Novy druh tabulkoveho sloupce, ve kterem jsou cisla zarovnana podle desetinne carky
 \newcolumntype{d}[1]{D{,}{,}{#1}}
 
+\newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
 
 % Zacatek dokumentu
 \begin{document}
@@ -1005,7 +1006,15 @@ Dále v aplikaci existuje třetí typ úložiště -- Elasticsearch. Toto úlož
 
 \subsubsection{Docker}
 \label{sec:docker}
-TODO 
+Je to open-source nástroj, pomocí kterého můžeme vytvořit jednotné rozhraní pro instalaci aplikace. Docker nám zajišťuje, že ač nasadíme aplikaci na různé operační systémy, tak nám vytvoří stejné definované prostředí. Oproti klasickým virtuálním strojům Docker kontejner neobsahuje virtualizovaný operační systém. Tím je výrazně snížena náročnost a rychlost celé funkčnosti oproti klasickým virtuálním strojům. S tím souvisí i menší velikost a nižší náklady na provoz než celý virtuální stroj. Nevýhodou Linuxových kontejnerů je horší podpora na operačních systémech Windows a macOS.
+
+Docker je v rámci prototypového nástroje použit právě na vytvoření vývojového a produkčního prostředí. Do Docker kontejneru se tedy instalují všechny potřebné závislosti. V rámci hlavního konfiguračního souboru se nainstalují závislosti jako správná verze PHP, PostgreSQL, MongoDB a mnoho dalšího. Dále existují samostatné konfigurační soubory pro webový server a Elasticsearch. Tyto konfigrační soubory, které se nazývají \textit{Dockerfile} se pomocí nástoje \textit{Docker Compose} spojí a vytvoří jeden spustitelný kontejner. Na výpise kódu \ref{src:docker_compose} můžeme vidět malou část konfiguračního souboru \textit{docker-compose.yml}, pomocí kterého vytvoříme a nainstalujeme závislost pro PostgreSQL databázi.
+
+\lstinputlisting[label=src:docker_compose,caption={Část konfiguračního souboru docker-compose.yaml sestavující PostgreSQL}, language=xml]{SourceCodes/docker-compose.yml}
+
+Největší výhoda tkví v jednodušší instalaci, jelikož stačí nainstalovat pouze Docker a veškeré závislosti se doinstalují do kontejneru samy. Dále můžeme jednoduše spravovat a povyšovat verze všech závislostí. Jelikož všichni potencionální vývojáři mají stejné vývojové a následně produkční prostředí, nedochází k nesrovnalostem mezi vývojovým, testovacím a produkčním prostředím. Aplikace samozřejmě může běžet Dockeru. Poté je ale nutné zajistit stejné verze všech závislostí a případně je manuálně povyšovat dle potřeb.
+
+
 
 \subsection{Stažení dat z IBM Jazz}
 % popsat jednotlivé druhy napojení na jazz, Automaticky pomocí cronu, rest api 
@@ -1051,8 +1060,6 @@ Platforma IBM Jazz nabízí velké množství možností pro export dat. Jeliko�
 \item filtrování,
 \item moderní a udržitelný přístup.
 \end{enumerate}
-
-
 
 \begin{table}[htp]
 \centering

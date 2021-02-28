@@ -1,0 +1,15 @@
+services:
+    postgres:
+        image: postgres:12.1-alpine
+        container_name: metriky-postgres
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+            - ./docker/postgres/postgres.conf:/var/lib/postgresql/data/postgresql.conf
+        environment:
+            - PGDATA=/var/lib/postgresql/data/pgdata
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+            - POSTGRES_DB=${POSTGRES_DB}
+        command: postgres -c config_file=/var/lib/postgresql/data/postgresql.conf
+        ports:
+            - "127.0.0.1:5432:5432"
