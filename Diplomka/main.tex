@@ -46,34 +46,39 @@
 \EnglishKeywords{}
 
 
-\AddAcronym{Automotive SPICE}{Automotive Software Process Improvement and Capability Determination}
-\AddAcronym{IBM}{International Business Machines Corporation}
-\AddAcronym{SEI}{Software Engineering Institute}
-\AddAcronym{CMM}{Capability Maturity Model}
-\AddAcronym{CMMI}{Capability Maturity Model Integration}
-\AddAcronym{PDCA}{plan-do-check-act}
-\AddAcronym{OPDCA}{observe-plan-do-check-act}
-\AddAcronym{RUP}{Rational Unified Process}
-
-\AddAcronym{BIRT}{Business Intelligence and Reporting Tools}
-\AddAcronym{IDE}{Integrated Development Environment}
-\AddAcronym{SVG}{Scalable Vector Graphics}
-\AddAcronym{JDBC}{Java Database Connectivity}
-\AddAcronym{XML}{Extensible Markup Language}
-\AddAcronym{ODA}{Open Data Access}
-
-\AddAcronym{ISO}{International Organization for Standardization}
-\AddAcronym{IEC}{International Electrotechnical Commission}
-\AddAcronym{SIG}{Automotive Special Interest Group}
-
 \AddAcronym{ALM}{Application lifecycle anagement}
-
-\AddAcronym{VDA QMC}{Quality Management Center in the German Association of Automotive Industry}
-
-
-\AddAcronym{PHP}{PHP: Hypertext Preprocessor}
-\AddAcronym{MVC}{Model-View-Controller}
 \AddAcronym{API}{Application Programming Interface}
+\AddAcronym{Automotive SPICE}{Automotive Software Process Improvement and Capability Determination}
+\AddAcronym{BIRT}{Business Intelligence and Reporting Tools}
+\AddAcronym{CCM}{Change and Configuration Managemet}
+\AddAcronym{CMMI}{Capability Maturity Model Integration}
+\AddAcronym{CMM}{Capability Maturity Model}
+\AddAcronym{CSV}{Comma-separated values}
+\AddAcronym{HTTP}{Hypertext Transfer Protocol}
+\AddAcronym{IBM}{International Business Machines Corporation}
+\AddAcronym{IDE}{Integrated Development Environment}
+\AddAcronym{IEC}{International Electrotechnical Commission}
+\AddAcronym{ISO}{International Organization for Standardization}
+\AddAcronym{JDBC}{Java Database Connectivity}
+\AddAcronym{JSON}{JavaScript Object Notation}
+\AddAcronym{MVC}{Model-View-Controller}
+\AddAcronym{ODA}{Open Data Access}
+\AddAcronym{OPDCA}{observe-plan-do-check-act}
+\AddAcronym{ORM}{Object–relational mapping}
+\AddAcronym{OSLC}{Open Services for Lifecycle Collaboration}
+\AddAcronym{PDCA}{plan-do-check-act}
+\AddAcronym{PHP}{PHP: Hypertext Preprocessor}
+\AddAcronym{RDF}{Resource Description Framework}
+\AddAcronym{REST}{Representational state transfer}
+\AddAcronym{RUP}{Rational Unified Process}
+\AddAcronym{SEI}{Software Engineering Institute}
+\AddAcronym{SIG}{Automotive Special Interest Group}
+\AddAcronym{SQL}{Structured Query Language}
+\AddAcronym{SVG}{Scalable Vector Graphics}
+\AddAcronym{URL}{Uniform Resource Locator}
+\AddAcronym{VDA QMC}{Quality Management Center in the German Association of Automotive Industry}
+\AddAcronym{XML}{Extensible Markup Language}
+
 
 % \addbibresource{biblatex-examples.bib}
 % \addbibresource{coffee.bib}
@@ -1018,14 +1023,54 @@ Toto API, jak již název napovídá, funguje na principu architektury REST. Rep
 
 Abychom získali data z tohoto API je nutné nejprve provést autentifikaci. Po úspěšné autentifikaci lze data získat pomocí HTTP metody GET. Ta nám vrátí XML se položkami konfiguračního managamentu. Data vrácená ve formátu XML lze poté jednoduše zpracovat a uložit. Pomocí speciálních parametrů v HTTP metodě dokážeme data filtrovat. Jelikož však API neslouží pro data z oblasti správy požadavků, nemůže být pro prototypový nástroj použit.
 
-\subsubsection{Process REST API (DraftTeamProcessRestApi) }
-
-\subsubsection{DOORS Next Generation Rest API (RRC Reportable API)}
+\subsubsection{Process REST API}
+Jde o provizorní a testovací API vyvíjené IBM, které se může dle dokumentace v budoucnosti změnit. Slouží zejména pro export informací o projektech. API funguje na principu REST a tedy můžeme jej zavolat pomocí klasických HTTP GET a POST metod. Slouží nejen pro export dat ale i import dat do platformy IBM Jazz. V rámci API dokážeme zjistit údaje o uživatelích pracujících na projektu, administrátory, moduly daného projektu, role a další. Bohužel na školním serveru s nainstalovaným IBM Jazz nebylo toto API k dispozici a nebylo tedy možné otestovat veškeré vlastnosti. Velká nevýhoda je, že je API pouze provizorní a může se v budoucnu změnit. Další nevýhodou je, že pravděpodobně dle dokumentace neobsahuje podrobné informace o artefaktech.
 
 \subsubsection{Work Items Service provider for OSLC 2.0 CM}
+Toto API poskytuje pomocí technologie Open Services for Lifecycle Collaboration (OSLC) ve verzi 2 přístup skoro ke každé informaci na platformě IBM Jazz. Koncepce OSLC je založena na tom, že webová stránka je přístupná jak pomocí HTML tak i pomocí formátu RDF, který je jednoduše strojově čitelný. Přístup k formátu RDF je stejně jako k HTML dostupný pomocí protokolu HTTP.
+
+Toto napojení je velmi komplexní a nabízí velké množství informací z prakticky všech aplikací platformy IBM Jazz. Autorizace k API probíhá pomocí speciální HTTP metody. Přístup k jednotlivým datům je řešen pomocí HTTP metod. Při volání určité HTTP metody je možné data filtrovat pomocí parametrů. Kromě filtrování je možné pomocí parametrů data stránkovat. Výhodou je, že nemusíme mít v naší aplikaci definované jednotlivé URL, ale stačí jedna základní, jelikož program se k výsledné metodě může dostat sám díky struktuře RDF. Výsledky je možné kromě formátu XML zobrazit také ve formátu JSON.
+
+Toto napojení jsem podrobně testoval a zkoušel na školním serveru s nainstalovanou platformou IBM Jazz. Pomocí tohoto napojení můžeme jednoduše získat jednotlivé artefakty v projektu, informace o projektech, modulech v projektu, uživatelích a velké kvantum ostatních informací. Ač napojení nabízí obrovské množství informací a dat, tak je pro využití stahování dat do našeho prototypového nástroje nevhodné, jelikož nenabízí zevrubné informace o atributech artefaktu. Napojení bohužel nabízí pouze základní atributy, ale nenabízí uživatelsky definované atributy a propojení artefaktů s jinými artefakty.
+
+\subsubsection{DOORS Next Generation Rest API}
+Přístup k datům pomocí tohoto API probíhá pomocí HTTP metod na architektuře REST. Napojení nabízí export dat z nástroje IBM Engineering Requirements DOORS Next. Ten obsahuje zejména artefakty, které jsou v projektech řazeny do modulů a adresářů. Pomocí napojení dokážeme exportovat veškeré atributy artefaktů včetně napojení na ostatní artefakty. Mezi atributy, které lze exportovat, patří i veškeré uživatelsky definované atributy.
+
+Autorizace připojení k API probíhá pomocí speciální metody, která nám vrátí \textit{cookies}, které slouží pro následný dotaz. Data získáváme ve formátu XML po dotazu na definované URL. Pomocí parametrů v URL můžeme výsledky filtrovat a stránkovat. Stejně jako v případě jiných REST API dokážeme tuto činnost automatizovat. Mezi další výhody patří to, že API poskytuje veškeré údaje a data, které potřebujeme pro sestavení metrik. Jedinou nevýhodou může být špatná dokumentace, která neobsahuje veškeré metody. Ty je nutné hledat na různých diskuzních fórech.
 
 \subsubsection{Napojení na databázi}
+Tento způsob můžeme zařadit k nejzazšímu možnému způsobu exportu dat. Tento způsob lze využít pro export prakticky jakýchkoliv typů dat. Jelikož platforma IBM Jazz používá pro ukládání dat relační databázi, můžeme pro export dat z platformy využít SQL dotazy. Plusem této metody je, že proces můžeme zautomatizovat. Další výhoda způsobu exportu dat přímo z databáze je v tom, že můžeme získat při znalosti architektury databáze prakticky jakékoliv data. S tím souvisí velká nevýhoda a to právě znalost struktury a architektury celé databáze. Další nevýhoda je, že ne vždy můžeme přístup k databázi získat (například při používání platformy IBM Jazz v cloudu). Existuje zde i pravděpodobnost, že při aktualizaci platformy Jazz dojde ke změně struktury databáze a tím může přestat správně fungovat export dat.
 
+\subsubsection{Porovnání}
+Platforma IBM Jazz nabízí velké množství možností pro export dat. Jelikož většina z nich je zastaralá, nebyla v rámci této kapitoly ani zmíněna. Některé stále podporované možnosti jsou z hlediska přístupu modernější a některé starší a je pravděpodobné že budou v budoucnosti zrušeny. Většina analyzovaných možností jsou bohužel nevyhovující ať už z toho důvodu, že nepodporují export dat, která potřebujeme pro definici metrik, nebo také nemožnosti automatizace celého procesu. V tabulce \ref{tab:ibm_jazz_export} jsou přehledně zmíněny vlastnosti a kritéria exportu dat:
+
+\begin{enumerate}
+\item možnost automatizace
+\item možnost exportu artefaktů,
+\item možnost exportu uživatelských atributů artefaktů,
+\item filtrování,
+\item moderní a udržitelný přístup.
+\end{enumerate}
+
+
+
+\begin{table}[htp]
+\centering
+\begin{tabular}{@{}llllllll@{}}
+\toprule
+ & \textbf{Vlastnost}                          & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &  \\ \midrule
+ & Manuální export do CSV                      & ne         & ano        & ano        & ne         & ne         &  \\
+ & Reportable REST API                         & ano        & ne         & ne         & ano        & ano        &  \\
+ & Process REST API                            & ano        & ne         & ne         & ano        & ano        &  \\
+ & Work Items Service provider for OSLC 2.0 CM & ano        & ano        & ne         & ano        & ano        &  \\
+ & DOORS Next Generation Rest API              & ano        & ano        & ano        & ano        & ano        &  \\
+ & Napojení na databázi                        & ano        & ano        & ano        & ano        & ne         &  \\ \bottomrule
+\end{tabular}
+\caption{Porovnání analyzovaných možností exportu dat z IBM Jazz}
+\label{tab:ibm_jazz_export}
+\end{table}
+
+Na základě porovnání vychází, že ideálním nástrojem pro automatické stahování dat z platformy IBM Jazz je  DOORS Next Generation Rest API, které kromě horší dokumentace nabízí veškeré vlastnosti, které jsou potřeba pro stahování dat, ze kterých se budou definovat a vytvářet metriky. Pakliže by neexistoval požadavek na pokročilé stahování uživatelskách atributů artefaktů byl by lepším řešením Work Items Service provider for OSLC 2.0 CM, jelikož nabízí lépe zdokumentované metody. Dále je možné veškeré informace stahovat rovnou z databáze celé platformy IBM Jazz. Tento způsob je však neperspektivní a hrozí, že kdykoli se databáze změní a hrozí, že stahování dat přestane fungovat.
 
 \subsection{Uložení dat}
 Kontroly importů duplicitních, přidávání dat k importu, GUI práce nad daty, promazávání apod.
