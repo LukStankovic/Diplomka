@@ -9,6 +9,9 @@
 \usepackage{graphicx}
 \usepackage{vcell}
 \usepackage{booktabs}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat = newest}
 
 %\usepackage[backend=biber, style=iso-numeric, alldates=iso]{biblatex} % bibliografie
 \usepackage{dcolumn} % sloupce tabulky s ciselnymi hodnotami
@@ -961,6 +964,7 @@ Základním typem uživatele je klasický uživatel bez administrátorských pr�
     \caption{Diagram případu užití vlastní aplikace pro metriky}
     \label{fig:jazz_metrics_use_case}
 \end{figure}
+
 Uživatel s právy administrátora má největší práva a přístup ke všem funkcionalitám, které nástroj nabízí. Kromě stejných funkcionalit jako běžný uživatel může administrátor využívat další nástroje celé aplikace. Administrátor může vytvářet ostatním uživatelům účty a přiřazovat jim jednotlivá práva a role. Důležitou funkcí administrátora je správa definic metrik. Pomocí těch administrátor může vytvářet, upravovat a mazat definice metrik, které poté uživatelé používají pro vytváření samotných metrik. Pomocí těchto definic je například poté možné vytvářet metriky v souladu se standardem Automotive SPICE. Dále je požadováno, aby administrátor mohl vytvářet projekty, do kterých budou následně automaticky importovány jednotlivé artefakty z platformy IBM Jazz. Import probíhá poté periodicky na pozadí celého nástroje dle definovaného rozvrhu. Veškeré tyto funkcionality jsou přístupné přes administraci, kde má administrátor přístup.
 
 \subsection{Architektura a použité technologie}
@@ -1016,7 +1020,8 @@ Největší výhoda tkví v jednodušší instalaci, jelikož stačí nainstalov
 
 
 
-\subsection{Stažení dat z IBM Jazz}
+\subsection{Export dat z IBM Jazz}
+\label{sec:ibm_export}
 % popsat jednotlivé druhy napojení na jazz, Automaticky pomocí cronu, rest api 
 Jednotlivá data a artefakty se nevytvářejí ve vytvářeném nástroji pro sledování metrik, ale importují se a stahují z platformy IBM Jazz. Tyto požadavky a artefakty je tedy nutné nejprve vložit do platformy IBM Jazz. Artefakty je vhodné zařadit do modulů dle jejich oblasti. V rámci Automotive SPICE můžeme mezi takové moduly zařadit například hardwarové požadavky se zkratkou HWRS. Používání těchto modulů je vhodné pro následné vytváření metrik a selekci pouze určitých typů artefaktů.
 
@@ -1079,18 +1084,166 @@ Platforma IBM Jazz nabízí velké množství možností pro export dat. Jeliko�
 
 Na základě porovnání vychází, že ideálním nástrojem pro automatické stahování dat z platformy IBM Jazz je  DOORS Next Generation Rest API, které kromě horší dokumentace nabízí veškeré vlastnosti, které jsou potřeba pro stahování dat, ze kterých se budou definovat a vytvářet metriky. Pakliže by neexistoval požadavek na pokročilé stahování uživatelskách atributů artefaktů byl by lepším řešením Work Items Service provider for OSLC 2.0 CM, jelikož nabízí lépe zdokumentované metody. Dále je možné veškeré informace stahovat rovnou z databáze celé platformy IBM Jazz. Tento způsob je však neperspektivní a hrozí, že kdykoli se databáze změní a hrozí, že stahování dat přestane fungovat.
 
-\subsection{Uložení dat}
-Kontroly importů duplicitních, přidávání dat k importu, GUI práce nad daty, promazávání apod.
+\subsection{Stahování a ukládání dat}
+Na základě výsledků analýzy v kapitole \ref{sec:ibm_export} byl vybrán export dat pomocí IBM Jazz je  DOORS Next Generation Rest API. Aby bylo zajištěno pravidelné stahování dat z REST API byl vytvořen cron modul, který se spouští pravidelně v definované periodě. Tento skript stahuje data pro veškeré definované projekty v prototypovém nástroji z nastavené URL k platformě IBM Jazz.
+
+Jakmile si skript stáhne XML s daty artefaktů pro daný projekt, vytvoří z jednotlivých elementů objekt typu \textit{RmArtifact}, který obsahuje veškeré údaje získané z XML souboru. Tyto objekty slouží jako datové objekty, které se poté namapují na konečné aplikační objekty, které se uloží do databáze. Aby bylo zajištěné co nejefektivnější, nejsrozumitelnější a nejrychlejší stahování a čtení XML souboru byly provedeny dva prototypy, na kterých byla ověřena rychlost čtení. Pro čtení z XML soubory byly vybrány čtyři techniky:
+
+\begin{enumerate}
+\item iterování a procházení elementů (i vnořených) pouze pomocí XPath,
+\item iterování a procházení jednoduchých elementů pomocí XPath a procházení složitějších elementů pomocí objektů \textit{SimpleXMLElement},
+\item iterování pomocí cyklu a objektů \textit{SimpleXMLElement} a procházení vnitřních elementů pomocí XPath,
+\item iterování pomocí cyklu a objektů \textit{SimpleXMLElement}.
+\end{enumerate}
+
+Výsledky měření těchto čtyř algoritmů se nacházejí v následující tabulce \ref{tab:xml_read} a graficky v obrázku \ref{fig:xml_read_plot}:
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[htp]
+\centering
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+\textbf{Pokus \#} & \textbf{Algoritmus 1} & \textbf{Algoritmus 2} & \textbf{Algoritmus 3} & \textbf{Algoritmus 4} \\ \midrule
+1                 & 30,122                & 26,909                & 24,321                & 18,324                \\
+2                 & 25,124                & 17,845                & 21,897                & 16,940                \\
+3                 & 24,789                & 19,285                & 20,214                & 15,111                \\
+4                 & 29,323                & 25,002                & 23,875                & 17,369                \\
+5                 & 35,478                & 20,783                & 19,811                & 16,989                \\
+6                 & 32,989                & 21,154                & 18,237                & 20,535                \\
+7                 & 27,324                & 18,369                & 27,412                & 20,237                \\
+8                 & 26,668                & 23,423                & 24,217                & 18,770                \\
+9                 & 29,782                & 17,998                & 26,211                & 17,315                \\
+10                & 28,369                & 20,312                & 19,996                & 16,732                \\ \midrule
+Průměrně          & 28,997               & 21,108                & 22,6191               & 17,832                \\ \bottomrule
+\end{tabular}
+\caption{Časy přečtení a získání jednoho artefaktu z XML souboru v milisekundách}
+\label{tab:xml_read}
+\end{table}
+
+\begin{figure}[h!tp]
+\centering
+\begin{tikzpicture}
+\pgfplotsset{%
+    width=.9\textwidth,
+}
+\begin{axis}[
+    title={},
+    xlabel={Pokusy},
+    ylabel={Čas zpracování jednoho artefaktu (ms)},
+    xmin=1, xmax=10,
+    ymin=14, ymax=40,
+    xtick={1,2,3,4,5,6,7,8,9,10},
+    ytick={10,14,18, 22, 26, 30, 34, 38},
+    legend pos=north west,
+    ymajorgrids=true,
+    grid style=dashed,
+]
+
+\addplot[
+    color=blue,
+    mark=x,
+    ]
+    coordinates {(1,30.122)(2,25.124)(3,24.789)(4,29.323)(5,35.478)(6,32.989)(7,27.324)(8,26.668)(9,29.782)(10,28.369)};
+  \addplot[
+    color=red,
+    mark=x,
+    ]
+    coordinates {
+(1, 26.909)
+(2, 17.845)
+(3, 19.285)
+(4, 25.002)
+(5, 20.783)
+(6, 21.154)
+(7, 18.369)
+(8, 23.423)
+(9, 17.998)
+(10, 20.312)
+    };
+    
+    \addplot[
+    color=green,
+    mark=x,
+    ]
+    coordinates {
+(1, 24.321)
+(2, 21.897)
+(3, 20.214)
+(4, 23.875)
+(5, 19.811)
+(6, 18.237)
+(7, 27.412)
+(8, 24.217)
+(9, 26.211)
+(10, 19.996)
+    };
+    
+    \addplot[
+    color=orange,
+    mark=x,
+    ]
+    coordinates {
+(1, 18.324)
+(2, 16.940)
+(3, 15.111)
+(4, 17.369)
+(5, 16.989)
+(6, 20.535)
+(7, 20.237)
+(8, 18.770)
+(9, 17.315)
+(10, 16.732)
+    };
+    
+\legend{Algoritmus 1, Algoritmus 2, Algoritmus 3,  Algoritmus 4}   
+\end{axis}
+\end{tikzpicture}
+\caption{Časy přečtení a získání jednoho artefaktu z XML souboru v milisekundách}
+\label{fig:xml_read_plot}
+\end{figure}
+
+Z výsledků analýzy můžeme vidět, že nejrychlejší algoritmus pro přečtení a zpracování jednoho artefaktu je nejrychlejší algoritmus číslo 4, který používá pouze cykly a objekty \textit{SimpleXMLElement}. Druhý nejrychlejší byl na základě analýzy algoritmus 2, který kombinuje technologii XPath a objekty \textit{SimpleXMLElement}. Poté následují nejpomalejší algoritmy 3 a 1.
+
+Nejrychlejší algoritmus 4 má výhodu kromě rychlosti také v možnosti používat metody pro přístup k atributům daného objektu. Bohužel je zde velká nevýhoda ve formě složitosti a délce celého kódu, který je navíc kvůli velkého počtu cyklů pro vnořené elementy velmi nepřehledný. Zároveň dle dalších testů je velmi pravděpodobné, že rychlost se zpomalí při čtení více artefaktů za sebou, jelikož se zaplní paměť velkým množstvím objektů \textit{SimpleXMLElement}.
+
+Z tohoto důvodu byl pro implementaci extrakci a zpracování dat artefaktů z XML zvolen algoritmus 2, který kombinuje technologii XPath a objekty typu \textit{SimpleXMLElement}.
+
+
+
+
+Stahovaná data z platformy IBM Jazz se ukládají do NoSQL MongoDB databáze.
+
+% Kontroly importů duplicitních, přidávání dat k importu, GUI práce nad daty, promazávání apod.
 
 \subsection{Zpracování dat}
 předpříprava dat query language
 
 \subsection{Definice a vytváření metrik}
-report builder
+Pakliže si přeje uživatel vytvořit metriku úplně od základu bude nejprve potřebovat vytvořit definici dané metriky.
 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/report_builder.jpg}
+    \caption{Proces vytváření definice metriky}
+    \label{fig:report_builder_admin}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/new_metric_form.jpg}
+    \caption{Formulář pro vytvoření metriky}
+    \label{fig:new_metric_from}
+\end{figure}
 
 \subsection{Nástěnka}
-s
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/dashboard_metrics.jpg}
+    \caption{Nástěnka na úvodní obrazovce}
+    \label{fig:dashboard_metrics}
+\end{figure}
 
 \subsection{Zobrazení metrik}
 pomocí js
