@@ -1204,21 +1204,20 @@ Průměrně          & 28,997               & 21,108                & 22,6191   
 \label{fig:xml_read_plot}
 \end{figure}
 
-Z výsledků analýzy můžeme vidět, že nejrychlejší algoritmus pro přečtení a zpracování jednoho artefaktu je nejrychlejší algoritmus číslo 4, který používá pouze cykly a objekty \textit{SimpleXMLElement}. Druhý nejrychlejší byl na základě analýzy algoritmus 2, který kombinuje technologii XPath a objekty \textit{SimpleXMLElement}. Poté následují nejpomalejší algoritmy 3 a 1.
+Z výsledků analýzy můžeme vidět, že nejrychlejší algoritmus pro přečtení a zpracování jednoho artefaktu je algoritmus číslo 4, který používá pouze cykly a objekty \textit{SimpleXMLElement}. Druhý nejrychlejší byl na základě analýzy algoritmus 2, který kombinuje technologii XPath a objekty \textit{SimpleXMLElement}. Poté následují nejpomalejší algoritmy 3 a 1.
 
-Nejrychlejší algoritmus 4 má výhodu kromě rychlosti také v možnosti používat metody pro přístup k atributům daného objektu. Bohužel je zde velká nevýhoda ve formě složitosti a délce celého kódu, který je navíc kvůli velkého počtu cyklů pro vnořené elementy velmi nepřehledný. Zároveň dle dalších testů je velmi pravděpodobné, že rychlost se zpomalí při čtení více artefaktů za sebou, jelikož se zaplní paměť velkým množstvím objektů \textit{SimpleXMLElement}.
+Nejrychlejší algoritmus 4 má výhodu kromě rychlosti také v možnosti používat metody pro přístup k atributům daného objektu. Bohužel je zde velká nevýhoda ve formě složitosti a délce celého kódu, který je navíc kvůli velkého počtu cyklů pro vnořené elementy velmi nepřehledný. Zároveň dle dalších testů je velmi pravděpodobné, že rychlost razantně se zpomalí při čtení více artefaktů za sebou, jelikož se zaplní paměť velkým množstvím objektů \textit{SimpleXMLElement}.
 
-Z tohoto důvodu byl pro implementaci extrakci a zpracování dat artefaktů z XML zvolen algoritmus 2, který kombinuje technologii XPath a objekty typu \textit{SimpleXMLElement}.
+Z tohoto důvodu byl pro implementaci extrakci a zpracování dat artefaktů z XML zvolen algoritmus 2, který kombinuje technologii XPath a objekty typu \textit{SimpleXMLElement}. Pro základní iteraci, a základní elementy je používán XPath. Tento způsob kromě dobré rychlosti zaručuje i to, že celý kód nebude tak složitý jako v případě čtvrtého algoritmu. 
 
+Nejprve se jednotlivé elementy uloží do pole, dle identifikátoru daného elementu. Zároveň se jejich jednotlivé atributy zařadí do vícerozměrného pole dle identifikátoru daného artefaktu. Jakmile je celý XML soubor pro daný projekt přečtený, veškeré artefakty se namapují na pole objektů typu \textit{RmArtifact}. Důvod proč, se elementy z XML souboru nemapují rovnou na objekty \textit{RmArtifact} je z důvodu automatizace čtení XML souboru.
 
-
-
-Stahovaná data z platformy IBM Jazz se ukládají do NoSQL MongoDB databáze.
-
-% Kontroly importů duplicitních, přidávání dat k importu, GUI práce nad daty, promazávání apod.
+Dále jsou tyto soubory validovány a jejich data upravovány a transformovány do požadované formy. Tyto objekty vzniklé stáhnutím dat z platformy IBM Jazz se poté mapují na dokumenty a ukládají do NoSQL MongoDB databáze. Při tomto procesu se kontroluje, zda daný artefakt již neexistuje a nemá se pouze vytvořit nová verze daného artefaktu dle data stažení. Pakliže daný artefakt neexistuje, artefakt se založí a vytvoří se první verze artefaktu.
 
 \subsection{Zpracování dat}
-předpříprava dat query language
+Jakmile jsou data z platformy IBM Jazz naimportována je možné si je zobrazit jak v administraci tak uživatelské části daného projektu.
+
+% předpříprava dat query language
 
 \subsection{Definice a vytváření metrik}
 Pakliže si přeje uživatel vytvořit metriku úplně od základu bude nejprve potřebovat vytvořit definici dané metriky.
