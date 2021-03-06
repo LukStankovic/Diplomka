@@ -81,7 +81,7 @@
 \AddAcronym{URL}{Uniform Resource Locator}
 \AddAcronym{VDA QMC}{Quality Management Center in the German Association of Automotive Industry}
 \AddAcronym{XML}{Extensible Markup Language}
-
+\AddAcronym{AJAX}{Asynchronous JavaScript and XML}
 
 % \addbibresource{biblatex-examples.bib}
 % \addbibresource{coffee.bib}
@@ -970,15 +970,23 @@ Uživatel s právy administrátora má největší práva a přístup ke všem f
 \subsection{Architektura a použité technologie}
 Vzhledem ke kladeným požadavkům na výsledný prototypový nástroj, které vyžadují, aby byl nástroj použitelný na jakékoliv zařízení, bylo rozhodnuto, že nástroj bude realizován jako webová aplikace. Tento způsob je proti klasické klientské aplikace výhodnější v několika hlediscích. Největší výhoda je nezávislost platformy, na které je nástroj provozován. Uživatel nemusí kromě webového prohlížeče instalovat žádnou další aplikaci potřebnou pro běh nástroje. Dalším kladem je jednodušší správa a aktualizace celého nástroje. Nástroj bude do budoucna připraven na vytvoření progresivní webové aplikace. Celá aplikace je v souladu s architekturou Model-View-Controller.
 
-Architektura se skládá z několika důležitých komponent a vrstev. Nejvyšší vrstvou nástroje je prezentační vrstva, která slouží zejména pro komunikaci mezi uživatelem a celým nástrojem. Uživatel pomocí prezentační vrstvy nástroj ovládá a provádí různé úkony vedoucí k vytvoření projektů, metrik, nebo například definicí metriky. Veškeré tyto úkony jsou definovány v kapitole \ref{sec:requirements}. Celý nástroj je ovládán pomocí grafického uživatelského rozhraní ve webovém prohlížeči. Tuto vrstvu řadíme v architektuře Model-View-Controler k \textit{View}. Prezentační vrstva je realizovaná pomocí šablonovacího systému Twig.
+Architektura se skládá z několika důležitých komponent a vrstev. Celou architekturu systému včetně napojení na platformu IBM Jazz je možné vidět na obrázku \ref{fig:architektura_nastroje}. Nejvyšší vrstvou nástroje je prezentační vrstva, která slouží zejména pro komunikaci mezi uživatelem a celým nástrojem. Uživatel pomocí prezentační vrstvy nástroj ovládá a provádí různé úkony vedoucí k vytvoření projektů, metrik, nebo například definicí metriky. Veškeré tyto úkony jsou definovány v kapitole \ref{sec:requirements}. Celý nástroj je ovládán pomocí grafického uživatelského rozhraní ve webovém prohlížeči. Tuto vrstvu řadíme v architektuře Model-View-Controler k \textit{View}. Prezentační vrstva je realizovaná pomocí šablonovacího systému Twig.
 
 Další vrstvou je aplikační vrstva, která vykonává většinu aplikační logiky, kontroluje vstupy od uživatele, provádí výpočty a zpracovává data. Tato vrstva je provozována pomocí frameworku Symfony v jazyce PHP. Této technologii je věnovaná kapitola \ref{sec:symfony}. V této vrstvě jsou zahrnuty veškeré kontrolery, které komunikují s prezentační vrstvou, ze které přijímají data a pokyny od uživatele. Dále zde do této vrstvy můžeme zařadit jednotlivé modely, které přistupují k datové vrstvě. Komunikace mezi datovou a aplikačí vrstvou probíhá pomocí repositářů. V rámci přístupu k repositářům je použit návrhový vzor fasáda. 
 
 Vrstva, kterou je možné považovat i za aplikační vrstvu je servisní vrstva, která zajišťuje automatické stahování dat z platformy IBM Jazz. Stahování dat, zejména artefaktů, probíhá pro definované projekty pomocí \textit{Cron} modulu. Toto stahování probíhá na pozadí, dle definovaného času spuštění. Stažení dat je možné vyvolat také z příkazové řádky. Dále je jednoduchá a pohodlná možnost přidat zavolání a spuštění servisního modulu pomocí prezentační vrstvy.
 
-Další nedílnou součástí celého nástroje je datová vrstva. Tato část komunikuje s aplikační vrstvou pomoci již zmíněných repositářů. Datová vrstva se ve skutečnosti používá dvě různé technologie ukládání dat. Prvním používaným úložištěm je relační databáze PostgreSQL, která slouží pro ukládání uživatelů a uživatelských rolí. Tato technologie byla zvolena pro tento účel zvolena zejména pro bezpečné a rychlé ukládání hesel, dat uživatelů a jednotlivých uživatelských rolí. Objekty namapované na relační databázi jsou nazývány entity. Druhým používaným úložištěm je \textit{NoSQL} databáze MongoDB. V tomto úložišti je uložena drtivá většina dat nástroje. Jsou zde uloženy například veškeré definice metrik, metriky, artefakty, nástěnky a další uživatelská data. Tato technologie byla zvolena po konzultaci s vedoucím práce díky vlastnostem lépe a pohodlněji ukládat celé objekty, rychlosti a lepší správě většího počtu dat. Tohoto benefitu bylo využito zejména při ukládání velkého množství artefaktů. Další velkou výhodou pro tuto technologii je možnost pohodlné správy celé struktury databáze. Velkou výhodou využití technologie MongoDB bylo při ukládání artefaktů a definic metriky, kdy celá struktura objektů je tvořena pomocí vnořených či případně propojených objektů. To má výhodu v jednodušším a pohodlnějším dotazování na objekty. Jednotlivé objekty jsou nazývány dokumenty.
+Další nedílnou součástí celého nástroje je datová vrstva. Tato část komunikuje s aplikační vrstvou pomoci již zmíněných repositářů. Datová vrstva se ve skutečnosti používá dvě různé technologie ukládání dat. Prvním používaným úložištěm je relační databáze PostgreSQL, která slouží pro ukládání uživatelů a uživatelských rolí. Tato technologie byla zvolena pro tento účel zvolena zejména pro bezpečné a rychlé ukládání hesel, dat uživatelů a jednotlivých uživatelských rolí. Objekty namapované na relační databázi jsou nazývány entity. Druhým používaným úložištěm je \textit{NoSQL} databáze MongoDB. V tomto úložišti je uložena drtivá většina dat nástroje. Jsou zde uloženy například veškeré definice metrik, metriky, artefakty, nástěnky a další uživatelská data. Tato technologie byla zvolena po konzultaci s vedoucím práce díky vlastnostem lépe a pohodlněji ukládat celé objekty, rychlosti a lepší správě většího počtu dat. Tohoto benefitu bylo využito zejména při ukládání velkého množství artefaktů. Další velkou výhodou pro tuto technologii je možnost pohodlné správy celé struktury databáze. Velkou výhodou využití technologie MongoDB bylo při ukládání artefaktů a definic metriky, kdy celá struktura objektů je tvořena pomocí vnořených či případně propojených objektů. To má výhodu v jednodušším a pohodlnějším dotazování na objekty. Jednotlivé objekty jsou nazývány dokumenty. 
+
+
  
- \textbf{TODO OBRÁZEK ARCHITEKTURY}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/architektura.png}
+    \caption{Architektura nástroje pro vytváření metriky}
+    \label{fig:architektura_nastroje}
+\end{figure}
+
  
 Celou aplikaci je možné provozovat buď nativně, nebo pomocí technologie Docker. Při instalaci nativně je nutné nainstalovat veškeré závislosti, které nástroj využívá. Mezi takové závislosti můžeme zařadit například databázi, přesnou verzi PHP, serveru a další. Pro pohodlnější a jednodušší instalaci je vhodné použít Docker. Výhodou použití této technologie je, že aplikace je nasazena v produkčním, testovacím a vývojovém prostředí na stejných verzích závislostí a podpůrných nástrojů. V rámci instalace pomocí Dockeru se nainstaluje i nástroj Kibana a NoSQL databázi Elasticsearch pro správu všech logů aplikace. Dále se nainstalují nástroje jako například Adminer pro správu databází,  Mongo-gui pro grafickou vizualizaci dokumentů v MongoDB databázi a další. Technologii Docker a použití využívaných nástrojů se věnuje kapitola \ref{sec:docker}.
 
@@ -998,10 +1006,17 @@ Tato vrstva slouží k ukládání dat z celé aplikace. Jak již bylo nastíně
 
 Relační databáze je používána pro základní funkcionality aplikace. Zejména pro správu uživatelských účtů a uživatelských rolí. Dále je tato databáze používána pro ukládání informací seznamu a o běhu modulů servisní vrstvy. Relační databáze je realizovaná pomocí PostgreSQL. Jednotlivé tabulky jsou realizovány jako entity, které se automaticky mapují na databázové tabulky. Aby byla zajištěna synchronizace a vytváření jednotlivých tabulek mezi všemi vývojáři případně při nové instalaci, je používáno takzvaných migrací. Migrace si můžeme představit jako jednotlivé soubory obsahující SQL dotazy pro vytvoření či úpravu tabulek.
 
-Hlavním datovým úložištěm celého nástroje je NoSQL databáze MongoDB. V této databázi jsou uložena veškerá data související s metrikami, projekty, artefakty a všeho ostatního. Přípojení k MongoDB je možné používat buď v rámci balíčku Docker, nebo využitím cloudové licence přímo na serverech společnosti MongoDB Inc. Jednotlivé objekty této databáze jsou pojmenovány jako dokumenty. Tyto dokumenty nejsou ve všech případech, jako v relační databázi, spojeny pomocí klíčů, ale jsou také vnořeny. Druhým případem propojení je pomocí odkazu na jiný dokument. Největší výhoda vnořování dokumentů spočívá v tom, že data jsou prakticky součástí jednoho dokumentu, což ulehčuje dotazování a vkládání do databáze. 
+Hlavním datovým úložištěm celého nástroje je NoSQL databáze MongoDB. V této databázi jsou uložena veškerá data související s metrikami, projekty, artefakty a všeho ostatního. Přípojení k MongoDB je možné používat buď v rámci balíčku Docker, nebo využitím cloudové licence přímo na serverech společnosti MongoDB Inc. Jednotlivé objekty této databáze jsou pojmenovány jako dokumenty. Tyto dokumenty nejsou ve všech případech, jako v relační databázi, spojeny pomocí klíčů, ale jsou také vnořeny. Druhým případem propojení je pomocí odkazu na jiný dokument. Největší výhoda vnořování dokumentů spočívá v tom, že data jsou prakticky součástí jednoho dokumentu, což ulehčuje dotazování a vkládání do databáze. Dokumenty uložené v databázi MongoDB je možné vidět na obrázku \ref{fig:mongo_diagram}.
 
+Na diagramu můžeme vidět dvě základní sekce \textit{Metriky} a \textit{Artefakty}. V rámci sekce obsahující dokumenty související metriky se nachází například dokument \textit{metricDefinitions}. V tomto dokumentu jsou uloženy veškeré definice metrik v rámci kterých jsou ve vnořených dokumentech podmínky pro vytvoření dané metriky. Dále se zde již nachází dokument pro samotné metriky, které jsou vázané jak na projekty, tak i na moduly ze kterých mají čerpat data. Každá metrika má zvolený graf a může patřit do různých rozvržení nástěnky, které existují vždy pro každého uživatele. Tyto vazby jsou řešeny pomocí  referencí, což je obdoba cizích klíčů pro relační databázi.
 
-\textbf{TODO OBRÁZEK DB}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/db_diagram.png}
+    \caption{Diagram části NoSQL MongoDB databáze pro ukládání artefaktů a metrik}
+    \label{fig:mongo_diagram}
+\end{figure}
+Následně existuje v aplikaci druhá sekce, která seskupuje dokumenty zabývající se artefakty. V této sekci je nejdůležitější dokument \textit{artifacts}, který seskupuje veškeré artefakty stažené z platformy IBM Jazz. Jednotlivé artefakty mají \textit{artifactSnapshots}, které uchovávají verze v den daného stažení artefaktu. Zároveň mají tyto artefakty jednotlivé atributy a případně propojení s ostatními artefakty. V jednotlivých verzích a jejich atributů se nachází veškerá důležitá data pro generování hodnot definovaných metrik. Také zde existuje dokument \textit{attrbiteValues}, která slouží pouze jako dokument s agregovanými daty, pro rychlejší načítání formuláře pro definice metrik. Veškeré propojení jsou realizována pomocí referencí z důvodu vytváření dotazů a získávání dat pro vykreslování metrik. Artefakty jsou dále propojené pomocí referencí s projekty a moduly. Veškeré informace se stahují z platformy IBM Jazz.
 
 Pro oba typy úložiště je používán ORM framework Doctrine, který je ve výchozím stavu součástí Symfony. Ten slouží pro komunikaci mezi aplikací a databázemi. Framework Doctrine se skládá z abstraktní databázové části  a ORM části. Abstraktní část slouží pro připojení k různým typům databází a také zajišťuje základní přístupy a metody pro prací s databázemi. ORM část má na starost mapování objektů v aplikační části na databázový objekt a zpět. Framework Doctrine používá pro mapování objektů návrhový vzor \textit{data mapper}.
 
@@ -1214,13 +1229,17 @@ Nejprve se jednotlivé elementy uloží do pole, dle identifikátoru daného ele
 
 Dále jsou tyto soubory validovány a jejich data upravovány a transformovány do požadované formy. Tyto objekty vzniklé stáhnutím dat z platformy IBM Jazz se poté mapují na dokumenty a ukládají do NoSQL MongoDB databáze. Při tomto procesu se kontroluje, zda daný artefakt již neexistuje a nemá se pouze vytvořit nová verze daného artefaktu dle data stažení. Pakliže daný artefakt neexistuje, artefakt se založí a vytvoří se první verze artefaktu.
 
-\subsection{Zpracování dat}
-Jakmile jsou data z platformy IBM Jazz naimportována je možné si je zobrazit jak v administraci tak uživatelské části daného projektu.
+\subsection{Zobrazení dat}
+Jakmile jsou data z platformy IBM Jazz stažena a naimportována je možné si je zobrazit jak v administraci tak v uživatelské části daného projektu. Zobrazovaná data zobrazované v administrátorské části jsou pouze textová. V administrační části se nenachází žádné grafické zobrazení dat, jelikož administrační část slouží zejména pro správu celé aplikace a vytváření definic metrik. Textové zobrazení je vypisováno zejména v tabulkách. Tento přístup byl zvolen zejména kvůli tomu, že administrátor nepotřebuje vidět detailně daná data a také nepotřebuje přímo s nimi pracovat.
+
+Jak již bylo zmíněno, možnost zobrazení všech stahovaných dat se také nachází v uživatelské sekci prototypového nástroje, která je přístupná pro všechny registrované uživatele. Jednotlivá stahovaná data se seskupují podle projektu a modulu, do kterého patří. Na výpisech je možné si data buď zobrazit pro všechny projekty a moduly, nebo je také možné si data vyfiltrovat dle definovaného projektu, či modulu. Data je možné zobrazit jednak na výpisech jednotlivých typů dat, nebo na detailním náhledu. Oproti administrační části celého systému je zde možnost si data, zejména metriky, zobrazit graficky pomocí grafu. 
 
 % předpříprava dat query language
 
 \subsection{Definice a vytváření metrik}
-Pakliže si přeje uživatel vytvořit metriku úplně od základu bude nejprve potřebovat vytvořit definici dané metriky.
+Pakliže si přeje uživatel vytvořit metriku úplně od základu včetně nové definice metriky, bude nejprve potřebovat vytvořit definici dané metriky. Definice metriky může aktuálně vytvořit pouze administrátor v administraci prototypového nástroje. Tento způsob byl zvolen z toho důvodu, že administrátor vytvoří jednotlivé definice, dle používaného standardu, nebo dle potřeb měření procesů daného projektu a společnosti.
+
+Administrátor vytváří definice metrik pomocí vícekrokového formuláře. V prvním kroku vytvoření definice metriky se nachází základní údaje o definici, jako je například název, popis a nebo zda je daná metrika podílová či nikoli. Dále se v druhém kroku formuláře nacházejí dynamická pole, pro definování jednotlivých podmínek, dle kterých se bude řídit zobrazení konečné metriky. Pakliže uživatel zvolí, aby byla definice metriky podílová, tak může zvolit podmínky pro druhé měření, které bude první podmínky dělit. Podmínky je možné volit pomocí polí, ve kterých je možné vyhledávat. Třetí krok slouží pro kontrolu vygenerovaných podmínek, které z formuláře vzniknou. Celá definice metriky je nezávislá na modulech a projektu. Tyto údaje se poté volí až při vytváření samotné metriky. Tento způsob byl zvolen jednak pro možnost využití různých definic pro více druhů metrik, tak i na doporučení vedoucího práce Ing. Svatopluka Štolfy, PhD. Celý proces vytváření definice metriky byl inspirován nástrojem \textit{Report builder}, který se nachází na platformě IBM Jazz. Druhý krok procesu vytváření definice metriky je možné vidět na obrázku \ref{fig:report_builder_admin}. 
 
 \begin{figure}[!ht]
     \centering
@@ -1229,6 +1248,9 @@ Pakliže si přeje uživatel vytvořit metriku úplně od základu bude nejprve 
     \label{fig:report_builder_admin}
 \end{figure}
 
+Jakmile administrátor, nebo skript, vytvoří definice metrik dle používaného standardu, je možné vytvářet jednotlivé metriky. Metriky můžou vytvářet uživatelé v uživatelské části ve formuláři, který můžeme vidět na obrázku \ref{fig:new_metric_from}. Při vytváření metriky je nutné zvolit, kromě názvu, pomocí jaké definice má metrika filtrovat data, z jakého projektu a případně z jakých modulů má metrika data čerpat. Jedna metrika musí mít vždy zvolen projekt, ke kterému patří. Dále je například možné zvolit typ grafu, jakým budou data v rámci metriky vizualizována. Jednotlivé metriky je možné poté filtrovat dle projektu, ke kterému patří. Povinnost vyplnění polí ve formuláři je, stejně jako v celém nástroji, zobrazena pomocí červené hvězdičky.
+
+
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1\textwidth]{Diplomka/Figures/new_metric_form.jpg}
@@ -1236,13 +1258,22 @@ Pakliže si přeje uživatel vytvořit metriku úplně od základu bude nejprve 
     \label{fig:new_metric_from}
 \end{figure}
 
+U metriky můžeme například zvolit, zda se mají na nástěnce, nebo na detailu dané metriky, zobrazovat v grafu popisky. Tato funkcionalita byla po konzultaci zavedena zejména z důvodu větší možnosti konfigurace a personalizace. Jelikož je v rámci standardu Automotive SPICE nutné měřit data za určitý časový úsek, existuje v nastavení metriky možnost nastavení takového omezení.
+
 \subsection{Nástěnka}
+V uživatelské sekci se po přihlášení uživatele zobrazí stránka, kterou si může každý uživatel upravovat dle svých potřeb. Každý uživatel si na nástěnku může libovolně přidávat metriky pomocí výběru ve vrchní části metriky. Samozřejmostí je také možnost si zobrazení metriky z nástěnky odstranit. Uživatelé si mohou dle libosti jednotlivé metriky na nástěnce řadit a přesouvat. Přesouvání funguje pomocí technologie JavaScript. Ukládaní a změna pořadí metriky je prováděno technologií AJAX na pozadí. Ukládání nástěnky tedy proběhne při jakékoli změně rozvržení nástěnky na pozadí bez nutnosti načíst znova stránku. Pomocí této technologie funguje také odstraňování metrik z nástěnky. 
+
+Nástěnka slouží zejména pro rychlou kontrolu metrik. Grafy metrik nelze totiž na nástěnce filtrovat a ani nijak podrobně zobrazovat. Typický případ užití například je, když manažer potřebuje získat rychlé informace o průběhu projektu z vícero metrik v jednu chvíli. Dokáže například zjistit, zda se vývoj projektu ubírá správným směrem, či nikoli.
+
+Nástěnku s několika metrikami můžeme vidět na obrázku \ref{fig:dashboard_metrics}.
+
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1\textwidth]{Diplomka/Figures/dashboard_metrics.jpg}
     \caption{Nástěnka na úvodní obrazovce}
     \label{fig:dashboard_metrics}
 \end{figure}
+
 
 \subsection{Zobrazení metrik}
 pomocí js
@@ -1385,5 +1416,9 @@ Vizualizace dat | Microsoft Power BI. \textit{Microsoft Power BI} [online]. Redm
 Historical trends in the usage statistics of server-side programming languages for websites. \textit{W3Techs} [online]. Maria Enzersdorf: Q-Success, c2009-2021 [cit. 2021-02-25]. Dostupné z: https://w3techs.com/technologies/history\_overview/programming\_language
 
 \end{thebibliography}
+
+
+\appendix
+\section{Instalace prototypového nástroje}
 
 \end{document}
