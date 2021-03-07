@@ -362,18 +362,15 @@ Produktové metriky lze dále dělit na dvě základní třídy podle původu m�
 Druhou třídou produktových metrik jsou dynamické metriky, pro která se data shromažďují průběžně pomocí spuštěného systému při testování, nebo na produkčním prostředí. Tyto metriky nám pomáhají hodnotit celkovou spolehlivost systému v produkčním prostředí. Dále z těchto metrik můžeme odhadnout či zjistit náročnost a efektivitu systému pro produkční prostředí. Mezi dynamické metriky řadíme metriky měřící počet nedodělaných scénářů objevených testováním, počet nefunkčních požadavků nebo i informace o maximálním možné zatížení systému.
 
 \subsection{Reprezentace a vizualizace metrik}
+\label{sec:visualisation}
 Metriku si můžeme představit jako sled čísel, která nám slouží jako ukazatele stavu procesu. Metriky můžeme tedy reprezentovat tak, abychom dokázali určit stav daného procesu, nebo vyvíjeného systému. Pomocí metriky se může manažer rozhodovat o krocích, které budou podniknuty, aby byl proces efektivní a systém vytvořen v definované kvalitě a času. Nejčastěji si metriku můžeme představit jako tabulku a nebo pomocí grafické vizualizace, která vychází z dat tabulky.
 
-
-
-
-% Bude napsáno o tom jak můžou metriky vypadat (tabulka, graf, ...) a jak je lze vizualizovat (birt + odkaz na praktickou část). TODO LS
 
 \subsubsection{Zobrazení pomocí tabulky}
 Každou metriku si můžeme představit jako tabulku nasbíraných dat během procesu. Je to tedy základní vizualizace nasbíraných surových dat. Nevýhodou tabulkového zobrazení je, že při některých metrikách je složité a náročné si představit, co daná čísla reprezentují a zda číslo, které vidíme je dobré, nebo špatné. Většinou se proto zobrazení tabulky kombinuje s grafem, pomocí kterého můžeme lépe pochopit daný kontext měřené veličiny.
 
 \subsubsection{Vizualizace grafem}
-Vizualizace pomocí grafu bývá jedna z nejčastějších možností, jak metriku zobrazit a následně jednoduše pochopit. Pro kýženou vizualizaci grafem můžeme použít několik typů grafů. Vizualizace většinou vychází buď přímo ze surových dat, nebo z připravených dat používaných pro zobrazení v tabulce. Pro vizualizaci dat je možné použít z několika stovek různých frameworků, které graf vytvoří a vizualizují. Mezi nejčastěji používané typy grafů patří různé variace sloupcového, spojnicového a koláčového grafu. V rámci IBM Jazz a aplikacích, které jsou naprogramované pomocí jazyka Java můžeme nalézt použitý framewrok BIRT, kterému se věnuji v rámci kapitoly \ref{sec:birt}. Druhou možností vizualizací na webových stránkách je pomocí JavaScriptové knihovny. V rámci této práce porovnávám tři JavaScriptové knihovny s názvem Google Charts, amCharts a Chart.js v kapitolách \ref{sec:google_charts} a \ref{sec:amcharts}, \ref{sec:chartjs}.
+Vizualizace pomocí grafu bývá jedna z nejčastějších možností, jak metriku zobrazit a následně jednoduše pochopit. Pro kýženou vizualizaci grafem můžeme použít několik typů grafů. Vizualizace většinou vychází buď přímo ze surových dat, nebo z připravených dat používaných pro zobrazení v tabulce. Pro vizualizaci dat je možné použít z několika stovek různých frameworků, které graf vytvoří a vizualizují. Mezi nejčastěji používané typy grafů patří různé variace sloupcového, spojnicového a koláčového grafu. V rámci IBM Jazz a aplikacích, které jsou naprogramované pomocí jazyka Java můžeme nalézt použitý framewrok BIRT, kterému se věnuji v rámci kapitoly \ref{sec:birt}. Druhou možností vizualizací na webových stránkách je pomocí JavaScriptové knihovny. V rámci této práce porovnávám tři JavaScriptové knihovny s názvem Google Charts, amCharts a Chart.js v kapitolách \ref{sec:google_charts}, \ref{sec:amcharts} a\ref{sec:chartjs}.
 
 \subsubsection{BIRT}
 \label{sec:birt}
@@ -1097,7 +1094,7 @@ Platforma IBM Jazz nabízí velké množství možností pro export dat. Jeliko�
 \label{tab:ibm_jazz_export}
 \end{table}
 
-Na základě porovnání vychází, že ideálním nástrojem pro automatické stahování dat z platformy IBM Jazz je  DOORS Next Generation Rest API, které kromě horší dokumentace nabízí veškeré vlastnosti, které jsou potřeba pro stahování dat, ze kterých se budou definovat a vytvářet metriky. Pakliže by neexistoval požadavek na pokročilé stahování uživatelskách atributů artefaktů byl by lepším řešením Work Items Service provider for OSLC 2.0 CM, jelikož nabízí lépe zdokumentované metody. Dále je možné veškeré informace stahovat rovnou z databáze celé platformy IBM Jazz. Tento způsob je však neperspektivní a hrozí, že kdykoli se databáze změní a hrozí, že stahování dat přestane fungovat.
+Na základě porovnání vychází, že ideálním nástrojem pro automatické stahování dat z platformy IBM Jazz je  DOORS Next Generation Rest API, které kromě horší dokumentace nabízí veškeré vlastnosti, které jsou potřeba pro stahování dat, ze kterých se budou definovat a vytvářet metriky. Pakliže by neexistoval požadavek na pokročilé stahování uživatelských atributů artefaktů byl by lepším řešením Work Items Service provider for OSLC 2.0 CM, jelikož nabízí lépe zdokumentované metody. Dále je možné veškeré informace stahovat rovnou z databáze celé platformy IBM Jazz. Tento způsob je však neperspektivní a hrozí, že kdykoli se databáze změní a hrozí, že stahování dat přestane fungovat.
 
 \subsection{Stahování a ukládání dat}
 Na základě výsledků analýzy v kapitole \ref{sec:ibm_export} byl vybrán export dat pomocí IBM Jazz je  DOORS Next Generation Rest API. Aby bylo zajištěno pravidelné stahování dat z REST API byl vytvořen cron modul, který se spouští pravidelně v definované periodě. Tento skript stahuje data pro veškeré definované projekty v prototypovém nástroji z nastavené URL k platformě IBM Jazz.
@@ -1260,12 +1257,12 @@ Jakmile administrátor, nebo skript, vytvoří definice metrik dle používanéh
 
 U metriky můžeme například zvolit, zda se mají na nástěnce, nebo na detailu dané metriky, zobrazovat v grafu popisky. Tato funkcionalita byla po konzultaci zavedena zejména z důvodu větší možnosti konfigurace a personalizace. Jelikož je v rámci standardu Automotive SPICE nutné měřit data za určitý časový úsek, existuje v nastavení metriky možnost nastavení takového omezení.
 
+V rámci praktické práce byly vytvořeny některé demonstrativní metriky na základě standardu Automotive SPICE. \cite{ref:metrics_and_dashboard_for_level_two} Demonstrativní data jsou řešena pomocí Symfony komponenty \textit{DataFixtures}, kterou je možné spustit a data do aplikace vložit pomocí příkazu \textit{composer db-demo} v příkazové řádce. 
+
 \subsection{Nástěnka}
 V uživatelské sekci se po přihlášení uživatele zobrazí stránka, kterou si může každý uživatel upravovat dle svých potřeb. Každý uživatel si na nástěnku může libovolně přidávat metriky pomocí výběru ve vrchní části metriky. Samozřejmostí je také možnost si zobrazení metriky z nástěnky odstranit. Uživatelé si mohou dle libosti jednotlivé metriky na nástěnce řadit a přesouvat. Přesouvání funguje pomocí technologie JavaScript. Ukládaní a změna pořadí metriky je prováděno technologií AJAX na pozadí. Ukládání nástěnky tedy proběhne při jakékoli změně rozvržení nástěnky na pozadí bez nutnosti načíst znova stránku. Pomocí této technologie funguje také odstraňování metrik z nástěnky. 
 
-Nástěnka slouží zejména pro rychlou kontrolu metrik. Grafy metrik nelze totiž na nástěnce filtrovat a ani nijak podrobně zobrazovat. Typický případ užití například je, když manažer potřebuje získat rychlé informace o průběhu projektu z vícero metrik v jednu chvíli. Dokáže například zjistit, zda se vývoj projektu ubírá správným směrem, či nikoli.
-
-Nástěnku s několika metrikami můžeme vidět na obrázku \ref{fig:dashboard_metrics}.
+Nástěnka slouží zejména pro rychlou kontrolu metrik. Grafy metrik nelze totiž na nástěnce filtrovat a ani nijak podrobně zobrazovat. Typický případ užití například je, když manažer potřebuje získat rychlé informace o průběhu projektu z vícero metrik v jednu chvíli. Dokáže například zjistit, zda se vývoj projektu ubírá správným směrem, či nikoli. Z nástěnky je možné po kliknutí na název metriky přesměrovat na detailní výpis dané metriky. Dále je zde možnost, si pomocí ikony třech teček metriku exportovat, nebo nastavit. Nástěnku s několika metrikami můžeme vidět na obrázku \ref{fig:dashboard_metrics}.
 
 \begin{figure}[!ht]
     \centering
@@ -1274,9 +1271,26 @@ Nástěnku s několika metrikami můžeme vidět na obrázku \ref{fig:dashboard_
     \label{fig:dashboard_metrics}
 \end{figure}
 
+Celou individuální nástěnku si může každý uživatel exportovat, nebo poté importovat například nástěnku jiného uživatele. Export nástěnky funguje na principu stažení XML souboru s jednotlivými metrikami a pozicemi. Tento soubor je poté možné sdílet dalším kolegům a poté naimportovat. Případně je možné tento soubor použít pro vlastní zálohu nástěnky a kdykoli si obnovit celou nástěnku do původního stavu. Nástěnka se poté zobrazí dle nahraného XML souboru. 
+
 
 \subsection{Zobrazení metrik}
-pomocí js
+Metriky je možné v rámci nástroje zobrazit jednak textově pomocí tabulky, tak i graficky podle zvoleného typu grafu v nastavení metriky. Textové zobrazení je dostupné pouze na detailním zobrazení metriky v uživatelské části nástroje. Vypočítaná data metriky v tabulce jsou seskupena dle data sběrů. Tedy kdy byly dané artefakty naimportované z platformy IBM Jazz. V tabulce se již vyskytují agregovaná data, která mohou být zobrazena podle nastavení metriky buď v procentech, nebo jako prosté číslo.
+
+Na detailním výpisu je dále zobrazen graf dle zvoleného typu grafu. V teoretické části této práce byly zvoleny pro analýzu určité JavaScript knihovny, které je možné nalézt v kapitole \ref{sec:visualisation}. První z knihoven pro zobrazení grafů byla analyzovaná knihovna Google Charts. Mezi výhody, které nabízí patří možnost plného použití zdarma a velké množství typů grafů. Během analýzy bylo však zjištěno, že grafy nejsou interaktivní a není možné bez obnovení stránky graf filtrovat a upravovat.
+
+Mezi další možnou knihovnu patří knihovna amCharts, která generuje grafy pomocí SVG obrázků. Velkou výhodou je velké množství grafů, možnost použít různé animace pro zobrazení a interaktivnost všech grafů. V grafu je možné bez nutnosti obnovit stránku filtrovat, nebo omezovat vykreslení dle data. Mezi nevýhody může patřit placená licence, pokud by byla potřeba zobrazit graf bez malého loga v rohu.
+
+Poslední analyzovaná knihovna byla Chart.js, která je oproti předchozím knihovnám velmi malá a jednoduchá. Nabízí pouze pár grafů, které mohou být interaktivní stejně jako v případě knihovny amCharts. Nevýhodou této knihovny je až přílišná jednoduchost a s tím spojená omezenost pro vykreslování složitějších dat.
+
+Pro zobrazení grafu na základě analýzy byla zvolena knihovna \textit{amCharts} jelikož poskytuje velké množství konfigurace a filtrování bez nutnosti načíst znova stránku. Mezi další výhody patří mnoho existujících návodů na nasazení grafů do webové stránky. Implementace knihovny do nástroje je provedena pomocí JavaScriptu. V rámci skriptu probíhá veškeré nastavení grafu a vkládání dat do grafu pomocí formátu JSON. Na stejném principu funguje i zobrazení grafů na nástěnce, kdy pro každý graf je vygenerován skript s daty a vypsán do HTML stránky. Výsledné zobrazení spojnicového grafu a tabulky v rámci metriky je možné vidět na obrázku \ref{fig:metric_detail}.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metric_detail.png}
+    \caption{Detailní výpis metriky}
+    \label{fig:metric_detail}
+\end{figure}
 
 
 \subsection{Výstupní reporty}
@@ -1286,7 +1300,7 @@ Pdf, excel. Definování vlastního reportu, automatické ukládáni na projekt 
 \section{Závěr}
 TODO 
 
-\begin{thebibliography}{41}
+\begin{thebibliography}{42}
 
 \bibitem{ref:sommerrville_sw_process}
 SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~28-29. ISBN 978-0-13-703515-1.
@@ -1414,6 +1428,9 @@ Vizualizace dat | Microsoft Power BI. \textit{Microsoft Power BI} [online]. Redm
 
 \bibitem{ref:php_trend}
 Historical trends in the usage statistics of server-side programming languages for websites. \textit{W3Techs} [online]. Maria Enzersdorf: Q-Success, c2009-2021 [cit. 2021-02-25]. Dostupné z: https://w3techs.com/technologies/history\_overview/programming\_language
+
+\bibitem{ref:metrics_and_dashboard_for_level_two}
+BERNHARDT, Steger, Damjan EKERT, Richard MESSNARZ, Jakub ŠTOLFA, Svatopluk ŠTOLFA a Zdeněk VELART. \textit{Metrics and Dashboard for Level 2 – Experience}: Systems, Software and Services Process Improvement. Cham: Springer International Publishing, 2020. ISBN 978-3-030-56440-7.
 
 \end{thebibliography}
 
