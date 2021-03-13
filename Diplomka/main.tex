@@ -623,7 +623,7 @@ Automotive SPICE klade velké nároky na kvalitní výsledky při vývoji a dodr
 
 
 \section{Application Lifecycle Management}
-
+\label{sec:alm}
 Application Lifecycle Management není pouze proces samotného vývoje a programování softwaru. Je to možné přirovnat k životě člověka, kdy jde o kompletní proces, začínající od první myšlenky a požadavku zákazníka, přes samotný vývoj softwaru a nasazení do produkčního prostředí. Application Lifecycle Management končí až jakmile končí samotný software, kdy například přestane dávat z obchodního hlediska smysl -- software již není konkurenceschopný, nebo je vyvinuta nová verze daného systému. \cite{alm_chappell}
 
 Application Lifecycle Management je možné rozdělit na tři základní aspekty, které je možné vidět na obrázku \ref{fig:alm}:
@@ -1293,14 +1293,44 @@ Pro zobrazení grafu na základě analýzy byla zvolena knihovna \textit{amChart
 \end{figure}
 
 
-\subsection{Výstupní reporty}
-Pdf, excel. Definování vlastního reportu, automatické ukládáni na projekt atd.
+\subsection{Výstupní reporty a exporty metrik}
+Kromě zobrazení metrik pomocí tabulky a grafu ve webové aplikaci je vhodné mít tyto výsledky i v podobě, ke které není potřeba pro zobrazení internet. Tato možnost je také vhodná například pro prezentování výsledků vývoje. Díky tomu může například manažer vyššímu vedení pomocí metrik zobrazených v prezentaci, nebo dokumentu, prezentovat, jak daný projekt postupuje a případně jak je jeho tým efektivní. Právě kvůli těmto případům užití byly v rámci nástroje vyvinuty exporty metrik.
+
+V rámci nástroje byly vyvinuty dva typy exportu metrik. První možností exportu je exportování samostatné metriky. Tento export slouží pro pouhé stažení dat a případně grafu metriky. Pomocí exportu je možné si metriku stáhnout do několika formátů, mezi které patří Microsoft Word a PowerPoint. Dále je možné stáhnout agregovaná data ve formátu CSV. Data jsou poté stažena ve formátu se dvěma sloupci -- datum sběru a hodnota. Vyvolat daný export je možné buď přímo z nástěnky u metriky, kterou chce uživatel stáhnout, na výpise jednotlivých metrik, nebo na detailním zobrazení dané metriky. Tlačítko pro export je možné vidět na obrázku \ref{fig:dashboard_export}.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Diplomka/Figures/dashboard_export.jpg}
+    \caption{Export metriky z nástěnky}
+    \label{fig:dashboard_export}
+\end{figure}
+
+Druhou možností exportu dat je pomocí takzvaných dokumentů. Tento způsob je možné také nalézt například v nástroji codeBeamer ALM nebo Siemens Polarion, které jsou popsané v kapitole \ref{sec:alm}. Hlavní předností tohoto exportu je možnost si vytvořit dokument, do kterého je vloženo několik metrik, jak ve formě grafického zobrazení, tak pomocí tabulkového zobrazení. Mezi tyto metriky je možné vložit libovolné množství odstavců textu a jejich nadpisů. Díky tomu může uživatel vytvořit dokument, do kterého vloží jednotlivé sekce dle potřeby. Dokument je vhodný například pro již zmíněnou prezentaci výsledků daného vývojového týmu. Dokumenty se ukládají do MongoDB databáze, přičemž jednotlivé sekce dokumentu jsou uložené jako vložené objekty do hlavního objektu celého dokumentu.
+
+Dokumenty je možné vytvořit na stránce nazvané \textit{Dokumenty}. Stránka se nachází na uživatelské straně nástroje. Při vytvoření dokumentu si uživatel zvolí název, popis, projekt a formát exportu. Poté si může přidávat  jednotlivé bloky s textem, grafem nebo tabulkou metriky. Takto si může pohodlně a dynamicky vytvořit celý dokument. Ten je poté možné pomocí tlačítka exportovat do vybraného formátu, mezi které patří Microsoft Word a PowerPoint, PDF, nebo také HTML. Proces vytváření dokumentu je možné vidět na obrázku \ref{fig:report_document}. Detailní výpis ve webovém nástroji vygenerovaného dokumentu je možné vidět na obrázku \ref{fig:report_document_detail} 
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/report_document.jpg}
+    \caption{Proces vytváření dokumentu}
+    \label{fig:report_document}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/report_document_detail.jpg}
+    \caption{Detailní výpis vygenerovaného dokumentu v nástroji}
+    \label{fig:report_document_detail}
+\end{figure}
+
+Veškeré exporty do formátů pro programy Microsoft Office jsou naprogramovány pomocí knihovny \textit{PhpOffice}, která je volně dostupná na platformě \textit{GitHub} \cite{ref:phpoffice}. V rámci knihovny se používají podčásti \textit{PhpSpreadsheet} pro export do formátu Excel, \textit{PhpPresentation} pro export dat do formátu PowerPoint a \textit{PHPWord} pro exportování do formátu Word. Pro exportování do ostatních formátů, mezi které patří například CSV je použito klasických knihoven jazyka PHP.
+
  
 
 \section{Závěr}
 TODO 
 
-\begin{thebibliography}{42}
+\begin{thebibliography}{43}
 
 \bibitem{ref:sommerrville_sw_process}
 SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~28-29. ISBN 978-0-13-703515-1.
@@ -1431,6 +1461,10 @@ Historical trends in the usage statistics of server-side programming languages f
 
 \bibitem{ref:metrics_and_dashboard_for_level_two}
 BERNHARDT, Steger, Damjan EKERT, Richard MESSNARZ, Jakub ŠTOLFA, Svatopluk ŠTOLFA a Zdeněk VELART. \textit{Metrics and Dashboard for Level 2 – Experience}: Systems, Software and Services Process Improvement. Cham: Springer International Publishing, 2020. ISBN 978-3-030-56440-7.
+
+\bibitem{ref:phpoffice}
+\textit{PHPOffice: GitHub} [online]. c2021 [cit. 2021-03-13]. Dostupné z: https://github.com/PHPOffice
+
 
 \end{thebibliography}
 
