@@ -41,7 +41,7 @@
 % \CooperatingPersonsDeclarationImageFile{Diplomka/Figures/CoopPersonDeclaration.jpg}
 
 \CzechAbstract{}
-
+% Tato diplomová práce se zabývá studiem měření softwarového vývoje a vytvoření prototypového nástroje pro sledování a zobrazování metrik potřebných pro splnění standardu Automotive SPICE. V první části práce je rozebírána problematika správy a měření procesů. Dále je v této práci rozebrána analýza existujících řešení pro správu a měření procesů. Druhá část práce je věnována analýze a implementování prototypového nástroje, který je zaměřen na sběr dat a jejich následnou vizualizaci pomocí grafů, tabulek a odpovídajících reportů. Nástroj implementovaný v rámci této práce je koncipován jako rozšíření platformy IBM Jazz pomocí veřejného rozhraní.
 \CzechKeywords{}
 
 \EnglishAbstract{}
@@ -103,16 +103,21 @@
 \section{Úvod}
 \label{sec:Introduction}
 
-Při vývoji téměř jakéhokoli nejen softwarového produktu je potřeba se věnovat vývojovému procesu. Vývojový proces slouží k tomu, aby byl daný produkt vyvinut v určitých kvalitách a řízen správným směrem. Softwarový proces kromě standardizace řízení a plánování definuje také jednotlivé kroky k vytvoření softwarového produktu. [CT]. Vyvíjet s daným softwarovým procesem nám může zaručit, že produkt jež je vytvářen bude kvalitní a bude dokončen v definovaném termínu. 
+Při vývoji téměř jakéhokoli, ať už softwarového, nebo jiného produktu je potřeba se věnovat a analyzovat vývojový proces. Vývojový proces slouží k tomu, aby byl daný produkt vyvinut v definovaných kvalitách a řízen správným směrem. Softwarový proces kromě standardizace řízení a plánování definuje také jednotlivé kroky k vytvoření softwarového produktu \cite{ref:sommerrville_sw_process}. Vyvíjet s určeným a předem stanoveným softwarovým procesem nám může zaručit, že produkt jež je vytvářen bude pravděpodobně kvalitnější a bude dokončen v definovaném termínu, než produkt, který je veden a vytvářen chaoticky.
 
-Během každého softwarového procesu je nutné jednotlivé kroky plánovat, monitorovat a na základě získaných dat vývoj uzpůsobovat. Monitorování procesu probíhá pomocí metrik, které mohou být reprezentovány buď pomocí tabulky nebo vizualizovány pomocí grafu. Veškeré sledování a měření daného procesu by bylo bez pomocných nástrojů velmi složité. Proto existuje nespočet nástrojů a aplikací, které v řízení pomůžou. Těmto aplikacím se dále v práci věnuji. V práci se zaměřuji především na metriky sběru požadavků.
+Kromě výhod ve formě lepšího a stabilnějšího vývoje nám může dodržování definované procesu zajistit snížení výdajů díky opakovanému použití stejných kroků a také efektivněji využívaných zdrojů. Díky efektivnějšímu využití zdrojů je možné poté produkt vyvinout levněji a rychleji. Díky sjednocení a dokumentování procesu dokážeme také jednodušeji, rychleji a tedy levněji zaučit nováčky do týmu a tím využít jejich schopnosti mnohem rychleji. 
 
-Práce je rozdělena na teoretickou a praktickou část. V teoretické části se věnuji softwarovému inženýrství, softwarovým procesům a samotnému vývoji nejen softwaru, ale také v automobilovém vývoji pomocí standardu Automotive SPICE. V práci se také věnuji jednotlivým typů procesu jako je vodopádový model nebo agilní přístupy. Dále rozebírám jednotlivé metriky a možnosti použití v různých procesech.
+Během každého softwarového procesu je nutné jednotlivé kroky plánovat, monitorovat a na základě získaných dat vývoj uzpůsobovat. Monitorování procesu probíhá nejčastěji pomocí metrik, které mohou být reprezentovány buď pomocí tabulky, nebo vizualizovány pomocí grafu. Veškeré sledování a měření daného procesu by bylo bez pomocných nástrojů velmi složité. Proto existuje nespočet nástrojů a aplikací, které v řízení, monitorování a analýze pomůžou. Těmto aplikacím se dále v práci věnuji. V práci se zaměřuji především na metriky sběru požadavků.
 
-Cílem praktické části práce je analyzovat nástroje pro správu nasbíraných požadavků a jejich následnou vizualizaci pomocí metrik. V rámci práce jsem vypracoval vlastní aplikaci sloužící pro agregaci dat z IBM Jazz, které verzuji a následně vizualizuji pomocí uživatelsky definovaných metrik. Velkou výhodou je univerzálnost aplikace na zvoleném softwarovém procesu. Během vývoje aplikace jsem si vyzkoušel jednotlivé fáze vývoje. Věnoval jsem se například analýze požadavků a vytvořil jsem případy užití. Také jsem si pro jednotlivé části aplikace navrhl uživatelské rozhraní pomocí drátových modelů.
+Vyjma nástrojů pro zaznamenávání, monitorování a analýzu dodržovaných procesů dle určitého standardu existují také nástroje a metodiky pro správu celého procesu, správu různých typů požadavků a artefaktů spojených s procesem a vývojem, tvorbu dokumentace vyvíjeného produktu a celkovou administraci pro správu procesu. I těmto aplikacím a nástrojům se v práci podrobněji věnuji.
 
+Práce je rozdělena na teoretickou a praktickou část. V teoretické části se věnuji softwarovému inženýrství, softwarovým procesům a samotnému vývoji nejen softwaru, ale také vývoji v automobilovém vývoji pomocí dodržování standardu Automotive SPICE. V práci se také věnuji jednotlivým typů procesu jako je vodopádový model nebo agilní přístupy. Dále rozebírám jednotlivé metriky a možnosti použití v různých procesech.
 
-\textbf{bude dopsáno + citace}
+Cílem praktické části práce je analyzovat existující nástroje pro správu životního cyklu produktu, sběru požadavků a jejich následnou vizualizaci pomocí metrik. V rámci práce jsem vypracoval vlastní prototypový nástroj sloužící pro agregaci dat z platformy IBM Jazz. Během praktické části byly také analyzovány možnosti stahování dat z platformy IBM Jazz. Data stahována z této platformy jsou ukládána dle data sběru a následně vizualizována pomocí uživatelsky definovaných metrik. Velkou výhodou je univerzálnost nástroje na zvoleném softwarovém procesu. 
+
+\newpage
+
+Během vývoje aplikace jsem si vyzkoušel jednotlivé fáze vývoje. Věnoval jsem se například analýze požadavků a vytvořil jsem případy užití pro daný nástroj. Také byly pro jednotlivé části aplikace na základě již existujících podobných nástrojů navrhnuty obrazovky uživatelského rozhraní pomocí drátových modelů. Na základě požadavků ve formě možnosti spuštění na různých operačních systémech byl prototypový nástroj vytvořen jako webová aplikace. 
 
 \section{Softwarový proces}
 \label{sec:sw_process}
@@ -1328,7 +1333,10 @@ Veškeré exporty do formátů pro programy Microsoft Office jsou naprogramován
  
 
 \section{Závěr}
-TODO 
+
+
+
+
 
 \begin{thebibliography}{43}
 
