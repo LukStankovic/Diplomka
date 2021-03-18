@@ -1,5 +1,6 @@
 % Nejprve uvedeme tridu dokumentu s volbami
-\documentclass[czech,master,public,dept460,male,cpdeclaration,oneside]{diploma}
+%\documentclass[czech,master,public,dept460,male,cpdeclaration,oneside]{diploma}
+\documentclass[czech,master]{diploma}
 
 \usepackage[autostyle=true,czech=quotes]{csquotes} % korektni sazba uvozovek, podpora pro balik biblatex
 \usepackage{subfig}		% makra pro "podobrazky" a "podtabulky"
@@ -10,6 +11,7 @@
 \usepackage{vcell}
 \usepackage{booktabs}
 \usepackage{pgfplots}
+\usepackage{diplomalst}
 
 \pgfplotsset{compat = newest}
 
@@ -17,38 +19,31 @@
 \usepackage{dcolumn} % sloupce tabulky s ciselnymi hodnotami
 \usepackage{subfig} % makra pro "podobrazky" a "podtabulky"
 
+\renewcommand\lstlistingname{Výpis}
+\renewcommand\lstlistlistingname{Seznam výpisů zdrojového kódu}
+
 % Zadame pozadovane vstupy pro generovani titulnich stran.
 \ThesisAuthor{Bc. Lukáš Stankovič}
+\ThesisSupervisor{Ing. Svatopluk Štolfa, Ph.D.}
 
 \CzechThesisTitle{Kvalita a měření softwarových procesů}
 
 \EnglishThesisTitle{Software Process Quality and Measurement}
 
-\SubmissionDate{20. dubna 2021}
+% \SubmissionDate{20. dubna 2021}
+\SubmissionYear{2021}
 
-\Thanks{Rád bych poděkoval všem, kteří mě podporovali při tvorbě diplomové práce, především panu Ing. Svatopluku Štolfovi, Ph.D. za odbornou pomoc, praktické rady a vedení této diplomové práce a panu Ing. Zdeňku Velartovi, Ph.D za odborné a věcné připomínky při implementaci nástroje.}
-
-% Zadame cestu a jmeno souboru ci nekolika souboru s digitalizovanou podobou zadani prace.
-% Pokud toto makro zapoznamkujeme sazi se stranka s upozornenim.
-\ThesisAssignmentImagePath{Diplomka/Figures/Assigment/assigment}
-
-% Zadame soubor s digitalizovanou podobou prohlaseni autora zaverecne prace.
-% Pokud toto makro zapoznamkujeme sazi se cisty text prohlaseni.
-% \AuthorDeclarationImageFile{Diplomka/Figures/AuthorDeclaration.jpg}
-
-% Zadame soubor s digitalizovanou podobou souhlasu spolupracujici prav. nebo fyz. osoby.
-% Pokud toto makro zapoznamkujeme sazi se cisty text souhlasu.
-% \CooperatingPersonsDeclarationImageFile{Diplomka/Figures/CoopPersonDeclaration.jpg}
-
-\CzechAbstract{Tato diplomová práce se zabývá zejména měřením kvalit softwarových procesů a vytvoření prototypového nástroje pro sledování a zobrazování metrik potřebných pro splnění standardu Automotive SPICE. V první části práce je rozebírána problematika správy a měření procesů. Dále je v této práci rozebrána analýza existujících řešení pro správu a měření procesů. Druhá část práce je věnována analýze a implementování prototypového nástroje, který je zaměřen na sběr dat a jejich následnou vizualizaci pomocí grafů, tabulek a odpovídajících reportů. Nástroj implementovaný v rámci této práce je koncipován jako rozšíření platformy IBM Jazz pomocí veřejného rozhraní.}
+\Acknowledgement{Rád bych poděkoval všem, kteří mě podporovali při tvorbě diplomové práce, především panu Ing. Svatopluku Štolfovi, Ph.D. za odbornou pomoc, praktické rady a vedení této diplomové práce a panu Ing. Zdeňku Velartovi, Ph.D za odborné a věcné připomínky při implementaci nástroje.}
 
 
-% 
-\CzechKeywords{metriky, IBM Jazz, kvalita softwarového procesu, softwarové inženýrství, Automotive SPICE, PHP, Symfony, MongoDB, Docker}
+\CzechAbstract{Tato diplomová práce se zabývá kvalitou a měřením softwarových procesů. Cílem bylo rozebrat standard Automotive SPICE, problematiku správy, měření a zlepšování procesů. V rámci práce jsou analyzovány existující nástroje a aplikace pro správu procesů a životního cyklu aplikace. Na základě této analýzy byl vytvořen prototypový nástroj ve formě webové aplikace pro vytváření a zobrazování trendových metrik. Veškerá důležitá data pro vytváření metrik ve formě artefaktů jsou do prototypového nástroje automaticky stahovaná z platformy IBM Jazz pomocí API. Vyvinutý nástroj nabízí také generování reportů. Takto vytvořený nástroj je možné využít pro zobrazení metrik potřebných ke splnění standardu Automotive SPICE.}
 
-\EnglishAbstract{}
 
-\EnglishKeywords{}
+\CzechKeywords{IBM Jazz, trendové metriky, kvalita softwarového procesu, softwarové inženýrství, Automotive SPICE, REST API, PHP, Symfony, MongoDB, Docker}
+
+\EnglishAbstract{This thesis is aimed at software process quality and measurement. The goal was to analyze Automotive SPICE standard, software process management, measurement and improvement. There are analyzed existing tools and applications for process management and for application lifecycle management. Based on this analysis a prototype tool for creating and displaying trend metrics was developed as a web application. All important data for creating metrics are automatically downloaded to the prototype tool from the IBM Jazz platform using the API. The developed tool also offers ability to generate a report. The tool  can be used to display the metrics needed to meet the Automotive SPICE standard.}
+
+\EnglishKeywords{IBM Jazz, trend metrics, software process quality, software engineering, Automotive SPICE, REST API, PHP, Symfony, MongoDB, Docker}
 
 
 \AddAcronym{ALM}{Application lifecycle anagement}
@@ -99,31 +94,29 @@
 % Nechame vysazet titulni strany.
 \MakeTitlePages
 
-% \lstlistoflistings
- 
+\addcontentsline{toc}{chapter}{Seznam výpisů zdrojového kódu}
+
+\lstlistoflistings
+
 % A nasleduje text zaverecne prace.
-\section{Úvod}
+\chapter{Úvod}
 \label{sec:Introduction}
 
 Při vývoji téměř jakéhokoli, ať už softwarového, nebo jiného produktu je potřeba se věnovat a analyzovat vývojový proces. Vývojový proces slouží k tomu, aby byl daný produkt vyvinut v definovaných kvalitách a řízen správným směrem. Softwarový proces kromě standardizace řízení a plánování definuje také jednotlivé kroky k vytvoření softwarového produktu \cite{ref:sommerrville_sw_process}. Vyvíjet s určeným a předem stanoveným softwarovým procesem nám může zaručit, že produkt jež je vytvářen bude pravděpodobně kvalitnější a bude dokončen v definovaném termínu, než produkt, který je veden a vytvářen chaoticky.
 
-Kromě výhod ve formě lepšího a stabilnějšího vývoje nám může dodržování definované procesu zajistit snížení výdajů díky opakovanému použití stejných kroků a také efektivněji využívaných zdrojů. Díky efektivnějšímu využití zdrojů je možné poté produkt vyvinout levněji a rychleji. Díky sjednocení a dokumentování procesu dokážeme také jednodušeji, rychleji a tedy levněji zaučit nováčky do týmu a tím využít jejich schopnosti mnohem rychleji. 
+Kromě výhod ve formě lepšího a stabilnějšího vývoje nám může dodržování definované procesu zajistit snížení výdajů díky opakovanému použití stejných kroků a také efektivněji využívaných zdrojů. Díky efektivnějšímu využití zdrojů je možné poté produkt vyvinout levněji a rychleji. Díky sjednocení a dokumentování procesu dokážeme také jednodušeji, rychleji a tedy levněji zaučit nováčky do týmu a tím využít jejich schopnosti mnohem rychleji.
 
-Během každého softwarového procesu je nutné jednotlivé kroky plánovat, monitorovat a na základě získaných dat vývoj uzpůsobovat. Monitorování procesu probíhá nejčastěji pomocí metrik, které mohou být reprezentovány buď pomocí tabulky, nebo vizualizovány pomocí grafu. Veškeré sledování a měření daného procesu by bylo bez pomocných nástrojů velmi složité. Proto existuje nespočet nástrojů a aplikací, které v řízení, monitorování a analýze pomůžou. Těmto aplikacím se dále v práci věnuji. V práci se zaměřuji především na metriky sběru požadavků.
-
-Vyjma nástrojů pro zaznamenávání, monitorování a analýzu dodržovaných procesů dle určitého standardu existují také nástroje a metodiky pro správu celého procesu, správu různých typů požadavků a artefaktů spojených s procesem a vývojem, tvorbu dokumentace vyvíjeného produktu a celkovou administraci pro správu procesu. I těmto aplikacím a nástrojům se v práci podrobněji věnuji.
+Během každého softwarového procesu je nutné jednotlivé kroky plánovat, monitorovat a na základě získaných dat vývoj uzpůsobovat. Monitorování procesu probíhá nejčastěji pomocí metrik, které mohou být reprezentovány buď pomocí tabulky, nebo vizualizovány pomocí grafu. Veškeré sledování a měření daného procesu by bylo bez pomocných nástrojů velmi složité. Proto existuje nespočet nástrojů a aplikací, které v řízení, monitorování a analýze pomůžou. Těmto aplikacím se dále v práci věnuji. V práci se zaměřuji především na metriky sběru požadavků. Vyjma nástrojů pro zaznamenávání, monitorování a analýzu dodržovaných procesů dle určitého standardu existují také nástroje a metodiky pro správu celého procesu, správu různých typů požadavků a artefaktů spojených s procesem a vývojem, tvorbu dokumentace vyvíjeného produktu a celkovou administraci pro správu procesu. I těmto aplikacím a nástrojům se v práci podrobněji věnuji. 
 
 Práce je rozdělena na teoretickou a praktickou část. V teoretické části se věnuji softwarovému inženýrství, softwarovým procesům a samotnému vývoji nejen softwaru, ale také vývoji v automobilovém vývoji pomocí dodržování standardu Automotive SPICE. V práci se také věnuji jednotlivým typů procesu jako je vodopádový model nebo agilní přístupy. Dále rozebírám jednotlivé metriky a možnosti použití v různých procesech.
 
-Cílem praktické části práce je analyzovat existující nástroje pro správu životního cyklu produktu, sběru požadavků a jejich následnou vizualizaci pomocí metrik. V rámci práce jsem vypracoval vlastní prototypový nástroj sloužící pro agregaci dat z platformy IBM Jazz. Během praktické části byly také analyzovány možnosti stahování dat z platformy IBM Jazz. Data stahována z této platformy jsou ukládána dle data sběru a následně vizualizována pomocí uživatelsky definovaných metrik. Velkou výhodou je univerzálnost nástroje na zvoleném softwarovém procesu. 
+Cílem praktické části práce je analyzovat existující nástroje pro správu životního cyklu produktu, sběru požadavků a jejich následnou vizualizaci pomocí metrik. V rámci práce jsem vypracoval vlastní prototypový nástroj sloužící pro agregaci dat z platformy IBM Jazz. Během praktické části byly také analyzovány možnosti stahování dat z platformy IBM Jazz. Data stahována z této platformy jsou ukládána dle data sběru a následně vizualizována pomocí uživatelsky definovaných metrik. Velkou výhodou je univerzálnost nástroje na zvoleném softwarovém procesu.
 
-\newpage
-
-Během celého vývoje prototypového nástroje jsem si vyzkoušel jednotlivé fáze vývoje. Věnoval jsem se například analýze požadavků a vytvořil jsem případy užití pro daný nástroj. Také byly pro jednotlivé části aplikace na základě již existujících podobných nástrojů navrhnuty obrazovky uživatelského rozhraní pomocí drátových modelů. Na základě požadavků ve formě možnosti spuštění na různých operačních systémech byl prototypový nástroj vytvořen jako webová aplikace. 
+Během celého vývoje prototypového nástroje jsem si vyzkoušel jednotlivé fáze vývoje. Věnoval jsem se například analýze požadavků a vytvořil jsem případy užití pro daný nástroj. Také byly pro jednotlivé části aplikace na základě již existujících podobných nástrojů navrhnuty obrazovky uživatelského rozhraní pomocí drátových modelů. Na základě požadavků ve formě možnosti spuštění na různých operačních systémech byl prototypový nástroj vytvořen jako webová aplikace.
 
 Vyvinutý prototypový nástroj je vhodný pro správu, definici a sledování definovaných trendových metrik v čase. Nástroj není zaměřen na určitý standard, jelikož je v něm možné vytvářet pomocí speciálního formuláře téměř jakékoliv metriky. Testování nástroje však probíhalo na metrikách nutných pro splnění standardu Automtovie SPICE. Návrh a vývoj prototypového nástroje je popsán v rámci kapitoly \ref{sec:my_app}.
 
-\section{Softwarový proces}
+\chapter{Softwarový proces}
 \label{sec:sw_process}
 
 Dle Iana Sommervilla \cite{ref:sommerrville_sw_process} je softwarový proces sekvence souvisejících aktivit, které vedou k produkci softwarovécho produktu. Tyto aktivity mohou probíhat buď v rámci vývoje softwarového produkt od nuly, nebo úpravě již existujícího softwarového produktu. Existuje nespočet různých softwarových procesů, přičemž všechny softwarové procesy by měly obsahovat následující čtyři aktivity:
@@ -142,19 +135,19 @@ Engineering Institute). Model hodnocení vyspělosti používání softwarového
 \item \textit{Počáteční} -- společnost nepoužívá žádný softwarový proces. Jelikož žádný softwarový proces není definován, tak každý projekt je vyvíjen případ od případu.
 \item \textit{Opakovatelná} -- sledovaná společnost identifikovala ve svých projektech postupy, které se často opakují. Tyto prováděné opakované činnosti poté systémově opakuje v každém novém projektu.
 \item \textit{Definovaná} -- používaný softwarový proces je definovaná a dokumentován na základě vysledovaných opakovatelných kroků.
-\item \textit{Řízená} -- jakmile má daná společnost definovaný a dokumentovaný softwarový proces, je společnost schopna daný proces řídit a monitorovat. 
+\item \textit{Řízená} -- jakmile má daná společnost definovaný a dokumentovaný softwarový proces, je společnost schopna daný proces řídit a monitorovat.
 \item \textit{Optimalizovaná} -- na základě dlouhodobě vysledovaných dat při používání softwarového procesu je společnost schopná daný softwarový proces optimalizovat a vylepšit tak, aby více vyhovoval celému vývoji.
 \end{enumerate}
 
 
-\subsection{Plánování}
-Je to jedna z částí softwarového procesu. Velikost a důkladnost plánování procesu a samotného projektu závisí na používaném modelu softwarového procesu. Například při použití vodopádového modelu je plánování velmi důležitá část procesu, jelikož na kvalitní specifikaci a plánování kompletního procesu stojí celý vývoj. Naopak při vývoji pomocí agilních způsobů je část plánování a specifikace softwaru minimální. 
+\section{Plánování}
+Je to jedna z částí softwarového procesu. Velikost a důkladnost plánování procesu a samotného projektu závisí na používaném modelu softwarového procesu. Například při použití vodopádového modelu je plánování velmi důležitá část procesu, jelikož na kvalitní specifikaci a plánování kompletního procesu stojí celý vývoj. Naopak při vývoji pomocí agilních způsobů je část plánování a specifikace softwaru minimální.
 
 Během plánování probíhá kromě plánování samotného procesu také specifikace výsledného softwaru. Specifikace vyvíjeného softwaru je část procesu, během které dokážeme určit a definovat, které a jaké vlastnosti budou po systému požadovány. Vlastnosti a požadavky na systém vzniknou sběrem požadavků od zákazníka, který má na vznikající software určité nároky. Požadavky nemusí pocházet pouze od zákazníka, ale mohou také vyplývat z použitých technologií a firemních postupů. Tento proces bývá také nazýván inženýring požadavků. Bývá jednou z nejkritičtějších částí, jelikož chybná specifikace jednotlivých požadavků v této fázi vede k pozdějším problémům jak při samotném návrhu a implementaci, tak i při pozdější správě.
 
 Cílem inženýringu požadavků je získat nejen od zákazníka co nejvíce požadavků, které jsou na budoucí software kladeny. Na základě nasbíraných požadavků vznikne dokument schválených požadavků důležitých pro implementaci a následnou dokumentaci celého softwaru. Dále na základě získaných požadavků je vytvořen plán celého vývoje softwaru. U vodopádového modelu inženýring požadavků probíhá na začátku vývoje a je velmi detailní a důležitý. Při agilních a iterativních způsobech vývoje probíhá sběr požadavků vždy před každou iterací.
 
-\subsection{Monitorování}
+\section{Monitorování}
 Další důležitou částí každého softwarového procesu je jeho monitorování. Během monitorování zjišťujeme, zda proces probíhá tak, jak jsme ho plánovali a také, zda neexistují možnosti, jak proces zlepšit a tím dosáhnout lepších výsledků. Monitorování je nepřetržitý proces, který také kromě zlepšování procesu zahrnuje sledování, aby bylo možné identifikovat potenciální problémy dostatečně včas, než způsobí závažný problém. Samotné monitorování je často prováděno současně s kontrolou a uzpůsobením daného procesu (viz kapitola \ref{sec:control}).
 
 Hlavním důvodem pro monitorování procesu je důkladné sledování výkonnosti daného procesu. Díky tomu je možné rychle identifikovat odchylky od původního plánu vývoje daného projektu. Během monitorování také sledujeme, zda se plní nadefinované požadavky a jak rychle. K tomuto účelu mohou sloužit metriky (viz kapitola \ref{sec:metrics}).
@@ -171,7 +164,7 @@ Obecně lze monitorovat tři typy metrik určitého procesu:
 
 Monitorování procesu představuje způsob, pomocí kterého můžeme vytvářet výstupy o daném procesu a jeho změnách. Pomocí monitorování dokážeme určit, zda je proces efektivní a zda případné změny procesu mají na proces pozitivní dopad. Pro správnou interpretaci změn by mělo být měření pouhou částí. Abychom si byli jisti správnostmi změn procesu, musíme měření kombinovat s kvalitativním hodnocením změn a správnou komunikací o zavedených změnách s účastníky procesu. Díky správné komunikaci dokážeme zjistit jejich názory na efektivitu provedených změn procesu a také dokážeme odhalit další faktory, které by mohly proces negativně ovlivnit. Pomocí monitorování chování týmu po zavedené změně, dokážeme pozorovat, jak daný tým změny přijal a případně jaká panuje v týmu nálada.
 
-\subsection{Uzpůsobení}
+\section{Uzpůsobení}
 \label{sec:control}
 Proces bychom měli pravidelně uzpůsobovat potřebám, které se mohou v rámci vývoje produktu měnit. Podměty ke změnám daného softwarového procesu získáváme z monitorování procesu. V rámci uzpůsobení řešíme také, zda je projekt stihnutelný v definovaném termínu. Tuto informaci nejčastěji zjistíme pomocí vytvořených metrik.
 
@@ -179,14 +172,14 @@ Samotné uzpůsobení procesu může probíhat několikrát během celého vývo
 
 Uzpůsobení procesu může být kromě úprav existujícího procesu provedeno jako vytvoření úplně nového procesu nebo nahrazení starého procesu jiným. Dále můžeme proces uzpůsobit zavedením nového nástroje, změnou metod, zavedením nových rolí nebo také pouhou změnou komunikace. Po jakékoli změně a uzpůsobení procesu je nutné pozorovat a měřit pomocí metrik, zda byla změna vhodná a prospěšná. Obecně není rozumné zavádět více změň v jednu dobu, jelikož poté není jednoduché změřit, zda změna byla prospěšná, či nikoli.
 
-\subsubsection{CMM a CMMI}
+\subsection{CMM a CMMI}
 CMM je vývojový model, který byl vyvinut institutem SEI v 80. letech 20. století. Vznikl jako výsledek studie, při níž byla sesbírána data různých organizací. Studie byla financovaná ministerstvem obrany Spojených států amerických. Je to systém pravidel a cílů pro zlepšení práce a procesů. Model CMM také obsahuje model zralosti lidských schopností a model možností systémového inženýrství. Model byl primárně vytvořen pro vývoj softwaru, ale je možné jej použít prakticky skoro při jakémkoli vývoji nového produktu. \cite{ref:cmm_cmmi}
 
 Automotive SPICE používá pro hodnocení, úpravu a zlepšování procesů vlastní systém, který je však vytvořen právě z CMM. Konkrétně z modelu CMM standard využívá úrovně zralosti SEI. Model je však rozšířen o základní model procesů. Ten je například používán jako výchozí bod při definování konkrétních procesů. Tento přístup vychází z obecného standardu SPICE, který je používán mimo automobilový průmysl.
 
 Z tohoto modelu vychází novější vývojový model CMMI, který slouží primárně jako architektura pro následné zlepšení procesů v jakékoli organizaci. Stejně jako vývojový model SPICE obsahuje úrovně způsobilosti, které hodnotí vyškolený hodnotitel. Úrovně způsobilosti jsou definovány jako škála 0 až 5, přičemž je možné hodnotit různé desítky oblastí procesu. Na základě tohoto hodnocení mohou poté probíhat úpravy a vylepšování používaného procesu, nebo zavedení úplně nových procesů. Veškeré cíle a postupy, které jsou doporučovány a upravovány v rámci procesu jsou obecné a nejsou tedy technicky zaměřené.
 
-\subsubsection{PDCA}
+\subsection{PDCA}
 Je to iterativní metoda, jejíž cílem je dosáhnout stálého zdokonalování procesů, zvýšení kvality výsledného systému, zlepšení služeb a další. Metoda je založena na čtyřech základních krocích, které se pravidelně opakují. Existuje také varianta s pěti kroky nazývána OPDCA. Metodu PDCA je možné použít prakticky ve všech oborech, kde se vyvíjí nějaký systém, nebo produkt.  Jednotlivé kroky metody PDCA jsou následující:
 
 \begin{enumerate}
@@ -197,12 +190,12 @@ Je to iterativní metoda, jejíž cílem je dosáhnout stálého zdokonalování
 \end{enumerate}
 
 
-\subsection{Sekvenční a iterativní metodiky vývoje}
+\section{Sekvenční a iterativní metodiky vývoje}
 V rámci sekvenčních metodik vývoje softwaru probíhají veškeré aktivity lineárně po sobě, tak že každá fáze je plně dokončena a otestována. Tato podmínka je velmi důležitá pro bezproblémový vývoj a následnou udržitelnost vyvíjeného systému. Je tedy důležité věnovat počátečním fázím návrhu dostatek času a úsilí. Sekvenční metodiky jsou vhodné pro systémy, které mají pevně dané požadavky na začátku vývoje a během samotného vývoje jsou prakticky neměnné. Další výhoda sekvenčních metodik je  v jednoduchosti z hlediska řízení vývoje. Nevýhoda je kromě již zmíněné nemožnosti řádně modifikovat požadavky například v tom, že zákazník vidí spustitelnou verzi až v úplně poslední fázi verifikace. Veškeré nové požadavky mohou vést k razantnímu navyšování výsledného rozpočtu celého projektu.
 
-Iterativní metodiky sekvenční přístup vylepšují tím, že jednotlivé sekvenční aktivity probíhají opakovaně v cyklech. Není poté potřeba dbát takový důraz na počáteční fáze vývoje, konkrétně na analýzu a návrh. Iterativní metodiky se tedy hodí všechny druhy vývoje, kdy víme, že se můžou podmínky a požadavky za běhu měnit. Výhodou iterativních přístupů je že je metoda pružnější pro opravu či implementaci změněných požadavků. Nevýhodou je, že si oproti sekvenčním přístupům iterativní přístup žádá vyšší nároky na vedení a řízení celého vývoje. 
+Iterativní metodiky sekvenční přístup vylepšují tím, že jednotlivé sekvenční aktivity probíhají opakovaně v cyklech. Není poté potřeba dbát takový důraz na počáteční fáze vývoje, konkrétně na analýzu a návrh. Iterativní metodiky se tedy hodí všechny druhy vývoje, kdy víme, že se můžou podmínky a požadavky za běhu měnit. Výhodou iterativních přístupů je že je metoda pružnější pro opravu či implementaci změněných požadavků. Nevýhodou je, že si oproti sekvenčním přístupům iterativní přístup žádá vyšší nároky na vedení a řízení celého vývoje.
 
-\subsubsection{Vodopádový model}
+\subsection{Vodopádový model}
 Jde o jeden z nejstarších a nejznámějších vývojových procesů, který byl poprvé publikován v článku v roce 1970 Winstonem W. Roycem a vychází z obecných vývojových procesů. Vodopádovým modelem je nazýván, protože jednotlivé fáze procesu postupně kaskádovitě navazují na sebe a celý model poté vypadá jako vodopád. Veškeré kroky musí být pečlivě analyzovány a naplánovány. K další vývojové fázi se přistupuje až poté, jakmile jsou veškeré předchozí kroky splněny, schváleny a uzavřeny. \cite{ref:sommerrville_waterfall} Aby byl projekt podle modelu úspěšný je nutné věnovat prvním fázím dostatek času a úsilí. Schéma vodopádového modelu je možné vidět na obrázku \ref{fig:waterfall}.
 
 \begin{figure}[!ht]
@@ -217,7 +210,7 @@ Základní fáze vodopádového modelu vycházejí ze standardních potřeb výv
 \begin{enumerate}
 \item \textit{Specifikace požadavků} -- na základě jednotlivých požadavků zákazníka jsou požadavky detailně sepsány a analyzovány.
 
-\item \textit{Systémový a softwarový návrh} -- jednotlivé požadavky zákazníka určují náročnost na systém. Návrh zahrnuje také celkovou architekturu systému. 
+\item \textit{Systémový a softwarový návrh} -- jednotlivé požadavky zákazníka určují náročnost na systém. Návrh zahrnuje také celkovou architekturu systému.
 
 \item \textit{Implementace a unit testování} -- v rámci této fáze se systém realizuje a každá jednotka je samostatně testována, zda splňuje určité požadavky.
 
@@ -229,7 +222,7 @@ Základní fáze vodopádového modelu vycházejí ze standardních potřeb výv
 
 V praxi je složité jednotlivé fáze pečlivě oddělit a postupovat v další fáze pouze jakmile je předchozí fáze plně dokončena. Proto se většinou jednotlivé fáze postupně překrývají a vyměňují si mezi sebou informace. Hlavní nevýhoda modelu je praktická nemožnost reagovat na měnící se požadavky zákazníka. Vodopádový model je vhodné zpravidla použít tam, kde víme, že se požadavky zásadně nebudou měnit.
 
-\subsubsection{Rational Unified Process}
+\subsection{Rational Unified Process}
 Rational Unified Process (RUP) je iterativní model vývoje softwaru vytvořený firmou Rational Software Corporation. RUP byl vytvořen a odvozen z osvědčených praktik při vývoji softwaru. Mezi tyto praktiky například patří řízení změn, komponentová architektura, aktivní správa požadavků nebo například ověřování kvality software. Model obsahuje čtyři fáze, které se iterují dle potřeby. Jednotlivé fáze oproti vodopádovému modelu nesouvisejí s technickými hledisky, ale soustředí se spíše na podniková hlediska. \cite{ref:rup_ibm_about} Fáze modelu RUP jsou následující:
 
 \begin{enumerate}
@@ -262,7 +255,7 @@ Výše popsané fáze společně s disciplínami je možné vidět na obrázku \
     \label{fig:rup}
 \end{figure}
 
-\subsection{Agilní metodiky vývoje}
+\section{Agilní metodiky vývoje}
 Aktuální trh se softwarem se velmi rychle mění a proto je potřeba aktivně reagovat na měnící se prostředí. Agilní přístupy patří k inkrementálním způsobům vývoje. Software vytvářený pomocí vodopádového modelu může být v době vydání již velmi zastaralý. Z tohoto důvodu jsou agilní přístupy vývoje v poslední době velmi oblíbené. Takto vyvíjený software je většinou dodán rychleji, ale za to může být dodán s horší kvalitou. Takový přístup se ovšem nehodí u kritických systémů, u kterých je kladen velký důraz například na bezpečnost a spolehlivost. Software se během agilního vývoje vytváří ve verzích, kdy každá nová verze obsahuje nové funkcionality. Jednotlivé vývojové procesy se prolínají a většinou neexistuje podrobná specifikace a dokumentace systému. V dokumentaci obvykle bývají pouze základní a nejdůležitější prvky systému. Tento nedostatek se ovšem může rychle vymstít při následné údržbě daného softwaru.
 
 Filozofie agilních metodik vychází z manifestu, na kterém se shodli vývojáři těchto vývojových metod. Manifest popisuje čtyři základní hodnoty, kterých si autoři cení \cite{ref:agilne_manifesto}:
@@ -284,13 +277,13 @@ Podle Iana Sommervilla \cite{ref:sommerrville_agile_products} jsou agilní metod
 \end{enumerate}
 
 
-\subsubsection{Extrémní programování}
+\subsection{Extrémní programování}
 Dle Kenta Becka \cite{ref:what_is_xp} je extrémní programování agilní metoda, která spočívá o změně myšlení a zvyků při vývoji. Extrémní programování se zaměřuje na excelentní programovací schopnosti, zlepšení komunikaci mezi členy týmu a týmovou práci. Extrémní programování se zaměřuje na zextrémění a zefektivění těchto úkonů, které se při vývoji osvědčily. Je důležité z extrémního programování do procesu zařadit pouze ty aktivity, které mají hodnotu pro vývojový tým, a které přinášejí benefit zákazníkovi. Můžeme zde například zařadit párové programování, kdy dva programátoři vyvíjejí společně jednu funkčnost, přičemž jeden programátor pozoruje druhého při programování. Tyto role si pravidelně střídají. Nevýhoda tohoto přístupu je, že takto vyvíjený software zabere více placeného času. Výhoda je naopak v tom, že software obsahuje méně chyb díky vzájemné revizi kódu.
 
 Další obor, který může extrémní programování řešit extrémnější testování softwaru, kdy samotní programátoři programují jednotkové (unit) testy, ale zároveň testuje také zákazník pomocí akceptačních testů. Extrémní programování takto řeší prakticky každou oblast vývoje, která se při vývoji osvědčila a může být zefektivněna. Jednotlivá zadání úkolů jsou řešena stejně jako v metodě Scrum pomocí uživatelských příběhů (takzvané \textit{User stories}). Další možná praktika, kterou extrémní programování řeší je například přítomnost zákazníka na pracovišti, vydávání malých verzí softwaru, průběžná integrace anebo neustálá refaktorizace kódu.
 
-\subsubsection{Scrum}
-Dle Josefa Myslína \cite{ref:scrum_myslin} je to agilní technika, při které se více než technické procesy řeší projektové procesy. Vymysleli ji Ken Schwaber a Jeff Sutherland na začátku 90. let 20. století. Týmy, které ve Srumu pracují jsou samoorganizované, přičemž vývojový tým nemá přímého nadřízeného. Tým obsahuje několik klíčových rolí, mezi které patří \textit{Product owner} (vlastník produktu), který komunikuje se zákazníkem a případně řeší priority ve vykonané práci. Dále se zde vyskytuje \textit{Scrum master}, který má na starost samotný proces a interakci s týmem. Samozřejmostí je samotný vývojový tým. Scrum stojí na třech základních pilířích: 
+\subsection{Scrum}
+Dle Josefa Myslína \cite{ref:scrum_myslin} je to agilní technika, při které se více než technické procesy řeší projektové procesy. Vymysleli ji Ken Schwaber a Jeff Sutherland na začátku 90. let 20. století. Týmy, které ve Srumu pracují jsou samoorganizované, přičemž vývojový tým nemá přímého nadřízeného. Tým obsahuje několik klíčových rolí, mezi které patří \textit{Product owner} (vlastník produktu), který komunikuje se zákazníkem a případně řeší priority ve vykonané práci. Dále se zde vyskytuje \textit{Scrum master}, který má na starost samotný proces a interakci s týmem. Samozřejmostí je samotný vývojový tým. Scrum stojí na třech základních pilířích:
 
 \begin{enumerate}
 \item \textit{Transparentnost} -- všichni v týmu, by měli mít přehled o veškerém dění v rámci projektu. Každý člen týmu tedy například ví, v jakém stavu je určitý úkol a proč existuje.
@@ -298,9 +291,9 @@ Dle Josefa Myslína \cite{ref:scrum_myslin} je to agilní technika, při které 
 \item \textit{Adaptace} -- na základě zjištěných požadavků v rámci pravidelných kontrol se provádějí změny, aby byl daný tým spokojený a doručoval dále vynikající výsledky.
 \end{enumerate}
 
-Veškerý vývoj produktu probíhá v pravidelných iteracích, které jsou nazývány \textit{Sprinty}. Tyto iterace mají nejčastěji trvání od dvou týdnů po jeden měsíc. Na konci každého sprintu je dodána nová verze funkčního systému. 
+Veškerý vývoj produktu probíhá v pravidelných iteracích, které jsou nazývány \textit{Sprinty}. Tyto iterace mají nejčastěji trvání od dvou týdnů po jeden měsíc. Na konci každého sprintu je dodána nová verze funkčního systému.
 
-Jak je možné vidět na obrázku \ref{fig:scrum_cyklus} na začátku každého sprintu probíhá seznámení s úkoly na daný sprint a plánování, které úkoly musí tým daný sprint doručit. Během sprintu probíhají různé druhy schůzek. Každý den probíhá rychlá schůzka nazývána \textit{Standup}, během které v rychlosti členové týmu představí co budou daný den řešit a co řešili předešlý den. Na konci každého sprintu probíhá pravidelná kontrola, která se nazývá retrospektiva a dále samotné zhodnocení sprintu. Na této schůzce je řešeno, jaké adaptace by měl tým provést, aby následující sprint proběhl lépe. 
+Jak je možné vidět na obrázku \ref{fig:scrum_cyklus} na začátku každého sprintu probíhá seznámení s úkoly na daný sprint a plánování, které úkoly musí tým daný sprint doručit. Během sprintu probíhají různé druhy schůzek. Každý den probíhá rychlá schůzka nazývána \textit{Standup}, během které v rychlosti členové týmu představí co budou daný den řešit a co řešili předešlý den. Na konci každého sprintu probíhá pravidelná kontrola, která se nazývá retrospektiva a dále samotné zhodnocení sprintu. Na této schůzce je řešeno, jaké adaptace by měl tým provést, aby následující sprint proběhl lépe.
 
 \begin{figure}[!ht]
     \centering
@@ -313,14 +306,14 @@ Jednotlivé schůzky by se poté daly rozdělit do tří základních skupin:
 
 \begin{itemize}
 \item \textit{Plánovací} -- tento typ schůzek předchází jakékoli aktivitě, která po schůzce probíhá. Během těchto schůzek může být plánován buď celý projekt, nebo naplánován sprint.
-\item \textit{Hodnotící} -- tyto schůzky probíhají buď na konci sprintu, nebo na konci projektu. Během tohoto typu schůzek se hodnotí, zda to co proběhlo, proběhlo v pořádku a případně, co bylo špatně. 
+\item \textit{Hodnotící} -- tyto schůzky probíhají buď na konci sprintu, nebo na konci projektu. Během tohoto typu schůzek se hodnotí, zda to co proběhlo, proběhlo v pořádku a případně, co bylo špatně.
 \item \textit{Plánovací i hodnotící} -- do této skupiny spadá pouze denní schůzka zvaná \textit{Standup}. Během schůzky se jednak hodnotí předchozí den a plánuje se, co se bude dále daný den dělat. Během schůzky mají všichni členové týmu možnost vidět, jak se úkol vyvíjí, a zda úkol na něco nečeká.
 \end{itemize}
 
 
 Jednotlivé zadání úkolů jsou psány pomocí uživatelských příběhů (takzvané \textit{User stories}), přičemž většinou obsahují jen minimum technických informací. Jednotlivé uživatelské příběhy nepopisují technickou interakci ze systémem. Uživatelské příběhy mají  sjednocenou podobu například ve tvaru: \uv{Jako \textit{role} chci \textit{cíl} tak, aby \textit{užitek}.} Tedy například: \uv{Jako uživatel chci vidět seznam zboží v objednávce, tak aby si uživatel mohl zboží zkontrolovat.} \cite{ref:scrum_myslin_us}
 
-\subsection{V-Model}
+\section{V-Model}
 V-model je grafické znázornění vývojového cyklu používaného prakticky u jakéhokoliv vývoje, u kterého je důležité nepřetržité fungování a bezchybnost systému. Model je tedy využíván prakticky v každém odvětví, nejen v automobilovém průmyslu nebo softwarovém vývoji kritických systémů. Tento model zdědil po vodopádovém modelu jistou kaskádovitost, kdy každý krok je proveden až po předchozím kroku. Za rozdílnost V-Modelu lze považovat to, že je oproti agilním přístupům zaměřen na velmi důkladnou kontrolu a testování systému. Kontrola a testování probíhá již v počátečních etapách návrhu systému. Jednotlivé testování systému se provádí ve stejné době jako určitá část vývoje. Tedy například jednotkové testy se píšou během implementační části nebo například integrační testování probíhá při integraci jednotlivých komponent systému. Je vhodný zejména pro projekty, kde je většina požadavků jasná a předem daná. Grafické znázornění V-Modelu je možné vidět na obrázku \ref{fig:v_model}.
 
 V-Model je graficky definován do tvaru velkého písmene V. Na levé straně modelu se nachází fáze spojené s verifikací. První fází v rámci verifikační části je sběr požadavků, ve kterém jsou od zákazníka získány požadavky. Tyto požadavky jsou následně analyzovány. V další fázi se provede na základě těchto nasbíraných požadavků návrh systému. Dále následuje vytvoření architektury systému a návrh jednotlivých modulů. Poté je na základě veškeré analýzy provedena implementace.
@@ -335,20 +328,20 @@ Na pravé straně jsou fáze validační, ve kterých se produkt testuje a valid
 \end{figure}
 
 
-\section{Metriky}
+\chapter{Metriky}
 \label{sec:metrics}
 Jelikož v rámci praktické části vytvářím nástroj pro vytváření metrik, je nutné se nejprve seznámit se samotnou teorií metrik a měření vývoje. Metriky se můžou používat nejen při samotném sběru požadavků, ale i při vývoji systému. Během sběru požadavků a vývoje celého systému je potřeba dodržovat určité standardy. V automobilovém průmyslu je to nejčastěji standard Automotive SPICE, který je podrobněji popsán v kapitole \ref{sec:aspice}. Pro to, aby bylo zajištěno plnění definovaného standardu a plnění jednotlivých úkolů pro dokončení projektu je využíváno právě metrik.
 
-Dle výkladu Iana Sommervilla \cite{ref:metric_definition} je metrika softwaru vlastnost softwarového systému, systémové dokumentace nebo vývojového procesu , kterou lze objektivně měřit. Mezi typické obecné metriky můžeme zařadit například počet řádků kódu, počet splněných požadavků z celkového počtu zadaných, počet nalezených chyb v softwaru a další. Management mohou ovlivnit jak kontrolní, tak i prediktivní metriky. Při změně provedené na základě kontrolní metriky je změněn samotný softwarový proces. Pokud manažer provede rozhodnutí pro změnu v procesu, mohou prediktivní metriky usnadnit odhad, jak bude změna náročná pro provedení změn. 
+Dle výkladu Iana Sommervilla \cite{ref:metric_definition} je metrika softwaru vlastnost softwarového systému, systémové dokumentace nebo vývojového procesu , kterou lze objektivně měřit. Mezi typické obecné metriky můžeme zařadit například počet řádků kódu, počet splněných požadavků z celkového počtu zadaných, počet nalezených chyb v softwaru a další. Management mohou ovlivnit jak kontrolní, tak i prediktivní metriky. Při změně provedené na základě kontrolní metriky je změněn samotný softwarový proces. Pokud manažer provede rozhodnutí pro změnu v procesu, mohou prediktivní metriky usnadnit odhad, jak bude změna náročná pro provedení změn.
 
 Při měření vývoje softwaru pomocí metrik se snažíme odvodit numerické hodnoty nebo profil atributu vývoje daného softwaru, části systému nebo dokonce i samotného procesu. Na základě naměřených údajů pomocí metrik dokážeme zjistit, jak je standard dodržován nebo jakým směrem se vývoj vyvíjí. Dále na základě těchto údajů dokážeme také zjistit kvalitu vyvíjeného systému nebo softwaru a také dokážeme hodnotit efektivitu jednotlivých procesů, které se při vývoji používají. Pomocí metrik také můžeme zjistit, zda používané nástroje a metody přispívají k lepší efektivitě práce či nikoliv.
 
 Při zavádění nového nástroje v rámci organizace můžeme využít metriky tak, že část daného vývoje změříme metrikami před zavedení nástroje. Po určité definované době od zavedení nástroje pomocí metrik změříme znova stejnou část vývojového procesu a vyhodnotíme, zda je tým při vývoji efektivnější než před prvním měřením. Pod tímto si můžeme například představit zavedení nového nástroje na automatické testování vyvíjeného softwaru. Před zavedením pomocí metrik zjistíme, kolik se v softwaru vyskytuje chyb a poté tyto údaje porovnáme s údaji naměřenými po zavedení nástroje. Takto získaná data můžeme tedy používat pro zlepšení samotného vývoje a procesů.
 
-Jedním ze základních dělení metrik je dělení na kontrolní a prediktivní metriky. Kontrolní metriky, jak již vyplývá ze samotného názvu, slouží pro správu a kontrolu prováděných procesů. Typické metriky patřící mezi kontrolní metriky je počet nahlášených chyb během vývoje, průměrný čas strávený na opravě detekovaných chyb, počet splněných úkolů od zahájení vývoje a mnoho dalších. Mezi prediktivní metriky řadíme metriky, které předpovídají vlastnosti vyvíjeného produktu nebo softwaru. Typickými představiteli je například cyklomatická složitost určité komponenty, počet tříd nebo databázových tabulek. Prediktivní metriky, které souvisejí s vlastnostmi vyvíjeného produktu nebo softwaru se mohou označovat také jako produktové metriky. \cite{ref:metric_definition} 
+Jedním ze základních dělení metrik je dělení na kontrolní a prediktivní metriky. Kontrolní metriky, jak již vyplývá ze samotného názvu, slouží pro správu a kontrolu prováděných procesů. Typické metriky patřící mezi kontrolní metriky je počet nahlášených chyb během vývoje, průměrný čas strávený na opravě detekovaných chyb, počet splněných úkolů od zahájení vývoje a mnoho dalších. Mezi prediktivní metriky řadíme metriky, které předpovídají vlastnosti vyvíjeného produktu nebo softwaru. Typickými představiteli je například cyklomatická složitost určité komponenty, počet tříd nebo databázových tabulek. Prediktivní metriky, které souvisejí s vlastnostmi vyvíjeného produktu nebo softwaru se mohou označovat také jako produktové metriky. \cite{ref:metric_definition}
 
-\subsection{Kontrolní metriky}
-Tyto metriky slouží jako statistické údaje pro kontrolu daného softwarového procesu. Můžeme zde zařadit údaje stráveném času na nějakém konkrétním úkolu. Vysledovaná a naměřená data poté slouží jako podklad ke zlepšování osobního a softwarového procesu. 
+\section{Kontrolní metriky}
+Tyto metriky slouží jako statistické údaje pro kontrolu daného softwarového procesu. Můžeme zde zařadit údaje stráveném času na nějakém konkrétním úkolu. Vysledovaná a naměřená data poté slouží jako podklad ke zlepšování osobního a softwarového procesu.
 
 Podle Iana Sommervilla \cite{ref:kontrolni_metriky} lze shromažďovat tři typy kontrolních metrik:
 
@@ -363,25 +356,25 @@ Podle Iana Sommervilla \cite{ref:kontrolni_metriky} lze shromažďovat tři typy
 
 V rámci kontrolních metrik můžeme tedy zjistit efektivitu samotného vývoje a lépe odhadnout směr vývoje procesu. Pomocí metrik můžeme měřit potřebný čas a úsilí k dokončení, nebo posunu procesu. Například pomocí monitorování počtu vad dokážeme odhadnout kvalitu výsledného systému. Tedy při zvýšení počtu vad můžeme předpokládat, že v systému bylo nalezeno většiny chyb a systém bude tedy v produkčním prostředí stabilní a kvalitní. Je důležité zjistit, které informace je nutné pro následné zlepšení procesu a také systému sledovat, měřit a také shromažďovat.
 
-\subsection{Prediktivní metriky}
+\section{Prediktivní metriky}
 Jak již bylo zmíněno, jde o metriky, které předpovídají vlastnosti výsledného produktu. Mezi prediktivní metriky můžeme zařadit produktové metriky, pomocí kterých dokážeme měřit interní atributy vyvíjeného produktu případně softwaru. Interní atributy si můžeme například představit jako konkrétní vlastnosti vyvíjeného softwaru. Jde tedy o velikost softwaru, počet naprogramovaných tříd, počet uživatelských obrazovek a mnoho dalšího. Tyto vlastnosti nemusí mít přímou spojitost na zjištění kvality softwaru, ale mohou sloužit jen jako informativní hodnota pro manažery pro odhad velikosti.
 
 Produktové metriky lze dále dělit na dvě základní třídy podle původu měření. První třídou jsou statické metriky, které získávají data pomocí měření reprezentace systému -- dokumentace systému, návrh systému a samotný program. Můžeme zde zařadit počet tříd, počet formulářů, průměrná délka tříd a další. Tyto metriky nám dokáží usnadnit hodnocení a odhad složitosti a komplexnosti celého softwaru. Zároveň nám můžou být tyto informace užitečné pro přípravu na následnou údržbu celého systému.
 
 Druhou třídou produktových metrik jsou dynamické metriky, pro která se data shromažďují průběžně pomocí spuštěného systému při testování, nebo na produkčním prostředí. Tyto metriky nám pomáhají hodnotit celkovou spolehlivost systému v produkčním prostředí. Dále z těchto metrik můžeme odhadnout či zjistit náročnost a efektivitu systému pro produkční prostředí. Mezi dynamické metriky řadíme metriky měřící počet nedodělaných scénářů objevených testováním, počet nefunkčních požadavků nebo i informace o maximálním možné zatížení systému.
 
-\subsection{Reprezentace a vizualizace metrik}
+\section{Reprezentace a vizualizace metrik}
 \label{sec:visualisation}
 Metriku si můžeme představit jako sled čísel, která nám slouží jako ukazatele stavu procesu. Metriky můžeme tedy reprezentovat tak, abychom dokázali určit stav daného procesu, nebo vyvíjeného systému. Pomocí metriky se může manažer rozhodovat o krocích, které budou podniknuty, aby byl proces efektivní a systém vytvořen v definované kvalitě a času. Nejčastěji si metriku můžeme představit jako tabulku a nebo pomocí grafické vizualizace, která vychází z dat tabulky.
 
 
-\subsubsection{Zobrazení pomocí tabulky}
+\subsection{Zobrazení pomocí tabulky}
 Každou metriku si můžeme představit jako tabulku nasbíraných dat během procesu. Je to tedy základní vizualizace nasbíraných surových dat. Nevýhodou tabulkového zobrazení je, že při některých metrikách je složité a náročné si představit, co daná čísla reprezentují a zda číslo, které vidíme je dobré, nebo špatné. Většinou se proto zobrazení tabulky kombinuje s grafem, pomocí kterého můžeme lépe pochopit daný kontext měřené veličiny.
 
-\subsubsection{Vizualizace grafem}
-Vizualizace pomocí grafu bývá jedna z nejčastějších možností, jak metriku zobrazit a následně jednoduše pochopit. Pro kýženou vizualizaci grafem můžeme použít několik typů grafů. Vizualizace většinou vychází buď přímo ze surových dat, nebo z připravených dat používaných pro zobrazení v tabulce. Pro vizualizaci dat je možné použít z několika stovek různých frameworků, které graf vytvoří a vizualizují. Mezi nejčastěji používané typy grafů patří různé variace sloupcového, spojnicového a koláčového grafu. V rámci IBM Jazz a aplikacích, které jsou naprogramované pomocí jazyka Java můžeme nalézt použitý framewrok BIRT, kterému se věnuji v rámci kapitoly \ref{sec:birt}. Druhou možností vizualizací na webových stránkách je pomocí JavaScriptové knihovny. V rámci této práce porovnávám tři JavaScriptové knihovny s názvem Google Charts, amCharts a Chart.js v kapitolách \ref{sec:google_charts}, \ref{sec:amcharts} a\ref{sec:chartjs}.
+\subsection{Vizualizace grafem}
+Vizualizace pomocí grafu bývá jedna z nejčastějších možností, jak metriku zobrazit a následně jednoduše pochopit. Pro kýženou vizualizaci grafem můžeme použít několik typů grafů. Vizualizace většinou vychází buď přímo ze surových dat, nebo z připravených dat používaných pro zobrazení v tabulce. Pro vizualizaci dat je možné použít z několika stovek různých frameworků, které graf vytvoří a vizualizují. Mezi nejčastěji používané typy grafů patří různé variace sloupcového, spojnicového a koláčového grafu. V rámci IBM Jazz a aplikacích, které jsou naprogramované pomocí jazyka Java můžeme nalézt použitý framewrok BIRT, kterému se věnuji v rámci kapitoly \ref{sec:birt}. Druhou možností vizualizací na webových stránkách je pomocí JavaScriptové knihovny. V rámci této práce porovnávám tři JavaScriptové knihovny s názvem Google Charts, amCharts a Chart.js v kapitolách \ref{sec:google_charts}, \ref{sec:amcharts} a \ref{sec:chartjs}.
 
-\subsubsection{BIRT}
+\subsection{BIRT}
 \label{sec:birt}
 BIRT je open source softwarový projekt vyvíjený konsorciem Eclipse Foundation a původně sponzorován společností Actuate s pomocí společnosti IBM, který poskytuje platformu pro vytváření a vizualizaci dat. Je určený zejména pro webové a klientské aplikace, které jsou založených na prostředí Java a Java EE. BIRT se skládá ze dvou hlavních komponent \cite{ref:birt_about}:
 
@@ -390,7 +383,7 @@ BIRT je open source softwarový projekt vyvíjený konsorciem Eclipse Foundation
 \item komponenta pro generování navržených sestav, které lze nasadit do libovolného Java prostředí.
 \end{itemize}
 
-Projekt BIRT také obsahuje mapovací modul, který je plně integrován do návrháře sestav a může být použit samostatně k integraci grafů do aplikace. Pomocí technologie BIRT je výstupy možné generovat kromě grafů ve formátu SVG, také jako seznamy dat (například pomocí tabulky) nebo jako textové dokumenty. Sestavy BIRT se skládají ze čtyř hlavních částí \cite{ref:birt_about}: 
+Projekt BIRT také obsahuje mapovací modul, který je plně integrován do návrháře sestav a může být použit samostatně k integraci grafů do aplikace. Pomocí technologie BIRT je výstupy možné generovat kromě grafů ve formátu SVG, také jako seznamy dat (například pomocí tabulky) nebo jako textové dokumenty. Sestavy BIRT se skládají ze čtyř hlavních částí \cite{ref:birt_about}:
 
 \begin{itemize}
 \item \textit{Data} -- poskytuje podporu pro přístup k datům pomocí JDBC, XML, webových služeb prostých databázových souborů. Vytvořená sestava může dále zobrazovat data z libovolného počtu zdrojů dat. BIRT využívá ODA (Open Data Access), který umožňuje komukoli vytvořit novou sestavu pro jakýkoli druh tabulkových dat.
@@ -408,27 +401,27 @@ Architektura BIRT se skládá z \textit{Report Designeru}, který zajišťuje vy
     \caption{Architektura BIRT (převzato z \cite{ref:birt_about})}
     \label{fig:birtarch}
 \end{figure}
-\subsubsection{Metabase}
+\subsection{Metabase}
 Podobně jako BIRT je Metabase možné ji použít jako nástroj pro zobrazování a vizualizaci neagregovaných dat. Je to moderní aplikace, kterou je možné spustit pomocí virtualizace Docker. Grafy je možné vytvářet a skládat pomocí SQL dotazů. Aplikace je poskytovaná jak zdarma, tak i za poplatek v případě hostování v cloudu, nebo jako \textit{Enterprise} licence pro velké společnosti. Aplikaci je také možné použít jako celý \textit{Business intelligence}. Metabase je možné napojit na velké množství typů databází včetně MySQL, MongoDB, Oracle a další. Výstupní zprávy dokáže posílat také pomocí zpráv v aplikaci Slack. Není to tedy pouze knihovna sloužící pro vykreslení grafů, ale kompletní řešení. \cite{ref:metabase}
 
 
-\subsubsection{Google Charts}
+\subsection{Google Charts}
 \label{sec:google_charts}
 Je to veřejně dostupná interaktivní webová služba, která dokáže vytvořit grafy z poskytnutých dat. Knihovna je vyvinutá společností Google a je plně bezplatná. Velkou výhodou knihovny je, že je plně přizpůsobitelná a funguje pomocí HTML5 a SVG. Zobrazení grafů je tedy kompatibilní na všech zařízení včetně mobilních telefonů a tabletů. Další výhodou je velká variace různých typů grafů, které mohou být zobrazovány dynamicky a při zobrazení měněny a lehce upravovány. Velkou nevýhodou je, že grafy nejsou plně interaktivní a není možné je za běhu bez nutnosti obnovení stránky měnit a jednoduše filtrovat. Oproti BIRT (viz kapitola \ref{sec:birt}) knihovna poskytuje pouze vizualizaci poskytnutých agregovaných dat.
 
 Služba funguje jako JavaScriptová knihovna. Uživatel tedy dodá data pro JavaScript, který potřebný graf následně vykreslí. Služba vychází z původní Google Chart API, která fungovala čistě pomocí HTTP metod a není kompatibilní s aktuálním Google Charts. \cite{ref:google_charts}
 
-\subsubsection{amCharts}
+\subsection{amCharts}
 \label{sec:amcharts}
 Je to jedna z mnoha knihoven fungujících na jazyku JavaScript pro vykreslování grafů na webových stránkách. Samotná knihovna je vytvořena v jazyku TypeScript. Vykreslování probíhá pomocí dynamického zobrazování SVG obrázků, které jsou plně kompatibilní jak s ovládáním pomocí myši, tak pomocí dotyků na mobilních zařízeních. Knihovna nepoužívá žádné jiné knihovny třetích stran a podporuje konfiguraci jak pomocí objektů v TypeScriptu nebo JavaScriptu, tak pomocí univerzálního JSONu. Knihovna obsahuje obrovské množství různých typů grafů a jejich variací. Kromě klasických grafů nabízí také mapy, rozmanité diagramy a další variace různých typů grafů. Jednotlivé grafy je možné jakkoliv upravovat dle vlastního uvážení včetně typů písem a dalších vlastností. Grafy v amCharts vypadají moderně a obsahují mnoho volitelných animací a různě barevné šablony.  V základu také nabízí manipulaci s daty, které je možné skrývat či zobrazovat. Knihovna je v základní verzi se zobrazením loga v rohu každého grafu zdarma, pro odstranění loga je nutné zaplatit licenci. Podobně jako u služby Google Charts je nutné dodat data již připravená a agregovaná. \cite{ref:amcharts_web}
 
-\subsubsection{Chart.js}
+\subsection{Chart.js}
 \label{sec:chartjs}
 Chart.js je jednoduchá knihovna určená pro zobrazování grafů na webových stránkách. Knihovnu je možné získat plně zdarma a je dostupná jako otevřený software. Nabízí osm typů grafů, které mohou být animované a přizpůsobitelné. Grafy jsou generovány pomocí HTML5 Canvas a jsou tedy dostupné ve všech novějších prohlížečích. Komponenta je plně responzivní a je tedy možné ji použít na všechna možná zařízení. Nevýhodou je až moc velká jednoduchost a omezenost, která je však vykoupena rychlým nasazením do již existujících webových stránek. \cite{ref:chartjs}
 
 
 
-\section{Automotive SPICE}
+\chapter{Automotive SPICE}
 \label{sec:aspice}
 Automotive Software Process Improvement and Capability Determination (zkráceně ASPICE) je standard, používaný v automobilovém průmyslu pro vývoj mechatronických a softwarových systémů v automobilovém průmyslu. Vychází z obecného standardu SPICE (ISO/IEC 15504), který se věnuje obecnému vývoji softwaru. Od vytvoření v roce 2005 je Automotive SPICE oborovou variantou této normy. Standard je volně přístupný na webových stránkách v několika světových jazycích \cite{ref:aspice_download_obecne}. Poslední dostupná verze je verze 3.1 z roku 2017. Tato verze obsahuje opravu drobných jazykových chyb a vychází z verze 3.0 \cite{ref:aspice_download_verze}.
 
@@ -444,10 +437,10 @@ Standard Automotive SPICE byl vyvinut v rámci spolupráce evropských automobil
 
 V současné době se automobily skládají z velkého množství součástí. Automobily se tedy již neskládají pouze z mechanických součástí. V poslední době roste množství používaného softwaru nejen při vývoji, ale i v samotných automobilech. Většina softwaru v automobilu slouží také pro zajištění nejen bezpečnostních funkcí, ale také pro zajištění životně důležitých funkcí automobilu včetně brzd a samotného řízení. Nesmí se tedy stát, že software v automobilu selže a například zablokuje brzdy a způsobí havárii. Dodržování tohoto standardu je rozhodující kritérium při volbě dodavatelů dané automobilové společnosti, jelikož zajišťuje že dodavatel splňuje určité standardy vývoje.
 
-V rámci vývoje v automobilovém průmyslu je většina systémů vyvíjena pomocí V-Modelu. Každá část  vývojového procesu musí mít definovány cíle. Aby bylo možné určit, zda jsou cíle splněny jsou používány metriky (viz kapitola \ref{sec:metrics}). 
+V rámci vývoje v automobilovém průmyslu je většina systémů vyvíjena pomocí V-Modelu. Každá část  vývojového procesu musí mít definovány cíle. Aby bylo možné určit, zda jsou cíle splněny jsou používány metriky (viz kapitola \ref{sec:metrics}).
 
-\subsection{Referenční procesní model}
-Je to jeden z procesních modelů v rámci standardu Automotive SPICE. 
+\section{Referenční procesní model}
+Je to jeden z procesních modelů v rámci standardu Automotive SPICE.
 Každý proces obsahuje kromě popisu také funkční cíle v daném prostředí a seznam výsledků a výstupů, které má proces dosáhnout.
 %Každý proces  je popsán v podmínkách prohlášení o účelu. Prohlášení o účelu obsahuje jedinečné funkční cíle procesu při provádění v konkrétním prostředí. Ke každému prohlášení o účelu je přidružen seznam konkrétních výsledků jako seznam očekávaných pozitivních výsledků výkonu procesu.
 %Each process is described in terms of a purpose statement. The purpose statement contains the unique functional objectives of the process when performed in a particular environment. For each purpose statement a list of specific outcomes is associated, as a list of expected positive results of the process performance.
@@ -464,7 +457,7 @@ Referenční procesní model definuje několik procesů ve třech základních k
 
 \end{itemize}
 
-Jednotlivé kategorie procesů a samotné procesy jsou detailně probrány v kapitole \ref{sec:aspice_processes} a je možné je graficky seskupené vidět na obrázku \ref{fig:prm}. 
+Jednotlivé kategorie procesů a samotné procesy jsou detailně probrány v kapitole \ref{sec:aspice_processes} a je možné je graficky seskupené vidět na obrázku \ref{fig:prm}.
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1\textwidth]{Diplomka/Figures/prm.png}
@@ -473,21 +466,21 @@ Jednotlivé kategorie procesů a samotné procesy jsou detailně probrány v kap
 \end{figure}
 
 
-% ) a je určen pro provádění hodnocení schopnosti používání tohoto softwarového procesu dodavatelem pro automobilový průmysl. 
-% V rámci ASPICE existují dva druhy procesních modelů. První z nich je model hodnocení procesů (PAM), který byl vyvinut v souladu se standardem ISO/IEC 33004. Tento procesní model obsahuje několik hodnotících ukazatelů 
+% ) a je určen pro provádění hodnocení schopnosti používání tohoto softwarového procesu dodavatelem pro automobilový průmysl.
+% V rámci ASPICE existují dva druhy procesních modelů. První z nich je model hodnocení procesů (PAM), který byl vyvinut v souladu se standardem ISO/IEC 33004. Tento procesní model obsahuje několik hodnotících ukazatelů
 
-% PAM [3, str. 10] obsahuje sadu hodnotících ukazatelů výkonnosti a způsobilosti procesů. Tyto indikátory jsou základem pro shromažďování objektivních důkazů, které model umožňuje s posuzováním přiřadit hodnocení. Dále PAM definuje dvoudimenzionální model způsobilosti procesu. V první dimenzi proces jsou procesy definovány a rozděleny do kategorií procesů, kde v rámci kategorie procesů jsou procesy seskupeny do skupin procesů v druhém stupni v souladu se zabývanou druhou činností. V druhé dimenzi schopnost je definován soubor atributů procesu seskupených do úrovně schopností. Atributy procesu poskytují měřitelné vlastnosti způsobilosti procesu. Ještě dodáváme, že [4, str. 8] PAM poskytuje další ukazatele výkonnosti a způsobilosti procesů přizpůsobených potřebám k provádění posouzení softwarového procesu schopnosti dodavatelů pro automobilový průmysl. 
+% PAM [3, str. 10] obsahuje sadu hodnotících ukazatelů výkonnosti a způsobilosti procesů. Tyto indikátory jsou základem pro shromažďování objektivních důkazů, které model umožňuje s posuzováním přiřadit hodnocení. Dále PAM definuje dvoudimenzionální model způsobilosti procesu. V první dimenzi proces jsou procesy definovány a rozděleny do kategorií procesů, kde v rámci kategorie procesů jsou procesy seskupeny do skupin procesů v druhém stupni v souladu se zabývanou druhou činností. V druhé dimenzi schopnost je definován soubor atributů procesu seskupených do úrovně schopností. Atributy procesu poskytují měřitelné vlastnosti způsobilosti procesu. Ještě dodáváme, že [4, str. 8] PAM poskytuje další ukazatele výkonnosti a způsobilosti procesů přizpůsobených potřebám k provádění posouzení softwarového procesu schopnosti dodavatelů pro automobilový průmysl.
 
 
 
 %Druhý procesní model je procesní referenční model (PRM). Ten se používá ve spojení s modelem hodnocení procesu při provádění hodnocení dané společnosti.
 % \cite{ref:aspice_download_procesni_modely}
 
-\subsection{Procesy Automotive SPICE}
+\section{Procesy Automotive SPICE}
 \label{sec:aspice_processes}
 V rámci každé základní kategorie procesů existují v referenčním procesním modelu podkategorie procesů, dle toho jakým okruhem činností se zaobírají. Procesy jsou pojmenovány pomocí třímístného identifikátoru, který určuje podkategorii procesu. Dále název procesu obsahuje číslo, které identifikuje proces v rámci své podkategorie.
 
-\subsubsection{Primární procesy}
+\subsection{Primární procesy}
 Kategorie primárních procesů životního cyklu sestává z procesů, které mohou být použity zákazníkem při získávání produktů od dodavatele, a dodavatelem při reakci a dodávce produktů zákazníkovi, včetně technických procesů potřebných pro specifikaci, návrh, vývoj, integraci a testování.
 
 Mezi první podkategorii primárních procesů patří akviziční procesy. Do této podkategorie patří procesy, které jsou prováděny zákazníkem případně dodavatelem, který je v roli zákazníka, který požaduje  službu nebo produkt. Tato podkategorie akvizičních procesů obsahuje sedm procesů:
@@ -506,13 +499,13 @@ Dalším typem procesů jsou dodavatelské procesy. Tyto procesy jsou prováděn
 
 \begin{itemize}
 	\item SPL.1 -- Výběrové řízení na dodavatele. Hlavní myšlenkou tohoto procesu je příprava a vytvoření nabídky do výběrového řízení.  Dále je v tomto procesu řešeno samotné podání nabídky do výběrového řízení.
-	\item SPL.2 -- Vydání produktu. V rámci tohoto procesu se provádí předávání vyvinutého produktu zákazníkovi. Předávání produktu probíhá řízeně pomocí definovaných podprocesů. Během tohoto procesu se také vytváří předávací dokumentace. 
-\end{itemize}	
+	\item SPL.2 -- Vydání produktu. V rámci tohoto procesu se provádí předávání vyvinutého produktu zákazníkovi. Předávání produktu probíhá řízeně pomocí definovaných podprocesů. Během tohoto procesu se také vytváří předávací dokumentace.
+\end{itemize}
 
 Procesní skupina systémového inženýrství se skládá z procesů zaměřených na získávání a správu zákaznických a interních požadavků. Dále tyto procesy definují samotnou architekturu vyvíjeného systému. Procesy také řeší celkovou integraci systému a testování produktu na systémové úrovni.
 
 \begin{itemize}
-	\item SYS.1 -- Získání požadavků. Během procesu jsou požadavky nejen od zákazníka získány a zadefinování do projektu. Řadíme zde i další požadavky, jako jsou například interní a systémové. 
+	\item SYS.1 -- Získání požadavků. Během procesu jsou požadavky nejen od zákazníka získány a zadefinování do projektu. Řadíme zde i další požadavky, jako jsou například interní a systémové.
 	\item SYS.2 -- Analýza systémových požadavků. V rámci tohoto procesu probíhá samotná analýza již nadefinovaných požadavků v předešlém procesu.
 	\item SYS.3 -- Návrh architektury systému. Dochází k navrhnutí a vytvoření systémové architektury na základě definovaných požadavků na celý systém.
 	\item SYS.4 -- Systémová integrace a testování integrace. Během procesu se provádí integrace jednotlivých částí systému a následné testování provedené integrace. Výsledkem procesu je otestovaný a zintegrovaný systém.
@@ -523,14 +516,14 @@ Mezi poslední typ procesů primárních procesů patří procesy softwarového 
 
 \begin{itemize}
 	\item SWE.1 -- Analýza softwarových požadavků. Během tohoto procesu dochází k analýze veškerých softwarových požadavků na systém, které vznikají ze systémových požadavků.
-	\item SWE.2 -- Softwarový architektonický návrh. V procesu dochází k vytvoření architektonického návrhu. Dále se během procesu určí, které požadavky z procesu \textit{SWE.1} patří k jednotlivým částem systému. 
+	\item SWE.2 -- Softwarový architektonický návrh. V procesu dochází k vytvoření architektonického návrhu. Dále se během procesu určí, které požadavky z procesu \textit{SWE.1} patří k jednotlivým částem systému.
 	\item SWE.3 -- Podrobný návrh softwaru a konstrukce jednotky. V rámci procesu je vytvořen podrobný návrh systémových komponent a jednotek.
 	\item SWE.4 -- Ověření softwarových jednotek. Během procesu dochází k verifikaci navržených softwarových jednotek. Toto ověření probíhá na základě porovnání s funkčními a nefunkčními požadavky na systém.
-	\item SWE.5 -- Integrace softwaru a test integrace. Dochází zejména k integraci navržených softwarových jednotek do celého systému, který je poté zevrubně kompletně otestován. 
+	\item SWE.5 -- Integrace softwaru a test integrace. Dochází zejména k integraci navržených softwarových jednotek do celého systému, který je poté zevrubně kompletně otestován.
 	\item SWE.6 -- Kvalifikační testy softwaru. Během procesu je prováděno kvalifikační testování celého integrovaného systému ve shodě se všemi požadavky.
 \end{itemize}
 
-\subsubsection{Podpůrné procesy}
+\subsection{Podpůrné procesy}
 Procesy zařazené v rámci sekce podpůrných procesů jsou použity v kterémkoli procesu v různých bodech celého vývojového životního cyklu. Procesy v této kategorii mají zkratku SUP.
 
 \begin{itemize}
@@ -539,11 +532,11 @@ Procesy zařazené v rámci sekce podpůrných procesů jsou použity v kterémk
 	\item SUP.4 -- Společná kontrola. V rámci procesu probíhá společná kontrola a revize mezi všemi stranami, které se na projektu podílí. Je tedy zajištěno, že všechny strany vývoj systému a následný výsledek uspokojuje.
 	\item SUP.7 -- Dokumentace. Během procesu je vytvářená důležitá dokumentace všech informací vzniklých během jiných procesů.
 	\item SUP.8 -- Správa konfigurace. Proces zajišťuje vytváření a údržbu všech pracovních nástrojů a produktů procesů nebo daného projektu.
-	\item SUP.9 -- Správa řešení problémů. Veškeré problémy vzniklé během celého vývoje systému musí být identifikované a poté analyzované. V rámci procesu se poté také pracuje se samotnou správou a vyřešení problémů. 
+	\item SUP.9 -- Správa řešení problémů. Veškeré problémy vzniklé během celého vývoje systému musí být identifikované a poté analyzované. V rámci procesu se poté také pracuje se samotnou správou a vyřešení problémů.
 	\item SUP.10 -- Správa požadavků na změnu. Dodržení procesu zajišťuje, že veškeré změny, které jsou navrženy jsou řízeny a sledovány.
 \end{itemize}
 
-\subsubsection{Organizační procesy}
+\subsection{Organizační procesy}
 Poslední skupinou v rámci Automotive SPICE jsou organizační procesy, které se zaměřují na produktové, procesní a zdrojové aktiva. Ta pokud jsou používaná v rámci projektů dané společnosti, pomohou v dosahování obchodních cílů.
 
 Skupina procesů řízení se skládá z procesů, které může použít kdokoli, kdo v rámci vývojového životního cyklu řídí jakýkoli typ projektu, nebo procesu. Tato skupina procesů má zkratku MAN.
@@ -570,10 +563,10 @@ Poslední skupinou organizačních procesů je skupina procesu opětovného pou�
 Kompletní znění a definice všech jednotlivých procesů je možné nalézt v standardu Automotive SPICE. \cite{ref:aspice_procesy} Ve standardu se dále vyskytují také podmínky pro úspěšné splnění a použití daných procesů.
 
 
-\subsection{Hodnotící framework}
+\section{Hodnotící framework}
 Hodnotící framework poskytuje nezbytné požadavky a pravidla pro zjištění jakým způsobem se dané procesy v rámci projektu používají. Poskytuje schéma a návod, které umožňuje hodnotiteli určit úroveň schopnosti procesu, který daná firma u projektu používá. Tyto úrovně jsou definovány v rámci hodnotícího frameworku pomocí procesních atributů. Jednotlivým úrovním se věnuji v následujících kapitolách. Dané procesní atributy jsou přiřazené jednotlivým úrovním. Míra dosažení určitého procesního atributu je reprezentována pomocí hodnocení na základě definované hodnotící stupnice. Konečnou úroveň rozhodne na základě pravidel hodnotitel. Pravidla jsou reprezentována jako atributy které musí daný proces obsahovat. Automotive SPICE pro toto používá standard ISO/IEC 33020. \cite{ref:aspice_download_1523}
 
-\subsubsection{Úrovně způsobilosti procesu a atributy procesu}
+\subsection{Úrovně způsobilosti procesu a atributy procesu}
 Jak již bylo zmíněno v předchozí kapitole, Automotive SPICE používá pro úrovně způsobilosti standard ISO/IEC 3302. Procesní atributy jsou vlastnosti procesu, které lze hodnotit na stupnici 0 až 5 a poskytují měřítko schopnosti procesu. Úrovně způsobilosti jsou použitelné pro všechny druhy procesů. Jednotlivé dodržení úrovně způsobilosti hodnotí hodnotitel na základě dodržení definovaných procesních atributů pro každou úroveň. Každá vyšší úroveň zároveň obsahuje podmínku pro 100\% splnění předchozí úrovně.
 
 \begin{itemize}
@@ -591,7 +584,7 @@ Jak již bylo zmíněno v předchozí kapitole, Automotive SPICE používá pro 
 
 \end{itemize}
 
-\subsubsection{Hodnocení procesních atributů}
+\subsection{Hodnocení procesních atributů}
 \label{sec:process_atributes}
 Aby mohl proškolený hodnotitel hodnotit úroveň způsobilosti procesu v určité společnosti, určuje Automotive SPICE hodnotící stupnici, která pochází ze standardu ISO/IEC 33020. Definované procesní atributy jsou hodnoceny na základě splnění podmínek, které určuje daný proces. Rozšířená stupnice pro hodnocení procesních je možné vidět v tabulce \ref{tab:aspice_rating_scale}.
 
@@ -600,38 +593,38 @@ Aby mohl proškolený hodnotitel hodnotit úroveň způsobilosti procesu v urči
 \begin{center}
 \begin{tabular}{c | c | c | m{6cm}}
 
-\multicolumn{2}{c|}{\textbf{Hodnocení}} & \multicolumn{1}{c|}{\textbf{Úroveň dosažení}} & \multicolumn{1}{c}{\textbf{Popis}} \\ 
+\multicolumn{2}{c|}{\textbf{Hodnocení}} & \multicolumn{1}{c|}{\textbf{Úroveň dosažení}} & \multicolumn{1}{c}{\textbf{Popis}} \\
 \hline
 \hline
-%\vcell{N}  & \vcell{Nedosaženo} & \vcell{dosažení 0 \% až 15 \%} & \vcell{Existují jen malé nebo žádné důkazy o dosažení definovaného atributu procesu v posuzovaném procesu} \\ 
+%\vcell{N}  & \vcell{Nedosaženo} & \vcell{dosažení 0 \% až 15 \%} & \vcell{Existují jen malé nebo žádné důkazy o dosažení definovaného atributu procesu v posuzovaném procesu} \\
 % \printcellmiddle & \printcellmiddle  & \printcellmiddle & \printcelltop \\
-N  & Nedosaženo & dosažení 0 \% až 15 \% & V projektu existují malé, nebo žádné důkazy o dosažení definovaných procesních atributů v posuzovaném procesu. \\ 
+N  & Nedosaženo & dosažení 0 \% až 15 \% & V projektu existují malé, nebo žádné důkazy o dosažení definovaných procesních atributů v posuzovaném procesu. \\
 \hline
-P- & Částečně nedosaženo & dosažení 15 \% až  32,5 \% & V rámci projektu existuje několik důkazů o dosažení procesního atributu v posuzovaném procesu. Mnoho aspektů k dosažení procesního atributu můžou být nepředvídatelné. \\ 
+P- & Částečně nedosaženo & dosažení 15 \% až  32,5 \% & V rámci projektu existuje několik důkazů o dosažení procesního atributu v posuzovaném procesu. Mnoho aspektů k dosažení procesního atributu můžou být nepředvídatelné. \\
 \hline
-P+ & Částečně nedosaženo & dosažení  32,5 \% až 50 \% & V rámci projektu existuje několik důkazů o dosažení procesního atributu v posuzovaném procesu. Některé aspekty k dosažení procesního atributu můžou být nepředvídatelné. \\ 
+P+ & Částečně nedosaženo & dosažení  32,5 \% až 50 \% & V rámci projektu existuje několik důkazů o dosažení procesního atributu v posuzovaném procesu. Některé aspekty k dosažení procesního atributu můžou být nepředvídatelné. \\
 \hline
-L- & Téměř dosaženo & dosažení  50 \% až 67,5 \% & V projektu se systematicky přistupuje k  definovanému procesnímu atributu a jeho významném dosažení. V posuzovaném procesu může existovat mnoho slabin souvisejících s tímto procesním atributem. \\ 
+L- & Téměř dosaženo & dosažení  50 \% až 67,5 \% & V projektu se systematicky přistupuje k  definovanému procesnímu atributu a jeho významném dosažení. V posuzovaném procesu může existovat mnoho slabin souvisejících s tímto procesním atributem. \\
 \hline
-L+ & Téměř dosaženo  & dosažení  67,5 \% až 85 \% & V projektu se systematicky přistupuje k definovanému procesnímu atributu a jeho významném dosažení. V posuzovaném procesu mohou existovat některé slabiny související s tímto procesním atributem. \\ 
+L+ & Téměř dosaženo  & dosažení  67,5 \% až 85 \% & V projektu se systematicky přistupuje k definovanému procesnímu atributu a jeho významném dosažení. V posuzovaném procesu mohou existovat některé slabiny související s tímto procesním atributem. \\
 \hline
-F  & Plně dosaženo & dosažení  85 \% až 100 \% & V projektu se úplně a systematicky přistupuje k definovanému procesnímu atributu a jeho úplném dosažení v posuzovaném procesu. V posuzovaném procesu neexistují žádné významné slabiny související s tímto procesním atributem. \\ 
+F  & Plně dosaženo & dosažení  85 \% až 100 \% & V projektu se úplně a systematicky přistupuje k definovanému procesnímu atributu a jeho úplném dosažení v posuzovaném procesu. V posuzovaném procesu neexistují žádné významné slabiny související s tímto procesním atributem. \\
 \end{tabular}
 \caption{Rozšířená stupnice hodnocení procesu v ASPICE dle ISO/IEC 33020 \cite{ref:aspice_download_1523}}
 \label{tab:aspice_rating_scale}
 \end{center}
 \end{table}
 
-\subsubsection{Model úrovně způsobilosti procesu}
+\subsection{Model úrovně způsobilosti procesu}
 Úroveň způsobilosti procesu určí hodnotitel na základě hodnocení procesních atributů. Model definuje  pravidla, na základě kterých je úroveň určena. Proces může úrovně dosáhnout pouze pokud jsou procesní atributy dané úrovně ohodnoceny alespoň L (téměř dosaženo) a zároveň pokud jsou veškeré nižší úrovně procesních atributů splněny na F (plně dosaženo).
 
 
-\subsection{Metriky a monitorování procesu}
+\section{Metriky a monitorování procesu}
 Automotive SPICE klade velké nároky na kvalitní výsledky při vývoji a dodržování standardu. Proto jsou také v rámci standardu definovány procesy, které sledují dodržování kvality jiných procesů a podporují měření a monitorování samotného vývoje.
 
 
 
-\section{Application Lifecycle Management}
+\chapter{Application Lifecycle Management}
 \label{sec:alm}
 Application Lifecycle Management není pouze proces samotného vývoje a programování softwaru. Je to možné přirovnat k životě člověka, kdy jde o kompletní proces, začínající od první myšlenky a požadavku zákazníka, přes samotný vývoj softwaru a nasazení do produkčního prostředí. Application Lifecycle Management končí až jakmile končí samotný software, kdy například přestane dávat z obchodního hlediska smysl -- software již není konkurenceschopný, nebo je vyvinuta nová verze daného systému. \cite{alm_chappell}
 
@@ -654,14 +647,14 @@ Proces, který probíhá během celého aplikačního cyklu je řízení. Vznik�
 
 Proces vývoje začíná jakmile je sběr požadavků dokončen a veškeré funkcionality jsou specifikované. Hlavní část procesu probíhá až do nasazení softwaru do produkčního prostředí. Po nasazení do produkčního prostředí vývoj probíhá již jen v menších fázích, ve kterých má zákazník další nové požadavky, které si přeje dodělat. Nové požadavky na funkčnost mohou vzniknout například proto, aby daný software ustál v konkurenčním prostředí. \cite{alm_chappell}. V rámci jednotlivých fázích vývoje tedy probíhá postupně nejprve základní první verze daného softwaru. Po nasazení do produkčního prostředí probíhá jednak údržba systému a také vývoj nových funkcionalit (viz obrázek \ref{fig:alm}).
 
-Samotný provoz softwaru začíná jakmile je vývoj dokončen. Provoz probíhá až do úplného ukončení činnosti softwaru. Během tohoto procesu probíhají práce spojené s během a udržováním aplikace. Během tohoto aspektu je software nasazován do produkčního prostředí a monitorován jeho běh.  \cite{alm_chappell} 
+Samotný provoz softwaru začíná jakmile je vývoj dokončen. Provoz probíhá až do úplného ukončení činnosti softwaru. Během tohoto procesu probíhají práce spojené s během a udržováním aplikace. Během tohoto aspektu je software nasazován do produkčního prostředí a monitorován jeho běh.  \cite{alm_chappell}
 
 Každá část životního aplikačního cyklu se liší dle použitého vývojového procesu. Rozdílně vývoj probíhá při agilním procesu, nebo při vodopádovém modelu. Jednotlivým vývojovým procesům se věnuji v rámci kapitoly \ref{sec:sw_process}.
 
 
 % ALM aplikace se používají pro plánování a monitorování procesu. Na základě zmonitorovaných dat je poté proces upravován a měněn tak aby bylo možné produkt dokončit úspěšně za co nejmenších nákladů. Aplikací .
 
-\subsection{codeBeamer ALM}
+\section{codeBeamer ALM}
 \label{sec:codebeamer}
 Aplikace codeBeamer obsahuje několik nástrojů používaných pro kompletní správu celého životního cyklu systému, který začíná vývojem systému a pokračuje až do vydání funkční verze systému. Prakticky životní cyklus systému nekončí vydáním první funkční verze, ale systém je dále udržován a zlepšován dokud je konkurence schopný nebo využitelný v daném prostředí. V rámci aplikace codeBeamer tedy existuje mnoho nástrojů, které dokáží zajistit správu celého životního cyklu jako například správa požadavků, správa testů, správa kvality, správa zacházení s riziky a mnoho dalších nástrojů. Aplikace je vhodná pro všechny varianty agilního přístupu vývoje. Aplikace také podporuje verzování vyvíjeného systému a následnou práci s jednotlivými verzemi. \cite{ref:about_codebeamer}
 
@@ -671,8 +664,8 @@ Další výhodou nástroje codeBeamer je, že nabízí velké množství přída
 
 CodeBeamer je placený nástroj, který nabízí výběr z několika stupňů typu licencí.  Nástroj je možné používat buď jako aplikaci nainstalovanou na vlastním serveru, nebo s cloudovou licencí přímo na serverech společnosti Intland, která codeBeamer vyvíjí. Nástroj nabízí pro vyzkoušení třiceti denní testovací licenci zdarma. CloudBeamer je možné používat buď jako webovou aplikaci přímo v prohlížeči, nebo jako desktopovou aplikaci na operačním systému Windows a Linux. \cite{ref:codebeamer_pricing}
 
-\subsubsection{Sběr a správa požadavků}
-Aplikace codeBeamer ALM poskytuje v plné licenci mnoho možností pro sběr a následnou správu požadavků všech různých typů. Správa požadavků obsahuje také správu návaznosti a propojení různých typů artefaktů napříč celým životním cyklem daného projektu či systému s jinými artefakty a požadavky. Veškerým požadavkům je možné přiřadit buď již před chystané atributy, nebo vytvořit také nové vlastní atributy. 
+\subsection{Sběr a správa požadavků}
+Aplikace codeBeamer ALM poskytuje v plné licenci mnoho možností pro sběr a následnou správu požadavků všech různých typů. Správa požadavků obsahuje také správu návaznosti a propojení různých typů artefaktů napříč celým životním cyklem daného projektu či systému s jinými artefakty a požadavky. Veškerým požadavkům je možné přiřadit buď již před chystané atributy, nebo vytvořit také nové vlastní atributy.
 
 Pro navigaci v rámci celé aplikace a projektu slouží vrchní horizontální menu, které obsahuje položky pro dokumentaci, verzování, administraci a správa požadavků, která se nachází pod položkou \textit{Trackers}. Po rozkliknutí této položky se zobrazí úvodní nástěnka s konfigurovatelnými bloky, na kterých se můžou umístit různé grafy. Jednotlivým grafům můžeme nastavovat data, ze kterých mají čerpat. Tedy například počet softwarových požadavků v různých stavech, počet všech požadavků na dané vydání a mnoho dalšího. Celá nástěnka je zobrazena na obrázku \ref{fig:codebeamer_trackers}.
 
@@ -692,25 +685,25 @@ Na levé straně obrazovky se nachází navigace, obsahující kategorie jednotl
     \label{fig:codebeamer_requirments}
 \end{figure}
 
-Místo seznamu je možné také zobrazit artefakty ve formátu jako dokument, kdy jsou viditelné názvy artefaktů, popis a komentáře. Takové formátování je vhodné pro přehledný výpis a editaci popisů, zadání a komentování artefaktů. Třetí dostupné zobrazení je zobrazení \textit{kanban} tabule, kde jsou artefakty zobrazeny jako lístečky ve sloupcích, které jsou ve výchozím nastavení \textit{ToDo}, \textit{In progress}, \textit{To verify} a \textit{Done}. Artefakty ve formě lístečků můžeme libovolně přesouvat mezi sloupečky, dle definovaného procesu v rámci projektu. Poslední možné zobrazení \textit{Test coverage} poskytuje vyobrazení, kolik procent artafaktů v jednotlivých fázích vývoje jsou pokryty testy, kolik z nich je vyhovujících a kolik testy neprochází. 
+Místo seznamu je možné také zobrazit artefakty ve formátu jako dokument, kdy jsou viditelné názvy artefaktů, popis a komentáře. Takové formátování je vhodné pro přehledný výpis a editaci popisů, zadání a komentování artefaktů. Třetí dostupné zobrazení je zobrazení \textit{kanban} tabule, kde jsou artefakty zobrazeny jako lístečky ve sloupcích, které jsou ve výchozím nastavení \textit{ToDo}, \textit{In progress}, \textit{To verify} a \textit{Done}. Artefakty ve formě lístečků můžeme libovolně přesouvat mezi sloupečky, dle definovaného procesu v rámci projektu. Poslední možné zobrazení \textit{Test coverage} poskytuje vyobrazení, kolik procent artafaktů v jednotlivých fázích vývoje jsou pokryty testy, kolik z nich je vyhovujících a kolik testy neprochází.
 
-U artefaktů můžeme nastavovat velké množství jak přednastavených atributů, tak si můžeme definovat i atributy vlastní. Toto nastavení je možné provádět v detailním zobrazení daného artefaktu, nebo v pravém sloupci po kliknutí na artefakt na výpise všech artefaktů. Na detailu artefaktu můžeme také přidávat komentáře, přílohy a nebo spojovat artefakt s jinými artefakty. Každý artefakt má svůj vlastní identifikátor, pomocí kterého ho můžeme sdílet mezi ostatní kolegy v rámci vývoje. 
+U artefaktů můžeme nastavovat velké množství jak přednastavených atributů, tak si můžeme definovat i atributy vlastní. Toto nastavení je možné provádět v detailním zobrazení daného artefaktu, nebo v pravém sloupci po kliknutí na artefakt na výpise všech artefaktů. Na detailu artefaktu můžeme také přidávat komentáře, přílohy a nebo spojovat artefakt s jinými artefakty. Každý artefakt má svůj vlastní identifikátor, pomocí kterého ho můžeme sdílet mezi ostatní kolegy v rámci vývoje.
 
-\subsubsection{Monitorování}
-Procesy můžeme v rámci nástroje codeBeamer ALM monitorovat například pomocí metrik. Ty jsou v grafické podobě bohužel dostupné pouze na nástěnce. Na všech ostatních místech nástroje je zobrazení agregovaných dat pouze textové. Mezi textové metriky můžeme zařadit například pokrytí požadavků testy. Další velká nevýhoda nástroje codeBeamer je, že neexistuje zobrazení metriky v určitém časovém období. Pokud si uživatel nebude pravidelně exportovat a manuálně porovnávat jednotlivé metriky, nemůže nijak vyhodnotit postupný vývoj systému. 
+\subsection{Monitorování}
+Procesy můžeme v rámci nástroje codeBeamer ALM monitorovat například pomocí metrik. Ty jsou v grafické podobě bohužel dostupné pouze na nástěnce. Na všech ostatních místech nástroje je zobrazení agregovaných dat pouze textové. Mezi textové metriky můžeme zařadit například pokrytí požadavků testy. Další velká nevýhoda nástroje codeBeamer je, že neexistuje zobrazení metriky v určitém časovém období. Pokud si uživatel nebude pravidelně exportovat a manuálně porovnávat jednotlivé metriky, nemůže nijak vyhodnotit postupný vývoj systému.
 
 Z naměřených dat v rámci procesu je možné vytvářet tzv. \textit{reporty}. Ty lze vytvářet pomocí speciálního vlastního dotazovacího jazyka podobného SQL. Pomocí napsaných dotazů můžeme naměřená data filtrovat a agregovat dle potřeby a poté exportovat. Tento dotaz lze uložit a následně ho pouze spouštět a tím filtrovaná data zobrazit. Tato data je možné použít pro vygenerování metriky. Nevýhoda tohoto přístupu však je, že je potřeba dotaz vždy ručně načíst a spustit.
 
-\subsubsection{Export dat}
+\subsection{Export dat}
 Jak již bylo zmíněno v předešlé kapitole \ref{sec:codebeamer}, artefakty a celý systém je možné propojit s mnoha jinými vývojovými nástroji. Nejkomplexnější řešení je exportovat data pravidelně pomocí REST API. Ve výchozím stavu je napojení pro všechny uživatele vypnuté a je nutné jej povolit v nastavení účtu. Velkou výhodou napojení pomocí REST API je, že můžeme data o jednotlivých artefaktech stahovat pravidelně dle naší potřeby. Veškerá data, která API vrátí jsou ve formátu JSON. API poskytuje velké množství metod, pro různá data. Tyto jednotlivé metody jsou velmi dobře zdokumentované a popsané v dokumentaci codeBeameru, která je volně dostupná na internetu.  \cite{ref:codebeamer_rest}
 
-Kromě komplexních exportů pomocí REST API do jiných vývojových nástrojů můžeme také jednotlivé artefakty exportovat do formátu pro Microsoft Office Word a Excel, do formátu CSV a nebo do prostého PDF. Takto lze artefakty exportovat manuálně buď jeden artefakt za druhým, nebo najednou všechny artefakty v dané kategorii. Nevýhoda těchto exportů je, že mohou být provedeny pouze manuálně v projektu a nelze je automatizovat. Takto exportované artefakty mohou sloužit pouze pro budoucí textovou zálohu artefaktů, jelikož v datech nelze jednoduše vyhledávat a pracovat s nimi tak detailně, jako při exportu pomocí REST API. 
+Kromě komplexních exportů pomocí REST API do jiných vývojových nástrojů můžeme také jednotlivé artefakty exportovat do formátu pro Microsoft Office Word a Excel, do formátu CSV a nebo do prostého PDF. Takto lze artefakty exportovat manuálně buď jeden artefakt za druhým, nebo najednou všechny artefakty v dané kategorii. Nevýhoda těchto exportů je, že mohou být provedeny pouze manuálně v projektu a nelze je automatizovat. Takto exportované artefakty mohou sloužit pouze pro budoucí textovou zálohu artefaktů, jelikož v datech nelze jednoduše vyhledávat a pracovat s nimi tak detailně, jako při exportu pomocí REST API.
 
 
-\subsection{Siemens Polarion ALM}
+\section{Siemens Polarion ALM}
 Aplikace Polarion slouží jako jednotné řešení, které umožňuje propojit všechny možné účastníky všech procesů v dané společnosti. Pomocí vestavěných nástrojů dokáže propojit různé týmy vyvíjející určitý systém. Je vhodná pro vývoj velkých systémů nebo aplikací. Mezi takové systémy můžeme zařadit i vývoj nějakého systému v automobilovém průmyslu. Aplikace stejně jako codeBeamer ALM obsahuje veškeré nástroje pro správu celého životního cyklu vyvíjeného produktu, mezi které patří například správa požadavků, správa kvality systému, správa zacházení s riziky, správa testů a pokrytí testy a mnoho dalšího. Dále aplikace Polarion nabízí automatizaci jednotlivých procesů. \cite{ref:polarion_about}
 
-Siemens Polarion je navržen jako jedna aplikace obsahující mnoho nástrojů pro správu životního cyklu. Tyto nástroje jsou v navigaci prakticky na jednom místě. Vývojový tým tedy nemusí mít stejně jako v případě codeBeameru více aplikací a nástrojů pro správu projektu. Aplikace je placená a je možné ji provozovat buď jako webovou aplikaci v prohlížeči, nebo jako klasickou aplikaci přímo v systému Windows a Linux. Stejně jako v případě aplikace codeBeamer obsahuje Polarion kromě čisté šablony několik šablon, ze kterých je možné vytvořit projekt. Šablony je možné si libovolně upravovat a použít při dalších vyvíjených projektech. Proces vytváření nového projektu z šablony, nebo případně založení čistého a prázdného projektu je možné vidět na obrázku \ref{fig:polarion_new_project}. Vytvořené šablony jsou z různých prostředí vývoje, jako například obecný agilní projekt, zdravotnictví nebo dokonce i Automotive SPICE. 
+Siemens Polarion je navržen jako jedna aplikace obsahující mnoho nástrojů pro správu životního cyklu. Tyto nástroje jsou v navigaci prakticky na jednom místě. Vývojový tým tedy nemusí mít stejně jako v případě codeBeameru více aplikací a nástrojů pro správu projektu. Aplikace je placená a je možné ji provozovat buď jako webovou aplikaci v prohlížeči, nebo jako klasickou aplikaci přímo v systému Windows a Linux. Stejně jako v případě aplikace codeBeamer obsahuje Polarion kromě čisté šablony několik šablon, ze kterých je možné vytvořit projekt. Šablony je možné si libovolně upravovat a použít při dalších vyvíjených projektech. Proces vytváření nového projektu z šablony, nebo případně založení čistého a prázdného projektu je možné vidět na obrázku \ref{fig:polarion_new_project}. Vytvořené šablony jsou z různých prostředí vývoje, jako například obecný agilní projekt, zdravotnictví nebo dokonce i Automotive SPICE.
 
 
 \begin{figure}[!ht]
@@ -723,7 +716,7 @@ Siemens Polarion je navržen jako jedna aplikace obsahující mnoho nástrojů p
 
 Aplikace v základu obsahuje nástěnku, kde se nacházejí základní grafy, stránku s požadavky, návrhem, riziky, plánováním, vývojem, testováním a údržbou. Další položky jsou v navigaci ve výchozím stavu skryté a je nutné je povolit. Mezi další položky například patří sestavy, verzování, vydávání nových verzí vyvíjeného systému a mnoho dalšího.
 
-\subsubsection{Sběr a správa požadavků}
+\subsection{Sběr a správa požadavků}
 Polarion nabízí v rámci licence veškeré potřebné nástroje pro sběr a správu artefaktů prakticky všech typů. Samozřejmostí je propojení artefaktů s jinými a vytvoření tím návazností v rámci celého životního cyklu vytvářeného, nebo spravovaného projektu. Artefakty je možné řadit do složek a oddílů dle potřeby a logiky. Artefakty je možné přizpůsobovat a přidávat jim vlastní atributy a vlastnosti.
 
 Aplikace obsahuje vertikální navigaci, pomocí které je možné přecházet do jednotlivých sekcí jako nástěnka, plánování, vývoj a mnoho dalšího. Pro zobrazení požadavků existuje položka \textit{Requirements}, která obsahuje veškeré definované skupiny požadavků v daném projektu. Na úvodní obrazovce této sekce je přehledný výpis všech kategorií požadavků. Po otevření jedné z kategorie jsou vypsány veškeré požadavky dané kategorie. Aplikace nabízí několik zobrazení. Výchozí zobrazení je zobrazení jako dokument, kdy jednotlivé požadavky jsou sepsány pod sebou s popisem jako v knize. Výhodou tohoto zobrazení je přehlednost. Další zobrazení je zobrazení ve stromové struktuře, kdy jsou jednotlivé požadavky odsazeny dle jejich podkategorie a nadpisu. Toto zobrazení je možné vidět na obrázku \ref{fig:polarion_requirements}. Možné je také zobrazit si veškeré požadavky nestrukturovaně v tabulce. Dále je možné si požadavky různými způsoby zobrazit graficky. Takto je možné zobrazit požadavky na časové ose celého vývoje, v živém plánu vývoje nebo v tabulce návazností všech požadavků.
@@ -737,7 +730,7 @@ Aplikace obsahuje vertikální navigaci, pomocí které je možné přecházet d
 
 Výhoda oproti aplikaci codeBeamer je, že abychom si zobrazili detail samotného požadavku nemusíme otevírat celou novou stránku, ale požadavek je nám zobrazen v menším okně v dolní části obrazovky. Pokud chceme otevřít požadavek v nové stránce je třeba jej otevřít pomocí dvojkliku. V detailu každého požadavku můžeme nastavovat námi definované atributy. Samozřejmostí je unikátní číslo každého požadavku, které navíc obsahuje předponu, kterou si můžeme definovat v rámci projektu. Jednotlivé požadavky je možné schvalovat, propojovat a přepínat do různých stavů.
 
-\subsubsection{Monitorování}
+\subsection{Monitorování}
 Aplikace Polarion nabízí monitorování procesů pomocí metrik, které je možné zobrazit na vícero místech. První místo, kde je možné metriku zobrazit je na nástěnce. Zde se ve výchozím stavu v šabloně pro agilní projekt zobrazuje graf, kolik úkolů je třeba ještě do dalšího vydání dokončit, kolik chyb bylo nalezeno a mnoho dalšího. Veškeré metriky na nástěnce jsou zobrazeny graficky. Grafy není možné bohužel nijak filtrovat a jde pouze o rychlé informace, které poskytnou lepší orientaci v jakém stavu se projekt nachází. Nástěnku je možné vidět na obrázku \ref{fig:polarion_dashboard}.
 
 \begin{figure}[!ht]
@@ -751,7 +744,7 @@ Další místo, kde je možné metriky zobrazit je v záložce \textit{Plans}. Z
 
 Grafické zobrazení průběhu vývoje projektu je možné zobrazit napříč celou aplikací Siemens Polarion. Je možné například zobrazit si graficky vývoj testování vyvíjeného systému, nové verze k vydání, vytvářet různé reporty s definovanými pravidly a mnoho dalšího. Velkou nevýhodou však je, že na žádném místě není možné nijak podrobněji filtrovat a upravovat grafy.
 
-\subsubsection{Export dat}
+\subsection{Export dat}
 K aplikaci Siemens Polarion je možné pomocí doplňků připojit velké množství jiných vývojových nástrojů. Existuje například doplněk pro propojení s aplikací Jira. Většina těchto doplňků je placených. \cite{ref:polarion_extensions}
 
 Další možnosti exportu dat je pomocí manuálního exportu jednotlivých artefaktů do formátu PDF. Takto provedený export nejde použít pro agregování dat, ale jen pro prostou dokumentaci či zálohu. Druhá nevýhoda je v tom, že proces nejde nijak zautomatizovat a je potřeba PDF exportovat manuálně v aplikaci. Do PDF je možné exportovat prakticky každý artefakt, výpis dat nebo celou stránku s metrikami.
@@ -760,15 +753,15 @@ Siemens Polarion nabízí export dat pomocí webových služeb. Ty jsou podrobě
 
 Poslední a dle autorů aplikace nejkomplexnější možností exportu dat je čtení dat přímo z databáze Polarionu. Pomocí exportu dat z databáze můžeme také tento proces automatizovat a spouštět dotazy nad databází prakticky kdykoliv. Dokumentace obsahuje kompletní architekturu databáze včetně ukázkových SQL dotazů. \cite{ref:polarion_documentation} V dokumentaci se kromě propojení jednotlivých tabulek nachází také popis všech objektů v databázi. Velká výhoda této metody je možnost exportovat jakékoliv data, ke kterým máme v databázi přístup. Nevýhodou je, že pro vytvoření exportu potřebujeme znát architekturu databáze, abychom mohli napsat SQL dotaz, který nám data zobrazí. Jelikož je databáze velmi komplexní, může studování architektury a psaní SQL dotazů výrazně navýšit náročnost vytváření exportů.
 
-\subsection{IBM Jazz}
+\section{IBM Jazz}
 Je to velmi robustní a komplexní platforma poskytující podporu a zázemí během celého životního cyklu systému. Stejně jako ostatní aplikace používané pro správu životního cyklu vyvíjeného systému je hlavní cíl, aby správa a vývoj byl co nejefektivnější, aby byl životní cyklus monitorován a aby si jednotlivé vývojové týmy jednodušeji vyměňovaly potřebné informace. Celá platforma Jazz poskytuje veškeré potřebné nástroje pro organizaci celého životního cyklu produkovaného systému. Jazz dokáže například spravovat a trasovat požadavky, vizualizovat data, obsahuje metriky a mnoho dalšího. \cite{ref:jazz}
 
 IBM Jazz není jedna aplikace jako v případě aplikace codeBeamer, nebo Siemens Polarion, ale velká platforma složená z několika nezávislých aplikací. Tyto aplikace nejsou nijak propojeny a jsou tedy plně nezávislé. Tato vlastnost může být brána pro některé společnosti jako nevýhoda, jelikož musí spravovat více instancí aplikací a ne pouze jednu, která obsahuje veškeré funkcionality. Jednotlivé aplikace jsou primárně koncipovány jako webové aplikace. Není tedy potřeba řešit instalaci aplikací na počítač nebo kompatibilita s různými operačními systémy. Pokud by to prostředí dané společnosti vyžadovalo, existují aplikace a rozšíření založené na nástrojích Visual Studio a Eclipse.
 
-IBM Jazz je komerční a tedy placená platforma, která může být provozována v cloudu společnosti IBM nebo na vlastním serveru. Velká nevýhoda je, že při instalaci je potřeba následovat složité manuály, jelikož platforma nedisponuje žádnou jednoduchou instalaci například pomocí virtualizace Docker. V rámci platformy IBM Jazz existují při vytváření základní šablony, ze kterých můžeme projekt vytvořit.  Na výběr jsou například šablony pro agilní vývoj pomocí metody Scrum, pro klasický tradiční vývoj bez iterací a mnoho dalších. 
+IBM Jazz je komerční a tedy placená platforma, která může být provozována v cloudu společnosti IBM nebo na vlastním serveru. Velká nevýhoda je, že při instalaci je potřeba následovat složité manuály, jelikož platforma nedisponuje žádnou jednoduchou instalaci například pomocí virtualizace Docker. V rámci platformy IBM Jazz existují při vytváření základní šablony, ze kterých můžeme projekt vytvořit.  Na výběr jsou například šablony pro agilní vývoj pomocí metody Scrum, pro klasický tradiční vývoj bez iterací a mnoho dalších.
 
 
-\subsubsection{Nástroje a aplikace IBM Jazz}
+\subsection{Nástroje a aplikace IBM Jazz}
 Jak již bylo zmíněno, IBM Jazz je pouze platforma, která nabízí různé nástroje a aplikace, které nejsou na sobě závislé a jsou plně oddělené. Jelikož je nástrojů mnoho a jsou zaměřené na různá odvětví, budu se věnovat aplikacím a nástrojům určeným pro správu životního cyklu vyvíjené aplikace. \cite{ref:jazz_products}
 
 \begin{itemize}
@@ -782,7 +775,7 @@ Jak již bylo zmíněno, IBM Jazz je pouze platforma, která nabízí různé n�
 
 Veškeré tyto aplikace je možné mít pod jednou licencí v rámci nástroje \textit{IBM Engineering Lifecycle Management} a to buď nainstalované na vlastním serveru nebo v cloudu u společnosti IBM. Veškeré dostupné aplikace je možné nalézt na webových stránkách společnosti IBM. \cite{ref:jazz_products}
 
-\subsubsection{Sběr a správa požadavků}
+\subsection{Sběr a správa požadavků}
 Správa požadavků v rámci platformy IBM Jazz je možná provádět v aplikaci \textit{IBM Engineering Requirements DOORS Next}. Ta obsahuje veškeré potřebné nástroje pro sběr a správu požadavků všech možných typů. Veškeré požadavky je možné jakkoliv propojovat s ostatními požadavky v rámci vyvíjeného projektu. V aplikaci je možné vytvářet vlastní typy požadavků, které je možné řadit do vlastních složek a oddílů dle potřeby a logiky daného projektu. Požadavkům je možné přidávat jakékoliv předdefinované a vlastní atributy a vlastnosti.
 
 Stejně jako předešlé aplikace obsahuje vertikální navigaci, pomocí které je možné přecházet mezi jednotlivými typy požadavků. Po otevření jednoho z typů požadavků jsou vypsány veškeré požadavky daného typu. Aplikace nabízí několik druhů a možností zobrazení tohoto výpisu. Typy výpisů jsou prakticky identické jako v aplikaci codeBeamer a Polarion. Existuje zde například výpis typu dokument, kdy jsou požadavky vypsány jako v dokumentu v aplikaci Microsoft Word pomocí nadpisů a popisů. Takový výpis je možné vidět na obrázku \ref{fig:ibm_doors_req}. Dále zde existuje základní výpis jednotlivých požadavků v samostatných řádcích anebo ve tvaru stromu, kdy jsou požadavky odsazeny dle adresáře, do kterého patří.
@@ -793,9 +786,9 @@ Stejně jako předešlé aplikace obsahuje vertikální navigaci, pomocí které
     \caption{Výpis požadavků v zobrazení dokumentu v aplikaci IBM Engineering Requirements DOORS Next (převzato z \cite{ref:ibm_jazz_erm_dn})}
     \label{fig:ibm_doors_req}
 \end{figure}
-Atributy a vlastnosti k danému atributu je možné nastavit buď přímo ve výpisu požadavků, anebo v detailním okně daného požadavku. V administraci aplikace je možné vytvářet nespočet typů atributů, které je možné poté požadavkům přiřazovat a filtrovat podle nich. Samozřejmostí je možné požadavkům nastavovat různé předdefinované, nebo vlastní stavy a propojovat je s ostatními požadavky. U jednotlivých požadavků si můžeme zobrazit nejen veškeré přílohy a komentáře, ale také historii úprav daného požadavku. Historie úprav je bohužel pouze pro zobrazení, kdy byl daný požadavek upravován a ne co přesně bylo v danou dobu měněno. Každý požadavek má vlastní identifikátor, kterým je možné jej identifikovat napříč celou aplikací. 
+Atributy a vlastnosti k danému atributu je možné nastavit buď přímo ve výpisu požadavků, anebo v detailním okně daného požadavku. V administraci aplikace je možné vytvářet nespočet typů atributů, které je možné poté požadavkům přiřazovat a filtrovat podle nich. Samozřejmostí je možné požadavkům nastavovat různé předdefinované, nebo vlastní stavy a propojovat je s ostatními požadavky. U jednotlivých požadavků si můžeme zobrazit nejen veškeré přílohy a komentáře, ale také historii úprav daného požadavku. Historie úprav je bohužel pouze pro zobrazení, kdy byl daný požadavek upravován a ne co přesně bylo v danou dobu měněno. Každý požadavek má vlastní identifikátor, kterým je možné jej identifikovat napříč celou aplikací.
 
-\subsubsection{Monitorování}
+\subsection{Monitorování}
 V rámci platformy IBM Jazz je možní provádět monitorování všech procesů v aplikaci \textit{Jazz Reporting Service}. Tato aplikace nám zajistí za pomocí nástroje \textit{Report builder} vytváření agregovaných a filtrovaných dat. Výhodou je, že data můžou pocházet z jakékoli aplikace platformy IBM Jazz. Nejčastěji data pochází z aplikace pro správu požadavků. Pomocí takto agregovaných dat si můžeme vytvářet a generovat metriky. Vytváření sestavy je možné vidět na obrázku \ref{fig:ibm_reporting_service}. Tato data je možné exportovat například do aplikace Microsoft Office. Definovanou metriku je možné zobrazit buď jako graf, nebo jako pouhou tabulku. Toto řešení má bohužel velkou nevýhodu ve formě chybějících historických dat. Jazz Reporting Service zobrazuje v grafu vždy pouze aktuální data a aktuální stav jednotlivých požadavků (například v jakém stavu se nacházejí). Neexistuje zde žádný způsob jak monitorovat průběh procesu a změny jednotlivých požadavků v čase. Jedinou vhodnou možností řádného monitorování je vytvoření externí aplikace napojenou na celou platformu IBM Jazz.
 
 \begin{figure}[!ht]
@@ -809,7 +802,7 @@ Další možností metrik spojených se sběrem a správou požadavků je možn�
 
 Abychom mohli monitorovat průběh celého procesu a změny jednotlivých artefaktů je jediný způsob využít služeb třetích stran, či případně si vytvořit vlastní aplikaci pro vytváření a definování metrik. Jedna možnost je využít agregování dat pomocí Jazz Reporting Service, anebo tato data agregovat ve vlastní aplikaci.
 
-\subsubsection{Export dat}
+\subsection{Export dat}
 V jednotlivých aplikacích platformy IBM Jazz je možné provést exporty dat dané aplikace. V základu je možné napojit jiné aplikace třetích stran pomocí doplňků s jinými aplikacemi pro správu vývoje. Takové rozšíření si můžeme naprogramovat i sami dle dokumentace dané aplikace.
 
 Další základní možností exportu dat je možnost exportu jednotlivých požadavků do PDF. Takový export probíhá manuálně a není možné jej použít pro agregaci dat a následnou práci a vizualizaci s nimi. Takové řešení je vhodné například pro dokumentaci, nebo zálohu daných artefaktů a požadavků. Další možností manuálního exportu dat je export všech artefaktů do formátu CSV. Tato data je již možné agregovat a pracovat s nimi. Nevýhoda však je, že je vždy potřeba pracovník, který tato data manuálně stáhne.
@@ -828,20 +821,20 @@ Platforma IBM Jazz nabízí několik možností přímého napojení a automatic
 
 Jednotlivým možnostem těchto napojení se budu věnovat v praktické části této práce. Nevýhodou je, že tato API nejsou dobře veřejně dokumentována a je potřeba tedy napojení zkoušet a procházet fóra přímo na stránkách IBM. Další nevýhoda špatné dokumentace je špatná informovanost o aktuálnosti a funkčnosti daného napojení. Data je možné také exportovat pomocí nástroje OSLC, kterému se budu v praktické části této práce věnovat.
 
-Poslední možnost exportu dat je pomocí aplikace \textit{Jazz Reporting Service}. Data z této aplikace si můžeme již předem agregovat a vytvořit metriky, které je možné exportovat například do aplikace Microsoft Excel. Výhodou tohoto přístupu je, že můžeme data filtrovat a agregovat přímo na straně IBM Jazz, které obsahuje již různé předdefinované filtry a není třeba nic složitě programovat. Nevýhoda je však svázání s touto aplikací a při jakékoli změně v datech je nutné vytvářet filtry znova. Další velká nevýhoda je, že nedokážeme data jednoduše pomocí tohoto přístupu verzovat a udržovat jejich historii přímo na straně IBM. Je tedy potřeba si stejně vytvořit externí aplikaci na udržování historických dat. Tento přístup při velkém počtu dat ztrácí bez nějaké automatizace smysl a výhodu. 
+Poslední možnost exportu dat je pomocí aplikace \textit{Jazz Reporting Service}. Data z této aplikace si můžeme již předem agregovat a vytvořit metriky, které je možné exportovat například do aplikace Microsoft Excel. Výhodou tohoto přístupu je, že můžeme data filtrovat a agregovat přímo na straně IBM Jazz, které obsahuje již různé předdefinované filtry a není třeba nic složitě programovat. Nevýhoda je však svázání s touto aplikací a při jakékoli změně v datech je nutné vytvářet filtry znova. Další velká nevýhoda je, že nedokážeme data jednoduše pomocí tohoto přístupu verzovat a udržovat jejich historii přímo na straně IBM. Je tedy potřeba si stejně vytvořit externí aplikaci na udržování historických dat. Tento přístup při velkém počtu dat ztrácí bez nějaké automatizace smysl a výhodu.
 
-\subsection{Porovnání aplikací}
+\section{Porovnání aplikací}
 Všechny tři analyzované aplikace se zaměřují na správu životního cyklu vyvíjeného systému, nebo produktu. Analyzované aplikace poskytují nástroje pro sběr a správu požadavků. Samozřejmostí je seznam a výpis všech požadavků, které můžou být zařazeny do jednotlivých kategorií. Požadavkům je možné nastavovat různé popisy, atributy, vlastnosti a spojení s jinými požadavky nebo artefakty. Ve všech těchto aplikacích je možnost vytvářet vlastní typy a názvy jednotlivých atributů. Je také možné vytvářet vlastní názvy a typy propojení mezi artefakty. Všechny analyzované aplikace mají základní stránku s nástěnkou, na které se nacházejí základní informace a rychlé metriky o procesech v rámci vývoje daného projektu. Všechny tři aplikace také fungují jako webové aplikace, nebo desktopové aplikace. Dále jsou aplikace komerční a tedy placené a následně provozované buď na vlastním serveru nebo v cloudu dané společnosti, která aplikaci poskytuje.
 
 Rozdíl v správě požadavků mezi aplikací codeBeamer ALM a Siemens Polarion ALM můžeme nalézt v tom, že codeBeamer kombinuje sběr všech artefaktů s jednotlivými požadavky. Naproti tomu Siemens Polarion má pro veškeré typy artefakty samostatné stránky s výpisy a metrikami, které jsou uzpůsobené pro daný typ artefaktu.
 
 Aplikace codeBeamer ALM a Siemens Polarion jsou téměř identické v tom, že jde o robustní platformy, které poskytují veškeré potřebné nástroje pro správu životního cyklu v rámci jedné aplikace. Oproti tomu platforma IBM Jazz poskytuje tyto nástroje v jednotlivých aplikacích na různých doménách, které ne vždy spolu správně komunikují.
 
-Největší rozdíl v aplikacích je v přístupu ke generování a vytváření metrik. Aplikace codeBeamer obsahuje metriky v grafické podobě pouze na nástěnce. Tato data jsou pouze informativní. Agregovaná a filtrovaná vlastní data se dají zobrazit pouze textově. Další nevýhoda této aplikace je v tom, že nenabízí žádnou možnost zobrazit si automatické metriky v určitém časovém období. V aplikaci lze vytvářet sestavy pomocí jazyka podobného SQL. Sestavy lze vytvářet a spouštět pouze manuálně a nelze je tedy nijak automatizovat. Z dat získaných vlastním dotazem bohužel nedokážeme vytvořit a definovat vlastní metriku. 
+Největší rozdíl v aplikacích je v přístupu ke generování a vytváření metrik. Aplikace codeBeamer obsahuje metriky v grafické podobě pouze na nástěnce. Tato data jsou pouze informativní. Agregovaná a filtrovaná vlastní data se dají zobrazit pouze textově. Další nevýhoda této aplikace je v tom, že nenabízí žádnou možnost zobrazit si automatické metriky v určitém časovém období. V aplikaci lze vytvářet sestavy pomocí jazyka podobného SQL. Sestavy lze vytvářet a spouštět pouze manuálně a nelze je tedy nijak automatizovat. Z dat získaných vlastním dotazem bohužel nedokážeme vytvořit a definovat vlastní metriku.
 
 Aplikace Siemens Polarion obsahuje základní metriky taktéž na nástěnce a nenabízí žádné filtrování a volbu zobrazení. Tato data jsou tedy taktéž pouze informativní. Metriky poskytují pouze rychlé informace o tom, zda daný vývoj probíhá v souladu s plány. Podrobnější metriky a grafy je možné nalézt na specializované stránce. Uživatel si může definovat a vytvořit metriku pomocí filtrů na dané stránce. Bohužel chybí taktéž definování trendové metriky v čase. Další nevýhoda je v tom, že Polarion nenabízí podrobný export výsledků dané metriky, ale pouze export do PDF celé stránky s více metrikami.
 
-Platforma IBM Jazz nabízí kompletně jiný přístup. Kromě stejné nástěnky jako v ostatních aplikacích, kde se nacházejí rychlé informace o postupu vývoje existuje samostatná aplikace \textit{Jazz Reporting Service}. V této aplikaci je možné pomocí nástroje \textit{Report Builder} vytvořit a definovat na základě filtrů metriky z jednotlivých artefaktů z jiných aplikací platformy IBM Jazz. Definované metriky je možné si zobrazit jak graficky tak v tabulce. Tato agregovaná data lze exportovat například do služby Microsoft Office. Velkou nevýhodou je, že definované metriky nezobrazují vývoj v čase, ale pouze aktuální hodnoty v daném čase. 
+Platforma IBM Jazz nabízí kompletně jiný přístup. Kromě stejné nástěnky jako v ostatních aplikacích, kde se nacházejí rychlé informace o postupu vývoje existuje samostatná aplikace \textit{Jazz Reporting Service}. V této aplikaci je možné pomocí nástroje \textit{Report Builder} vytvořit a definovat na základě filtrů metriky z jednotlivých artefaktů z jiných aplikací platformy IBM Jazz. Definované metriky je možné si zobrazit jak graficky tak v tabulce. Tato agregovaná data lze exportovat například do služby Microsoft Office. Velkou nevýhodou je, že definované metriky nezobrazují vývoj v čase, ale pouze aktuální hodnoty v daném čase.
 
 Hlavní výhodou těchto aplikací je zachycení a správa celého vývoje celého systému. Další výhodou je možnost komunikace a spolupráce s jednotlivými týmy při vývoji. Všechny analyzované aplikace mají prakticky stejný design a liší se pouze v maličkostech. Bohužel žádná analyzovaná a jiné nalezené aplikace nesplňují požadovaný účel a funkcionality. Tedy možnost vytvářet a generovat trendové metriky a uchovávat v metrikách historická data.
 
@@ -862,10 +855,10 @@ Metriky potřebné pro ASPICE  & ne                      & ne                   
 \label{tab:alm_porovnani}
 \end{table}
 
-Všechny tři aplikace obsahují možnost přístupu pomocí webové aplikace, přičemž pouze codeBeamer a Siemens Polarion poskytují přístup pomocí počítačové aplikace. Další rozdíl mezi platformou IBM Jazz a ostatními aplikacemi, které jsou řešeny jako jedna velká robustní aplikace, je v tom, že IBM Jazz je koncipována jako více menších aplikací. Všechny aplikace obsahují export dat pomocí API, přičemž Siemens Polarion nabízí export i přímo z databáze, která poskytuje více možností než jen API, které je řešeno pomocí webových služeb. IBM Jazz a codeBeamer podporují export pomocí REST API. Až na aplikaci Polarion neposkytuje IBM Jazz ani codeBeamer historické údaje v metrikách. Bohužel Siemens Polarion nabízí tyto informace pouze omezeně. Jediná platforma IBM Jazz podporuje pomocí \textit{Jazz Reporting Service} pokročilejší zobrazení metriky pomocí grafů. Ostatní dvě aplikace v základu podporují zobrazení metrik pomocí grafů limitovaně. Ani jedna z analyzovaných aplikací bohužel neposkytuje zobrazení a definice metrik pro sběr požadavků, které je nutné sledovat dle standardu Automotive SPICE. Rychlý přehled analyzovaných aplikací a nástrojů je možné nalézt v tabulce \ref{tab:alm_porovnani}. 
+Všechny tři aplikace obsahují možnost přístupu pomocí webové aplikace, přičemž pouze codeBeamer a Siemens Polarion poskytují přístup pomocí počítačové aplikace. Další rozdíl mezi platformou IBM Jazz a ostatními aplikacemi, které jsou řešeny jako jedna velká robustní aplikace, je v tom, že IBM Jazz je koncipována jako více menších aplikací. Všechny aplikace obsahují export dat pomocí API, přičemž Siemens Polarion nabízí export i přímo z databáze, která poskytuje více možností než jen API, které je řešeno pomocí webových služeb. IBM Jazz a codeBeamer podporují export pomocí REST API. Až na aplikaci Polarion neposkytuje IBM Jazz ani codeBeamer historické údaje v metrikách. Bohužel Siemens Polarion nabízí tyto informace pouze omezeně. Jediná platforma IBM Jazz podporuje pomocí \textit{Jazz Reporting Service} pokročilejší zobrazení metriky pomocí grafů. Ostatní dvě aplikace v základu podporují zobrazení metrik pomocí grafů limitovaně. Ani jedna z analyzovaných aplikací bohužel neposkytuje zobrazení a definice metrik pro sběr požadavků, které je nutné sledovat dle standardu Automotive SPICE. Rychlý přehled analyzovaných aplikací a nástrojů je možné nalézt v tabulce \ref{tab:alm_porovnani}.
 
 \newpage % ODSTRANIT
-\section{Business intelligence}
+\chapter{Business intelligence}
 Dnešní společnosti pracující na velkých a komplexních systémech skladují a spravují při vývoji velká množství dat. S těmito daty je nutné, nejen pro potřeby analýzy, pracovat a přistupovat k nim. K zajištění správných a tedy úspěšných manažerských rozhodnutí je třeba data pochopit a vyčíst z nich důležité informace. Pomocí získaných a pochopených informací dokážeme informace přeměnit ve znalosti a použít je k predikcím. Následně dokážeme odhadnout kam se může vývoj projektu nebo společnosti ubírat.
 
 Jelikož v drtivé většině jsou sbíraná a analyzovaná data velká a komplexní, nemusí pouhý pohled do tabulky obsahující data celého podniku odhalit nějaká slabá místa. Také si nemusíme takto velká data, obsahující i miliony záznamů, dostatečně představit. Z toho důvodu potřebujeme využít nástrojů a přístupů, které nám zajistí jednodušší analýzu, nebo data připraví tak, aby je mohl lidský mozek nejen pochopit ale uvědomit si souvislosti.
@@ -880,13 +873,13 @@ Podle Davida Loshina \cite{ref:bi_loshin_david} správné použití \textit{busi
 \item \textit{Zvýšení ziskovosti} -- business intelligence dokáže například vedoucím vyhodnotit a provést rozhodnutí, zefektivnění procesů, personální změny, které mohou vést ke zvýšení zisků celé společnosti.
 \item \textit{Snížení nákladů} -- s předchozím bodem samozřejmě souvisí i snížení nákladů, které vzniknou po optimalizovaní procesů, nákladů na skladování, nebo snížení investic na základě rozhodnutí dle business intelligence.
 \item \textit{Zlepšení vztahů se zákazníkem} -- tohoto benefitu můžeme dosáhnout pomocí analýzy agregovaných informacích o zákaznicích a následně vylepšit zákaznické služby.
-\item \textit{Snížení rizik} -- pomocí analýzy informací dokážeme lépe předem definovat a nalézt rizika, které mohou během vývoje nebo prodeje produktu nastat,  
+\item \textit{Snížení rizik} -- pomocí analýzy informací dokážeme lépe předem definovat a nalézt rizika, které mohou během vývoje nebo prodeje produktu nastat,
 \item a mnoho dalšího.
 \end{itemize}
 
-K zajištění provedení \textit{business intelligence} nám slouží nástroje a aplikace pro tuto činnost vytvořené. Takové aplikace nám dokáží poskytnout historické, aktuální a případně budoucí zobrazení dat. Dále nám poskytují nástroje pro tvorbu sestav, metrik, grafů, nástěnek, sdílení dat mezi ostatními zaměstnanci a spousta dalších nástrojů. Mezi nejznámější aplikace patří Qlik Sense a Microsoft Power BI, které jsou podrobně popsány v kapitolách \ref{sec:qlik} a \ref{sec:microsoft_power_bi}. Tyto aplikace byly také doporučeny vedoucím práce Ing. Svatoplukem Štolfou, PhD. 
+K zajištění provedení \textit{business intelligence} nám slouží nástroje a aplikace pro tuto činnost vytvořené. Takové aplikace nám dokáží poskytnout historické, aktuální a případně budoucí zobrazení dat. Dále nám poskytují nástroje pro tvorbu sestav, metrik, grafů, nástěnek, sdílení dat mezi ostatními zaměstnanci a spousta dalších nástrojů. Mezi nejznámější aplikace patří Qlik Sense a Microsoft Power BI, které jsou podrobně popsány v kapitolách \ref{sec:qlik} a \ref{sec:microsoft_power_bi}. Tyto aplikace byly také doporučeny vedoucím práce Ing. Svatoplukem Štolfou, PhD.
 
-\subsection{Qlik Sense}
+\section{Qlik Sense}
 \label{sec:qlik}
 Qlik Sense je rozsáhlý analytický nástroj společnosti Qlik, zajišťující integraci dat ze široké škály datových zdrojů. Pomocí aplikace dokážeme přeměnit surová data z tabulek a databází do vizuální a srozumitelné podoby. Stejně jako u ostatních podobných \textit{business intelligence} aplikací Qlik Sense obsahuje nástěnky, tvorbu a zobrazení sestav, nebo také propojování datových zdrojů. Aplikace podporuje připojení k široké škále různých jiných aplikací pomocí API, napojení na velké množství databází a také samozřejmě nahrávání datových souborů na přímo jako například CSV, XML, JSON a velmi velké množství dalších formátů. Mezi společnosti používající Qlik Sense patří například Cisco, BP, nebo také Samsung. \cite{ref:qlik_general}
 
@@ -903,7 +896,7 @@ Přístup k aplikaci pro uživatele je možný jednak pomocí aplikace pro poč�
 V rámci uživatelského účtu je možné udržovat více projektů. Po zvolení určitého projektu se zobrazí detailní stránka daného projektu se seznamem nástěnek a prezentací. Tato stránka je zobrazena na obrázku \ref{fig:qlik_project}.  Ve vrchní vertikální navigaci se nacházejí tři oddělení:
 
 \begin{itemize}
-\item \textit{Prepare (příprava dat)} -- V rámci tohoto oddělení je možné vybrat data, která se pro daný projekt budou používat. 
+\item \textit{Prepare (příprava dat)} -- V rámci tohoto oddělení je možné vybrat data, která se pro daný projekt budou používat.
 \item \textit{Analyze (analýza a zobrazení dat)} -- Na této stránce se nacházejí nástěnky (položka \textit{Sheet}) a postřehy (položka \textit{Insights}). Stránka slouží pro zobrazení a analýzu dat.
 \item \textit{Narrate} -- V této stránce je pouze oddělení \textit{Storytelling}, pomocí kterého můžeme vytvořit prezentaci pro veřejnou prezentaci získaných dat.
 \end{itemize}
@@ -924,7 +917,7 @@ Poslední záložka s názvem \textit{Storytelling} slouží pro prezentaci dat.
 
 V rámci celého projektu je možné pomocí e-mailové adresy pozvat libovolný počet uživatelů, kteří na projektu pracují. Mezi hlavní výhody aplikace Qlik oproti konkurenčnímu Microsoft Power BI patří například našeptávání při realizaci vizualizací, existence průvodce, který uživatele učí jak s aplikací pracovat. Další výhoda je možnost filtrovaní podobně jako v klasických internetových vyhledávačích. Nevýhoda je značná komplikovanost ovládání a navigace v rámci celé aplikace.
 
-\subsection{Microsoft Power BI}
+\section{Microsoft Power BI}
 \label{sec:microsoft_power_bi}
 Microsoft Power BI je komplexní platforma firmy Microsoft, jejíž cílem poskytovat interaktivní vizualizace a funkce pro celé odvětví business intelligence. Veškeré tyto funkcionality jsou vymyšleny tak, aby byly pochopitelné a lehké na nastavení i pro začínající uživatele. Mezi základní funkcionality patří nástěnka a dále jednotlivé sestavy.
 
@@ -949,11 +942,11 @@ Mezi hlavní výhody Microsoft Power BI patří zejména jednoduché napojení z
 Pro vytvoření sestavy jsou potřeba data. Ta je možné vložit manuálně, vytvořit a nebo zvolit existující datovou sadu. Data je možné exportovat z různých, již existujících, systémů pro sběr a správu dat. Jakmile definujeme data, která chceme pro sestavu a \textit{report} použít, můžeme vybrat jaká data chceme zobrazit ve kterém grafu. Aplikace Microsoft Power BI nabízí velké množství grafických vizualizací dat, což zlepšuje následné sledování a pochopení dat.
 
 
-\section{Vlastní aplikace}
+\chapter{Vlastní aplikace}
 \label{sec:my_app}
-V rámci  praktické části této diplomové práce je potřeba vytvořit  prototypový nástroj pro sledování a zobrazování metrik potřebných pro splnění standardu Automotive SPICE. To zejména znamená definovat, vytvářet a sledovat metriky v čase a následně vytvářet sestavy, které je možné exportovat do různých formátů. Vize je, aby byl nástroj místem shromáždění dat a artefaktů z platformy IBM Jazz v čase. Hlavní důvod pro vytvoření tohoto nástroje je, že platforma IBM Jazz a další podobné aplikace nepodporují sledování metrik pro splnění standardu. Zejména například generování metrik v určitém časovém období.
+V rámci  praktické části této diplomové práce bylo potřeba vytvořit  prototypový nástroj pro sledování a zobrazování metrik potřebných pro splnění standardu Automotive SPICE. To zejména znamená definovat, vytvářet a sledovat metriky v čase a následně vytvářet sestavy, které je možné exportovat do různých formátů. Vize je, aby byl nástroj místem shromáždění dat a artefaktů z platformy IBM Jazz v čase. Hlavní důvod pro vytvoření tohoto nástroje je, že platforma IBM Jazz a další podobné aplikace nepodporují sledování metrik pro splnění standardu. Zejména například generování metrik v určitém časovém období.
 
-\subsection{Požadavky}
+\section{Požadavky}
 \label{sec:requirements}
 Základním požadavkem pro aplikaci bylo, aby uživatel v aplikaci mohl definovat a následně zobrazovat metriky v čase. Nástroj bude umět definovat takové metriky, které jsou potřebné pro naplnění standardu Automotive SPICE. Dalším důležitým požadavkem je, aby aplikace byla realizovaná jako webová aplikace a byla tedy přístupná prakticky z jakéhokoli zařízení. Aplikace bude nabízet role uživatelů, na které budou navázány jednotlivé funkcionality nástroje. Přístup do nástroje bude mít pouze registrovaný uživatel.
 
@@ -974,19 +967,19 @@ Základním typem uživatele je klasický uživatel bez administrátorských pr�
 
 Uživatel s právy administrátora má největší práva a přístup ke všem funkcionalitám, které nástroj nabízí. Kromě stejných funkcionalit jako běžný uživatel může administrátor využívat další nástroje celé aplikace. Administrátor může vytvářet ostatním uživatelům účty a přiřazovat jim jednotlivá práva a role. Důležitou funkcí administrátora je správa definic metrik. Pomocí těch administrátor může vytvářet, upravovat a mazat definice metrik, které poté uživatelé používají pro vytváření samotných metrik. Pomocí těchto definic je například poté možné vytvářet metriky v souladu se standardem Automotive SPICE. Dále je požadováno, aby administrátor mohl vytvářet projekty, do kterých budou následně automaticky importovány jednotlivé artefakty z platformy IBM Jazz. Import probíhá poté periodicky na pozadí celého nástroje dle definovaného rozvrhu. Veškeré tyto funkcionality jsou přístupné přes administraci, kde má administrátor přístup.
 
-\subsection{Architektura a použité technologie}
+\section{Architektura a použité technologie}
 Vzhledem ke kladeným požadavkům na výsledný prototypový nástroj, které vyžadují, aby byl nástroj použitelný na jakékoliv zařízení, bylo rozhodnuto, že nástroj bude realizován jako webová aplikace. Tento způsob je proti klasické klientské aplikace výhodnější v několika hlediscích. Největší výhoda je nezávislost platformy, na které je nástroj provozován. Uživatel nemusí kromě webového prohlížeče instalovat žádnou další aplikaci potřebnou pro běh nástroje. Dalším kladem je jednodušší správa a aktualizace celého nástroje. Nástroj bude do budoucna připraven na vytvoření progresivní webové aplikace. Celá aplikace je v souladu s architekturou Model-View-Controller.
 
 Architektura se skládá z několika důležitých komponent a vrstev. Celou architekturu systému včetně napojení na platformu IBM Jazz je možné vidět na obrázku \ref{fig:architektura_nastroje}. Nejvyšší vrstvou nástroje je prezentační vrstva, která slouží zejména pro komunikaci mezi uživatelem a celým nástrojem. Uživatel pomocí prezentační vrstvy nástroj ovládá a provádí různé úkony vedoucí k vytvoření projektů, metrik, nebo například definicí metriky. Veškeré tyto úkony jsou definovány v kapitole \ref{sec:requirements}. Celý nástroj je ovládán pomocí grafického uživatelského rozhraní ve webovém prohlížeči. Tuto vrstvu řadíme v architektuře Model-View-Controler k \textit{View}. Prezentační vrstva je realizovaná pomocí šablonovacího systému Twig.
 
-Další vrstvou je aplikační vrstva, která vykonává většinu aplikační logiky, kontroluje vstupy od uživatele, provádí výpočty a zpracovává data. Tato vrstva je provozována pomocí frameworku Symfony v jazyce PHP. Této technologii je věnovaná kapitola \ref{sec:symfony}. V této vrstvě jsou zahrnuty veškeré kontrolery, které komunikují s prezentační vrstvou, ze které přijímají data a pokyny od uživatele. Dále zde do této vrstvy můžeme zařadit jednotlivé modely, které přistupují k datové vrstvě. Komunikace mezi datovou a aplikačí vrstvou probíhá pomocí repositářů. V rámci přístupu k repositářům je použit návrhový vzor fasáda. 
+Další vrstvou je aplikační vrstva, která vykonává většinu aplikační logiky, kontroluje vstupy od uživatele, provádí výpočty a zpracovává data. Tato vrstva je provozována pomocí frameworku Symfony v jazyce PHP. Této technologii je věnovaná kapitola \ref{sec:symfony}. V této vrstvě jsou zahrnuty veškeré kontrolery, které komunikují s prezentační vrstvou, ze které přijímají data a pokyny od uživatele. Dále zde do této vrstvy můžeme zařadit jednotlivé modely, které přistupují k datové vrstvě. Komunikace mezi datovou a aplikačí vrstvou probíhá pomocí repositářů. V rámci přístupu k repositářům je použit návrhový vzor fasáda.
 
 Vrstva, kterou je možné považovat i za aplikační vrstvu je servisní vrstva, která zajišťuje automatické stahování dat z platformy IBM Jazz. Stahování dat, zejména artefaktů, probíhá pro definované projekty pomocí \textit{Cron} modulu. Toto stahování probíhá na pozadí, dle definovaného času spuštění. Stažení dat je možné vyvolat také z příkazové řádky. Dále je jednoduchá a pohodlná možnost přidat zavolání a spuštění servisního modulu pomocí prezentační vrstvy.
 
-Další nedílnou součástí celého nástroje je datová vrstva. Tato část komunikuje s aplikační vrstvou pomoci již zmíněných repositářů. Datová vrstva se ve skutečnosti používá dvě různé technologie ukládání dat. Prvním používaným úložištěm je relační databáze PostgreSQL, která slouží pro ukládání uživatelů a uživatelských rolí. Tato technologie byla zvolena pro tento účel zvolena zejména pro bezpečné a rychlé ukládání hesel, dat uživatelů a jednotlivých uživatelských rolí. Objekty namapované na relační databázi jsou nazývány entity. Druhým používaným úložištěm je \textit{NoSQL} databáze MongoDB. V tomto úložišti je uložena drtivá většina dat nástroje. Jsou zde uloženy například veškeré definice metrik, metriky, artefakty, nástěnky a další uživatelská data. Tato technologie byla zvolena po konzultaci s vedoucím práce díky vlastnostem lépe a pohodlněji ukládat celé objekty, rychlosti a lepší správě většího počtu dat. Tohoto benefitu bylo využito zejména při ukládání velkého množství artefaktů. Další velkou výhodou pro tuto technologii je možnost pohodlné správy celé struktury databáze. Velkou výhodou využití technologie MongoDB bylo při ukládání artefaktů a definic metriky, kdy celá struktura objektů je tvořena pomocí vnořených či případně propojených objektů. To má výhodu v jednodušším a pohodlnějším dotazování na objekty. Jednotlivé objekty jsou nazývány dokumenty. 
+Další nedílnou součástí celého nástroje je datová vrstva. Tato část komunikuje s aplikační vrstvou pomoci již zmíněných repositářů. Datová vrstva se ve skutečnosti používá dvě různé technologie ukládání dat. Prvním používaným úložištěm je relační databáze PostgreSQL, která slouží pro ukládání uživatelů a uživatelských rolí. Tato technologie byla zvolena pro tento účel zvolena zejména pro bezpečné a rychlé ukládání hesel, dat uživatelů a jednotlivých uživatelských rolí. Objekty namapované na relační databázi jsou nazývány entity. Druhým používaným úložištěm je \textit{NoSQL} databáze MongoDB. V tomto úložišti je uložena drtivá většina dat nástroje. Jsou zde uloženy například veškeré definice metrik, metriky, artefakty, nástěnky a další uživatelská data. Tato technologie byla zvolena po konzultaci s vedoucím práce díky vlastnostem lépe a pohodlněji ukládat celé objekty, rychlosti a lepší správě většího počtu dat. Tohoto benefitu bylo využito zejména při ukládání velkého množství artefaktů. Další velkou výhodou pro tuto technologii je možnost pohodlné správy celé struktury databáze. Velkou výhodou využití technologie MongoDB bylo při ukládání artefaktů a definic metriky, kdy celá struktura objektů je tvořena pomocí vnořených či případně propojených objektů. To má výhodu v jednodušším a pohodlnějším dotazování na objekty. Jednotlivé objekty jsou nazývány dokumenty.
 
 
- 
+
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1\textwidth]{Diplomka/Figures/architektura.png}
@@ -994,16 +987,16 @@ Další nedílnou součástí celého nástroje je datová vrstva. Tato část k
     \label{fig:architektura_nastroje}
 \end{figure}
 
- 
+
 Celou aplikaci je možné provozovat buď nativně, nebo pomocí technologie Docker. Při instalaci nativně je nutné nainstalovat veškeré závislosti, které nástroj využívá. Mezi takové závislosti můžeme zařadit například databázi, přesnou verzi PHP, serveru a další. Pro pohodlnější a jednodušší instalaci je vhodné použít Docker. Výhodou použití této technologie je, že aplikace je nasazena v produkčním, testovacím a vývojovém prostředí na stejných verzích závislostí a podpůrných nástrojů. V rámci instalace pomocí Dockeru se nainstaluje i nástroj Kibana a NoSQL databázi Elasticsearch pro správu všech logů aplikace. Dále se nainstalují nástroje jako například Adminer pro správu databází,  Mongo-gui pro grafickou vizualizaci dokumentů v MongoDB databázi a další. Technologii Docker a použití využívaných nástrojů se věnuje kapitola \ref{sec:docker}.
 
-\subsubsection{Symfony}
+\subsection{Symfony}
 \label{sec:symfony}
 Základním kamenem celého nástroje pro vizualizaci metrik je framework Symfony. Ten je založen na skriptovacím jazyce PHP. Aplikace je schopná běžet na PHP od verze 7.4 a výše, tedy nejnovějších a podporovaných verzích. Symfony používá plně objektového přístupu a aplikace dále využívá veškerých moderních funkcionalit skriptovacího jazyka PHP pro kontrolu datových typů. Jednotlivé metody a proměnné jsou typovány a datové typy pečlivě kontrolovány. Framework Symfony je využíván v nejnovější verzi 5.2. Jelikož Symfony vychází z frameworku Spring jazyku Java, je práce a vývoj prakticky identický. Práce je prakticky identická jelikož i přes to, že jazyk PHP je skriptovací, je silně vyžadováno deklarování datových typů a jejich následná kontrola. Kontrola je také podpořena automatickými testy a kontroly standardů. Aplikace funguje na architektuře MVC, přičemž je plně připravená místo samotných kontrolerů používat API \textit{endopointy} a prezenční vrstvu vykreslovat pomocí technologie JavaScript. Celá aplikace využívá velké množství mezipaměti což vede k vyšší rychlosti celé aplikace. Samotnou aplikaci dokážeme zrychlit při použití nového PHP 8, využivívající \textit{just-in-time} kompilaci.
 
 Důvod zvolení technologie Symfony a PHP místo technologie Spring, nebo ASP.NET bylo zejména z důvodu modernosti celé platformy, menší náročnosti na server, velké komunity vývojářů a rychlosti odezvy celého systému. Dalším benefitem byla zkušenost vývoje opravdu velkých aplikací v tomto frameworku. Jelikož je jazyk PHP nejpoužívanější jazyk spouštěný na serveru, nabízí velké množství dokumentace a podpory. \cite{ref:php_trend} Velkou výhodou je i počet vývojářů, kteří jazyk PHP znají.  V případě použití nových verzí 7.4, nebo 8 nemusí být jazyk takovou velkou potíží. Nevýhodou je špatná reputace jazyku PHP jako takového a případná reputace nevhodnosti použití pro velké podnikové aplikace. Další nevýhodou může být možnost kód psát špatně a nedbat na veškeré standardy a datové typy. Tato nevýhoda lze, stejně jako v této práci, podchytit automatickou kontrolou a opravou.
 
-\subsubsection{Datová vrstva}
+\subsection{Datová vrstva}
 Tato vrstva slouží k ukládání dat z celé aplikace. Jak již bylo nastíněno, v aplikaci existují dva typy úložiště:
 
 \begin{itemize}
@@ -1028,9 +1021,9 @@ Následně existuje v aplikaci druhá sekce, která seskupuje dokumenty zabývaj
 Pro oba typy úložiště je používán ORM framework Doctrine, který je ve výchozím stavu součástí Symfony. Ten slouží pro komunikaci mezi aplikací a databázemi. Framework Doctrine se skládá z abstraktní databázové části  a ORM části. Abstraktní část slouží pro připojení k různým typům databází a také zajišťuje základní přístupy a metody pro prací s databázemi. ORM část má na starost mapování objektů v aplikační části na databázový objekt a zpět. Framework Doctrine používá pro mapování objektů návrhový vzor \textit{data mapper}.
 
 
-Dále v aplikaci existuje třetí typ úložiště -- Elasticsearch. Toto úložiště slouží pouze pro ukládání logů. Neslouží pro ukládání samotných dat aplikace. Tato data je poté možno jednoduše zobrazit v aplikaci Kibana, která logy shromažďuje a pomocí ní lze v lozích hledat a filtrovat. 
+Dále v aplikaci existuje třetí typ úložiště -- Elasticsearch. Toto úložiště slouží pouze pro ukládání logů. Neslouží pro ukládání samotných dat aplikace. Tato data je poté možno jednoduše zobrazit v aplikaci Kibana, která logy shromažďuje a pomocí ní lze v lozích hledat a filtrovat.
 
-\subsubsection{Docker}
+\subsection{Docker}
 \label{sec:docker}
 Je to open-source nástroj, pomocí kterého můžeme vytvořit jednotné rozhraní pro instalaci aplikace. Docker nám zajišťuje, že ač nasadíme aplikaci na různé operační systémy, tak nám vytvoří stejné definované prostředí. Oproti klasickým virtuálním strojům Docker kontejner neobsahuje virtualizovaný operační systém. Tím je výrazně snížena náročnost a rychlost celé funkčnosti oproti klasickým virtuálním strojům. S tím souvisí i menší velikost a nižší náklady na provoz než celý virtuální stroj. Nevýhodou Linuxových kontejnerů je horší podpora na operačních systémech Windows a macOS.
 
@@ -1042,42 +1035,42 @@ Největší výhoda tkví v jednodušší instalaci, jelikož stačí nainstalov
 
 
 
-\subsection{Export dat z IBM Jazz}
+\section{Export dat z IBM Jazz}
 \label{sec:ibm_export}
-% popsat jednotlivé druhy napojení na jazz, Automaticky pomocí cronu, rest api 
+% popsat jednotlivé druhy napojení na jazz, Automaticky pomocí cronu, rest api
 Jednotlivá data a artefakty se nevytvářejí ve vytvářeném nástroji pro sledování metrik, ale importují se a stahují z platformy IBM Jazz. Tyto požadavky a artefakty je tedy nutné nejprve vložit do platformy IBM Jazz. Artefakty je vhodné zařadit do modulů dle jejich oblasti. V rámci Automotive SPICE můžeme mezi takové moduly zařadit například hardwarové požadavky se zkratkou HWRS. Používání těchto modulů je vhodné pro následné vytváření metrik a selekci pouze určitých typů artefaktů.
 
 Pro stahování dat z platformy IBM Jazz je možné použít několik druhů napojení. V rámci této kapitoly budou možná napojení rozebrána a vybráno právě jedno, které bude následně v rámci praktické části použito pro export do prototypového nástroje.
 
-\subsubsection{Manuální export do CSV}
+\subsection{Manuální export do CSV}
 Jde o nejprimitivnější možnost exportu jednotlivých artefaktů. Tato úloha nelze nijak jednoduše a elegantně optimalizovat. Export může vyvolat pouze přihlášený uživatel s povolenými přístupy k artefaktům. Export je možné vyvolat buď na stránce s výpisem všech artefaktů, nebo na stránce s výpisem pouze určitých artefaktů (například při zobrazení jen daného modulu), nebo také na detailu pouze jednoho artefaktu.
 
 Výhoda tohoto exportu je v jednoduchosti exportu. Následné zpracování CSV je poté také nenáročné na implementaci. Výhoda je, že do CSV je možné vložit prakticky jakékoli údaje až na propojení s ostatními artefakty. Velká nevýhoda je však nemožnost tento proces automatizovat. Vždy by musel existovat uživatel, který CSV vygeneruje a nahraje do nástroje pro generování metrik. Tímto je tento export prakticky pro pravidelné aktualizace nepoužitelný.
 
-\subsubsection{Reportable REST API}
+\subsection{Reportable REST API}
 Toto API, jak již název napovídá, funguje na principu architektury REST. Reportable REST API slouží pouze pro export z nástroje konfiguračního managementu, neboli na platformě IBM Jazz pojmenované jako Change and Configuration Management (CCM). Tento nástroj bohužel neobsahuje žádné artefakty a požadavky a slouží zejména pro správu projektu a zdrojového kódu.
 
 Abychom získali data z tohoto API je nutné nejprve provést autentifikaci. Po úspěšné autentifikaci lze data získat pomocí HTTP metody GET. Ta nám vrátí XML se položkami konfiguračního managamentu. Data vrácená ve formátu XML lze poté jednoduše zpracovat a uložit. Pomocí speciálních parametrů v HTTP metodě dokážeme data filtrovat. Jelikož však API neslouží pro data z oblasti správy požadavků, nemůže být pro prototypový nástroj použit.
 
-\subsubsection{Process REST API}
+\subsection{Process REST API}
 Jde o provizorní a testovací API vyvíjené IBM, které se může dle dokumentace v budoucnosti změnit. Slouží zejména pro export informací o projektech. API funguje na principu REST a tedy můžeme jej zavolat pomocí klasických HTTP GET a POST metod. Slouží nejen pro export dat ale i import dat do platformy IBM Jazz. V rámci API dokážeme zjistit údaje o uživatelích pracujících na projektu, administrátory, moduly daného projektu, role a další. Bohužel na školním serveru s nainstalovaným IBM Jazz nebylo toto API k dispozici a nebylo tedy možné otestovat veškeré vlastnosti. Velká nevýhoda je, že je API pouze provizorní a může se v budoucnu změnit. Další nevýhodou je, že pravděpodobně dle dokumentace neobsahuje podrobné informace o artefaktech.
 
-\subsubsection{Work Items Service provider for OSLC 2.0 CM}
+\subsection{Work Items Service provider for OSLC 2.0 CM}
 Toto API poskytuje pomocí technologie Open Services for Lifecycle Collaboration (OSLC) ve verzi 2 přístup skoro ke každé informaci na platformě IBM Jazz. Koncepce OSLC je založena na tom, že webová stránka je přístupná jak pomocí HTML tak i pomocí formátu RDF, který je jednoduše strojově čitelný. Přístup k formátu RDF je stejně jako k HTML dostupný pomocí protokolu HTTP.
 
 Toto napojení je velmi komplexní a nabízí velké množství informací z prakticky všech aplikací platformy IBM Jazz. Autorizace k API probíhá pomocí speciální HTTP metody. Přístup k jednotlivým datům je řešen pomocí HTTP metod. Při volání určité HTTP metody je možné data filtrovat pomocí parametrů. Kromě filtrování je možné pomocí parametrů data stránkovat. Výhodou je, že nemusíme mít v naší aplikaci definované jednotlivé URL, ale stačí jedna základní, jelikož program se k výsledné metodě může dostat sám díky struktuře RDF. Výsledky je možné kromě formátu XML zobrazit také ve formátu JSON.
 
 Toto napojení jsem podrobně testoval a zkoušel na školním serveru s nainstalovanou platformou IBM Jazz. Pomocí tohoto napojení můžeme jednoduše získat jednotlivé artefakty v projektu, informace o projektech, modulech v projektu, uživatelích a velké kvantum ostatních informací. Ač napojení nabízí obrovské množství informací a dat, tak je pro využití stahování dat do našeho prototypového nástroje nevhodné, jelikož nenabízí zevrubné informace o atributech artefaktu. Napojení bohužel nabízí pouze základní atributy, ale nenabízí uživatelsky definované atributy a propojení artefaktů s jinými artefakty.
 
-\subsubsection{DOORS Next Generation Rest API}
+\subsection{DOORS Next Generation Rest API}
 Přístup k datům pomocí tohoto API probíhá pomocí HTTP metod na architektuře REST. Napojení nabízí export dat z nástroje IBM Engineering Requirements DOORS Next. Ten obsahuje zejména artefakty, které jsou v projektech řazeny do modulů a adresářů. Pomocí napojení dokážeme exportovat veškeré atributy artefaktů včetně napojení na ostatní artefakty. Mezi atributy, které lze exportovat, patří i veškeré uživatelsky definované atributy.
 
 Autorizace připojení k API probíhá pomocí speciální metody, která nám vrátí \textit{cookies}, které slouží pro následný dotaz. Data získáváme ve formátu XML po dotazu na definované URL. Pomocí parametrů v URL můžeme výsledky filtrovat a stránkovat. Stejně jako v případě jiných REST API dokážeme tuto činnost automatizovat. Mezi další výhody patří to, že API poskytuje veškeré údaje a data, které potřebujeme pro sestavení metrik. Jedinou nevýhodou může být špatná dokumentace, která neobsahuje veškeré metody. Ty je nutné hledat na různých diskuzních fórech.
 
-\subsubsection{Napojení na databázi}
+\subsection{Napojení na databázi}
 Tento způsob můžeme zařadit k nejzazšímu možnému způsobu exportu dat. Tento způsob lze využít pro export prakticky jakýchkoliv typů dat. Jelikož platforma IBM Jazz používá pro ukládání dat relační databázi, můžeme pro export dat z platformy využít SQL dotazy. Plusem této metody je, že proces můžeme zautomatizovat. Další výhoda způsobu exportu dat přímo z databáze je v tom, že můžeme získat při znalosti architektury databáze prakticky jakékoliv data. S tím souvisí velká nevýhoda a to právě znalost struktury a architektury celé databáze. Další nevýhoda je, že ne vždy můžeme přístup k databázi získat (například při používání platformy IBM Jazz v cloudu). Existuje zde i pravděpodobnost, že při aktualizaci platformy Jazz dojde ke změně struktury databáze a tím může přestat správně fungovat export dat.
 
-\subsubsection{Porovnání}
+\subsection{Porovnání}
 Platforma IBM Jazz nabízí velké množství možností pro export dat. Jelikož většina z nich je zastaralá, nebyla v rámci této kapitoly ani zmíněna. Některé stále podporované možnosti jsou z hlediska přístupu modernější a některé starší a je pravděpodobné že budou v budoucnosti zrušeny. Většina analyzovaných možností jsou bohužel nevyhovující ať už z toho důvodu, že nepodporují export dat, která potřebujeme pro definici metrik, nebo také nemožnosti automatizace celého procesu. V tabulce \ref{tab:ibm_jazz_export} jsou přehledně zmíněny vlastnosti a kritéria exportu dat:
 
 \begin{enumerate}
@@ -1106,7 +1099,7 @@ Platforma IBM Jazz nabízí velké množství možností pro export dat. Jeliko�
 
 Na základě porovnání vychází, že ideálním nástrojem pro automatické stahování dat z platformy IBM Jazz je  DOORS Next Generation Rest API, které kromě horší dokumentace nabízí veškeré vlastnosti, které jsou potřeba pro stahování dat, ze kterých se budou definovat a vytvářet metriky. Pakliže by neexistoval požadavek na pokročilé stahování uživatelských atributů artefaktů byl by lepším řešením Work Items Service provider for OSLC 2.0 CM, jelikož nabízí lépe zdokumentované metody. Dále je možné veškeré informace stahovat rovnou z databáze celé platformy IBM Jazz. Tento způsob je však neperspektivní a hrozí, že kdykoli se databáze změní a hrozí, že stahování dat přestane fungovat.
 
-\subsection{Stahování a ukládání dat}
+\section{Stahování a ukládání dat}
 Na základě výsledků analýzy v kapitole \ref{sec:ibm_export} byl vybrán export dat pomocí IBM Jazz je  DOORS Next Generation Rest API. Aby bylo zajištěno pravidelné stahování dat z REST API byl vytvořen cron modul, který se spouští pravidelně v definované periodě. Tento skript stahuje data pro veškeré definované projekty v prototypovém nástroji z nastavené URL k platformě IBM Jazz.
 
 Jakmile si skript stáhne XML s daty artefaktů pro daný projekt, vytvoří z jednotlivých elementů objekt typu \textit{RmArtifact}, který obsahuje veškeré údaje získané z XML souboru. Tyto objekty slouží jako datové objekty, které se poté namapují na konečné aplikační objekty, které se uloží do databáze. Aby bylo zajištěné co nejefektivnější, nejsrozumitelnější a nejrychlejší stahování a čtení XML souboru byly provedeny dva prototypy, na kterých byla ověřena rychlost čtení. Pro čtení z XML soubory byly vybrány čtyři techniky:
@@ -1184,7 +1177,7 @@ Průměrně          & 28,997               & 21,108                & 22,6191   
 (9, 17.998)
 (10, 20.312)
     };
-    
+
     \addplot[
     color=green,
     mark=x,
@@ -1201,7 +1194,7 @@ Průměrně          & 28,997               & 21,108                & 22,6191   
 (9, 26.211)
 (10, 19.996)
     };
-    
+
     \addplot[
     color=orange,
     mark=x,
@@ -1218,8 +1211,8 @@ Průměrně          & 28,997               & 21,108                & 22,6191   
 (9, 17.315)
 (10, 16.732)
     };
-    
-\legend{Algoritmus 1, Algoritmus 2, Algoritmus 3,  Algoritmus 4}   
+
+\legend{Algoritmus 1, Algoritmus 2, Algoritmus 3,  Algoritmus 4}
 \end{axis}
 \end{tikzpicture}
 \caption{Časy přečtení a získání jednoho artefaktu z XML souboru v milisekundách}
@@ -1230,23 +1223,23 @@ Z výsledků analýzy můžeme vidět, že nejrychlejší algoritmus pro přečt
 
 Nejrychlejší algoritmus 4 má výhodu kromě rychlosti také v možnosti používat metody pro přístup k atributům daného objektu. Bohužel je zde velká nevýhoda ve formě složitosti a délce celého kódu, který je navíc kvůli velkého počtu cyklů pro vnořené elementy velmi nepřehledný. Zároveň dle dalších testů je velmi pravděpodobné, že rychlost razantně se zpomalí při čtení více artefaktů za sebou, jelikož se zaplní paměť velkým množstvím objektů \textit{SimpleXMLElement}.
 
-Z tohoto důvodu byl pro implementaci extrakci a zpracování dat artefaktů z XML zvolen algoritmus 2, který kombinuje technologii XPath a objekty typu \textit{SimpleXMLElement}. Pro základní iteraci, a základní elementy je používán XPath. Tento způsob kromě dobré rychlosti zaručuje i to, že celý kód nebude tak složitý jako v případě čtvrtého algoritmu. 
+Z tohoto důvodu byl pro implementaci extrakci a zpracování dat artefaktů z XML zvolen algoritmus 2, který kombinuje technologii XPath a objekty typu \textit{SimpleXMLElement}. Pro základní iteraci, a základní elementy je používán XPath. Tento způsob kromě dobré rychlosti zaručuje i to, že celý kód nebude tak složitý jako v případě čtvrtého algoritmu.
 
 Nejprve se jednotlivé elementy uloží do pole, dle identifikátoru daného elementu. Zároveň se jejich jednotlivé atributy zařadí do vícerozměrného pole dle identifikátoru daného artefaktu. Jakmile je celý XML soubor pro daný projekt přečtený, veškeré artefakty se namapují na pole objektů typu \textit{RmArtifact}. Důvod proč, se elementy z XML souboru nemapují rovnou na objekty \textit{RmArtifact} je z důvodu automatizace čtení XML souboru.
 
 Dále jsou tyto soubory validovány a jejich data upravovány a transformovány do požadované formy. Tyto objekty vzniklé stáhnutím dat z platformy IBM Jazz se poté mapují na dokumenty a ukládají do NoSQL MongoDB databáze. Při tomto procesu se kontroluje, zda daný artefakt již neexistuje a nemá se pouze vytvořit nová verze daného artefaktu dle data stažení. Pakliže daný artefakt neexistuje, artefakt se založí a vytvoří se první verze artefaktu.
 
-\subsection{Zobrazení dat}
+\section{Zobrazení dat}
 Jakmile jsou data z platformy IBM Jazz stažena a naimportována je možné si je zobrazit jak v administraci tak v uživatelské části daného projektu. Zobrazovaná data zobrazované v administrátorské části jsou pouze textová. V administrační části se nenachází žádné grafické zobrazení dat, jelikož administrační část slouží zejména pro správu celé aplikace a vytváření definic metrik. Textové zobrazení je vypisováno zejména v tabulkách. Tento přístup byl zvolen zejména kvůli tomu, že administrátor nepotřebuje vidět detailně daná data a také nepotřebuje přímo s nimi pracovat.
 
-Jak již bylo zmíněno, možnost zobrazení všech stahovaných dat se také nachází v uživatelské sekci prototypového nástroje, která je přístupná pro všechny registrované uživatele. Jednotlivá stahovaná data se seskupují podle projektu a modulu, do kterého patří. Na výpisech je možné si data buď zobrazit pro všechny projekty a moduly, nebo je také možné si data vyfiltrovat dle definovaného projektu, či modulu. Data je možné zobrazit jednak na výpisech jednotlivých typů dat, nebo na detailním náhledu. Oproti administrační části celého systému je zde možnost si data, zejména metriky, zobrazit graficky pomocí grafu. 
+Jak již bylo zmíněno, možnost zobrazení všech stahovaných dat se také nachází v uživatelské sekci prototypového nástroje, která je přístupná pro všechny registrované uživatele. Jednotlivá stahovaná data se seskupují podle projektu a modulu, do kterého patří. Na výpisech je možné si data buď zobrazit pro všechny projekty a moduly, nebo je také možné si data vyfiltrovat dle definovaného projektu, či modulu. Data je možné zobrazit jednak na výpisech jednotlivých typů dat, nebo na detailním náhledu. Oproti administrační části celého systému je zde možnost si data, zejména metriky, zobrazit graficky pomocí grafu.
 
 % předpříprava dat query language
 
-\subsection{Definice a vytváření metrik}
+\section{Definice a vytváření metrik}
 Pakliže si přeje uživatel vytvořit metriku úplně od základu včetně nové definice metriky, bude nejprve potřebovat vytvořit definici dané metriky. Definice metriky může aktuálně vytvořit pouze administrátor v administraci prototypového nástroje. Tento způsob byl zvolen z toho důvodu, že administrátor vytvoří jednotlivé definice, dle používaného standardu, nebo dle potřeb měření procesů daného projektu a společnosti.
 
-Administrátor vytváří definice metrik pomocí vícekrokového formuláře. V prvním kroku vytvoření definice metriky se nachází základní údaje o definici, jako je například název, popis a nebo zda je daná metrika podílová či nikoli. Dále se v druhém kroku formuláře nacházejí dynamická pole, pro definování jednotlivých podmínek, dle kterých se bude řídit zobrazení konečné metriky. Pakliže uživatel zvolí, aby byla definice metriky podílová, tak může zvolit podmínky pro druhé měření, které bude první podmínky dělit. Podmínky je možné volit pomocí polí, ve kterých je možné vyhledávat. Třetí krok slouží pro kontrolu vygenerovaných podmínek, které z formuláře vzniknou. Celá definice metriky je nezávislá na modulech a projektu. Tyto údaje se poté volí až při vytváření samotné metriky. Tento způsob byl zvolen jednak pro možnost využití různých definic pro více druhů metrik, tak i na doporučení vedoucího práce Ing. Svatopluka Štolfy, PhD. Celý proces vytváření definice metriky byl inspirován nástrojem \textit{Report builder}, který se nachází na platformě IBM Jazz. Druhý krok procesu vytváření definice metriky je možné vidět na obrázku \ref{fig:report_builder_admin}. 
+Administrátor vytváří definice metrik pomocí vícekrokového formuláře. V prvním kroku vytvoření definice metriky se nachází základní údaje o definici, jako je například název, popis a nebo zda je daná metrika podílová či nikoli. Dále se v druhém kroku formuláře nacházejí dynamická pole, pro definování jednotlivých podmínek, dle kterých se bude řídit zobrazení konečné metriky. Pakliže uživatel zvolí, aby byla definice metriky podílová, tak může zvolit podmínky pro druhé měření, které bude první podmínky dělit. Podmínky je možné volit pomocí polí, ve kterých je možné vyhledávat. Třetí krok slouží pro kontrolu vygenerovaných podmínek, které z formuláře vzniknou. Celá definice metriky je nezávislá na modulech a projektu. Tyto údaje se poté volí až při vytváření samotné metriky. Tento způsob byl zvolen jednak pro možnost využití různých definic pro více druhů metrik, tak i na doporučení vedoucího práce Ing. Svatopluka Štolfy, PhD. Celý proces vytváření definice metriky byl inspirován nástrojem \textit{Report builder}, který se nachází na platformě IBM Jazz. Druhý krok procesu vytváření definice metriky je možné vidět na obrázku \ref{fig:report_builder_admin}.
 
 \begin{figure}[!ht]
     \centering
@@ -1267,10 +1260,10 @@ Jakmile administrátor, nebo skript, vytvoří definice metrik dle používanéh
 
 U metriky můžeme například zvolit, zda se mají na nástěnce, nebo na detailu dané metriky, zobrazovat v grafu popisky. Tato funkcionalita byla po konzultaci zavedena zejména z důvodu větší možnosti konfigurace a personalizace. Jelikož je v rámci standardu Automotive SPICE nutné měřit data za určitý časový úsek, existuje v nastavení metriky možnost nastavení takového omezení.
 
-V rámci praktické práce byly vytvořeny některé demonstrativní metriky na základě standardu Automotive SPICE. \cite{ref:metrics_and_dashboard_for_level_two} Demonstrativní data jsou řešena pomocí Symfony komponenty \textit{DataFixtures}, kterou je možné spustit a data do aplikace vložit pomocí příkazu \textit{composer db-demo} v příkazové řádce. 
+V rámci praktické práce byly vytvořeny některé demonstrativní metriky na základě standardu Automotive SPICE. \cite{ref:metrics_and_dashboard_for_level_two} Demonstrativní data jsou řešena pomocí Symfony komponenty \textit{DataFixtures}, kterou je možné spustit a data do aplikace vložit pomocí příkazu \textit{composer db-demo} v příkazové řádce.
 
-\subsection{Nástěnka}
-V uživatelské sekci se po přihlášení uživatele zobrazí stránka, kterou si může každý uživatel upravovat dle svých potřeb. Každý uživatel si na nástěnku může libovolně přidávat metriky pomocí výběru ve vrchní části metriky. Samozřejmostí je také možnost si zobrazení metriky z nástěnky odstranit. Uživatelé si mohou dle libosti jednotlivé metriky na nástěnce řadit a přesouvat. Přesouvání funguje pomocí technologie JavaScript. Ukládaní a změna pořadí metriky je prováděno technologií AJAX na pozadí. Ukládání nástěnky tedy proběhne při jakékoli změně rozvržení nástěnky na pozadí bez nutnosti načíst znova stránku. Pomocí této technologie funguje také odstraňování metrik z nástěnky. 
+\section{Nástěnka}
+V uživatelské sekci se po přihlášení uživatele zobrazí stránka, kterou si může každý uživatel upravovat dle svých potřeb. Každý uživatel si na nástěnku může libovolně přidávat metriky pomocí výběru ve vrchní části metriky. Samozřejmostí je také možnost si zobrazení metriky z nástěnky odstranit. Uživatelé si mohou dle libosti jednotlivé metriky na nástěnce řadit a přesouvat. Přesouvání funguje pomocí technologie JavaScript. Ukládaní a změna pořadí metriky je prováděno technologií AJAX na pozadí. Ukládání nástěnky tedy proběhne při jakékoli změně rozvržení nástěnky na pozadí bez nutnosti načíst znova stránku. Pomocí této technologie funguje také odstraňování metrik z nástěnky.
 
 Nástěnka slouží zejména pro rychlou kontrolu metrik. Grafy metrik nelze totiž na nástěnce filtrovat a ani nijak podrobně zobrazovat. Typický případ užití například je, když manažer potřebuje získat rychlé informace o průběhu projektu z vícero metrik v jednu chvíli. Dokáže například zjistit, zda se vývoj projektu ubírá správným směrem, či nikoli. Z nástěnky je možné po kliknutí na název metriky přesměrovat na detailní výpis dané metriky. Dále je zde možnost, si pomocí ikony třech teček metriku exportovat, nebo nastavit. Nástěnku s několika metrikami můžeme vidět na obrázku \ref{fig:dashboard_metrics}.
 
@@ -1281,10 +1274,10 @@ Nástěnka slouží zejména pro rychlou kontrolu metrik. Grafy metrik nelze tot
     \label{fig:dashboard_metrics}
 \end{figure}
 
-Celou individuální nástěnku si může každý uživatel exportovat, nebo poté importovat například nástěnku jiného uživatele. Export nástěnky funguje na principu stažení XML souboru s jednotlivými metrikami a pozicemi. Tento soubor je poté možné sdílet dalším kolegům a poté naimportovat. Případně je možné tento soubor použít pro vlastní zálohu nástěnky a kdykoli si obnovit celou nástěnku do původního stavu. Nástěnka se poté zobrazí dle nahraného XML souboru. 
+Celou individuální nástěnku si může každý uživatel exportovat, nebo poté importovat například nástěnku jiného uživatele. Export nástěnky funguje na principu stažení XML souboru s jednotlivými metrikami a pozicemi. Tento soubor je poté možné sdílet dalším kolegům a poté naimportovat. Případně je možné tento soubor použít pro vlastní zálohu nástěnky a kdykoli si obnovit celou nástěnku do původního stavu. Nástěnka se poté zobrazí dle nahraného XML souboru.
 
 
-\subsection{Zobrazení metrik}
+\section{Zobrazení metrik}
 Metriky je možné v rámci nástroje zobrazit jednak textově pomocí tabulky, tak i graficky podle zvoleného typu grafu v nastavení metriky. Textové zobrazení je dostupné pouze na detailním zobrazení metriky v uživatelské části nástroje. Vypočítaná data metriky v tabulce jsou seskupena dle data sběrů. Tedy kdy byly dané artefakty naimportované z platformy IBM Jazz. V tabulce se již vyskytují agregovaná data, která mohou být zobrazena podle nastavení metriky buď v procentech, nebo jako prosté číslo.
 
 Na detailním výpisu je dále zobrazen graf dle zvoleného typu grafu. V teoretické části této práce byly zvoleny pro analýzu určité JavaScript knihovny, které je možné nalézt v kapitole \ref{sec:visualisation}. První z knihoven pro zobrazení grafů byla analyzovaná knihovna Google Charts. Mezi výhody, které nabízí patří možnost plného použití zdarma a velké množství typů grafů. Během analýzy bylo však zjištěno, že grafy nejsou interaktivní a není možné bez obnovení stránky graf filtrovat a upravovat.
@@ -1303,7 +1296,7 @@ Pro zobrazení grafu na základě analýzy byla zvolena knihovna \textit{amChart
 \end{figure}
 
 
-\subsection{Výstupní reporty a exporty metrik}
+\section{Výstupní reporty a exporty metrik}
 Kromě zobrazení metrik pomocí tabulky a grafu ve webové aplikaci je vhodné mít tyto výsledky i v podobě, ke které není potřeba pro zobrazení internet. Tato možnost je také vhodná například pro prezentování výsledků vývoje. Díky tomu může například manažer vyššímu vedení pomocí metrik zobrazených v prezentaci, nebo dokumentu, prezentovat, jak daný projekt postupuje a případně jak je jeho tým efektivní. Právě kvůli těmto případům užití byly v rámci nástroje vyvinuty exporty metrik.
 
 V rámci nástroje byly vyvinuty dva typy exportu metrik. První možností exportu je exportování samostatné metriky. Tento export slouží pro pouhé stažení dat a případně grafu metriky. Pomocí exportu je možné si metriku stáhnout do několika formátů, mezi které patří Microsoft Word a PowerPoint. Dále je možné stáhnout agregovaná data ve formátu CSV. Data jsou poté stažena ve formátu se dvěma sloupci -- datum sběru a hodnota. Vyvolat daný export je možné buď přímo z nástěnky u metriky, kterou chce uživatel stáhnout, na výpise jednotlivých metrik, nebo na detailním zobrazení dané metriky. Tlačítko pro export je možné vidět na obrázku \ref{fig:dashboard_export}.
@@ -1315,39 +1308,39 @@ V rámci nástroje byly vyvinuty dva typy exportu metrik. První možností expo
     \label{fig:dashboard_export}
 \end{figure}
 
-Druhou možností exportu dat je pomocí takzvaných dokumentů. Tento způsob je možné také nalézt například v nástroji codeBeamer ALM nebo Siemens Polarion, které jsou popsané v kapitole \ref{sec:alm}. Hlavní předností tohoto exportu je možnost si vytvořit dokument, do kterého je vloženo několik metrik, jak ve formě grafického zobrazení, tak pomocí tabulkového zobrazení. Mezi tyto metriky je možné vložit libovolné množství odstavců textu a jejich nadpisů. Díky tomu může uživatel vytvořit dokument, do kterého vloží jednotlivé sekce dle potřeby. Dokument je vhodný například pro již zmíněnou prezentaci výsledků daného vývojového týmu. Dokumenty se ukládají do MongoDB databáze, přičemž jednotlivé sekce dokumentu jsou uložené jako vložené objekty do hlavního objektu celého dokumentu.
+Druhou možností exportu dat je pomocí takzvaných dokumentů. Tento způsob je možné také nalézt například v nástroji codeBeamer ALM nebo Siemens Polarion, které jsou popsané v kapitole \ref{sec:alm}. Hlavní předností tohoto exportu je možnost si vytvořit dokument, do kterého je vloženo několik metrik, jak ve formě grafického zobrazení, tak pomocí tabulkového zobrazení. Mezi tyto metriky je možné vložit libovolné množství odstavců textu a jejich nadpisů. Díky tomu může uživatel vytvořit dokument, do kterého vloží jednotlivé sekce dle potřeby. Dokument je vhodný například pro již zmíněnou prezentaci výsledků daného vývojového týmu. Dokumenty se ukládají do MongoDB databáze, přičemž jednotlivé sekce dokumentu jsou uložené jako vložené objekty do hlavního objektu celého dokumentu. 
 
-Dokumenty je možné vytvořit na stránce nazvané \textit{Dokumenty}. Stránka se nachází na uživatelské straně nástroje. Při vytvoření dokumentu si uživatel zvolí název, popis, projekt a formát exportu. Poté si může přidávat  jednotlivé bloky s textem, grafem nebo tabulkou metriky. Takto si může pohodlně a dynamicky vytvořit celý dokument. Ten je poté možné pomocí tlačítka exportovat do vybraného formátu, mezi které patří Microsoft Word a PowerPoint, PDF, nebo také HTML. Proces vytváření dokumentu je možné vidět na obrázku \ref{fig:report_document}. Detailní výpis ve webovém nástroji vygenerovaného dokumentu je možné vidět na obrázku \ref{fig:report_document_detail} 
+Dokumenty je možné vytvořit na stránce nazvané \textit{Dokumenty}. Stránka se nachází na uživatelské straně nástroje. Při vytvoření dokumentu si uživatel zvolí název, popis, projekt a formát exportu. Poté si může přidávat  jednotlivé bloky s textem, grafem nebo tabulkou metriky. Takto si může pohodlně a dynamicky vytvořit celý dokument. Ten je poté možné pomocí tlačítka exportovat do vybraného formátu, mezi které patří Microsoft Word a PowerPoint, PDF, nebo také HTML. Pokaždé, když si uživatel dokument otevře, nebo exportuje, tak vidí aktuální stav jednotlivých metrik. Celý dokument je tedy jakási živá stránka, která se aktualizuje dle nejnovějších dat. Proces vytváření dokumentu je možné vidět na obrázku \ref{fig:report_document}. Detailní výpis ve webovém nástroji vygenerovaného dokumentu je možné vidět na obrázku \ref{fig:report_document_detail}.
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=1\textwidth]{Diplomka/Figures/report_document.jpg}
+    \includegraphics[width=0.9\textwidth]{Diplomka/Figures/report_document.jpg}
     \caption{Proces vytváření dokumentu}
     \label{fig:report_document}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=1\textwidth]{Diplomka/Figures/report_document_detail.jpg}
+    \includegraphics[width=0.9\textwidth]{Diplomka/Figures/report_document_detail.jpg}
     \caption{Detailní výpis vygenerovaného dokumentu v nástroji}
     \label{fig:report_document_detail}
 \end{figure}
 
 Veškeré exporty do formátů pro programy Microsoft Office jsou naprogramovány pomocí knihovny \textit{PhpOffice}, která je volně dostupná na platformě \textit{GitHub} \cite{ref:phpoffice}. V rámci knihovny se používají podčásti \textit{PhpSpreadsheet} pro export do formátu Excel, \textit{PhpPresentation} pro export dat do formátu PowerPoint a \textit{PHPWord} pro exportování do formátu Word. Pro exportování do ostatních formátů, mezi které patří například CSV je použito klasických knihoven jazyka PHP.
 
- 
-\section{Závěr}
+
+\chapter{Závěr}
 Clem práce bylo kromě vytvoření prototypového nástroje pro sledování a zobrazení metrik potřebných pro splnění standardu Automotive SPICE také analyzovat a prozkoumat již existující nástroje pro správu životního cyklu vývoje celého produktu, měření kvalit softwarových procesů, sběru artefaktů a nakonec i samotná správa softwarových procesů.
 
-Teoretická část této práce je věnována studiu obecné oblasti softwarového inženýrství, softwarovým procesům, správě životního cyklu aplikace, sběru artefaktů a také standardu Automotive SPICE. V rámci teoretické části byly rozebrány jednotlivé části softwarového procesu -- plánování, monitorování a uzpůsobení, které jsou důležité pro pochopení vyvíjeného prototypového nástroje v praktické části této práce. Dodržování určitého standardu přináší výhody ve formě efektivnějšího vývoje, lepší správy procesů, ale také lepší kontrolu kvality výsledného produktu. Aby bylo možné hodnotit kvalitu celého projektu je nutné procesy a jejich výsledky hodnotit. Hodnocení je vhodné vizualizovat v čase, přičemž jedna z možností je využít metriky. Za pomocí metrik dokážeme hodnotit výsledky procesu a zajistit správné směřování celého projektu. 
+Teoretická část této práce je věnována studiu obecné oblasti softwarového inženýrství, softwarovým procesům, správě životního cyklu aplikace, sběru artefaktů a také standardu Automotive SPICE. V rámci teoretické části byly rozebrány jednotlivé části softwarového procesu -- plánování, monitorování a uzpůsobení, které jsou důležité pro pochopení vyvíjeného prototypového nástroje v praktické části této práce. Dodržování určitého standardu přináší výhody ve formě efektivnějšího vývoje, lepší správy procesů, ale také lepší kontrolu kvality výsledného produktu. Aby bylo možné hodnotit kvalitu celého projektu je nutné procesy a jejich výsledky hodnotit. Hodnocení je vhodné vizualizovat v čase, přičemž jedna z možností je využít metriky. Za pomocí metrik dokážeme hodnotit výsledky procesu a zajistit správné směřování celého projektu.
 
-Hlavním praktickým cílem této práce bylo vytvořit nástroj pro sledování a zobrazení metrik. Vytvoření tohoto prototypového nástroje neprobíhalo pouhou implementací a programováním.  Během práce na praktické části jsem si tedy vyzkoušel v praxi vývoj nástroje pomocí celého vývojového cyklu. Jedna z nejdůležitějších a počátečních fází byla analýza a sběr požadavků na výsledný nástroj. Během analýzy byly vytvářeny jednak případy užití, ale také celkový návrh architektury a uživatelského rozhraní nástroje. Během samotného vytváření nástroje probíhaly s vedoucím práce konzultace na bázi čtrnáctidenních iteracích, při kterých byly stanoveny priority, které se budou vždy následující dny řešit. 
+Hlavním praktickým cílem této práce bylo vytvořit nástroj pro sledování a zobrazení metrik. Vytvoření tohoto prototypového nástroje neprobíhalo pouhou implementací a programováním.  Během práce na praktické části jsem si tedy vyzkoušel v praxi vývoj nástroje pomocí celého vývojového cyklu. Jedna z nejdůležitějších a počátečních fází byla analýza a sběr požadavků na výsledný nástroj. Během analýzy byly vytvářeny jednak případy užití, ale také celkový návrh architektury a uživatelského rozhraní nástroje. Během samotného vytváření nástroje probíhaly s vedoucím práce konzultace na bázi čtrnáctidenních iteracích, při kterých byly stanoveny priority, které se budou vždy následující dny řešit.
 
 Jednou z důležitých fází návrhu a implementace nástroje bylo napojení na platformu IBM Jazz. Pro implementaci napojení bylo po zdlouhavé analýze vybráno řešení napojení pomocí REST API, které nabízí možnost automatizovaného stahování dat z této platformy. Tento přístup byl místo OSLC zvolen zejména díky možnosti stahovat uživatelské atributy artefaktů včetně propojení s jinými artefakty. Tuto funkcionalitu bohužel OSLC nenabízelo. Takto stahované artefakty jsou ukládány do NoSQL databáze, která nabízí možnost ukládat složité objekty. Velkou výhodou oproti ostatním existujícím podobným nástrojům je možnost stahované artefakty verzovat a ukládat dle data stažení. Díky tomu může uživatel nástroje vidět, jak se jednotlivé artefakty mění v čase.
 
 Díky ukládání artefaktů v čase je následně možné vytvářet a definovat trendové metriky, které jsou důležité pro splnění standardu Automotive SPICE. U artefaktů jsou z platformy IBM Jazz ukládání veškeré atributy a to včetně uživatelských. Administrátor může nejen dle specifikací tohoto standardu vytvořit definice metriky. Během definice metriky lze vytvořit podmínky ze všech možných atributů, které byly v nástroji v minulosti staženy a naimportovány z platformy IBM Jazz. Dále je možné u definice metriky nastavit z jakých modulů má výsledná metrika čerpat data. Definice metrik nejsou závislé na projektu a jsou tedy jednoduše znovupoužitelné na jiném projektu. Z těchto definic poté uživatelé vytvářejí samotné metriky vázané na určitý projekt, které lze zobrazit pomocí tabulky a vizualizovat pomocí grafu. Metriky lze třídit dle projektu a zobrazit buď na nástěnce, která je konfigurovatelná pro každého uživatele, nebo na detailním výpisu určité metriky. Veškeré tyto funkcionality vychází buď z existujících nástrojů, případně právě naopak z funkčností, které v těchto nástrojích chybí a jsou důležité pro splnění standardu Automotive SPICE. Vygenerované metriky v čase lze exportovat například do formátů pro programy Microsoft Office, CSV, nebo PDF. Exportování je možné pomocí dokumentů, kdy si uživatel může k exportu kromě tabulek a grafů doplnit také text a nadpisy jako v běžném dokumentu. Nástroj nabízí také exportování jednotlivých metrik samostatně. Samozřejmostí prototypového nástroje je nutnost přihlášení a správa uživatelů, které lze rozdělit na administrátory a běžné uživatelé.
 
-Vyvinutý nástroj je univerzální a je možné jej použít prakticky na jakékoliv sledování určitého procesu, nebo samotného vývoje. Do prototypového nástroje lze kdykoli pomocí jednoho příkazu nahrát ukázková data. Ukázková data obsahují kromě náhodně vygenerovaných artefaktů také metriky vycházející z požadavků na splnění standardu Automotive SPICE. Nástroj je vytvořen jako podniková webová aplikace, která je nezávislá na platformě a pro práci je potřeba pouhý webový prohlížeč. 
+Vyvinutý nástroj je univerzální a je možné jej použít prakticky na jakékoliv sledování určitého procesu, nebo samotného vývoje. Do prototypového nástroje lze kdykoli pomocí jednoho příkazu nahrát ukázková data. Ukázková data obsahují kromě náhodně vygenerovaných artefaktů také metriky vycházející z požadavků na splnění standardu Automotive SPICE. Nástroj je vytvořen jako podniková webová aplikace, která je nezávislá na platformě a pro práci je potřeba pouhý webový prohlížeč.
 
 Během celé práce na vývoji prototypového nástroje jsem se zdokonalil nejen ve vývoji podnikové webové aplikace, ale mohl jsem si také v praxi vyzkoušet celý vývojový proces od analýzy až po implementaci a testování pomocí nejen automatických testů. Výsledný nástroj je postaven na moderních technologiích a je snadno rozšiřitelný o další možné funkcionality. Během celé implementace byla kromě automatického testování použita kontrola a oprava standardů zdrojového kódu. Výsledný zdrojový kód je psán s ohledem na nejmodernější principy dle platných standardů. Z mého osobního hlediska má pro mě práce velký přínos a pevně věřím, že vyvinutý nástroj najde uplatnění v praxi, či bude rozšířen v budoucnu o nové funkcionality.
 
@@ -1491,13 +1484,13 @@ BERNHARDT, Steger, Damjan EKERT, Richard MESSNARZ, Jakub ŠTOLFA, Svatopluk ŠTO
 
 
 \appendix
-\section{Seznam příloh}
+\chapter{Seznam příloh}
 
-\section{Instalace prototypového nástroje}
-\subsection{Pomocí programu Docker}
+\chapter{Instalace prototypového nástroje}
+\section{Pomocí programu Docker}
 
-\subsection{Bez programu Docker}
+\section{Bez programu Docker}
 
-\section{Nastavení propojení s IBM Jazz}
+\chapter{Nastavení propojení s IBM Jazz}
 
 \end{document}
