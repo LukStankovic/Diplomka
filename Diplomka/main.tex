@@ -1547,7 +1547,7 @@ echo "deb https://packages.sury.org/php/ \$(lsb\_release -sc) main" | sudo tee /
 
 Nyní můžeme přejít k instalaci samotného nástroje:
 \begin{enumerate}
-\item V terminálu Debianu se přepneme do domácího adresáře \texttt{cd /\textasciitilde}.
+\item V terminálu Debianu se přepneme do domácího adresáře \texttt{cd \textasciitilde}.
 \item Zde vložíme zdrojové kódy prototypového nástroje, například do adresáře \texttt{metrics}, do kterého se následně přesuneme.
 \item Zkopírujeme konfigurační soubor pro Docker: \texttt{cp docker/conf/docker-compose-win.yml.dist docker-compose.yml}.
 \item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{docker-compose up -d}.
@@ -1595,7 +1595,21 @@ Jakmile máme připravený a nainstalovaný virtualizační nástroj Docker, nai
 \end{enumerate}
 
 \section{Bez virtualizačního nástroje Docker}
+Při instalaci bez virtualizačního nástroje Docker je nutné zajistit, aby byly nainstalované veškeré závislosti, které prototypový nástroj vyžaduje. Tato varianta není doporučena právě z důvodu velkého množství závislostí mezi které patří:
+\begin{itemize}
+\item PHP 7.4.1 a vyšší,
+\item ngnix nebo jiný webserver -- možné použít Symfony webserver,
+\item PostgreSQL 12.1,
+\item Redis 5.0,
+\item MongoDB 4.4.3,
+\item Elasticsearch,
+\item Kibana,
+\item SMTP server,
+\item GIT,
+\item Composer.
+\end{itemize}
 
+Pro webserver je možné využít lokální web server, který přináší framework Symfony. Pomocí terminálu jej spustíme pomocí \texttt{symfony server:start -d}. Není třeba tedy využívat například nástroje XAMPP pro webserver. Poté již stačí v terminálu pomocí příkazu \texttt{composer build} nainstalovat celou aplikaci včetně ukázkových dat.
 
 \chapter{Nastavení propojení s IBM Jazz}
 
