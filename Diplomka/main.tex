@@ -46,6 +46,7 @@
 \EnglishKeywords{IBM Jazz, trend metrics, software process quality, software engineering, Automotive SPICE, REST API, PHP, Symfony, MongoDB, Docker}
 
 
+\AddAcronym{AJAX}{Asynchronous JavaScript and XML}
 \AddAcronym{ALM}{Application lifecycle anagement}
 \AddAcronym{API}{Application Programming Interface}
 \AddAcronym{Automotive SPICE}{Automotive Software Process Improvement and Capability Determination}
@@ -77,8 +78,8 @@
 \AddAcronym{SVG}{Scalable Vector Graphics}
 \AddAcronym{URL}{Uniform Resource Locator}
 \AddAcronym{VDA QMC}{Quality Management Center in the German Association of Automotive Industry}
+\AddAcronym{WSL}{Windows Subsystem for Linux}
 \AddAcronym{XML}{Extensible Markup Language}
-\AddAcronym{AJAX}{Asynchronous JavaScript and XML}
 
 % \addbibresource{biblatex-examples.bib}
 % \addbibresource{coffee.bib}
@@ -1487,9 +1488,114 @@ BERNHARDT, Steger, Damjan EKERT, Richard MESSNARZ, Jakub ŠTOLFA, Svatopluk ŠTO
 \chapter{Seznam příloh}
 
 \chapter{Instalace prototypového nástroje}
-\section{Pomocí programu Docker}
+Nástroj je možné nainstalovat jak pro vývoj, tak pro produkční prostředí pomocí dvou možností. Pomocí obou možností je možné nástroj nainstalovat na všech třech základních operačních systémů -- Windows, Linux a macOS. Obě možnosti taktéž nabízí výhody a nevýhody, které je nutné při instalaci zvážit.
 
-\section{Bez programu Docker}
+První a nejjednodušší možností je instalace pomocí nástroje pro virtualizaci Docker. Při instalaci na operačním systému Windows je potřebné využít funkcionality WSL2. Na operačním systému macOS je potřeba kromě nástroje Docker použít i nástroj Docker-sync pro synchronizaci souborů mezi operačním systémem macOS a virtualizovaným Linuxem. Výhodou tohoto řešení je jednotné rozhraní, jednotné verze závislostí a mnohem pohodlnější povyšování závislostí. Nevýhodou může být použití virtualizace na systémech Windows bez zapnuté virtualizace a funkcionality WSL2 a macOS. 
+
+Druhá možnost je nativní instalace, která vyžaduje nainstalování jednotlivých závislostí na daném operačním systému. Tento přístup tedy nenabízí flexibilitu při přepínání určitých verzí závislostí, či případně razantně zhoršuje možnost povýšení. Při využití této možnosti je možné zaznamenat rychlejší načítání aplikace na systémech Windows a macOS.
+
+\section{Pomocí virtualizačního nástroje Docker}
+Instalace pomocí virtualizačního nástroje Docker je dostupná na systémech Windows 10, Linux a macOS.
+
+\subsection{Windows 10}
+Pro instalaci jsou potřebné následující požadavky:
+\begin{itemize}
+\item Windows 10, verze 2004 a vyšší,
+\item zapnutá virtualizace v BIOSu.
+\end{itemize}
+
+Tento návod obsahuje také návod na instalaci samotného WSL2, které je možné mít již připravené. Odhadovaná náročnost včetně instalace WSL2 je méně než jedna hodina. Nejprve je nutné zapnout WSL2, nainstalovat do Windows Debian a nainstalovat Docker:
+\begin{enumerate}
+\item Pomocí příkazu \texttt{wsl --set-default-version 2} nastavíme WSL2 jako výchozí verzi WSL.
+\item V aplikaci Microsoft Store vyhledáme \textit{Debian} a nainstalujeme dle pokynů na obrazovce.
+\item Během instalace Debianu je potřeba vytvořit jméno a heslo, které bude pro přístup k subsystému používáno.
+\item Stáhneme a nainstalujeme \href{https://docs.docker.com/docker-for-windows/install/}{Docker Desktop} pro operační systém Windows.
+\item Otevřeme nastavení Docker Desktop.
+\item V sekci \textit{General} zaškrtneme pole \textit{Expose daemon on tcp://localhost:2375 without TLS}, \textit{Use the WSL 2 based engine} a uložíme pomocí tlačítka \textit{Apply \& Restart}.
+
+\item V nastavení \textit{Docker Desktop} otevřeme sekci \textit{Resources} a poté podsekci \textit{WSL INTEGRATION} a zaškrtneme pole \textit{Enable integration with my default WSL distro} a povolíme integraci distribuce Debian.
+
+\item Opět uložíme pomocí  tlačítka \textit{Apply \& Restart}.
+\end{enumerate}
+
+Jakmile je nainstalovaný subsystém Debian, můžeme zde nainstalovat Docker pro Linux, nástroj \textit{docker-compose} a \textit{Composer}:
+\begin{enumerate}
+\item Otevřeme terminál systému Debian a spustíme následující příkazy.
+\item \texttt{sudo apt update}
+\item \texttt{sudo apt-get install --no-install-recommends apt-transport-https ca-certificates curl gnupg2 software-properties-common}
+\item \texttt{sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent}
+\item \texttt{sudo apt-get install software-properties-common}
+\item \texttt{curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -}
+\item \texttt{sudo add-apt-repository \textbackslash}
+
+  \texttt{"deb [arch=amd64] https://download.docker.com/linux/debian \textbackslash}
+  
+  \texttt{\$(lsb\_release -cs) \textbackslash}
+  
+  \texttt{stable"}
+
+\item \texttt{sudo apt-get install docker-ce docker-ce-cli containerd.io}
+\item \texttt{sudo usermod -aG docker \$USER}
+\item sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-\$(uname -s)-\$(uname -m)" -o /usr/local/bin/docker-compose
+\item \texttt{sudo chmod +x /usr/local/bin/docker-compose}
+\item sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+echo "deb https://packages.sury.org/php/ \$(lsb\_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
+\item \texttt{sudo apt update}
+\item \texttt{sudo apt install -y --no-install-recommends composer}
+
+\end{enumerate}
+
+Nyní můžeme přejít k instalaci samotného nástroje:
+\begin{enumerate}
+\item V terminálu Debianu se přepneme do domácího adresáře \texttt{cd /\textasciitilde}.
+\item Zde vložíme zdrojové kódy prototypového nástroje, například do adresáře \texttt{metrics}, do kterého se následně přesuneme.
+\item Zkopírujeme konfigurační soubor pro Docker: \texttt{cp docker/conf/docker-compose-win.yml.dist docker-compose.yml}.
+\item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{docker-compose up -d}.
+\item Přepneme se do kontejneru pomocí příkazu \texttt{sudo docker exec -it metriky-php-fpm bash}.
+\item Nainstalujeme celou aplikaci včetně ukázkových dat pomocí příkazu \texttt{composer build}.
+\end{enumerate}
+
+\subsection{Linux}
+Při instalaci na operačním systému jsou potřeba tyto požadavky:
+\begin{itemize}
+\item PHP 7.4.1 a vyšší,
+\item Composer,
+\item Docker 17.05 a vyšší,
+\item Docker Compose 1.17.0 a vyšší.
+\end{itemize}
+ 
+ Pakliže operační systém splňuje výše uvedené požadavky, můžeme přejít k instalaci samotného nástroje:
+\begin{enumerate}
+\item Do požadovaného adresáře, kde potřebujeme nástroj nainstalovat nakopírujeme zdrojové kódy nástroje.
+\item Zkopírujeme konfigurační soubor pro Docker: \texttt{cp docker/conf/docker-compose.yml.dist docker-compose.yml}.
+\item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{docker-compose up -d --build}.
+\item Přepneme se do kontejneru pomocí příkazu \texttt{docker exec -it metriky-php-fpm bash}.
+\item Nainstalujeme celou aplikaci včetně ukázkových dat pomocí příkazu \texttt{composer build}.
+\end{enumerate}
+
+\subsection{macOS}
+Při instalaci prototypového nástroje na operačním systému macOS pomocí nástroje Docker je potřeba také nástroj \textit{docker-sync} pro synchronizaci souborů mezi virtualizovaným prostředím a prostředím operačního systému macOS. Tento přístup má nevýhodu v tom, že se může zaseknout při úpravě velkého počtu souborů a nemusí být tedy vhodný pro intenzivní vývoj. Pro instalaci jsou konkrétně potřeba tyto závislosti:
+
+\begin{itemize}
+\item PHP 7.4.1 a vyšší,
+\item Composer,
+\item Docker for Mac s \textit{Docker Engine} alespoň ve verzi 17.05 a \textit{Docker compose} alespoň ve verzi 1.17.0,
+\item Docker-sync.
+\end{itemize}
+
+Jakmile máme připravený a nainstalovaný virtualizační nástroj Docker, nainstalujeme \textit{Docker-sync} pro synchronizaci souborů: \texttt{sudo gem install docker-sync}. Poté můžeme přejít k instalaci samotného prototypového nástroje:
+
+\begin{enumerate}
+\item Do požadovaného adresáře, kde potřebujeme nástroj nainstalovat nakopírujeme zdrojové kódy prototypového nástroje.
+\item Zkopírujeme konfigurační soubor pro Docker: \texttt{cp docker/conf/docker-compose-mac.yml.dist docker-compose.yml}.
+\item Spustíme synchronizaci souborů pomocí příkazu \texttt{docker-sync start}.
+\item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{docker-compose up -d --build}.
+\item Přepneme se do kontejneru pomocí příkazu \texttt{docker exec -it metriky-php-fpm bash}.
+\item Nainstalujeme celou aplikaci včetně ukázkových dat pomocí příkazu \texttt{composer build}.
+\end{enumerate}
+
+\section{Bez virtualizačního nástroje Docker}
+
 
 \chapter{Nastavení propojení s IBM Jazz}
 
