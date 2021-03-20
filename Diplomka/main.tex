@@ -1515,7 +1515,7 @@ BERNHARDT, Steger, Damjan EKERT, Richard MESSNARZ, Jakub ŠTOLFA, Svatopluk ŠTO
 .3 var \DTcomment{Logy a mezipaměť}.
 .3 web \DTcomment{Styly a skripty třetích stran}.
 .2 Docs \DTcomment{Dokumenty}.
-.3 UX \DTcomment{Návrhy uživatelského rozhraní}.
+.3 UX \DTcomment{Obrazovky uživatelského rozhraní}.
 .3 readme.txt \DTcomment{Návod s praktickými informacemi}.
 }
 
@@ -1585,6 +1585,7 @@ Nyní můžeme přejít k instalaci samotného nástroje:
 \item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{docker-compose up -d}.
 \item Přepneme se do kontejneru pomocí příkazu \texttt{sudo docker exec -it metriky-php-fpm bash}.
 \item Nainstalujeme celou aplikaci včetně ukázkových dat pomocí příkazu \texttt{composer build}.
+\item V rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s heslem \texttt{admin123}.
 \end{enumerate}
 
 \subsection{Linux}
@@ -1603,6 +1604,7 @@ Při instalaci na operačním systému jsou potřeba tyto požadavky:
 \item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{docker-compose up -d --build}.
 \item Přepneme se do kontejneru pomocí příkazu \texttt{docker exec -it metriky-php-fpm bash}.
 \item Nainstalujeme celou aplikaci včetně ukázkových dat pomocí příkazu \texttt{composer build}.
+\item V rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s heslem \texttt{admin123}.
 \end{enumerate}
 
 \subsection{macOS}
@@ -1624,6 +1626,7 @@ Jakmile máme připravený a nainstalovaný virtualizační nástroj Docker, nai
 \item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{docker-compose up -d --build}.
 \item Přepneme se do kontejneru pomocí příkazu \texttt{docker exec -it metriky-php-fpm bash}.
 \item Nainstalujeme celou aplikaci včetně ukázkových dat pomocí příkazu \texttt{composer build}.
+\item V rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s heslem \texttt{admin123}.
 \end{enumerate}
 
 \section{Bez virtualizačního nástroje Docker}
@@ -1651,7 +1654,6 @@ Pro konfiguraci celého nástroje slouží soubor \texttt{.env.local}, který je
 dng_server_url="https://158.196.141.113/"
 dng_user_name="username"
 dng_password="password"
-dng_rm_project_uri="_CKGS4P3GEeqMt4CHFFzMsw"
 \end{lstlisting}
 
 Poté je již možné spustit stahování ostrých dat z platformy IBM Jazz pomocí příkazu \texttt{php bin/console cron:run import:jazz-artifacts-model}. Tento příkaz manuálně spustí příkazový soubor \texttt{JazzArtifactsModelImportCommand}. Pakliže chceme stahování spouštět automaticky pomocí CRONu definujeme příkaz  \ref{src:crontab} v \texttt{crontab}. Tato defiince bude co pět minut spouštět veškeré soubory, které jsou definované jako CRON. V současné době je takto definováno pouze stahování dat z IBM Jazz.
@@ -1660,4 +1662,151 @@ Poté je již možné spustit stahování ostrých dat z platformy IBM Jazz pomo
 * * * * * /cesta/k/nastroji/app/console cron:run 1>> /dev/null 2>&1
 \end{lstlisting}
 
+\chapter{Ukázka nástroje}
+
+\section{Přihlášení}
+V rámci této kapitoly budou představeny snímky nejdůležitějších částí vyvinutého nástroje. První obrazovka, kterou uživatel při otevření nástroje uvidí je obrazovka pro přihlášení. Tu je možné vidět na obrázku \ref{fig:metrics_tool_login}.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metrics_tool/login.jpg}
+    \caption{Přihlašovací okno do nástroje}
+    \label{fig:metrics_tool_login}
+\end{figure}
+
+\newpage
+\section{Nástěnka}
+
+Jakmile se uživatel přihlásí je automaticky přesměrován na nástěnku, kterou si může dle svých potřeb upravit a seřadit. Nástěnku můžeme vidět na obrázku \ref{fig:metrics_tool_dashboard}.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Diplomka/Figures/metrics_tool/dashboard.jpg}
+    \caption{Nástěnka v uživatelské sekci nástroje}
+    \label{fig:metrics_tool_dashboard}
+\end{figure}
+\section{Artefakty}
+V uživatelské sekci si může uživatel zobrazit například veškeré artefakty, které byly dle jednotlivých projektů staženy z platformy IBM Jazz. Seznam artefaktů je možné vidět na obrázku \ref{fig:metrics_tool_artifacts}. Pomocí filtrování, lze také mezi jednotlivými artefakty filtrovat dle projektu.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Diplomka/Figures/metrics_tool/artifacts.jpg}
+    \caption{Seznam artefaktů}
+    \label{fig:metrics_tool_artifacts}
+\end{figure}
+
+Na obrázku \ref{fig:metrics_tool_artifacts_detail} je možné vidět detailní výpis daného artefaktu. Zde se může uživatel dozvědět veškeré informace, které jsou v nástroji uloženy. Mezi ty patří například atributy, které jsou seřazeny dle jednotlivých dat stažení z IBM Jazz. Kromě informací o artefaktu se zde nachází také odkaz na původní artefakt na platformě IBM Jazz. Artefakty není možné v nástroji upravovat, jelikož veškerá data pocházejí z IBM Jazz.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Diplomka/Figures/metrics_tool/artifacts_detail.jpg}
+    \caption{Detailní výpis artefaktu}
+    \label{fig:metrics_tool_artifacts_detail}
+\end{figure}
+\section{Moduly}
+Další sekcí, kterou si může uživatel pouze zobrazit a ne upravit je seznam modulů. Tyto moduly se stahují taktéž z platformy IBM Jazz v rámci stahování artefaktů, které jsou do modulů zařazeny. Výpis všech modulů dle projektu je možné vidět na obrázku \ref{fig:metrics_tool_modules}.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metrics_tool/modules.jpg}
+    \caption{Seznam modulů}
+    \label{fig:metrics_tool_modules}
+\end{figure}
+Uživatel si stejně jako v případě artefaktů může zobrazit také detailní výpis informací určitého modulu. Také zde se nachází odkaz do platformy IBM Jazz. Zobrazení modulu je možné vidět na obrázku \ref{fig:metrics_tool_modules_detail}.
+
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metrics_tool/modules_detail.jpg}
+    \caption{Detailní výpis modulu}
+    \label{fig:metrics_tool_modules_detail}
+\end{figure}
+
+\newpage
+
+\section{Metriky}
+
+Jako další sekce v uživatelské části nástroje se nachází metriky. Ty je možné také filtrovat dle projektu a na rozdíl od artefaktů a modulů nepocházejí z platformy IBM Jazz, ale jsou definované jednotlivými uživateli. Kromě zobrazení je možné je tedy i upravovat a vytvářet z definic metrik nové. Na obrázku \ref{fig:metrics_tool_metrics} je možné vidět výpis všech metrik dle projektu. Dále můžeme vidět na obrázku \ref{fig:metrics_tool_metrics_detail} zobrazení metriky včetně grafu, tabulky a podmínek a na obrázku \ref{fig:metrics_tool_metrics_edit} úpravu existující metriky.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metrics_tool/metrics.jpg}
+    \caption{Seznam metrik}
+    \label{fig:metrics_tool_metrics}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metrics_tool/metrics_detail.jpg}
+    \caption{Zobrazení detailu metriky}
+    \label{fig:metrics_tool_metrics_detail}
+\end{figure}
+
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metrics_tool/metrics_edit.jpg}
+    \caption{Úprava metriky}
+    \label{fig:metrics_tool_metrics_edit}
+\end{figure}
+\section{Dokumenty}
+Jedna z posledních důležitých funkcionalit v rámci nástroje jsou dokumenty pro reporty. Ty slouží jako dynamické nebo statické dokumenty obsahující text a metriky buď v podobě tabulky, nebo grafu. Dokumenty je možné si zobrazit v dynamické podobě přímo v nástroji, případně stáhnout v požadovaném formátu. Mezi možné formáty patří například Word, PowerPoint, Excel, nebo také CSV a PDF. Na obrázku \ref{fig:metrics_tool_documents} můžeme vidět výpis všech dynamických dokumentů dle projektu, dále na obrázku \ref{fig:metrics_tool_documents_detail} detailní výpis dynamického dokumentu, který se mění v čase a na obrázku \ref{fig:metrics_tool_documents_edit} můžeme vidět úpravu dokumentu. Při úpravě si může uživatel dokument libovolně skládat pomocí bloků. 
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metrics_tool/documents.jpg}
+    \caption{Seznam dokumentů}
+    \label{fig:metrics_tool_documents}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metrics_tool/documents_detail.jpg}
+    \caption{Zobrazení detailu dynamcikého dokumentu}
+    \label{fig:metrics_tool_documents_detail}
+\end{figure}
+
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metrics_tool/documents_edit.jpg}
+    \caption{Úprava dokumentu}
+    \label{fig:metrics_tool_documents_edit}
+\end{figure}
+\newpage
+\section{Projekty}
+
+V rámci administrace může administrátor vytvářet a upravovat projekty, které propojí s platformou IBM Jazz pomocí identifikátoru daného projektu. Výpis projektů v administraci je možné vidět na obrázku \ref{fig:metrics_tool_admin_projects}.
+
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metrics_tool/admin_projects.jpg}
+    \caption{Výpis vytvořených projektů}
+    \label{fig:metrics_tool_admin_projects}
+\end{figure}
+\newpage
+\section{Definice metrik}
+Jedna z nejdůležitějších části nástroje je možnost vytvářet v administraci definice metrik, které slouží pro následné vytváření metrik pro jednotlivé metriky. Definici metriky si můžeme představit jako seznam podmínek, které jsou nutné pro vytvoření a vygenerování metriky. Definice je zcela nezávislá na typu grafu, nebo projektu. Seznam vytvořených definic je možné vidět na obrázku \ref{fig:admin_report_builder}. Pomocí vícekrokovému formuláři může administrátor nastavit základní údaje definice a vybrat podmínky pro definici metriky. Podmínky jsou vytvářeny z dat stahovaných z platformy IBM Jazz. Formulář je možné vidět na obrázku \ref{fig:admin_report_builder_first_first} a \ref{fig:admin_report_builder_second}.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metrics_tool/admin_report_builder.jpg}
+    \caption{Výpis vytvořených definic metrik}
+    \label{fig:admin_report_builder}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metrics_tool/admin_report_builder_first.jpg}
+    \caption{Základní nastavení definice metriky}
+    \label{fig:admin_report_builder_first_first}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/metrics_tool/admin_report_builder_second.jpg}
+    \caption{Zvolení podmínek pro definici metriky}
+    \label{fig:admin_report_builder_second}
+\end{figure}
 \end{document}
