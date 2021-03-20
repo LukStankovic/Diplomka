@@ -1485,7 +1485,7 @@ BERNHARDT, Steger, Damjan EKERT, Richard MESSNARZ, Jakub ŠTOLFA, Svatopluk ŠTO
 
 
 \appendix
-\chapter{Seznam příloh}
+\chapter{Adresářová struktura nástroje}
 
 \chapter{Instalace prototypového nástroje}
 Nástroj je možné nainstalovat jak pro vývoj, tak pro produkční prostředí pomocí dvou možností. Pomocí obou možností je možné nástroj nainstalovat na všech třech základních operačních systémů -- Windows, Linux a macOS. Obě možnosti taktéž nabízí výhody a nevýhody, které je nutné při instalaci zvážit.
@@ -1609,8 +1609,17 @@ Při instalaci bez virtualizačního nástroje Docker je nutné zajistit, aby by
 \item Composer.
 \end{itemize}
 
-Pro webserver je možné využít lokální web server, který přináší framework Symfony. Pomocí terminálu jej spustíme pomocí \texttt{symfony server:start -d}. Není třeba tedy využívat například nástroje XAMPP pro webserver. Poté již stačí v terminálu pomocí příkazu \texttt{composer build} nainstalovat celou aplikaci včetně ukázkových dat.
+Pro webserver je možné využít lokální web server, který přináší framework Symfony. Pomocí terminálu jej spustíme pomocí \texttt{symfony server:start -d}. Není třeba tedy využívat například nástroje XAMPP pro webserver. Dále je nutné vytvořit soubor \texttt{.env.local} a upravit dle šablony \texttt{.env} připojení k databázi dle vlastních potřeb. Poté již stačí v terminálu pomocí příkazu \texttt{composer build} nainstalovat celou aplikaci včetně ukázkových dat.
 
 \chapter{Nastavení propojení s IBM Jazz}
+Pro konfiguraci celého nástroje slouží soubor \texttt{.env.local}, který je nutné manuálně vytvořit. Tento soubor dědí veškeré nevyplněné údaje z hlavního konfiguračního souboru \texttt{.env}, který slouží zejména jako šablona. Pomocí tohoto konfiguračního souboru lze nastavit jednak připojení k databázi v případě použití instalace bez nástroje Docker, ale také napojení na platformu IBM Jazz. Nastavení přístupových údajů v konfiguračním souboru můžeme vidět na výpise \ref{src:env}.
+
+\begin{lstlisting}[language=bash,label=src:env,caption={Část konfiguračního souboru \texttt{.env.local} definující propojení s IBM Jazz}]
+dng_server_url="https://158.196.141.113/"
+dng_user_name="username"
+dng_password="password"
+dng_rm_project_uri="_CKGS4P3GEeqMt4CHFFzMsw"
+\end{lstlisting}
+
 
 \end{document}
