@@ -12,6 +12,7 @@
 \usepackage{booktabs}
 \usepackage{pgfplots}
 \usepackage{diplomalst}
+\usepackage{dirtree}
 
 \pgfplotsset{compat = newest}
 
@@ -1487,6 +1488,33 @@ BERNHARDT, Steger, Damjan EKERT, Richard MESSNARZ, Jakub ŠTOLFA, Svatopluk ŠTO
 \appendix
 \chapter{Adresářová struktura nástroje}
 
+
+\dirtree{%
+.1 /.
+.2 assets \DTcomment{Kaskádové styly a JavaScript}.
+.2 bin \DTcomment{Symfony konzole a další nástroje}.
+.2 config \DTcomment{Konfigurační soubory}.
+.2 docker \DTcomment{Konfigurační soubory pro Docker}.
+.2 docs \DTcomment{Dokumentace a ukázkové soubory}.
+.2 node\_modules \DTcomment{JavaScript závislosti (stažené pomocí \texttt{npm})}.
+.2 public \DTcomment{Veřejná složka, například pro nahrávání souborů}.
+.2 src \DTcomment{Hlavní adresář se zdrojovými kódy v jazyku PHP}.
+.3 Command \DTcomment{Soubory spustitelné z terminálu}. 
+.3 Component \DTcomment{Komponenty pracující s externími službami}.
+.3 DataFixtures \DTcomment{Ukázková data}.
+.3 Document \DTcomment{Dokumenty a logika pro MongoDB}.
+.3 Form \DTcomment{Definice formulářů}.
+.3 Migrations \DTcomment{SQL příkazy pro definování SQL databáze}.
+.3 Model \DTcomment{Entity pro SQL databázi}.
+.3 Security \DTcomment{Přihlašování do nástroje}.
+.2 templates \DTcomment{Šablony pro frontend}.
+.2 tests \DTcomment{Automatické testy}.
+.2 translations \DTcomment{Překlady pro veškeré texty}.
+.2 vendor \DTcomment{PHP závislosti (stažené pomocí nástroje Composer)}.
+.2 var \DTcomment{Logy a mezipaměť}.
+.2 web \DTcomment{Styly a skripty třetích stran}.
+}
+
 \chapter{Instalace prototypového nástroje}
 Nástroj je možné nainstalovat jak pro vývoj, tak pro produkční prostředí pomocí dvou možností. Pomocí obou možností je možné nástroj nainstalovat na všech třech základních operačních systémů -- Windows, Linux a macOS. Obě možnosti taktéž nabízí výhody a nevýhody, které je nutné při instalaci zvážit.
 
@@ -1614,6 +1642,7 @@ Pro webserver je možné využít lokální web server, který přináší frame
 \chapter{Nastavení propojení s IBM Jazz}
 Pro konfiguraci celého nástroje slouží soubor \texttt{.env.local}, který je nutné manuálně vytvořit. Tento soubor dědí veškeré nevyplněné údaje z hlavního konfiguračního souboru \texttt{.env}, který slouží zejména jako šablona. Pomocí tohoto konfiguračního souboru lze nastavit jednak připojení k databázi v případě použití instalace bez nástroje Docker, ale také napojení na platformu IBM Jazz. Nastavení přístupových údajů v konfiguračním souboru můžeme vidět na výpise \ref{src:env}.
 
+
 \begin{lstlisting}[language=bash,label=src:env,caption={Část konfiguračního souboru \texttt{.env.local} definující propojení s IBM Jazz}]
 dng_server_url="https://158.196.141.113/"
 dng_user_name="username"
@@ -1621,5 +1650,10 @@ dng_password="password"
 dng_rm_project_uri="_CKGS4P3GEeqMt4CHFFzMsw"
 \end{lstlisting}
 
+Poté je již možné spustit stahování ostrých dat z platformy IBM Jazz pomocí příkazu \texttt{php bin/console cron:run import:jazz-artifacts-model}. Tento příkaz manuálně spustí příkazový soubor \texttt{JazzArtifactsModelImportCommand}. Pakliže chceme stahování spouštět automaticky pomocí CRONu definujeme příkaz  \ref{src:crontab} v \texttt{crontab}. Tato defiince bude co pět minut spouštět veškeré soubory, které jsou definované jako CRON. V současné době je takto definováno pouze stahování dat z IBM Jazz.
+
+\begin{lstlisting}[language=bash,label=src:crontab,caption={Definice pro automatizaci stahování dat z IBM Jazz pomocí CRONu}]
+* * * * * /cesta/k/nastroji/app/console cron:run 1>> /dev/null 2>&1
+\end{lstlisting}
 
 \end{document}
