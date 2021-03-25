@@ -121,7 +121,7 @@ Vyvinutý prototypový nástroj je vhodný pro správu, definici a sledování d
 \chapter{Softwarový proces}
 \label{sec:sw_process}
 
-Dle Iana Sommervilla \cite{ref:sommerrville_sw_process} je softwarový proces sekvence souvisejících aktivit, které vedou k produkci softwarovécho produktu. Tyto aktivity mohou probíhat buď v rámci vývoje softwarového produkt od nuly, nebo úpravě již existujícího softwarového produktu. Existuje nespočet různých softwarových procesů, přičemž všechny softwarové procesy by měly obsahovat následující čtyři aktivity:
+Dle Iana Sommervilla \cite{ref:sommerrville_sw_process} je softwarový proces sekvence souvisejících aktivit, které vedou k produkci softwarového produktu. Tyto aktivity mohou probíhat buď v rámci vývoje softwarového produkt od nuly, nebo úpravě již existujícího softwarového produktu. Existuje nespočet různých softwarových procesů, přičemž všechny softwarové procesy by měly obsahovat následující čtyři aktivity:
 
 \begin{enumerate}
 \item \textit{Specifikace} -- během této aktivity je nutné zjistit a definovat požadavky nejen zákazníka na budoucí software.
@@ -1239,7 +1239,7 @@ Jak již bylo zmíněno, možnost zobrazení všech stahovaných dat se také na
 % předpříprava dat query language
 
 \section{Definice a vytváření metrik}
-Pakliže si přeje uživatel vytvořit metriku úplně od základu včetně nové definice metriky, bude nejprve potřebovat vytvořit definici dané metriky. Definice metriky může aktuálně vytvořit pouze administrátor v administraci prototypového nástroje. Tento způsob byl zvolen z toho důvodu, že administrátor vytvoří jednotlivé definice, dle používaného standardu, nebo dle potřeb měření procesů daného projektu a společnosti.
+Pakliže si přeje uživatel vytvořit metriku úplně od základu včetně nové definice metriky, bude nejprve potřebovat vytvořit definici dané metriky. Definice metriky může aktuálně vytvořit pouze administrátor v administraci prototypového nástroje. Tento způsob byl zvolen z toho důvodu, že administrátor vytvoří jednotlivé definice, dle používaného standardu, nebo dle potřeb měření procesů daného projektu a společnosti a až poté si uživatelé vytvářejí metriky. Veškeré definice se ukládají do NoSQL databáze, pro snadnou a přehlednou manipulací s celými objekty.
 
 Administrátor vytváří definice metrik pomocí vícekrokového formuláře. V prvním kroku vytvoření definice metriky se nachází základní údaje o definici, jako je například název, popis a nebo zda je daná metrika podílová či nikoli. Dále se v druhém kroku formuláře nacházejí dynamická pole, pro definování jednotlivých podmínek, dle kterých se bude řídit zobrazení konečné metriky. Pakliže uživatel zvolí, aby byla definice metriky podílová, tak může zvolit podmínky pro druhé měření, které bude první podmínky dělit. Podmínky je možné volit pomocí polí, ve kterých je možné vyhledávat. Třetí krok slouží pro kontrolu vygenerovaných podmínek, které z formuláře vzniknou. Celá definice metriky je nezávislá na modulech a projektu. Tyto údaje se poté volí až při vytváření samotné metriky. Tento způsob byl zvolen jednak pro možnost využití různých definic pro více druhů metrik, tak i na doporučení vedoucího práce Ing. Svatopluka Štolfy, PhD. Celý proces vytváření definice metriky byl inspirován nástrojem \textit{Report builder}, který se nachází na platformě IBM Jazz. Druhý krok procesu vytváření definice metriky je možné vidět na obrázku \ref{fig:report_builder_admin}.
 
@@ -1250,7 +1250,7 @@ Administrátor vytváří definice metrik pomocí vícekrokového formuláře. V
     \label{fig:report_builder_admin}
 \end{figure}
 
-Jakmile administrátor, nebo skript, vytvoří definice metrik dle používaného standardu, je možné vytvářet jednotlivé metriky. Metriky můžou vytvářet uživatelé v uživatelské části ve formuláři, který můžeme vidět na obrázku \ref{fig:new_metric_from}. Při vytváření metriky je nutné zvolit, kromě názvu, pomocí jaké definice má metrika filtrovat data, z jakého projektu a případně z jakých modulů má metrika data čerpat. Jedna metrika musí mít vždy zvolen projekt, ke kterému patří. Dále je například možné zvolit typ grafu, jakým budou data v rámci metriky vizualizována. Jednotlivé metriky je možné poté filtrovat dle projektu, ke kterému patří. Povinnost vyplnění polí ve formuláři je, stejně jako v celém nástroji, zobrazena pomocí červené hvězdičky.
+Jakmile administrátor, nebo skript, vytvoří definice metrik dle používaného standardu, je možné vytvářet jednotlivé metriky. Metriky můžou vytvářet uživatelé v uživatelské části ve formuláři, který můžeme vidět na obrázku \ref{fig:new_metric_from}. Při vytváření metriky je nutné zvolit například název, definicí pomocí které má metrika agregovat data, z jakého projektu a případně z jakých modulů má metrika data čerpat. Jedna metrika musí mít vždy zvolen projekt, ke kterému patří. Dále je například možné zvolit typ grafu, jakým budou data v rámci metriky vizualizována. Jednotlivé metriky je možné poté filtrovat dle projektu, ke kterému patří. Povinnost vyplnění polí ve formuláři je, stejně jako v celém nástroji, zobrazena pomocí červené hvězdičky.
 
 
 \begin{figure}[!ht]
@@ -1260,12 +1260,12 @@ Jakmile administrátor, nebo skript, vytvoří definice metrik dle používanéh
     \label{fig:new_metric_from}
 \end{figure}
 
-U metriky můžeme například zvolit, zda se mají na nástěnce, nebo na detailu dané metriky, zobrazovat v grafu popisky. Tato funkcionalita byla po konzultaci zavedena zejména z důvodu větší možnosti konfigurace a personalizace. Jelikož je v rámci standardu Automotive SPICE nutné měřit data za určitý časový úsek, existuje v nastavení metriky možnost nastavení takového omezení.
+U metriky můžeme také například zvolit, zda se mají na nástěnce, nebo na detailu dané metriky, zobrazovat v grafu popisky. Tato funkcionalita byla po konzultaci zavedena zejména z důvodu větší možnosti konfigurace a personalizace. Jelikož je v rámci standardu Automotive SPICE nutné měřit data za určitý časový úsek, existuje v nastavení metriky možnost nastavení takového omezení.
 
 V rámci praktické práce byly vytvořeny některé demonstrativní metriky na základě standardu Automotive SPICE. \cite{ref:metrics_and_dashboard_for_level_two} Demonstrativní data jsou řešena pomocí Symfony komponenty \textit{DataFixtures}, kterou je možné spustit a data do aplikace vložit pomocí příkazu \textit{composer db-demo} v příkazové řádce.
 
 \section{Nástěnka}
-V uživatelské sekci se po přihlášení uživatele zobrazí stránka, kterou si může každý uživatel upravovat dle svých potřeb. Každý uživatel si na nástěnku může libovolně přidávat metriky pomocí výběru ve vrchní části metriky. Samozřejmostí je také možnost si zobrazení metriky z nástěnky odstranit. Uživatelé si mohou dle libosti jednotlivé metriky na nástěnce řadit a přesouvat. Přesouvání funguje pomocí technologie JavaScript. Ukládaní a změna pořadí metriky je prováděno technologií AJAX na pozadí. Ukládání nástěnky tedy proběhne při jakékoli změně rozvržení nástěnky na pozadí bez nutnosti načíst znova stránku. Pomocí této technologie funguje také odstraňování metrik z nástěnky.
+V uživatelské sekci se po přihlášení uživatele zobrazí stránka, kterou si může každý uživatel upravovat dle svých potřeb. Každý uživatel si na nástěnku může libovolně přidávat metriky pomocí výběru ve vrchní části stránky. Samozřejmostí je také možnost si zobrazené metriky z nástěnky odstranit. Uživatelé si mohou dle libosti jednotlivé metriky na nástěnce řadit a přesouvat. Přesouvání funguje pomocí technologie JavaScript. Ukládaní a změna pořadí metriky je prováděno technologií AJAX na pozadí. Ukládání nástěnky tedy proběhne při jakékoli změně rozvržení nástěnky na pozadí bez nutnosti načíst znova stránku. Pomocí této technologie funguje také odstraňování metrik z nástěnky.
 
 Nástěnka slouží zejména pro rychlou kontrolu metrik. Grafy metrik nelze totiž na nástěnce filtrovat a ani nijak podrobně zobrazovat. Typický případ užití například je, když manažer potřebuje získat rychlé informace o průběhu projektu z vícero metrik v jednu chvíli. Dokáže například zjistit, zda se vývoj projektu ubírá správným směrem, či nikoli. Z nástěnky je možné po kliknutí na název metriky přesměrovat na detailní výpis dané metriky. Dále je zde možnost, si pomocí ikony třech teček metriku exportovat, nebo nastavit. Nástěnku s několika metrikami můžeme vidět na obrázku \ref{fig:dashboard_metrics}.
 
@@ -1276,7 +1276,7 @@ Nástěnka slouží zejména pro rychlou kontrolu metrik. Grafy metrik nelze tot
     \label{fig:dashboard_metrics}
 \end{figure}
 
-Celou individuální nástěnku si může každý uživatel exportovat, nebo poté importovat například nástěnku jiného uživatele. Export nástěnky funguje na principu stažení XML souboru s jednotlivými metrikami a pozicemi. Tento soubor je poté možné sdílet dalším kolegům a poté naimportovat. Případně je možné tento soubor použít pro vlastní zálohu nástěnky a kdykoli si obnovit celou nástěnku do původního stavu. Nástěnka se poté zobrazí dle nahraného XML souboru.
+Celou individuální nástěnku si může každý uživatel exportovat, nebo poté importovat například nástěnku jiného uživatele. Export nástěnky funguje na principu stažení XML souboru s jednotlivými metrikami a pozicemi. Tento soubor je poté možné sdílet dalším uživatelům a poté naimportovat. Případně je možné tento soubor použít pro vlastní zálohu nástěnky a kdykoli si obnovit celou nástěnku do původního stavu. Nástěnka se poté zobrazí dle nahraného XML souboru.
 
 
 \section{Zobrazení metrik}
@@ -1311,9 +1311,9 @@ V rámci nástroje byly vyvinuty dva typy exportu metrik. První možností expo
     \label{fig:dashboard_export}
 \end{figure}
 
-Druhou možností exportu dat je pomocí takzvaných dokumentů. Tento způsob je možné také nalézt například v nástroji codeBeamer ALM nebo Siemens Polarion, které jsou popsané v kapitole \ref{sec:alm}. Hlavní předností tohoto exportu je možnost si vytvořit dokument, do kterého je vloženo několik metrik, jak ve formě grafického zobrazení, tak pomocí tabulkového zobrazení. Mezi tyto metriky je možné vložit libovolné množství odstavců textu a jejich nadpisů. Díky tomu může uživatel vytvořit dokument, do kterého vloží jednotlivé sekce dle potřeby. Dokument je vhodný například pro již zmíněnou prezentaci výsledků daného vývojového týmu. Dokumenty se ukládají do MongoDB databáze, přičemž jednotlivé sekce dokumentu jsou uložené jako vložené objekty do hlavního objektu celého dokumentu. 
+Druhou možností exportu dat je pomocí takzvaných dokumentů. Tento způsob je možné také nalézt například v nástroji codeBeamer ALM nebo Siemens Polarion, které jsou popsané v kapitole \ref{sec:alm}. Hlavní předností tohoto exportu je možnost si vytvořit dokument, do kterého je vloženo několik metrik, jak ve formě grafického zobrazení, tak pomocí tabulkového zobrazení. Mezi tyto metriky je možné vložit libovolné množství odstavců textu a jejich nadpisů. Díky tomu může uživatel vytvořit dokument, do kterého vloží jednotlivé sekce dle potřeby. Dokument je vhodný například pro již zmíněnou prezentaci výsledků daného vývojového týmu. Dokumenty se ukládají do MongoDB databáze, přičemž jednotlivé sekce dokumentu jsou uložené jako vložené objekty do hlavního objektu celého dokumentu.
 
-Dokumenty je možné vytvořit na stránce nazvané \textit{Dokumenty}. Stránka se nachází na uživatelské straně nástroje. Při vytvoření dokumentu si uživatel zvolí název, popis, projekt a formát exportu. Poté si může přidávat  jednotlivé bloky s textem, grafem nebo tabulkou metriky. Takto si může pohodlně a dynamicky vytvořit celý dokument. Ten je poté možné pomocí tlačítka exportovat do vybraného formátu, mezi které patří Microsoft Word a PowerPoint, PDF, nebo také HTML. Pokaždé, když si uživatel dokument otevře, nebo exportuje, tak vidí aktuální stav jednotlivých metrik. Celý dokument je tedy jakási živá stránka, která se aktualizuje dle nejnovějších dat. Proces vytváření dokumentu je možné vidět na obrázku \ref{fig:report_document}. Detailní výpis ve webovém nástroji vygenerovaného dokumentu je možné vidět na obrázku \ref{fig:report_document_detail}.
+Dokumenty je možné vytvořit na stránce nazvané \textit{Dokumenty}. Stránka se nachází na uživatelské straně nástroje. Při vytvoření dokumentu si uživatel zvolí název, popis, projekt a formát exportu. Poté si může přidávat  jednotlivé bloky s textem, grafem nebo tabulkou metriky. Takto si může pohodlně a dynamicky vytvořit celý dokument. Ten je poté možné pomocí tlačítka exportovat do vybraného formátu, mezi které patří Microsoft Word a PowerPoint, PDF, nebo také HTML. Pokaždé, když si uživatel dokument otevře, nebo exportuje, tak vidí aktuální stav jednotlivých metrik. Celý dokument je tedy živá stránka, která se aktualizuje dle nejnovějších dat. Proces vytváření dokumentu je možné vidět na obrázku \ref{fig:report_document}. Detailní výpis ve webovém nástroji vygenerovaného dokumentu je možné vidět na obrázku \ref{fig:report_document_detail}.
 
 \begin{figure}[!ht]
     \centering
@@ -1329,7 +1329,7 @@ Dokumenty je možné vytvořit na stránce nazvané \textit{Dokumenty}. Stránka
     \label{fig:report_document_detail}
 \end{figure}
 
-Veškeré exporty do formátů pro programy Microsoft Office jsou naprogramovány pomocí knihovny \textit{PhpOffice}, která je volně dostupná na platformě \textit{GitHub} \cite{ref:phpoffice}. V rámci knihovny se používají podčásti \textit{PhpSpreadsheet} pro export do formátu Excel, \textit{PhpPresentation} pro export dat do formátu PowerPoint a \textit{PHPWord} pro exportování do formátu Word. Pro exportování do ostatních formátů, mezi které patří například CSV je použito klasických knihoven jazyka PHP.
+Veškeré exporty do formátů pro programy Microsoft Office jsou naprogramovány pomocí knihovny \textit{PhpOffice}, která je volně dostupná na platformě \textit{GitHub} \cite{ref:phpoffice}. V rámci knihovny se používají moduly \textit{PhpSpreadsheet} pro export do formátu Excel, \textit{PhpPresentation} pro export dat do formátu PowerPoint a \textit{PHPWord} pro exportování do formátu Word. Pro exportování do ostatních formátů, mezi které patří například CSV je použito klasických knihoven jazyka PHP.
 
 
 \chapter{Závěr}
@@ -1337,13 +1337,13 @@ Clem práce bylo kromě vytvoření prototypového nástroje pro sledování a z
 
 Teoretická část této práce je věnována studiu obecné oblasti softwarového inženýrství, softwarovým procesům, správě životního cyklu aplikace, sběru artefaktů a také standardu Automotive SPICE. V rámci teoretické části byly rozebrány jednotlivé části softwarového procesu -- plánování, monitorování a uzpůsobení, které jsou důležité pro pochopení vyvíjeného prototypového nástroje v praktické části této práce. Dodržování určitého standardu přináší výhody ve formě efektivnějšího vývoje, lepší správy procesů, ale také lepší kontrolu kvality výsledného produktu. Aby bylo možné hodnotit kvalitu celého projektu je nutné procesy a jejich výsledky hodnotit. Hodnocení je vhodné vizualizovat v čase, přičemž jedna z možností je využít metriky. Za pomocí metrik dokážeme hodnotit výsledky procesu a zajistit správné směřování celého projektu.
 
-Hlavním praktickým cílem této práce bylo vytvořit nástroj pro sledování a zobrazení metrik. Vytvoření tohoto prototypového nástroje neprobíhalo pouhou implementací a programováním.  Během práce na praktické části jsem si tedy vyzkoušel v praxi vývoj nástroje pomocí celého vývojového cyklu. Jedna z nejdůležitějších a počátečních fází byla analýza a sběr požadavků na výsledný nástroj. Během analýzy byly vytvářeny jednak případy užití, ale také celkový návrh architektury a uživatelského rozhraní nástroje. Během samotného vytváření nástroje probíhaly s vedoucím práce konzultace na bázi čtrnáctidenních iteracích, při kterých byly stanoveny priority, které se budou vždy následující dny řešit.
+Hlavním praktickým cílem této práce bylo vytvořit nástroj pro sledování a zobrazení metrik. Vytvoření tohoto prototypového nástroje neprobíhalo pouhou implementací a programováním.  Během práce na praktické části jsem si tedy vyzkoušel v praxi vývoj nástroje pomocí celého vývojového cyklu. Jedna z nejdůležitějších a počátečních fází byla analýza a sběr požadavků, které byly na výsledný nástroj kladeny. Během analýzy byly vytvářeny jednak případy užití, ale také celkový návrh architektury a uživatelského rozhraní nástroje. Během samotného vytváření nástroje probíhaly s vedoucím práce konzultace na bázi čtrnáctidenních iteracích, při kterých byly stanoveny priority, které se budou vždy následující dny řešit.
 
-Jednou z důležitých fází návrhu a implementace nástroje bylo napojení na platformu IBM Jazz. Pro implementaci napojení bylo po zdlouhavé analýze vybráno řešení napojení pomocí REST API, které nabízí možnost automatizovaného stahování dat z této platformy. Tento přístup byl místo OSLC zvolen zejména díky možnosti stahovat uživatelské atributy artefaktů včetně propojení s jinými artefakty. Tuto funkcionalitu bohužel OSLC nenabízelo. Takto stahované artefakty jsou ukládány do NoSQL databáze, která nabízí možnost ukládat složité objekty. Velkou výhodou oproti ostatním existujícím podobným nástrojům je možnost stahované artefakty verzovat a ukládat dle data stažení. Díky tomu může uživatel nástroje vidět, jak se jednotlivé artefakty mění v čase.
+Jednou z důležitých fází návrhu a implementace nástroje bylo napojení na platformu IBM Jazz. Pro implementaci napojení bylo po zevrubné analýze vybráno řešení napojení pomocí REST API, které nabízí možnost automatizovaného stahování dat z této platformy. Tento přístup byl místo OSLC zvolen zejména díky možnosti stahovat uživatelské atributy artefaktů včetně propojení s jinými artefakty. Tuto funkcionalitu bohužel OSLC v době vypracování práce nenabízelo. Takto stahované artefakty jsou ukládány do NoSQL databáze, která nabízí možnost ukládat složité objekty. Velkou výhodou oproti ostatním existujícím podobným nástrojům je možnost stahované artefakty verzovat a ukládat dle data stažení. Díky tomu může uživatel nástroje vidět, jak se jednotlivé artefakty mění v čase.
 
 Díky ukládání artefaktů v čase je následně možné vytvářet a definovat trendové metriky, které jsou důležité pro splnění standardu Automotive SPICE. U artefaktů jsou z platformy IBM Jazz ukládání veškeré atributy a to včetně uživatelských. Administrátor může nejen dle specifikací tohoto standardu vytvořit definice metriky. Během definice metriky lze vytvořit podmínky ze všech možných atributů, které byly v nástroji v minulosti staženy a naimportovány z platformy IBM Jazz. Dále je možné u definice metriky nastavit z jakých modulů má výsledná metrika čerpat data. Definice metrik nejsou závislé na projektu a jsou tedy jednoduše znovupoužitelné na jiném projektu. Z těchto definic poté uživatelé vytvářejí samotné metriky vázané na určitý projekt, které lze zobrazit pomocí tabulky a vizualizovat pomocí grafu. Metriky lze třídit dle projektu a zobrazit buď na nástěnce, která je konfigurovatelná pro každého uživatele, nebo na detailním výpisu určité metriky. Veškeré tyto funkcionality vychází buď z existujících nástrojů, případně právě naopak z funkčností, které v těchto nástrojích chybí a jsou důležité pro splnění standardu Automotive SPICE. Vygenerované metriky v čase lze exportovat například do formátů pro programy Microsoft Office, CSV, nebo PDF. Exportování je možné pomocí dokumentů, kdy si uživatel může k exportu kromě tabulek a grafů doplnit také text a nadpisy jako v běžném dokumentu. Nástroj nabízí také exportování jednotlivých metrik samostatně. Samozřejmostí prototypového nástroje je nutnost přihlášení a správa uživatelů, které lze rozdělit na administrátory a běžné uživatelé.
 
-Vyvinutý nástroj je univerzální a je možné jej použít prakticky na jakékoliv sledování určitého procesu, nebo samotného vývoje. Do prototypového nástroje lze kdykoli pomocí jednoho příkazu nahrát ukázková data. Ukázková data obsahují kromě náhodně vygenerovaných artefaktů také metriky vycházející z požadavků na splnění standardu Automotive SPICE. Nástroj je vytvořen jako podniková webová aplikace, která je nezávislá na platformě a pro práci je potřeba pouhý webový prohlížeč.
+Vyvinutý nástroj je univerzální a je možné jej použít prakticky na jakékoliv sledování určitého procesu, nebo samotného vývoje. Do prototypového nástroje lze kdykoli pomocí jednoho příkazu nahrát ukázková data. Ukázková data obsahují kromě náhodně vygenerovaných artefaktů také metriky vycházející z požadavků na splnění standardu Automotive SPICE. Nástroj je vytvořen jako podniková webová aplikace, která je nezávislá na platformě a pro práci je potřeba běžný webový prohlížeč.
 
 Během celé práce na vývoji prototypového nástroje jsem se zdokonalil nejen ve vývoji podnikové webové aplikace, ale mohl jsem si také v praxi vyzkoušet celý vývojový proces od analýzy až po implementaci a testování pomocí nejen automatických testů. Výsledný nástroj je postaven na moderních technologiích a je snadno rozšiřitelný o další možné funkcionality. Během celé implementace byla kromě automatického testování použita kontrola a oprava standardů zdrojového kódu. Výsledný zdrojový kód je psán s ohledem na nejmodernější principy dle platných standardů. Z mého osobního hlediska má pro mě práce velký přínos a pevně věřím, že vyvinutý nástroj najde uplatnění v praxi, či bude rozšířen v budoucnu o nové funkcionality.
 
@@ -1521,7 +1521,7 @@ BERNHARDT, Steger, Damjan EKERT, Richard MESSNARZ, Jakub ŠTOLFA, Svatopluk ŠTO
 }
 
 \chapter{Instalace prototypového nástroje}
-Nástroj je možné nainstalovat jak pro vývoj, tak pro produkční prostředí pomocí dvou možností. Pomocí obou možností je možné nástroj nainstalovat na všech třech základních operačních systémů -- Windows, Linux a macOS. Obě možnosti taktéž nabízí výhody a nevýhody, které je nutné při instalaci zvážit.
+Nástroj je možné nainstalovat jak pro vývoj, tak pro produkční prostředí pomocí dvou možností. Pomocí obou možností lze nástroj nainstalovat na všech třech základních operačních systémů -- Windows, Linux a macOS. Obě možnosti taktéž nabízí výhody a nevýhody, které je nutné při instalaci zvážit.
 
 První a nejjednodušší možností je instalace pomocí nástroje pro virtualizaci Docker. Při instalaci na operačním systému Windows je potřebné využít funkcionality WSL2. Na operačním systému macOS je potřeba kromě nástroje Docker použít i nástroj Docker-sync pro synchronizaci souborů mezi operačním systémem macOS a virtualizovaným Linuxem. Výhodou tohoto řešení je jednotné rozhraní, jednotné verze závislostí a mnohem pohodlnější povyšování závislostí. Nevýhodou může být použití virtualizace na systémech Windows bez zapnuté virtualizace a funkcionality WSL2 a macOS. 
 
@@ -1545,13 +1545,11 @@ Tento návod obsahuje také návod na instalaci samotného WSL2, které je možn
 \item Stáhneme a nainstalujeme \href{https://docs.docker.com/docker-for-windows/install/}{Docker Desktop} pro operační systém Windows.
 \item Otevřeme nastavení Docker Desktop.
 \item V sekci \textit{General} zaškrtneme pole \textit{Expose daemon on tcp://localhost:2375 without TLS}, \textit{Use the WSL 2 based engine} a uložíme pomocí tlačítka \textit{Apply \& Restart}.
-
-\item V nastavení \textit{Docker Desktop} otevřeme sekci \textit{Resources} a poté podsekci \textit{WSL INTEGRATION} a zaškrtneme pole \textit{Enable integration with my default WSL distro} a povolíme integraci distribuce Debian.
-
+\item V nastavení \textit{Docker Desktop} otevřeme sekci \textit{Resources}, poté podsekci \textit{WSL INTEGRATION}, zaškrtneme pole \textit{Enable integration with my default WSL distro} a povolíme integraci distribuce Debian.
 \item Opět uložíme pomocí  tlačítka \textit{Apply \& Restart}.
 \end{enumerate}
 
-Jakmile je nainstalovaný subsystém Debian, můžeme zde nainstalovat Docker pro Linux, nástroj \textit{docker-compose} a \textit{Composer}:
+Jakmile je nainstalovaný podsystém Debian, můžeme zde nainstalovat Docker pro Linux, nástroj \textit{docker-compose} a \textit{Composer}:
 \begin{enumerate}
 \item Otevřeme terminál systému Debian a spustíme následující příkazy.
 \item \texttt{sudo apt update}
@@ -1634,7 +1632,7 @@ Jakmile máme připravený a nainstalovaný virtualizační nástroj Docker, nai
 Při instalaci bez virtualizačního nástroje Docker je nutné zajistit, aby byly nainstalované veškeré závislosti, které prototypový nástroj vyžaduje. Tato varianta není doporučena právě z důvodu velkého množství závislostí mezi které patří:
 \begin{itemize}
 \item PHP 7.4.1 a vyšší,
-\item ngnix nebo jiný webserver -- možné použít Symfony webserver,
+\item ngnix nebo jiný webový server -- možné použít Symfony webserver,
 \item PostgreSQL 12.1,
 \item Redis 5.0,
 \item MongoDB 4.4.3,
@@ -1645,11 +1643,10 @@ Při instalaci bez virtualizačního nástroje Docker je nutné zajistit, aby by
 \item Composer.
 \end{itemize}
 
-Pro webserver je možné využít lokální web server, který přináší framework Symfony. Pomocí terminálu jej spustíme pomocí \texttt{symfony server:start -d}. Není třeba tedy využívat například nástroje XAMPP pro webserver. Dále je nutné vytvořit soubor \texttt{.env.local} a upravit dle šablony \texttt{.env} připojení k databázi dle vlastních potřeb. Poté již stačí v terminálu pomocí příkazu \texttt{composer build} nainstalovat celou aplikaci včetně ukázkových dat.
+Pro webový server je možné využít lokální web server, který přináší framework Symfony. Pomocí terminálu jej spustíme pomocí \texttt{symfony server:start -d}. Není třeba tedy využívat například nástroje XAMPP pro webový server. Dále je nutné vytvořit soubor \texttt{.env.local} a upravit dle šablony \texttt{.env} připojení k databázi dle vlastních potřeb. Poté již stačí v terminálu pomocí příkazu \texttt{composer build} nainstalovat celou aplikaci včetně ukázkových dat. V rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s heslem \texttt{admin123}.
 
 \chapter{Nastavení propojení s IBM Jazz}
-Pro konfiguraci celého nástroje slouží soubor \texttt{.env.local}, který je nutné manuálně vytvořit. Tento soubor dědí veškeré nevyplněné údaje z hlavního konfiguračního souboru \texttt{.env}, který slouží zejména jako šablona. Pomocí tohoto konfiguračního souboru lze nastavit jednak připojení k databázi v případě použití instalace bez nástroje Docker, ale také napojení na platformu IBM Jazz. Nastavení přístupových údajů v konfiguračním souboru můžeme vidět na výpise \ref{src:env}.
-
+Pro konfiguraci celého nástroje slouží soubor \texttt{.env.local}, který je nutné manuálně vytvořit. Tento soubor dědí veškeré nevyplněné údaje z hlavního konfiguračního souboru \texttt{.env}, který slouží zejména jako šablona. Pomocí tohoto konfiguračního souboru lze nastavit jednak připojení k databázi v případě použití instalace bez nástroje Docker, ale také napojení na platformu IBM Jazz. Nastavení přístupových údajů v konfiguračním souboru lze nalézt na výpise \ref{src:env}.
 
 \begin{lstlisting}[language=bash,label=src:env,caption={Část konfiguračního souboru \texttt{.env.local} definující propojení s IBM Jazz}]
 dng_server_url="https://158.196.141.113/"
@@ -1657,7 +1654,7 @@ dng_user_name="username"
 dng_password="password"
 \end{lstlisting}
 
-Poté je již možné spustit stahování ostrých dat z platformy IBM Jazz pomocí příkazu \texttt{php bin/console cron:run import:jazz-artifacts-model}. Tento příkaz manuálně spustí příkazový soubor \texttt{JazzArtifactsModelImportCommand}. Pakliže chceme stahování spouštět automaticky pomocí CRONu definujeme příkaz  \ref{src:crontab} v \texttt{crontab}. Tato defiince bude co pět minut spouštět veškeré soubory, které jsou definované jako CRON. V současné době je takto definováno pouze stahování dat z IBM Jazz.
+Poté je již možné spustit stahování ostrých dat z platformy IBM Jazz pomocí příkazu \texttt{php bin/console cron:run import:jazz-artifacts-model}. Tento příkaz manuálně spustí příkazový soubor \texttt{JazzArtifactsModelImportCommand}. Pakliže chceme stahování spouštět automaticky pomocí CRONu definujeme příkaz \ref{src:crontab} v \texttt{crontab}. Tato definice bude co pět minut spouštět veškeré soubory, které jsou definované jako CRON. V současné době je takto definováno pouze stahování dat z IBM Jazz.
 
 \begin{lstlisting}[language=bash,label=src:crontab,caption={Definice pro automatizaci stahování dat z IBM Jazz pomocí CRONu}]
 * * * * * /cesta/k/nastroji/app/console cron:run 1>> /dev/null 2>&1
@@ -1678,7 +1675,7 @@ V rámci této kapitoly budou představeny snímky nejdůležitějších část�
 \newpage
 \section{Nástěnka}
 
-Jakmile se uživatel přihlásí je automaticky přesměrován na nástěnku, kterou si může dle svých potřeb upravit a seřadit. Nástěnku můžeme vidět na obrázku \ref{fig:metrics_tool_dashboard}.
+Jakmile se uživatel přihlásí je automaticky přesměrován na nástěnku, kterou si může dle svých potřeb upravit a seřadit. Nástěnku lze vidět na obrázku \ref{fig:metrics_tool_dashboard}.
 
 \begin{figure}[!ht]
     \centering
@@ -1687,7 +1684,7 @@ Jakmile se uživatel přihlásí je automaticky přesměrován na nástěnku, kt
     \label{fig:metrics_tool_dashboard}
 \end{figure}
 \section{Artefakty}
-V uživatelské sekci si může uživatel zobrazit například veškeré artefakty, které byly dle jednotlivých projektů staženy z platformy IBM Jazz. Seznam artefaktů je možné vidět na obrázku \ref{fig:metrics_tool_artifacts}. Pomocí filtrování, lze také mezi jednotlivými artefakty filtrovat dle projektu.
+V uživatelské sekci si může uživatel zobrazit například veškeré artefakty, které byly dle jednotlivých projektů staženy z platformy IBM Jazz. Seznam artefaktů je možné nalézt na obrázku \ref{fig:metrics_tool_artifacts}. Pomocí formuláře, lze také mezi jednotlivými artefakty filtrovat dle projektu.
 
 \begin{figure}[!ht]
     \centering
@@ -1705,7 +1702,7 @@ Na obrázku \ref{fig:metrics_tool_artifacts_detail} je možné vidět detailní 
     \label{fig:metrics_tool_artifacts_detail}
 \end{figure}
 \section{Moduly}
-Další sekcí, kterou si může uživatel pouze zobrazit a ne upravit je seznam modulů. Tyto moduly se stahují taktéž z platformy IBM Jazz v rámci stahování artefaktů, které jsou do modulů zařazeny. Výpis všech modulů dle projektu je možné vidět na obrázku \ref{fig:metrics_tool_modules}.
+Další sekcí, kterou si může uživatel pouze zobrazit a ne upravit je seznam modulů. Moduly se stahují taktéž z platformy IBM Jazz v rámci stahování artefaktů, které jsou do modulů zařazeny. Výpis všech modulů dle projektu lze nalézt na obrázku \ref{fig:metrics_tool_modules}.
 
 \begin{figure}[!ht]
     \centering
@@ -1727,7 +1724,7 @@ Uživatel si stejně jako v případě artefaktů může zobrazit také detailn�
 
 \section{Metriky}
 
-Jako další sekce v uživatelské části nástroje se nachází metriky. Ty je možné také filtrovat dle projektu a na rozdíl od artefaktů a modulů nepocházejí z platformy IBM Jazz, ale jsou definované jednotlivými uživateli. Kromě zobrazení je možné je tedy i upravovat a vytvářet z definic metrik nové. Na obrázku \ref{fig:metrics_tool_metrics} je možné vidět výpis všech metrik dle projektu. Dále můžeme vidět na obrázku \ref{fig:metrics_tool_metrics_detail} zobrazení metriky včetně grafu, tabulky a podmínek a na obrázku \ref{fig:metrics_tool_metrics_edit} úpravu existující metriky.
+Jako další sekce v uživatelské části nástroje se nachází metriky. Ty je možné také filtrovat dle projektu a na rozdíl od artefaktů a modulů nepocházejí z platformy IBM Jazz, ale jsou definované jednotlivými uživateli. Kromě zobrazení je možné je tedy i upravovat a vytvářet z definic metrik nové. Na obrázku \ref{fig:metrics_tool_metrics} je možné vidět výpis všech metrik dle projektu. Dále lze vidět na obrázku \ref{fig:metrics_tool_metrics_detail} zobrazení metriky včetně grafu, tabulky a podmínek a na obrázku \ref{fig:metrics_tool_metrics_edit} úpravu existující metriky.
 
 \begin{figure}[!ht]
     \centering
@@ -1751,7 +1748,7 @@ Jako další sekce v uživatelské části nástroje se nachází metriky. Ty je
     \label{fig:metrics_tool_metrics_edit}
 \end{figure}
 \section{Dokumenty}
-Jedna z posledních důležitých funkcionalit v rámci nástroje jsou dokumenty pro reporty. Ty slouží jako dynamické nebo statické dokumenty obsahující text a metriky buď v podobě tabulky, nebo grafu. Dokumenty je možné si zobrazit v dynamické podobě přímo v nástroji, případně stáhnout v požadovaném formátu. Mezi možné formáty patří například Word, PowerPoint, Excel, nebo také CSV a PDF. Na obrázku \ref{fig:metrics_tool_documents} můžeme vidět výpis všech dynamických dokumentů dle projektu, dále na obrázku \ref{fig:metrics_tool_documents_detail} detailní výpis dynamického dokumentu, který se mění v čase a na obrázku \ref{fig:metrics_tool_documents_edit} můžeme vidět úpravu dokumentu. Při úpravě si může uživatel dokument libovolně skládat pomocí bloků. 
+Jedna z posledních důležitých funkcionalit v rámci nástroje jsou dokumenty pro reporty. Ty slouží jako dynamické a statické dokumenty obsahující text a metriky buď v podobě tabulky, nebo grafu. Dokumenty si lze zobrazit v dynamické podobě přímo v nástroji, případně stáhnout v požadovaném formátu. Mezi možné formáty patří například Word, PowerPoint, Excel, nebo také CSV a PDF. Na obrázku \ref{fig:metrics_tool_documents} můžeme vidět výpis všech dynamických dokumentů dle projektu, dále na obrázku \ref{fig:metrics_tool_documents_detail} detailní výpis dynamického dokumentu, který se mění dle stahovaných dat a na obrázku \ref{fig:metrics_tool_documents_edit} můžeme vidět úpravu dokumentu. Při úpravě si může uživatel dokument libovolně skládat pomocí bloků. 
 
 \begin{figure}[!ht]
     \centering
@@ -1777,7 +1774,7 @@ Jedna z posledních důležitých funkcionalit v rámci nástroje jsou dokumenty
 \newpage
 \section{Projekty}
 
-V rámci administrace může administrátor vytvářet a upravovat projekty, které propojí s platformou IBM Jazz pomocí identifikátoru daného projektu. Výpis projektů v administraci je možné vidět na obrázku \ref{fig:metrics_tool_admin_projects}.
+V rámci administrace může administrátor vytvářet a upravovat projekty, které propojí s platformou IBM Jazz pomocí identifikátoru daného projektu. Výpis projektů v administraci lze nalézt na obrázku \ref{fig:metrics_tool_admin_projects}.
 
 
 \begin{figure}[!ht]
@@ -1788,7 +1785,7 @@ V rámci administrace může administrátor vytvářet a upravovat projekty, kte
 \end{figure}
 \newpage
 \section{Definice metrik}
-Jedna z nejdůležitějších části nástroje je možnost vytvářet v administraci definice metrik, které slouží pro následné vytváření metrik pro jednotlivé metriky. Definici metriky si můžeme představit jako seznam podmínek, které jsou nutné pro vytvoření a vygenerování metriky. Definice je zcela nezávislá na typu grafu, nebo projektu. Seznam vytvořených definic je možné vidět na obrázku \ref{fig:admin_report_builder}. Pomocí vícekrokovému formuláři může administrátor nastavit základní údaje definice a vybrat podmínky pro definici metriky. Podmínky jsou vytvářeny z dat stahovaných z platformy IBM Jazz. Formulář je možné vidět na obrázku \ref{fig:admin_report_builder_first_first} a \ref{fig:admin_report_builder_second}.
+Jedna z nejdůležitějších části nástroje je možnost vytvářet v administraci definice metrik, které slouží pro následné vytváření metrik pro jednotlivé metriky. Definici metriky si lze představit jako seznam podmínek, které jsou nutné pro vytvoření a vygenerování metriky. Definice je zcela nezávislá na typu grafu, nebo projektu. Seznam vytvořených definic je možné vidět na obrázku \ref{fig:admin_report_builder}. Pomocí vícekrokovému formuláři může administrátor nastavit základní údaje definice a vybrat podmínky pro definici metriky. Podmínky jsou vytvářeny z dat stahovaných z platformy IBM Jazz. Formulář je lze nalézt na obrázku \ref{fig:admin_report_builder_first_first} a \ref{fig:admin_report_builder_second}.
 
 \begin{figure}[!ht]
     \centering
