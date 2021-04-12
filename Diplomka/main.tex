@@ -1586,7 +1586,7 @@ Nyní můžeme přejít k~instalaci samotného nástroje:
 \item Nainstalujeme veškeré závislosti a knihovny pomocí \texttt{composer install}.
 \item Nainstalujeme ukázková data pomocí příkazu \texttt{composer build}.
 \item V~rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s~heslem \texttt{admin123}.
-\item Ve výchozím stavu je deklarováno vývojové prostředí, které lze změnit na produkční vytvořením \texttt{.env.local} souboru, který bude obsahovat \texttt{APP\_ENV=prod}.
+\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru, který bude obsahovat \texttt{APP\_ENV=dev}.
 \end{enumerate}
 
 \subsection{Linux}
@@ -1607,7 +1607,7 @@ Pokud operační systém splňuje výše uvedené požadavky, můžeme přejít 
 \item Nainstalujeme veškeré závislosti a knihovny pomocí \texttt{composer install}.
 \item Nainstalujeme ukázková data pomocí příkazu \texttt{composer build}.
 \item V~rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s~heslem \texttt{admin123}.
-\item Ve výchozím stavu je deklarováno vývojové prostředí, které lze změnit na produkční vytvořením \texttt{.env.local} souboru, který bude obsahovat \texttt{APP\_ENV=prod}.
+\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru, který bude obsahovat \texttt{APP\_ENV=dev}.
 \end{enumerate}
 
 \subsection{macOS}
@@ -1631,7 +1631,7 @@ Jakmile máme připravený a nainstalovaný virtualizační nástroj Docker, nai
 \item Nainstalujeme veškeré závislosti a knihovny pomocí \texttt{composer install}.
 \item Nainstalujeme ukázková data pomocí příkazu \texttt{composer build}.
 \item V~rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s~heslem \texttt{admin123}.
-\item Ve výchozím stavu je deklarováno vývojové prostředí, které lze změnit na produkční vytvořením \texttt{.env.local} souboru, který bude obsahovat \texttt{APP\_ENV=prod}.
+\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru, který bude obsahovat \texttt{APP\_ENV=dev}.
 \end{enumerate}
 
 \section{Bez virtualizačního nástroje Docker}
@@ -1649,7 +1649,7 @@ Při instalaci bez virtualizačního nástroje Docker je nutno zajistit, aby byl
 \item Composer.
 \end{itemize}
 
-Pro webový server je možno využít lokální web server, který přináší framework Symfony. Pomocí terminálu jej spustíme pomocí \texttt{symfony server:start -d}. Není třeba tedy využívat například nástroje XAMPP pro webový server. Dále je nutno vytvořit soubor \texttt{.env.local} a upravit dle šablony \texttt{.env} připojení k~databázi dle vlastních potřeb. Poté již stačí v~terminálu pomocí příkazu \texttt{composer build} nainstalovat celou aplikaci včetně ukázkových dat. V~rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s~heslem \texttt{admin123}.
+Pro webový server je možno využít lokální web server, který přináší framework Symfony. Pomocí terminálu jej spustíme pomocí \texttt{symfony server:start -d}. Není třeba tedy využívat například nástroje XAMPP pro webový server. Dále je nutno vytvořit soubor \texttt{.env.local} a upravit dle šablony \texttt{.env} připojení k~databázi dle vlastních potřeb. Poté již stačí v~terminálu pomocí příkazů \texttt{composer install} a \texttt{composer build} nainstalovat celou aplikaci včetně ukázkových dat. V~rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s~heslem \texttt{admin123}.
 
 \chapter{Nastavení propojení s~IBM Jazz}
 Pro konfiguraci celého nástroje slouží soubor \texttt{.env.local}, který je nutno manuálně vytvořit. Tento soubor dědí veškeré nevyplněné údaje z~hlavního konfiguračního souboru \texttt{.env}, který slouží zejména jako šablona. Pomocí tohoto konfiguračního souboru lze nastavit jednak připojení k~databázi v~případě použití instalace bez nástroje Docker, jednak také napojení na platformu IBM Jazz. Nastavení přístupových údajů v~konfiguračním souboru lze nalézt na výpise \ref{src:env}.
