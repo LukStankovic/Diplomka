@@ -141,6 +141,7 @@ Engineering Institute). Model hodnocení vyspělosti používání softwarového
 \item \textit{Optimalizovaná} -- na základě dlouhodobě vysledovaných dat při používání softwarového procesu je společnost schopna daný softwarový proces optimalizovat a vylepšit tak, aby více vyhovoval celému vývoji.
 \end{enumerate}
 
+Softwarové procesy lze rozdělit do metodik dle typu přístupu k vývoji. Nejznámější dělení procesů je na procesy sekvenční, iterativní a agilní metodiky. Podrobné rozdělení a více informací o~metodikách dle typu přístupu k vývoji se nachází v příloze \ref{sec:sw_procesy_metodiky}.
 
 \section{Plánování}
 Je to jedna z~částí softwarového procesu. Velikost a důkladnost plánování procesu a samotného projektu závisí na používaném modelu softwarového procesu. Například při použití vodopádového modelu je plánování velmi důležitou částí procesu, jelikož na kvalitní specifikaci a plánování kompletního procesu stojí celý vývoj. Naopak při vývoji pomocí agilních způsobů je část plánování a specifikace softwaru minimální.
@@ -164,7 +165,7 @@ Obecně lze monitorovat tři typy metrik určitého procesu:
 \item \textit{Počet výskytů nějaké definované události} -- v~rámci tohoto typu sem můžeme zařadit například počet nalezených chyb, počet zbývajících nedokončených úkolů, počet schválených požadavků, celkový počet požadavků a mnoho dalšího.
 \end{enumerate}
 
-Monitorování procesu představuje způsob, pomocí něhož můžeme vytvářet výstupy o~daném procesu a jeho změnách. Pomocí monitorování dokážeme určit, zda je proces efektivní a zda případné změny procesu mají na proces pozitivní dopad. Pro správnou interpretaci změn by mělo být měření pouhou částí. Abychom si byli jisti správností změn procesu, musíme měření kombinovat s~kvalitativním hodnocením změn a správnou komunikací o~zavedených změnách s~účastníky procesu. Díky správné komunikaci dokážeme zjistit jejich názory na efektivitu provedených změn procesu a také dokážeme odhalit další faktory, které by mohly proces negativně ovlivnit. Pomocí monitorování chování týmu po zavedené změně dokážeme pozorovat, jak daný tým změny přijal a případně jaká panuje v~týmu nálada.
+Monitorování procesu představuje způsob, pomocí něhož můžeme vytvářet výstupy o~daném procesu a jeho změnách. Pomocí monitorování dokážeme určit, zda je proces efektivní a zda případné změny procesu mají na proces pozitivní dopad. Pro správnou interpretaci změn by mělo být měření pouhou částí. Abychom si byli jisti správností změn procesu, musíme měření kombinovat s~kvalitativním hodnocením změn a správnou komunikací o~zavedených změnách s~účastníky procesu. Díky správné komunikaci dokážeme zjistit jejich názory na efektivitu provedených změn procesu a také dokážeme odhalit další faktory, které by mohly proces negativně ovlivnit. Pomocí monitorování chování týmu po zavedené změně dokážeme pozorovat, jak daný tým změny přijal a případně jaká panuje v~týmu atmosféra.
 
 \section{Uzpůsobení}
 \label{sec:control}
@@ -217,7 +218,7 @@ Při měření vývoje softwaru pomocí metrik se snažíme odvodit numerické h
 
 Při zavádění nového nástroje v~rámci organizace můžeme využít metriky tak, že část daného vývoje změříme metrikami před zavedením nástroje. Po určité definované době od zavedení nástroje pomocí metrik změříme znovu stejnou část vývojového procesu a vyhodnotíme, zda je tým při vývoji efektivnější než před prvním měřením. Pod tímto si můžeme například představit zavedení nového nástroje na automatické testování vyvíjeného softwaru. Před zavedením pomocí metrik zjistíme, kolik se v~softwaru vyskytuje chyb, a poté tyto údaje porovnáme s~údaji naměřenými po zavedení nástroje. Takto získaná data můžeme tedy používat pro zlepšení samotného vývoje a procesů.
 
-Jedním ze základních dělení metrik je dělení na \textbf{kontrolní} a prediktivní metriky. Kontrolní metriky, jak již vyplývá ze samotného názvu, slouží pro správu a kontrolu prováděných procesů. Typickými metrikami patřícími mezi kontrolní metriky jsou počet nahlášených chyb během vývoje, průměrný čas strávený na opravě detekovaných chyb, počet splněných úkolů od zahájení vývoje a mnoho dalších. Mezi prediktivní metriky řadíme metriky, které předpovídají vlastnosti vyvíjeného produktu nebo softwaru. Typickými představiteli jsou například cyklomatická složitost určité komponenty, počet tříd nebo databázových tabulek. Prediktivní metriky, které souvisejí s~vlastnostmi vyvíjeného produktu nebo softwaru, se mohou označovat také jako produktové metriky. \cite{ref:metric_definition}
+Jedním ze základních dělení metrik je dělení na kontrolní a prediktivní metriky. Kontrolní metriky, jak již vyplývá ze samotného názvu, slouží pro správu a kontrolu prováděných procesů. Typickými metrikami patřícími mezi kontrolní metriky jsou počet nahlášených chyb během vývoje, průměrný čas strávený na opravě detekovaných chyb, počet splněných úkolů od zahájení vývoje a mnoho dalších. Mezi prediktivní metriky řadíme metriky, které předpovídají vlastnosti vyvíjeného produktu nebo softwaru. Typickými představiteli jsou například cyklomatická složitost určité komponenty, počet tříd nebo databázových tabulek. Prediktivní metriky, které souvisejí s~vlastnostmi vyvíjeného produktu nebo softwaru, se mohou označovat také jako produktové metriky. \cite{ref:metric_definition}
 
 \section{Kontrolní metriky}
 Tyto metriky slouží jako statistické údaje pro kontrolu daného softwarového procesu. Můžeme zde zařadit údaje o~času stráveném na nějakém konkrétním úkolu. Vysledovaná a naměřená data poté slouží jako podklad ke zlepšování osobního a softwarového procesu.
@@ -736,7 +737,8 @@ Metriky potřebné pro ASPICE  & ne                      & ne                   
 
 Všechny tři aplikace obsahují možnost přístupu pomocí webové aplikace, přičemž pouze codeBeamer a Siemens Polarion poskytují přístup pomocí počítačové aplikace. Další rozdíl mezi platformou IBM Jazz a ostatními aplikacemi, které jsou řešeny jako jedna velká robustní aplikace, spočívá v~tom, že IBM Jazz je koncipována jako více menších aplikací. Všechny aplikace obsahují export dat pomocí API, přičemž Siemens Polarion nabízí export i přímo z~databáze poskytující více možností než jen API, které je řešeno pomocí webových služeb. IBM Jazz a codeBeamer podporují export pomocí REST API. Až na aplikaci Polarion neposkytuje IBM Jazz ani codeBeamer historické údaje v~metrikách. Bohužel Siemens Polarion nabízí tyto informace pouze omezeně. Jediná platforma IBM Jazz podporuje pomocí \textit{Jazz Reporting Service} pokročilejší zobrazení metriky pomocí grafů. Ostatní dvě aplikace v~základu podporují zobrazení metrik pomocí grafů limitovaně. Ani jedna z~analyzovaných aplikací však neposkytuje zobrazení a definice metrik pro sběr požadavků, které je nutné sledovat dle standardu Automotive SPICE. Rychlý přehled analyzovaných aplikací a nástrojů je možno nalézt v~tabulce \ref{tab:alm_porovnani}.
 
-\newpage % ODSTRANIT
+
+Dále kromě nástrojů sledujících životní cyklus celé aplikace byly prozkoumány \textit{Business Intelligence} aplikace. Ty slouží zejména pro shromažďovaní a zpracování velkých objemů dat, které pocházejí z~interních nebo externích systémů při vývoji a správě daného produktu. Nástroje poskytují také možnosti pro tvorbu a správu sestav, grafů a metrik. Podrobné informace o \textit{Business Intelligence} a analýzu aplikací Qlik Sense a Microsoft BI lze nalézt v příloze \ref{sec:bi}.
 
 \chapter{Vlastní aplikace}
 \label{sec:my_app}
@@ -1316,7 +1318,7 @@ BERNHARDT, Steger, Damjan EKERT, Richard MESSNARZ, Jakub ŠTOLFA, Svatopluk ŠTO
 
 
 \chapter{Rozdělení softwarových procesů}
-
+\label{sec:sw_procesy_metodiky}
 
 \section{Sekvenční a iterativní metodiky vývoje}
 V~rámci sekvenčních metodik vývoje softwaru probíhají veškeré aktivity lineárně po sobě tak, že každá fáze je plně dokončena a otestována. Tato podmínka je velmi důležitá pro bezproblémový vývoj a následnou udržitelnost vyvíjeného systému. Je tedy důležité věnovat počátečním fázím návrhu dostatek času a úsilí. Sekvenční metodiky jsou vhodné pro systémy, jež mají pevně dané požadavky na začátku vývoje a během samotného vývoje jsou prakticky neměnné. Další výhoda sekvenčních metodik spočívá v~jednoduchosti z~hlediska řízení vývoje. Nevýhodou je kromě již zmíněné nemožnosti řádně modifikovat požadavky například to, že zákazník vidí spustitelnou verzi až v~úplně poslední fázi verifikace. Veškeré nové požadavky mohou vést k~razantnímu navyšování výsledného rozpočtu celého projektu.
@@ -1444,6 +1446,7 @@ Jednotlivá zadání úkolů jsou psána pomocí uživatelských příběhů (ta
 
 
 \chapter{Business intelligence}
+\label{sec:bi}
 Dnešní společnosti pracující na velkých a komplexních systémech skladují a spravují při vývoji velká množství dat. S~těmito daty je nutno, nejen pro potřeby analýzy, pracovat a přistupovat k~nim. K~zajištění správných a tedy úspěšných manažerských rozhodnutí je třeba data pochopit a vyčíst z~nich důležité informace. Pomocí získaných a pochopených informací dokážeme informace přeměnit ve znalosti a použít je k~predikcím. Následně dokážeme odhadnout, kam se může vývoj projektu nebo společnosti ubírat.
 
 Jelikož v~drtivé většině jsou sbíraná a analyzovaná data velká a komplexní, nemusí pouhý pohled do tabulky obsahující data celého podniku odhalit nějaká slabá místa. Také si nemusíme takto velká data obsahující i miliony záznamů dostatečně představit. Z~toho důvodu potřebujeme využít nástroje a přístupy, které nám zajistí jednodušší analýzu, nebo data připraví tak, aby je mohl lidský mozek nejen pochopit, ale uvědomit si i souvislosti.
