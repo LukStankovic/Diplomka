@@ -192,129 +192,6 @@ Je to iterativní metoda, jejíž cílem je dosáhnout stálého zdokonalování
 \end{enumerate}
 
 
-\section{Sekvenční a iterativní metodiky vývoje}
-V~rámci sekvenčních metodik vývoje softwaru probíhají veškeré aktivity lineárně po sobě tak, že každá fáze je plně dokončena a otestována. Tato podmínka je velmi důležitá pro bezproblémový vývoj a následnou udržitelnost vyvíjeného systému. Je tedy důležité věnovat počátečním fázím návrhu dostatek času a úsilí. Sekvenční metodiky jsou vhodné pro systémy, jež mají pevně dané požadavky na začátku vývoje a během samotného vývoje jsou prakticky neměnné. Další výhoda sekvenčních metodik spočívá v~jednoduchosti z~hlediska řízení vývoje. Nevýhodou je kromě již zmíněné nemožnosti řádně modifikovat požadavky například to, že zákazník vidí spustitelnou verzi až v~úplně poslední fázi verifikace. Veškeré nové požadavky mohou vést k~razantnímu navyšování výsledného rozpočtu celého projektu.
-
-Iterativní metodiky sekvenční přístup vylepšují tím, že jednotlivé sekvenční aktivity probíhají opakovaně v~cyklech. Není poté potřeba dbát takový důraz na počáteční fáze vývoje, konkrétně na analýzu a návrh. Iterativní metodiky se tedy hodí pro všechny druhy vývoje, kdy víme, že se mohou podmínky a požadavky za běhu měnit. Výhodou iterativních přístupů je, že je metoda pružnější pro opravu či implementaci změněných požadavků. Nevýhodou je, že si oproti sekvenčním přístupům iterativní přístup žádá vyšší nároky na vedení a řízení celého vývoje.
-
-\subsection{Vodopádový model}
-Jde o~jeden z~nejstarších a nejznámějších vývojových procesů, který byl poprvé publikován v~článku v~roce 1970 Winstonem W. Roycem a vychází z~obecných vývojových procesů. Vodopádovým modelem je nazýván, protože jednotlivé fáze procesu postupně kaskádovitě navazují na sebe a celý model poté vypadá jako vodopád. Veškeré kroky musí být pečlivě analyzovány a naplánovány. K~další vývojové fázi se přistupuje až poté, co jsou veškeré předchozí kroky splněny, schváleny a uzavřeny. \cite{ref:sommerrville_waterfall} Aby byl projekt podle modelu úspěšný je nutno věnovat prvním fázím dostatek času a úsilí. Schéma vodopádového modelu je možno vidět na obrázku \ref{fig:waterfall}.
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=1\textwidth]{Diplomka/Figures/waterfall.png}
-    \caption{Vodopádový model (převzato z~\cite{ref:sommerrville_waterfall})}
-    \label{fig:waterfall}
-\end{figure}
-
-Základní fáze vodopádového modelu vycházejí ze standardních potřeb vývoje softwaru:
-
-\begin{enumerate}
-\item \textit{Specifikace požadavků} -- na základě jednotlivých požadavků zákazníka jsou požadavky detailně sepsány a analyzovány.
-
-\item \textit{Systémový a softwarový návrh} -- jednotlivé požadavky zákazníka určují náročnost na systém. Návrh zahrnuje také celkovou architekturu systému.
-
-\item \textit{Implementace a unit testování} -- v~rámci této fáze se systém realizuje a každá jednotka je samostatně testována, zda splňuje určité požadavky.
-
-\item \textit{Integrace a testování systému} -- jednotlivé vyvinuté části systému se integrují a otestují jako kompletní systém. Tím je zajištěno, že celý systém splňuje definované požadavky. Jakmile je produkt kompletně otestován, je předán zákazníkovi.
-
-\item \textit{Provoz a údržba} -- během této fáze se systém nasazuje do ostrého prostředí. Dále v~rámci této fáze probíhá oprava chyb a vylepšování funkcí.
-
-\end{enumerate}
-
-V~praxi je složité jednotlivé fáze pečlivě oddělit a postupovat do další fáze pouze, jakmile je předchozí fáze plně dokončena. Proto se většinou jednotlivé fáze postupně překrývají a vyměňují si mezi sebou informace. Hlavní nevýhodou modelu je praktická nemožnost reagovat na měnící se požadavky zákazníka. Vodopádový model je vhodné zpravidla použít tam, kde víme, že se požadavky zásadně nebudou měnit.
-
-\subsection{Rational Unified Process}
-Rational Unified Process (RUP) je iterativní model vývoje softwaru vytvořený firmou Rational Software Corporation. RUP byl vytvořen a odvozen z~osvědčených praktik při vývoji softwaru. Mezi tyto praktiky například patří řízení změn, komponentová architektura, aktivní správa požadavků nebo například ověřování kvality software. Model obsahuje čtyři fáze, které se iterují dle potřeby. Jednotlivé fáze oproti vodopádovému modelu nesouvisejí s~technickými hledisky, ale soustředí se spíše na podniková hlediska. \cite{ref:rup_ibm_about} Fáze modelu RUP jsou následující:
-
-\begin{enumerate}
-\item \textit{Zahájení} -- cílem této fáze je vytvořit podnikový případ systému. V~rámci této fáze je potřeba identifikovat veškeré osoby a další systémy, které budou s~daným systémem pracovat či komunikovat.
-\item \textit{Příprava} -- během této fáze se vytvoří architektura systému. Dále se vytvoří celkový plán projektu a identifikují se klíčová rizika, která mohou na projektu nastat. Během fáze vznikne například plán vývoje, UML diagramy nebo popis systému.
-\item \textit{Konstrukce} -- tato fáze obsahuje návrh systému, samotné programování a testování, přičemž se zároveň jednotlivé části systému integrují. Dále během této fáze vzniká dokumentace. Na konci fáze je hotový funkční produkt připraven na dodání zákazníkovi.
-\item \textit{Předávání} -- v~závěrečné fázi je funkční produkt spolu s~dokumentací předán zákazníkovi. Produkt je nasazen do ostrého prostředí a zprovozněn.
-\end{enumerate}
-
-U~modelu RUP je možno provádět inkrementaci samostatným opakováním jak jednotlivých fází, tak i celého procesu. Kromě čtyř fází RUP definuje jednotlivé disciplíny, jež jsou v~rámci fází prováděny. Velkou výhodou je, že tyto disciplíny nejsou navázány na jednotlivé fáze. Disciplíny jsou činnosti, prováděné během celého vývoje produktu. Disciplíny v~rámci modelu RUP jsou následující:
-
-\begin{itemize}
-\item Tvorba modelu,
-\item správa požadavků,
-\item analýza a návrh,
-\item implementace,
-\item testování,
-\item nasazení,
-\item správa konfigurace a změn,
-\item řízení projektu,
-\item správa prostředí.
-\end{itemize}
-
-Výše popsané fáze společně s~disciplínami je možno vidět na obrázku \ref{fig:rup}. Můžeme vidět, že různé disciplíny mají v~jednotlivých fázích vyšší důležitost než jiné.
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.75\textwidth]{Diplomka/Figures/rup.png}
-    \caption{Grafické znázornění fází a disciplín RUP (převzato z~\cite{ref:rup_ibm})}
-    \label{fig:rup}
-\end{figure}
-
-\section{Agilní metodiky vývoje}
-Aktuální trh se softwarem se velmi rychle mění, a proto je potřeba aktivně reagovat na měnící se prostředí. Agilní přístupy patří k~inkrementálním způsobům vývoje. Software vytvářený pomocí vodopádového modelu může být v~době vydání již velmi zastaralý. Z~tohoto důvodu jsou agilní přístupy vývoje v~poslední době velmi oblíbené. Takto vyvíjený software je většinou dodán rychleji, ale zato může být dodán v~horší kvalitě. Takový přístup se ovšem nehodí u~kritických systémů, u~nichž je kladen velký důraz například na bezpečnost a spolehlivost. Software se během agilního vývoje vytváří ve verzích, kdy každá nová verze obsahuje nové funkcionality. Jednotlivé vývojové procesy se prolínají a většinou neexistuje podrobná specifikace a dokumentace systému. V~dokumentaci obvykle bývají pouze základní a nejdůležitější prvky systému. Tento nedostatek se ovšem může rychle vymstít při následné údržbě daného softwaru.
-
-Filozofie agilních metodik vychází z~manifestu, na němž se shodli vývojáři těchto vývojových metod. Manifest popisuje čtyři základní hodnoty, jichž si autoři cení \cite{ref:agilne_manifesto}:
-
-\begin{itemize}
-\item Jednotlivci a interakce před procesy a nástroji.
-\item Fungující software před vyčerpávající dokumentací.
-\item Spolupráce se zákazníkem před vyjednáváním o~smlouvě.
-\item Reagování na změny před dodržováním plánu.
-\end{itemize}
-
-Každý vývojový proces má svá pozitiva a svá negativa. Mezi pozitiva při agilním vývoji patří například rychlejší vývoj, větší flexibilita vývoje, kdy je možno upravovat směr dalšího vývoje dle potřeby zákazníka nebo například zapojení zákazníka do procesu vývoje. Mezi negativa patří nekompletní dokumentace, závislost na vývojovém týmu, kdy při rozpadu týmu může dojít k~problémům. Dalším problém může být, že v~dnešní době chce každá firma vyvíjet agilně, i když na to není personál proškolený a nikdo z~dané firmy pořádně neví, co to znamená agilní vývoj.
-
-Podle Iana Sommervilla \cite{ref:sommerrville_agile_products} jsou agilní metody úspěšné pouze pro určité typy softwarových systémů:
-
-\begin{enumerate}
-\item Vývoj malého nebo středně velkého systému, který je určen k~prodeji.
-\item Vývoj systémů pro zákazníka, kde si zákazník uvědomuje nutnost zapojit se do procesu vývoje a kde neexistuje mnoho pravidel, která mají vliv na vývoj softwaru.
-\end{enumerate}
-
-
-\subsection{Extrémní programování}
-Dle Kenta Becka \cite{ref:what_is_xp} je extrémní programování agilní metoda, která spočívá ve změně myšlení a zvyků při vývoji. Extrémní programování se zaměřuje na excelentní programovací schopnosti, zlepšení komunikace mezi členy týmu a týmovou práci. Extrémní programování se zaměřuje na zextrémnění a zefektivnění těch úkonů, které se při vývoji osvědčily. Je důležité z~extrémního programování do procesu zařadit pouze ty aktivity, které mají hodnotu pro vývojový tým a přinášejí benefit zákazníkovi. Můžeme zde například zařadit párové programování, kdy dva programátoři vyvíjejí společně jednu funkčnost, přičemž jeden programátor pozoruje druhého při programování. Tyto role se pravidelně střídají. Nevýhodou tohoto přístupu je, že takto vyvíjený software zabere více placeného času. Výhoda spočívá naopak v~tom, že software obsahuje méně chyb díky vzájemné revizi kódu.
-
-Další obor, který může být pomocí extrémního programování řešen je extrémnější testování softwaru, kdy samotní programátoři programují jednotkové (unit) testy, ale zároveň testuje také zákazník pomocí akceptačních testů. Extrémní programování takto řeší prakticky každou oblast vývoje, která se při vývoji osvědčila a může být zefektivněna. Jednotlivá zadání úkolů jsou řešena stejně jako v~metodě Scrum pomocí uživatelských příběhů (takzvané \textit{User stories}). Dalšími možnými praktikami, jež extrémní programování řeší, jsou například přítomnost zákazníka na pracovišti, vydávání malých verzí softwaru, průběžná integrace anebo neustálá refaktorizace kódu.
-
-\subsection{Scrum}
-Dle Josefa Myslína \cite{ref:scrum_myslin} je to agilní technika, při které se více než technické procesy řeší projektové procesy. Vymysleli ji Ken Schwaber a Jeff Sutherland na začátku 90. let 20. století. Týmy, které ve Srumu pracují, jsou samoorganizované, přičemž vývojový tým nemá přímého nadřízeného. Tým obsahuje několik klíčových rolí, mezi něž patří \textit{Product owner} (vlastník produktu), který komunikuje se zákazníkem a případně řeší priority ve vykonané práci. Dále se zde vyskytuje \textit{Scrum master}, který má na starost samotný proces a interakci s~týmem. Samozřejmostí je samotný vývojový tým. Scrum stojí na třech základních pilířích:
-
-\begin{enumerate}
-\item \textit{Transparentnost} -- všichni v~týmu by měli mít přehled o~veškerém dění v~rámci projektu. Každý člen týmu tedy například ví, v~jakém stavu je určitý úkol a proč existuje.
-\item \textit{Kontrola} -- pravidelně se v~rámci celého týmu dělá kontrola, zda procesy a fungování týmu jsou vyhovující.
-\item \textit{Adaptace} -- na základě zjištěných požadavků v~rámci pravidelných kontrol se provádějí změny, aby byl daný tým spokojený a doručoval dále vynikající výsledky.
-\end{enumerate}
-
-Veškerý vývoj produktu probíhá v~pravidelných iteracích, které jsou nazývány \textit{Sprinty}. Tyto iterace mají nejčastěji trvání od dvou týdnů po jeden měsíc. Na konci každého sprintu je dodána nová verze funkčního systému.
-
-Jak je možno vidět na obrázku, \ref{fig:scrum_cyklus} na začátku každého sprintu probíhá seznámení s~úkoly na daný sprint a plánování, které úkoly musí tým daný sprint doručit. Během sprintu probíhají různé druhy schůzek. Každý den probíhá rychlá schůzka nazývaná \textit{Standup}, během níž členové týmu v~rychlosti představí, co budou daný den řešit a co řešili předešlý den. Na konci každého sprintu probíhá pravidelná kontrola, jež se nazývá retrospektiva, a dále samotné zhodnocení sprintu. Na této schůzce je řešeno, jaké adaptace by měl tým provést, aby následující sprint proběhl lépe.
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=1\textwidth]{Diplomka/Figures/scrum.png}
-    \caption{Vývojový cyklus řízený pomocí metodiky Scrum (převzato z~\cite{ref:scrum_myslin_cyklus_img})}
-    \label{fig:scrum_cyklus}
-\end{figure}
-
-Jednotlivé schůzky by se poté daly rozdělit do tří základních skupin:
-
-\begin{itemize}
-\item \textit{Plánovací} -- tento typ schůzek předchází jakékoli aktivitě, která po schůzce probíhá. Během těchto schůzek může být plánován buď celý projekt, nebo je naplánován sprint.
-\item \textit{Hodnotící} -- tyto schůzky probíhají buď na konci sprintu, nebo na konci projektu. Během tohoto typu schůzek se hodnotí, zda to, co proběhlo, proběhlo v~pořádku, a případně co bylo špatně.
-\item \textit{Plánovací i hodnotící} -- do této skupiny spadá pouze denní schůzka zvaná \textit{Standup}. Během schůzky se hodnotí předchozí den a plánuje se, co se bude dále daný den dělat. Během schůzky mají všichni členové týmu možnost vidět, jak se úkol vyvíjí, a zda úkol na něco nečeká.
-\end{itemize}
-
-
-Jednotlivá zadání úkolů jsou psána pomocí uživatelských příběhů (takzvané \textit{User stories}), přičemž většinou obsahují jen minimum technických informací. Jednotlivé uživatelské příběhy nepopisují technickou interakci ze systémem. Uživatelské příběhy mají  sjednocenou podobu například ve tvaru: \uv{Jako \textit{role} chci \textit{cíl} tak, aby \textit{užitek}.} Tedy například: \uv{Jako uživatel chci vidět seznam zboží v~objednávce tak, aby si uživatel mohl zboží zkontrolovat.} \cite{ref:scrum_myslin_us}
-
 \section{V-Model}
 V-model je grafické znázornění vývojového cyklu používaného prakticky u~jakéhokoli vývoje, u~něhož je důležité nepřetržité fungování a bezchybnost systému. Model je tedy využíván prakticky v~každém odvětví, nejen v~automobilovém průmyslu nebo softwarovém vývoji kritických systémů. Tento model zdědil po vodopádovém modelu jistou kaskádovitost, kdy každý krok je proveden až po předchozím kroku. Za rozdílnost V-Modelu lze považovat to, že je oproti agilním přístupům zaměřen na velmi důkladnou kontrolu a testování systému. Kontrola a testování probíhá již v~počátečních etapách návrhu systému. Jednotlivé testování systému se provádí ve stejné době jako určitá část vývoje. Tedy například jednotkové testy se píšou během implementační části nebo například integrační testování probíhá při integraci jednotlivých komponent systému. Je vhodný zejména pro projekty, kde je většina požadavků jasná a předem daná. Grafické znázornění V-Modelu je možno vidět na obrázku \ref{fig:v_model}.
 
@@ -860,89 +737,6 @@ Metriky potřebné pro ASPICE  & ne                      & ne                   
 Všechny tři aplikace obsahují možnost přístupu pomocí webové aplikace, přičemž pouze codeBeamer a Siemens Polarion poskytují přístup pomocí počítačové aplikace. Další rozdíl mezi platformou IBM Jazz a ostatními aplikacemi, které jsou řešeny jako jedna velká robustní aplikace, spočívá v~tom, že IBM Jazz je koncipována jako více menších aplikací. Všechny aplikace obsahují export dat pomocí API, přičemž Siemens Polarion nabízí export i přímo z~databáze poskytující více možností než jen API, které je řešeno pomocí webových služeb. IBM Jazz a codeBeamer podporují export pomocí REST API. Až na aplikaci Polarion neposkytuje IBM Jazz ani codeBeamer historické údaje v~metrikách. Bohužel Siemens Polarion nabízí tyto informace pouze omezeně. Jediná platforma IBM Jazz podporuje pomocí \textit{Jazz Reporting Service} pokročilejší zobrazení metriky pomocí grafů. Ostatní dvě aplikace v~základu podporují zobrazení metrik pomocí grafů limitovaně. Ani jedna z~analyzovaných aplikací však neposkytuje zobrazení a definice metrik pro sběr požadavků, které je nutné sledovat dle standardu Automotive SPICE. Rychlý přehled analyzovaných aplikací a nástrojů je možno nalézt v~tabulce \ref{tab:alm_porovnani}.
 
 \newpage % ODSTRANIT
-\chapter{Business intelligence}
-Dnešní společnosti pracující na velkých a komplexních systémech skladují a spravují při vývoji velká množství dat. S~těmito daty je nutno, nejen pro potřeby analýzy, pracovat a přistupovat k~nim. K~zajištění správných a tedy úspěšných manažerských rozhodnutí je třeba data pochopit a vyčíst z~nich důležité informace. Pomocí získaných a pochopených informací dokážeme informace přeměnit ve znalosti a použít je k~predikcím. Následně dokážeme odhadnout, kam se může vývoj projektu nebo společnosti ubírat.
-
-Jelikož v~drtivé většině jsou sbíraná a analyzovaná data velká a komplexní, nemusí pouhý pohled do tabulky obsahující data celého podniku odhalit nějaká slabá místa. Také si nemusíme takto velká data obsahující i miliony záznamů dostatečně představit. Z~toho důvodu potřebujeme využít nástroje a přístupy, které nám zajistí jednodušší analýzu, nebo data připraví tak, aby je mohl lidský mozek nejen pochopit, ale uvědomit si i souvislosti.
-
-Mezi nástroje a přístupy, pomocí nichž dokážeme data analyzovat a číst, patří například dolování dat, prediktivní modelování, statistika a mnoho dalších přístupů. Mezi nejznámější a nejdůležitější však patří vizualizace dat pomocí grafů. Pomocí vizualizace můžeme provést buď analýzu, nebo pouhou prezentaci pro zjištění, jakým směrem se vývoj ubírá. Těmito oblastmi se právě obor \textit{Business intelligence} zaobírá.
-
-Konkrétně David Loshin \cite{ref:bi_loshin_david} a Data Warhouse Institute \textit{Business intelligence} definují jako procesy, technologie a nástroje potřebné k~přeměně data na informace, informace na znalosti a dále znalosti na plány, které podporují úspěšná rozhodnutí a ziskové obchodní akce. \textit{Business intelligence} zahrnuje obchodní analytické nástroje, datové sklady a správu obsahů a znalostí. Důležité je, že \textit{Business intelligence} nejsou pouze nástroje a aplikace, ale celé procesy realizované správnými lidmi, kteří dokáží tyto informace proměnit v~plány.
-
-Podle Davida Loshina \cite{ref:bi_loshin_david} správné použití \textit{business intelligence} může vést k~mnoha pozitivním změnám, mezi které například patří:
-
-\begin{itemize}
-\item \textit{Zvýšení ziskovosti} -- business intelligence dokáže například vedoucím vyhodnotit a provést rozhodnutí, zefektivnění procesů, personální změny, které mohou vést ke zvýšení zisků celé společnosti.
-\item \textit{Snížení nákladů} -- s~předchozím bodem samozřejmě souvisí i snížení nákladů, které vzniknou po optimalizovaní procesů, nákladů na skladování nebo snížení investic na základě rozhodnutí dle business intelligence.
-\item \textit{Zlepšení vztahů se zákazníkem} -- tohoto benefitu můžeme dosáhnout pomocí analýzy agregovaných informacích o~zákaznicích a následně vylepšit zákaznické služby.
-\item \textit{Snížení rizik} -- pomocí analýzy informací dokážeme lépe předem definovat a nalézt rizika, která mohou během vývoje nebo prodeje produktu nastat,
-\item a mnoho dalšího.
-\end{itemize}
-
-K~zajištění provedení \textit{business intelligence} nám slouží nástroje a aplikace pro tuto činnost vytvořené. Takové aplikace nám dokážou poskytnout historické, aktuální a případně budoucí zobrazení dat. Dále nám poskytují nástroje pro tvorbu sestav, metrik, grafů, nástěnek, sdílení dat mezi ostatními zaměstnanci a spoustu dalších nástrojů. Mezi nejznámější aplikace patří Qlik Sense a Microsoft Power BI, které jsou podrobně popsány v~kapitolách \ref{sec:qlik} a \ref{sec:microsoft_power_bi}. Tyto aplikace byly také doporučeny vedoucím práce Ing. Svatoplukem Štolfou, PhD.
-
-\section{Qlik Sense}
-\label{sec:qlik}
-Qlik Sense je rozsáhlý analytický nástroj společnosti Qlik, zajišťující integraci dat ze široké škály datových zdrojů. Pomocí aplikace dokážeme přeměnit surová data z~tabulek a databází do vizuální a srozumitelné podoby. Stejně jako u~ostatních podobných \textit{business intelligence} aplikací Qlik Sense obsahuje nástěnky, tvorbu a zobrazení sestav nebo také propojování datových zdrojů. Aplikace podporuje připojení k~široké škále různých jiných aplikací pomocí API, napojení na velké množství databází a také samozřejmě nahrávání datových souborů napřímo jako například CSV, XML, JSON či velké množství dalších formátů. Mezi společnosti používající Qlik Sense patří například Cisco, BP nebo také Samsung. \cite{ref:qlik_general}
-
-Přístup k~aplikaci pro uživatele je možný jednak pomocí aplikace pro počítač a mobilní zařízení, ale také pomocí webové aplikace, která je dostupná přes prakticky jakýkoli webový prohlížeč. Qlik Sense je placená aplikace, která může být provozována buď na vlastním serveru nebo v~cloudu přímo u~společnosti Qlik. Přitom při provozu na vlastním serveru není cena licence vázána na počet uživatelů používajících aplikaci.
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=1\textwidth]{Diplomka/Figures/qlik_project.png}
-    \caption{Stránka projektu v~Qlik Sense}
-    \label{fig:qlik_project}
-\end{figure}
-
-
-V~rámci uživatelského účtu je možno udržovat více projektů. Po zvolení určitého projektu se zobrazí detailní stránka daného projektu se seznamem nástěnek a prezentací. Tato stránka je zobrazena na obrázku \ref{fig:qlik_project}.  Ve vrchní vertikální navigaci se nacházejí tři oddělení:
-
-\begin{itemize}
-\item \textit{Prepare (příprava dat)} -- V~rámci tohoto oddělení je možno vybrat data, která se pro daný projekt budou používat.
-\item \textit{Analyze (analýza a zobrazení dat)} -- Na této stránce se nacházejí nástěnky (položka \textit{Sheet}) a postřehy (položka \textit{Insights}). Stránka slouží pro zobrazení a analýzu dat.
-\item \textit{Narrate} -- Na této stránce je pouze oddělení \textit{Storytelling}, pomocí něhož můžeme vytvořit prezentaci pro veřejnou prezentaci získaných dat.
-\end{itemize}
-
-
-Jak již bylo zmíněno, v~prvním oddělení je možno zobrazit datový model. To lze buď v~oddělení \textit{Data manager}, kde je zobrazení tabulek realizováno pomocí takzvaných bublin, které lze libovolně propojovat, nebo v~oddělení \textit{Data model viewer}, které zobrazuje tabulky podobně jako v~databázovém zobrazení. Dále se v~této záložce nachází \textit{Data load editor}, v~rámci něhož dokážeme nahraná data modifikovat a spravovat. Kromě správy dat lze v~záložce \textit{Prepare} upravovat byznys logiku pomocí logického modelu.
-
-Na stránce s~postřehy (\textit{Insights})  si můžeme vložit nespočet různých vizualizací a sestav. Ty se dají pomocí levé navigace filtrovat. Následně můžeme zobrazovat různé sestavy, které je také možno vytvářet na základě nahraných dat. Jednotlivé sestavy lze přidat do nástěnek (\textit{Sheet}), kterých může být v~rámci projektu různý počet. Každou vizualizaci v~rámci sestavy na stránce \textit{Insights} lze kromě filtrování upravit nebo smazat. Na samotné nástěnce je sestava již pouze pro zobrazení. Stránku s~postřehy je možno vidět na obrázku \ref{fig:qlik_dashboard}. Nástěnky mohou být buď veřejné, kdy je vidí kdokoli, komu dáme odkaz, nebo soukromé.
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.93\textwidth]{Diplomka/Figures/qlik_dashboard.png}
-    \caption{Nástěnka v~aplikaci Qlik Sense s~ukázkovými daty}
-    \label{fig:qlik_dashboard}
-\end{figure}
-
-Poslední záložka s~názvem \textit{Storytelling} slouží pro prezentaci dat. Do prezentace je možno vložit prakticky jakákoli data, včetně jednotlivých nástěnek, na nichž se zobrazují živá a aktuální data. Tyto prezentace jsou stejně jako nástěnky buď veřejné, nebo soukromé.
-
-V~rámci celého projektu je možno pomocí e-mailové adresy pozvat libovolný počet uživatelů, kteří na projektu pracují. Mezi hlavní výhody aplikace Qlik oproti konkurenčnímu Microsoft Power BI patří například našeptávání při realizaci vizualizací, existence průvodce, který uživatele učí jak s~aplikací pracovat. Další výhodou je možnost filtrovaní podobně jako v~klasických internetových vyhledávačích. Nevýhodou je značná komplikovanost ovládání a navigace v~rámci celé aplikace.
-
-\section{Microsoft Power BI}
-\label{sec:microsoft_power_bi}
-Microsoft Power BI je komplexní platforma firmy Microsoft, jejímž cílem je poskytovat interaktivní vizualizace a funkce pro celé odvětví business intelligence. Veškeré tyto funkcionality jsou vymyšleny tak, aby byly pochopitelné a lehké na nastavení i pro začínající uživatele. Mezi základní funkcionality patří nástěnka a dále jednotlivé sestavy.
-
-Aplikace je pro uživatele dostupná buď jako webová stránka nebo jako klasická počítačová aplikace pro operační systém Windows či jako aplikace pro mobilní zařízení. Dále existují varianty a licence pro různé další služby. Mezi ty patří například: \cite{ref:microsoft_bi_general}
-\begin{itemize}
-\item \textit{Embedded} -- pomocí REST API je možno vytvořit různé nástěnky a sestavy v~různých zařízeních a aplikacích mimo Microsoft Power BI.
-\item \textit{Server sestav Power BI} -- služba poskytuje uživatelům přístup a následné generování různých sestav pomocí \textit{SQL Server Reporting Services}. Při vytvoření sestavy dokážou uživatelé vizuálně zkoumat data a díky tomu například provádět důležitá rozhodnutí.
-\item \textit{Free} - verze zdarma, která je velmi omezená a neposkytuje například žádné sdílení sestav nebo nástěnek mezi uživateli Power BI.
-\item \textit{Pro} -- jde o~levnější verzi licence s~omezenými službami a funkcionalitami oproti licenci \textit{Premium}. Aplikace je licencovaná na uživatele s~omezenými výpočetními prostředky, velikostmi datových sad, s~omezenou velikostí úložiště na jednotlivého uživatele a na sdíleném serveru společnosti Microsoft. Tato licence je obecně vhodná pro střední až velké podniky a společnosti, které mají menší objem dat potřebných k~analýze.
-\item \textit{Premium} -- nejvyšší možná licence, která na rozdíl od verze \textit{Free} a \textit{Pro} není licencovaná na uživatele ale na celou organizaci. V~rámci této licence je pro celou organizaci vyhrazen prémiový prostor o~velikosti 100 TB. Dále licence poskytuje větší množství nástěnek a sestav. Taková licence je vhodná pro opravdu velké podniky a korporace.
-\end{itemize}
-
-Mezi hlavní výhody Microsoft Power BI patří zejména jednoduché napojení známých již existujících vývojových aplikací pomocí existujících doplňků, webová a mobilní aplikace nebo například rychlé vytváření přehledů a sestav. \cite{ref:microsoft_bi_general} Další velkou výhodou je automatické napojení na tabulkovou aplikaci Excel. Výhodou je intuitivnost ovládání podobně jako v~aplikacích Office, které jsou známy i mnoha začínajícím uživatelům. Mezi nevýhody můžeme zařadit menší možnosti exportu sestav a grafů do statických formátů, které je možné pouze do PDF. Na obrázku \ref{fig:powerbi_dashboard} je možno vidět definovanou sestavu společně s~vizualizovanými daty.
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=1\textwidth]{Diplomka/Figures/powerbi-dashboard.jpg}
-    \caption{Nástěnka v~aplikaci Microsoft Power BI (převzato z~\cite{ref:microsoft_bi_general})}
-    \label{fig:powerbi_dashboard}
-\end{figure}
-
-Pro vytvoření sestavy jsou potřeba data. Ta lze vložit manuálně, vytvořit nebo zvolit existující datovou sadu. Data je možno exportovat z~různých, již existujících, systémů pro sběr a správu dat. Jakmile definujeme data, která chceme pro sestavu a \textit{report} použít, můžeme vybrat, jaká data chceme zobrazit ve kterém grafu. Aplikace Microsoft Power BI nabízí velké množství grafických vizualizací dat, což zlepšuje následné sledování a pochopení dat.
-
 
 \chapter{Vlastní aplikace}
 \label{sec:my_app}
@@ -1519,6 +1313,219 @@ BERNHARDT, Steger, Damjan EKERT, Richard MESSNARZ, Jakub ŠTOLFA, Svatopluk ŠTO
 .3 images \DTcomment{Obrázky uživatelského rozhraní}.
 .3 readme.txt \DTcomment{Návod s~praktickými informacemi}.
 }
+
+
+\chapter{Rozdělení softwarových procesů}
+
+
+\section{Sekvenční a iterativní metodiky vývoje}
+V~rámci sekvenčních metodik vývoje softwaru probíhají veškeré aktivity lineárně po sobě tak, že každá fáze je plně dokončena a otestována. Tato podmínka je velmi důležitá pro bezproblémový vývoj a následnou udržitelnost vyvíjeného systému. Je tedy důležité věnovat počátečním fázím návrhu dostatek času a úsilí. Sekvenční metodiky jsou vhodné pro systémy, jež mají pevně dané požadavky na začátku vývoje a během samotného vývoje jsou prakticky neměnné. Další výhoda sekvenčních metodik spočívá v~jednoduchosti z~hlediska řízení vývoje. Nevýhodou je kromě již zmíněné nemožnosti řádně modifikovat požadavky například to, že zákazník vidí spustitelnou verzi až v~úplně poslední fázi verifikace. Veškeré nové požadavky mohou vést k~razantnímu navyšování výsledného rozpočtu celého projektu.
+
+Iterativní metodiky sekvenční přístup vylepšují tím, že jednotlivé sekvenční aktivity probíhají opakovaně v~cyklech. Není poté potřeba dbát takový důraz na počáteční fáze vývoje, konkrétně na analýzu a návrh. Iterativní metodiky se tedy hodí pro všechny druhy vývoje, kdy víme, že se mohou podmínky a požadavky za běhu měnit. Výhodou iterativních přístupů je, že je metoda pružnější pro opravu či implementaci změněných požadavků. Nevýhodou je, že si oproti sekvenčním přístupům iterativní přístup žádá vyšší nároky na vedení a řízení celého vývoje.
+
+\subsection{Vodopádový model}
+Jde o~jeden z~nejstarších a nejznámějších vývojových procesů, který byl poprvé publikován v~článku v~roce 1970 Winstonem W. Roycem a vychází z~obecných vývojových procesů. Vodopádovým modelem je nazýván, protože jednotlivé fáze procesu postupně kaskádovitě navazují na sebe a celý model poté vypadá jako vodopád. Veškeré kroky musí být pečlivě analyzovány a naplánovány. K~další vývojové fázi se přistupuje až poté, co jsou veškeré předchozí kroky splněny, schváleny a uzavřeny. \cite{ref:sommerrville_waterfall} Aby byl projekt podle modelu úspěšný je nutno věnovat prvním fázím dostatek času a úsilí. Schéma vodopádového modelu je možno vidět na obrázku \ref{fig:waterfall}.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/waterfall.png}
+    \caption{Vodopádový model (převzato z~\cite{ref:sommerrville_waterfall})}
+    \label{fig:waterfall}
+\end{figure}
+
+Základní fáze vodopádového modelu vycházejí ze standardních potřeb vývoje softwaru:
+
+\begin{enumerate}
+\item \textit{Specifikace požadavků} -- na základě jednotlivých požadavků zákazníka jsou požadavky detailně sepsány a analyzovány.
+
+\item \textit{Systémový a softwarový návrh} -- jednotlivé požadavky zákazníka určují náročnost na systém. Návrh zahrnuje také celkovou architekturu systému.
+
+\item \textit{Implementace a unit testování} -- v~rámci této fáze se systém realizuje a každá jednotka je samostatně testována, zda splňuje určité požadavky.
+
+\item \textit{Integrace a testování systému} -- jednotlivé vyvinuté části systému se integrují a otestují jako kompletní systém. Tím je zajištěno, že celý systém splňuje definované požadavky. Jakmile je produkt kompletně otestován, je předán zákazníkovi.
+
+\item \textit{Provoz a údržba} -- během této fáze se systém nasazuje do ostrého prostředí. Dále v~rámci této fáze probíhá oprava chyb a vylepšování funkcí.
+
+\end{enumerate}
+
+V~praxi je složité jednotlivé fáze pečlivě oddělit a postupovat do další fáze pouze, jakmile je předchozí fáze plně dokončena. Proto se většinou jednotlivé fáze postupně překrývají a vyměňují si mezi sebou informace. Hlavní nevýhodou modelu je praktická nemožnost reagovat na měnící se požadavky zákazníka. Vodopádový model je vhodné zpravidla použít tam, kde víme, že se požadavky zásadně nebudou měnit.
+
+\subsection{Rational Unified Process}
+Rational Unified Process (RUP) je iterativní model vývoje softwaru vytvořený firmou Rational Software Corporation. RUP byl vytvořen a odvozen z~osvědčených praktik při vývoji softwaru. Mezi tyto praktiky například patří řízení změn, komponentová architektura, aktivní správa požadavků nebo například ověřování kvality software. Model obsahuje čtyři fáze, které se iterují dle potřeby. Jednotlivé fáze oproti vodopádovému modelu nesouvisejí s~technickými hledisky, ale soustředí se spíše na podniková hlediska. \cite{ref:rup_ibm_about} Fáze modelu RUP jsou následující:
+
+\begin{enumerate}
+\item \textit{Zahájení} -- cílem této fáze je vytvořit podnikový případ systému. V~rámci této fáze je potřeba identifikovat veškeré osoby a další systémy, které budou s~daným systémem pracovat či komunikovat.
+\item \textit{Příprava} -- během této fáze se vytvoří architektura systému. Dále se vytvoří celkový plán projektu a identifikují se klíčová rizika, která mohou na projektu nastat. Během fáze vznikne například plán vývoje, UML diagramy nebo popis systému.
+\item \textit{Konstrukce} -- tato fáze obsahuje návrh systému, samotné programování a testování, přičemž se zároveň jednotlivé části systému integrují. Dále během této fáze vzniká dokumentace. Na konci fáze je hotový funkční produkt připraven na dodání zákazníkovi.
+\item \textit{Předávání} -- v~závěrečné fázi je funkční produkt spolu s~dokumentací předán zákazníkovi. Produkt je nasazen do ostrého prostředí a zprovozněn.
+\end{enumerate}
+
+U~modelu RUP je možno provádět inkrementaci samostatným opakováním jak jednotlivých fází, tak i celého procesu. Kromě čtyř fází RUP definuje jednotlivé disciplíny, jež jsou v~rámci fází prováděny. Velkou výhodou je, že tyto disciplíny nejsou navázány na jednotlivé fáze. Disciplíny jsou činnosti, prováděné během celého vývoje produktu. Disciplíny v~rámci modelu RUP jsou následující:
+
+\begin{itemize}
+\item Tvorba modelu,
+\item správa požadavků,
+\item analýza a návrh,
+\item implementace,
+\item testování,
+\item nasazení,
+\item správa konfigurace a změn,
+\item řízení projektu,
+\item správa prostředí.
+\end{itemize}
+
+Výše popsané fáze společně s~disciplínami je možno vidět na obrázku \ref{fig:rup}. Můžeme vidět, že různé disciplíny mají v~jednotlivých fázích vyšší důležitost než jiné.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Diplomka/Figures/rup.png}
+    \caption{Grafické znázornění fází a disciplín RUP (převzato z~\cite{ref:rup_ibm})}
+    \label{fig:rup}
+\end{figure}
+
+\section{Agilní metodiky vývoje}
+Aktuální trh se softwarem se velmi rychle mění, a proto je potřeba aktivně reagovat na měnící se prostředí. Agilní přístupy patří k~inkrementálním způsobům vývoje. Software vytvářený pomocí vodopádového modelu může být v~době vydání již velmi zastaralý. Z~tohoto důvodu jsou agilní přístupy vývoje v~poslední době velmi oblíbené. Takto vyvíjený software je většinou dodán rychleji, ale zato může být dodán v~horší kvalitě. Takový přístup se ovšem nehodí u~kritických systémů, u~nichž je kladen velký důraz například na bezpečnost a spolehlivost. Software se během agilního vývoje vytváří ve verzích, kdy každá nová verze obsahuje nové funkcionality. Jednotlivé vývojové procesy se prolínají a většinou neexistuje podrobná specifikace a dokumentace systému. V~dokumentaci obvykle bývají pouze základní a nejdůležitější prvky systému. Tento nedostatek se ovšem může rychle vymstít při následné údržbě daného softwaru.
+
+Filozofie agilních metodik vychází z~manifestu, na němž se shodli vývojáři těchto vývojových metod. Manifest popisuje čtyři základní hodnoty, jichž si autoři cení \cite{ref:agilne_manifesto}:
+
+\begin{itemize}
+\item Jednotlivci a interakce před procesy a nástroji.
+\item Fungující software před vyčerpávající dokumentací.
+\item Spolupráce se zákazníkem před vyjednáváním o~smlouvě.
+\item Reagování na změny před dodržováním plánu.
+\end{itemize}
+
+Každý vývojový proces má svá pozitiva a svá negativa. Mezi pozitiva při agilním vývoji patří například rychlejší vývoj, větší flexibilita vývoje, kdy je možno upravovat směr dalšího vývoje dle potřeby zákazníka nebo například zapojení zákazníka do procesu vývoje. Mezi negativa patří nekompletní dokumentace, závislost na vývojovém týmu, kdy při rozpadu týmu může dojít k~problémům. Dalším problém může být, že v~dnešní době chce každá firma vyvíjet agilně, i když na to není personál proškolený a nikdo z~dané firmy pořádně neví, co to znamená agilní vývoj.
+
+Podle Iana Sommervilla \cite{ref:sommerrville_agile_products} jsou agilní metody úspěšné pouze pro určité typy softwarových systémů:
+
+\begin{enumerate}
+\item Vývoj malého nebo středně velkého systému, který je určen k~prodeji.
+\item Vývoj systémů pro zákazníka, kde si zákazník uvědomuje nutnost zapojit se do procesu vývoje a kde neexistuje mnoho pravidel, která mají vliv na vývoj softwaru.
+\end{enumerate}
+
+
+\subsection{Extrémní programování}
+Dle Kenta Becka \cite{ref:what_is_xp} je extrémní programování agilní metoda, která spočívá ve změně myšlení a zvyků při vývoji. Extrémní programování se zaměřuje na excelentní programovací schopnosti, zlepšení komunikace mezi členy týmu a týmovou práci. Extrémní programování se zaměřuje na zextrémnění a zefektivnění těch úkonů, které se při vývoji osvědčily. Je důležité z~extrémního programování do procesu zařadit pouze ty aktivity, které mají hodnotu pro vývojový tým a přinášejí benefit zákazníkovi. Můžeme zde například zařadit párové programování, kdy dva programátoři vyvíjejí společně jednu funkčnost, přičemž jeden programátor pozoruje druhého při programování. Tyto role se pravidelně střídají. Nevýhodou tohoto přístupu je, že takto vyvíjený software zabere více placeného času. Výhoda spočívá naopak v~tom, že software obsahuje méně chyb díky vzájemné revizi kódu.
+
+Další obor, který může být pomocí extrémního programování řešen je extrémnější testování softwaru, kdy samotní programátoři programují jednotkové (unit) testy, ale zároveň testuje také zákazník pomocí akceptačních testů. Extrémní programování takto řeší prakticky každou oblast vývoje, která se při vývoji osvědčila a může být zefektivněna. Jednotlivá zadání úkolů jsou řešena stejně jako v~metodě Scrum pomocí uživatelských příběhů (takzvané \textit{User stories}). Dalšími možnými praktikami, jež extrémní programování řeší, jsou například přítomnost zákazníka na pracovišti, vydávání malých verzí softwaru, průběžná integrace anebo neustálá refaktorizace kódu.
+
+\subsection{Scrum}
+Dle Josefa Myslína \cite{ref:scrum_myslin} je to agilní technika, při které se více než technické procesy řeší projektové procesy. Vymysleli ji Ken Schwaber a Jeff Sutherland na začátku 90. let 20. století. Týmy, které ve Srumu pracují, jsou samoorganizované, přičemž vývojový tým nemá přímého nadřízeného. Tým obsahuje několik klíčových rolí, mezi něž patří \textit{Product owner} (vlastník produktu), který komunikuje se zákazníkem a případně řeší priority ve vykonané práci. Dále se zde vyskytuje \textit{Scrum master}, který má na starost samotný proces a interakci s~týmem. Samozřejmostí je samotný vývojový tým. Scrum stojí na třech základních pilířích:
+
+\begin{enumerate}
+\item \textit{Transparentnost} -- všichni v~týmu by měli mít přehled o~veškerém dění v~rámci projektu. Každý člen týmu tedy například ví, v~jakém stavu je určitý úkol a proč existuje.
+\item \textit{Kontrola} -- pravidelně se v~rámci celého týmu dělá kontrola, zda procesy a fungování týmu jsou vyhovující.
+\item \textit{Adaptace} -- na základě zjištěných požadavků v~rámci pravidelných kontrol se provádějí změny, aby byl daný tým spokojený a doručoval dále vynikající výsledky.
+\end{enumerate}
+
+Veškerý vývoj produktu probíhá v~pravidelných iteracích, které jsou nazývány \textit{Sprinty}. Tyto iterace mají nejčastěji trvání od dvou týdnů po jeden měsíc. Na konci každého sprintu je dodána nová verze funkčního systému.
+
+Jak je možno vidět na obrázku, \ref{fig:scrum_cyklus} na začátku každého sprintu probíhá seznámení s~úkoly na daný sprint a plánování, které úkoly musí tým daný sprint doručit. Během sprintu probíhají různé druhy schůzek. Každý den probíhá rychlá schůzka nazývaná \textit{Standup}, během níž členové týmu v~rychlosti představí, co budou daný den řešit a co řešili předešlý den. Na konci každého sprintu probíhá pravidelná kontrola, jež se nazývá retrospektiva, a dále samotné zhodnocení sprintu. Na této schůzce je řešeno, jaké adaptace by měl tým provést, aby následující sprint proběhl lépe.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/scrum.png}
+    \caption{Vývojový cyklus řízený pomocí metodiky Scrum (převzato z~\cite{ref:scrum_myslin_cyklus_img})}
+    \label{fig:scrum_cyklus}
+\end{figure}
+
+Jednotlivé schůzky by se poté daly rozdělit do tří základních skupin:
+
+\begin{itemize}
+\item \textit{Plánovací} -- tento typ schůzek předchází jakékoli aktivitě, která po schůzce probíhá. Během těchto schůzek může být plánován buď celý projekt, nebo je naplánován sprint.
+\item \textit{Hodnotící} -- tyto schůzky probíhají buď na konci sprintu, nebo na konci projektu. Během tohoto typu schůzek se hodnotí, zda to, co proběhlo, proběhlo v~pořádku, a případně co bylo špatně.
+\item \textit{Plánovací i hodnotící} -- do této skupiny spadá pouze denní schůzka zvaná \textit{Standup}. Během schůzky se hodnotí předchozí den a plánuje se, co se bude dále daný den dělat. Během schůzky mají všichni členové týmu možnost vidět, jak se úkol vyvíjí, a zda úkol na něco nečeká.
+\end{itemize}
+
+
+Jednotlivá zadání úkolů jsou psána pomocí uživatelských příběhů (takzvané \textit{User stories}), přičemž většinou obsahují jen minimum technických informací. Jednotlivé uživatelské příběhy nepopisují technickou interakci ze systémem. Uživatelské příběhy mají  sjednocenou podobu například ve tvaru: \uv{Jako \textit{role} chci \textit{cíl} tak, aby \textit{užitek}.} Tedy například: \uv{Jako uživatel chci vidět seznam zboží v~objednávce tak, aby si uživatel mohl zboží zkontrolovat.} \cite{ref:scrum_myslin_us}
+
+
+
+\chapter{Business intelligence}
+Dnešní společnosti pracující na velkých a komplexních systémech skladují a spravují při vývoji velká množství dat. S~těmito daty je nutno, nejen pro potřeby analýzy, pracovat a přistupovat k~nim. K~zajištění správných a tedy úspěšných manažerských rozhodnutí je třeba data pochopit a vyčíst z~nich důležité informace. Pomocí získaných a pochopených informací dokážeme informace přeměnit ve znalosti a použít je k~predikcím. Následně dokážeme odhadnout, kam se může vývoj projektu nebo společnosti ubírat.
+
+Jelikož v~drtivé většině jsou sbíraná a analyzovaná data velká a komplexní, nemusí pouhý pohled do tabulky obsahující data celého podniku odhalit nějaká slabá místa. Také si nemusíme takto velká data obsahující i miliony záznamů dostatečně představit. Z~toho důvodu potřebujeme využít nástroje a přístupy, které nám zajistí jednodušší analýzu, nebo data připraví tak, aby je mohl lidský mozek nejen pochopit, ale uvědomit si i souvislosti.
+
+Mezi nástroje a přístupy, pomocí nichž dokážeme data analyzovat a číst, patří například dolování dat, prediktivní modelování, statistika a mnoho dalších přístupů. Mezi nejznámější a nejdůležitější však patří vizualizace dat pomocí grafů. Pomocí vizualizace můžeme provést buď analýzu, nebo pouhou prezentaci pro zjištění, jakým směrem se vývoj ubírá. Těmito oblastmi se právě obor \textit{Business intelligence} zaobírá.
+
+Konkrétně David Loshin \cite{ref:bi_loshin_david} a Data Warhouse Institute \textit{Business intelligence} definují jako procesy, technologie a nástroje potřebné k~přeměně data na informace, informace na znalosti a dále znalosti na plány, které podporují úspěšná rozhodnutí a ziskové obchodní akce. \textit{Business intelligence} zahrnuje obchodní analytické nástroje, datové sklady a správu obsahů a znalostí. Důležité je, že \textit{Business intelligence} nejsou pouze nástroje a aplikace, ale celé procesy realizované správnými lidmi, kteří dokáží tyto informace proměnit v~plány.
+
+Podle Davida Loshina \cite{ref:bi_loshin_david} správné použití \textit{business intelligence} může vést k~mnoha pozitivním změnám, mezi které například patří:
+
+\begin{itemize}
+\item \textit{Zvýšení ziskovosti} -- business intelligence dokáže například vedoucím vyhodnotit a provést rozhodnutí, zefektivnění procesů, personální změny, které mohou vést ke zvýšení zisků celé společnosti.
+\item \textit{Snížení nákladů} -- s~předchozím bodem samozřejmě souvisí i snížení nákladů, které vzniknou po optimalizovaní procesů, nákladů na skladování nebo snížení investic na základě rozhodnutí dle business intelligence.
+\item \textit{Zlepšení vztahů se zákazníkem} -- tohoto benefitu můžeme dosáhnout pomocí analýzy agregovaných informacích o~zákaznicích a následně vylepšit zákaznické služby.
+\item \textit{Snížení rizik} -- pomocí analýzy informací dokážeme lépe předem definovat a nalézt rizika, která mohou během vývoje nebo prodeje produktu nastat,
+\item a mnoho dalšího.
+\end{itemize}
+
+K~zajištění provedení \textit{business intelligence} nám slouží nástroje a aplikace pro tuto činnost vytvořené. Takové aplikace nám dokážou poskytnout historické, aktuální a případně budoucí zobrazení dat. Dále nám poskytují nástroje pro tvorbu sestav, metrik, grafů, nástěnek, sdílení dat mezi ostatními zaměstnanci a spoustu dalších nástrojů. Mezi nejznámější aplikace patří Qlik Sense a Microsoft Power BI, které jsou podrobně popsány v~kapitolách \ref{sec:qlik} a \ref{sec:microsoft_power_bi}. Tyto aplikace byly také doporučeny vedoucím práce Ing. Svatoplukem Štolfou, PhD.
+
+\section{Qlik Sense}
+\label{sec:qlik}
+Qlik Sense je rozsáhlý analytický nástroj společnosti Qlik, zajišťující integraci dat ze široké škály datových zdrojů. Pomocí aplikace dokážeme přeměnit surová data z~tabulek a databází do vizuální a srozumitelné podoby. Stejně jako u~ostatních podobných \textit{business intelligence} aplikací Qlik Sense obsahuje nástěnky, tvorbu a zobrazení sestav nebo také propojování datových zdrojů. Aplikace podporuje připojení k~široké škále různých jiných aplikací pomocí API, napojení na velké množství databází a také samozřejmě nahrávání datových souborů napřímo jako například CSV, XML, JSON či velké množství dalších formátů. Mezi společnosti používající Qlik Sense patří například Cisco, BP nebo také Samsung. \cite{ref:qlik_general}
+
+Přístup k~aplikaci pro uživatele je možný jednak pomocí aplikace pro počítač a mobilní zařízení, ale také pomocí webové aplikace, která je dostupná přes prakticky jakýkoli webový prohlížeč. Qlik Sense je placená aplikace, která může být provozována buď na vlastním serveru nebo v~cloudu přímo u~společnosti Qlik. Přitom při provozu na vlastním serveru není cena licence vázána na počet uživatelů používajících aplikaci.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/qlik_project.png}
+    \caption{Stránka projektu v~Qlik Sense}
+    \label{fig:qlik_project}
+\end{figure}
+
+
+V~rámci uživatelského účtu je možno udržovat více projektů. Po zvolení určitého projektu se zobrazí detailní stránka daného projektu se seznamem nástěnek a prezentací. Tato stránka je zobrazena na obrázku \ref{fig:qlik_project}.  Ve vrchní vertikální navigaci se nacházejí tři oddělení:
+
+\begin{itemize}
+\item \textit{Prepare (příprava dat)} -- V~rámci tohoto oddělení je možno vybrat data, která se pro daný projekt budou používat.
+\item \textit{Analyze (analýza a zobrazení dat)} -- Na této stránce se nacházejí nástěnky (položka \textit{Sheet}) a postřehy (položka \textit{Insights}). Stránka slouží pro zobrazení a analýzu dat.
+\item \textit{Narrate} -- Na této stránce je pouze oddělení \textit{Storytelling}, pomocí něhož můžeme vytvořit prezentaci pro veřejnou prezentaci získaných dat.
+\end{itemize}
+
+
+Jak již bylo zmíněno, v~prvním oddělení je možno zobrazit datový model. To lze buď v~oddělení \textit{Data manager}, kde je zobrazení tabulek realizováno pomocí takzvaných bublin, které lze libovolně propojovat, nebo v~oddělení \textit{Data model viewer}, které zobrazuje tabulky podobně jako v~databázovém zobrazení. Dále se v~této záložce nachází \textit{Data load editor}, v~rámci něhož dokážeme nahraná data modifikovat a spravovat. Kromě správy dat lze v~záložce \textit{Prepare} upravovat byznys logiku pomocí logického modelu.
+
+Na stránce s~postřehy (\textit{Insights})  si můžeme vložit nespočet různých vizualizací a sestav. Ty se dají pomocí levé navigace filtrovat. Následně můžeme zobrazovat různé sestavy, které je také možno vytvářet na základě nahraných dat. Jednotlivé sestavy lze přidat do nástěnek (\textit{Sheet}), kterých může být v~rámci projektu různý počet. Každou vizualizaci v~rámci sestavy na stránce \textit{Insights} lze kromě filtrování upravit nebo smazat. Na samotné nástěnce je sestava již pouze pro zobrazení. Stránku s~postřehy je možno vidět na obrázku \ref{fig:qlik_dashboard}. Nástěnky mohou být buď veřejné, kdy je vidí kdokoli, komu dáme odkaz, nebo soukromé.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.93\textwidth]{Diplomka/Figures/qlik_dashboard.png}
+    \caption{Nástěnka v~aplikaci Qlik Sense s~ukázkovými daty}
+    \label{fig:qlik_dashboard}
+\end{figure}
+
+Poslední záložka s~názvem \textit{Storytelling} slouží pro prezentaci dat. Do prezentace je možno vložit prakticky jakákoli data, včetně jednotlivých nástěnek, na nichž se zobrazují živá a aktuální data. Tyto prezentace jsou stejně jako nástěnky buď veřejné, nebo soukromé.
+
+V~rámci celého projektu je možno pomocí e-mailové adresy pozvat libovolný počet uživatelů, kteří na projektu pracují. Mezi hlavní výhody aplikace Qlik oproti konkurenčnímu Microsoft Power BI patří například našeptávání při realizaci vizualizací, existence průvodce, který uživatele učí jak s~aplikací pracovat. Další výhodou je možnost filtrovaní podobně jako v~klasických internetových vyhledávačích. Nevýhodou je značná komplikovanost ovládání a navigace v~rámci celé aplikace.
+
+\section{Microsoft Power BI}
+\label{sec:microsoft_power_bi}
+Microsoft Power BI je komplexní platforma firmy Microsoft, jejímž cílem je poskytovat interaktivní vizualizace a funkce pro celé odvětví business intelligence. Veškeré tyto funkcionality jsou vymyšleny tak, aby byly pochopitelné a lehké na nastavení i pro začínající uživatele. Mezi základní funkcionality patří nástěnka a dále jednotlivé sestavy.
+
+Aplikace je pro uživatele dostupná buď jako webová stránka nebo jako klasická počítačová aplikace pro operační systém Windows či jako aplikace pro mobilní zařízení. Dále existují varianty a licence pro různé další služby. Mezi ty patří například: \cite{ref:microsoft_bi_general}
+\begin{itemize}
+\item \textit{Embedded} -- pomocí REST API je možno vytvořit různé nástěnky a sestavy v~různých zařízeních a aplikacích mimo Microsoft Power BI.
+\item \textit{Server sestav Power BI} -- služba poskytuje uživatelům přístup a následné generování různých sestav pomocí \textit{SQL Server Reporting Services}. Při vytvoření sestavy dokážou uživatelé vizuálně zkoumat data a díky tomu například provádět důležitá rozhodnutí.
+\item \textit{Free} - verze zdarma, která je velmi omezená a neposkytuje například žádné sdílení sestav nebo nástěnek mezi uživateli Power BI.
+\item \textit{Pro} -- jde o~levnější verzi licence s~omezenými službami a funkcionalitami oproti licenci \textit{Premium}. Aplikace je licencovaná na uživatele s~omezenými výpočetními prostředky, velikostmi datových sad, s~omezenou velikostí úložiště na jednotlivého uživatele a na sdíleném serveru společnosti Microsoft. Tato licence je obecně vhodná pro střední až velké podniky a společnosti, které mají menší objem dat potřebných k~analýze.
+\item \textit{Premium} -- nejvyšší možná licence, která na rozdíl od verze \textit{Free} a \textit{Pro} není licencovaná na uživatele ale na celou organizaci. V~rámci této licence je pro celou organizaci vyhrazen prémiový prostor o~velikosti 100 TB. Dále licence poskytuje větší množství nástěnek a sestav. Taková licence je vhodná pro opravdu velké podniky a korporace.
+\end{itemize}
+
+Mezi hlavní výhody Microsoft Power BI patří zejména jednoduché napojení známých již existujících vývojových aplikací pomocí existujících doplňků, webová a mobilní aplikace nebo například rychlé vytváření přehledů a sestav. \cite{ref:microsoft_bi_general} Další velkou výhodou je automatické napojení na tabulkovou aplikaci Excel. Výhodou je intuitivnost ovládání podobně jako v~aplikacích Office, které jsou známy i mnoha začínajícím uživatelům. Mezi nevýhody můžeme zařadit menší možnosti exportu sestav a grafů do statických formátů, které je možné pouze do PDF. Na obrázku \ref{fig:powerbi_dashboard} je možno vidět definovanou sestavu společně s~vizualizovanými daty.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/powerbi-dashboard.jpg}
+    \caption{Nástěnka v~aplikaci Microsoft Power BI (převzato z~\cite{ref:microsoft_bi_general})}
+    \label{fig:powerbi_dashboard}
+\end{figure}
+
+Pro vytvoření sestavy jsou potřeba data. Ta lze vložit manuálně, vytvořit nebo zvolit existující datovou sadu. Data je možno exportovat z~různých, již existujících, systémů pro sběr a správu dat. Jakmile definujeme data, která chceme pro sestavu a \textit{report} použít, můžeme vybrat, jaká data chceme zobrazit ve kterém grafu. Aplikace Microsoft Power BI nabízí velké množství grafických vizualizací dat, což zlepšuje následné sledování a pochopení dat.
+
 
 \chapter{Instalace prototypového nástroje}
 Nástroj je možno nainstalovat jak pro vývoj, tak pro produkční prostředí dvěma způsoby. prostřednictvím obou způsobů lze nástroj nainstalovat na všech třech základních operačních systémech -- Windows, Linux a macOS. Oba možné způsoby poskytují výhody i nevýhody, které je nutno při instalaci zohlednit.
