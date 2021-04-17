@@ -141,7 +141,7 @@ Engineering Institute). Model hodnocení vyspělosti používání softwarového
 \item \textit{Optimalizovaná} -- na základě dlouhodobě vysledovaných dat při používání softwarového procesu je společnost schopna daný softwarový proces optimalizovat a vylepšit tak, aby více vyhovoval celému vývoji.
 \end{enumerate}
 
-Softwarové procesy lze rozdělit do metodik dle typu přístupu k vývoji. Nejznámější dělení procesů je na procesy sekvenční, iterativní a agilní metodiky. Podrobné rozdělení a více informací o~metodikách dle typu přístupu k vývoji se nachází v příloze \ref{sec:sw_procesy_metodiky}.
+Softwarové procesy lze rozdělit do metodik dle typu přístupu k~vývoji. Nejznámější dělení procesů je na procesy sekvenční, iterativní a agilní metodiky. Podrobné rozdělení a více informací o~metodikách dle typu přístupu k~vývoji se nachází v~příloze \ref{sec:sw_procesy_metodiky}.
 
 \section{Plánování}
 Je to jedna z~částí softwarového procesu. Velikost a důkladnost plánování procesu a samotného projektu závisí na používaném modelu softwarového procesu. Například při použití vodopádového modelu je plánování velmi důležitou částí procesu, jelikož na kvalitní specifikaci a plánování kompletního procesu stojí celý vývoj. Naopak při vývoji pomocí agilních způsobů je část plánování a specifikace softwaru minimální.
@@ -738,7 +738,7 @@ Metriky potřebné pro ASPICE  & ne                      & ne                   
 Všechny tři aplikace obsahují možnost přístupu pomocí webové aplikace, přičemž pouze codeBeamer a Siemens Polarion poskytují přístup pomocí počítačové aplikace. Další rozdíl mezi platformou IBM Jazz a ostatními aplikacemi, které jsou řešeny jako jedna velká robustní aplikace, spočívá v~tom, že IBM Jazz je koncipována jako více menších aplikací. Všechny aplikace obsahují export dat pomocí API, přičemž Siemens Polarion nabízí export i přímo z~databáze poskytující více možností než jen API, které je řešeno pomocí webových služeb. IBM Jazz a codeBeamer podporují export pomocí REST API. Až na aplikaci Polarion neposkytuje IBM Jazz ani codeBeamer historické údaje v~metrikách. Bohužel Siemens Polarion nabízí tyto informace pouze omezeně. Jediná platforma IBM Jazz podporuje pomocí \textit{Jazz Reporting Service} pokročilejší zobrazení metriky pomocí grafů. Ostatní dvě aplikace v~základu podporují zobrazení metrik pomocí grafů limitovaně. Ani jedna z~analyzovaných aplikací však neposkytuje zobrazení a definice metrik pro sběr požadavků, které je nutné sledovat dle standardu Automotive SPICE. Rychlý přehled analyzovaných aplikací a nástrojů je možno nalézt v~tabulce \ref{tab:alm_porovnani}.
 
 
-Dále kromě nástrojů sledujících životní cyklus celé aplikace byly prozkoumány \textit{Business Intelligence} aplikace. Ty slouží zejména pro shromažďovaní a zpracování velkých objemů dat, které například pocházejí z~interních nebo externích systémů při vývoji a správě daného produktu. Nástroje poskytují také možnosti pro tvorbu a správu sestav, grafů a metrik. Podrobné informace o~\textit{Business Intelligence} a analýzu aplikací Qlik Sense a Microsoft BI lze nalézt v příloze \ref{sec:bi}. V rámci praktické části bylo rozhodnuto o~vytvoření vlastního nástroje pro správu metrik zejména z~důvodu specifik požadavků Automotive SPICE a složitosti analyzovaných aplikací, které nejsou pro naplnění standardu plně vyhovující.
+Dále kromě nástrojů sledujících životní cyklus celé aplikace byly prozkoumány \textit{Business Intelligence} aplikace. Ty slouží zejména pro shromažďovaní a zpracování velkých objemů dat, které například pocházejí z~interních nebo externích systémů při vývoji a správě daného produktu. Nástroje poskytují také možnosti pro tvorbu a správu sestav, grafů a metrik. Podrobné informace o~\textit{Business Intelligence} a analýzu aplikací Qlik Sense a Microsoft BI lze nalézt v~příloze \ref{sec:bi}. V~rámci praktické části bylo rozhodnuto o~vytvoření vlastního nástroje pro správu metrik zejména z~důvodu specifik požadavků Automotive SPICE a složitosti analyzovaných aplikací, které nejsou pro naplnění standardu plně vyhovující.
 
 \chapter{Vlastní aplikace}
 \label{sec:my_app}
@@ -768,13 +768,14 @@ Uživatel s~právy administrátora má největší práva a přístup ke všem f
 administraci, kde má administrátor přístup.
 
 \subsection{Případ užití pro vytváření definic metrik}
-
+Jeden z~nejdůležitějších scénářů, které se v~nástroji vyskytují je vytváření definic metrik, které následně slouží pro vytváření samotných metrik.
+todo ref viz tabulka \ref{tab:use_case_definition_metric}
 
 \begin{table}[htp]
 \begin{center}
 \begin{tabular}{c | m{10cm}}
 
-\textbf{Název} & Vytváření definic metrik \\ 
+\textbf{Název} & Vytvoření definice metrik \\ 
 \hline
 \textbf{Aktéři} & 
 \begin{itemize}
@@ -808,8 +809,8 @@ administraci, kde má administrátor přístup.
 
 \textbf{Podmínky pro dokončení} & 
 \begin{enumerate}
-\item Definice metriky bude uložena v databázi.
-\item Definici metriky je možné použít pro jednotlivé metriky v rámci definovaných projektů.
+\item Definice metriky bude uložena v~databázi.
+\item Definici metriky je možné použít pro jednotlivé metriky v~rámci definovaných projektů.
 \end{enumerate}                                                                                          
 \end{tabular}
 \caption{Případ užití pro vytváření definic metrik}
@@ -819,13 +820,13 @@ administraci, kde má administrátor přístup.
 
 
 \subsection{Případ užití pro vytváření metrik}
-
+todo viz \ref{tab:use_case_create_metric}
 
 \begin{table}[htp]
 \begin{center}
 \begin{tabular}{c | m{10cm}}
 
-\textbf{Název} & Vytváření metrik \\ 
+\textbf{Název} & Vytvoření metriky \\ 
 \hline
 \textbf{Aktéři} & 
 \begin{itemize}
@@ -845,7 +846,7 @@ administraci, kde má administrátor přístup.
 \textbf{Základní tok} &                                                                              
 \begin{enumerate}
 \item Uživatel, nebo administrátor na stránce s~metrikami klikne na tlačítko pro vytvoření nové metriky.
-\item Uživatel, nebo administrátor v zobrazeném formuláři vyplní základní informace o~dané metrice. Jako například název, popis, projekt, typ grafu a další.
+\item Uživatel, nebo administrátor v~zobrazeném formuláři vyplní základní informace o~dané metrice. Jako například název, popis, projekt, typ grafu a další.
 \item Uživatel, nebo administrátor zvolí definici metriky, ze které má být metrika vytvořena.
 \item Uživatel, nebo administrátor uloží formulář a tím vytvoří metriku.
 \end{enumerate}
@@ -856,7 +857,7 @@ administraci, kde má administrátor přístup.
 \begin{enumerate}
 \item Metriky bude uložena v~databázi.
 \item Metriku je možné zobrazit na nástěnce a výpisu metrik.
-\item Metriku je možné exportovat, vytvářet z ní dokumenty a reporty.
+\item Metriku je možné exportovat, vytvářet z~ní dokumenty a reporty.
 \end{enumerate}                                                                                          
 \end{tabular}
 \caption{Případ užití pro vytváření metrik}
@@ -1209,7 +1210,7 @@ V~rámci nástroje byly vyvinuty dva typy exportu metrik. První možností expo
 
 Druhou možností exportu dat je export pomocí takzvaných dokumentů. Tento způsob je možno také nalézt například v~nástroji codeBeamer ALM nebo Siemens Polarion, které jsou popsány v~kapitole \ref{sec:alm}. Hlavní předností tohoto exportu je možnost vytvořit si dokument, do kterého je vloženo několik metrik jak ve formě grafického zobrazení, tak pomocí tabulkového zobrazení. Mezi tyto metriky je možno vložit libovolné množství odstavců textu a jejich nadpisů. Díky tomu může uživatel vytvořit dokument, do něhož vloží jednotlivé sekce dle potřeby. Dokument je vhodný například pro již zmíněnou prezentaci výsledků daného vývojového týmu. Dokumenty se ukládají do MongoDB databáze, přičemž jednotlivé sekce dokumentu jsou uloženy jako vložené objekty do hlavního objektu celého dokumentu.
 
-Dokumenty můžeme vytvořit na stránce nazvané \textit{Dokumenty}. Stránka se nachází na uživatelské straně nástroje. Při vytvoření dokumentu si uživatel zvolí název, popis, projekt a formát exportu. Poté si může přidávat  jednotlivé bloky s~textem, grafem nebo tabulkou metriky. Takto si může pohodlně a dynamicky vytvořit celý dokument. Ten je poté možno pomocí tlačítka exportovat do vybraného formátu, mezi které patří Microsoft Word a PowerPoint. Přičemž je možné v budoucnu tyto exporty jednoduše rozšířit o~formáty PDF a~HTML. Pokaždé, když si uživatel dokument otevře nebo exportuje, vidí aktuální stav jednotlivých metrik. Celý dokument je tedy živá stránka, která se aktualizuje dle nejnovějších dat. Proces vytváření dokumentu je možno vidět na obrázku \ref{fig:report_document}. Detailní výpis ve webovém nástroji vygenerovaného dokumentu můžeme vidět na obrázku \ref{fig:report_document_detail}.
+Dokumenty můžeme vytvořit na stránce nazvané \textit{Dokumenty}. Stránka se nachází na uživatelské straně nástroje. Při vytvoření dokumentu si uživatel zvolí název, popis, projekt a formát exportu. Poté si může přidávat  jednotlivé bloky s~textem, grafem nebo tabulkou metriky. Takto si může pohodlně a dynamicky vytvořit celý dokument. Ten je poté možno pomocí tlačítka exportovat do vybraného formátu, mezi které patří Microsoft Word a PowerPoint. Přičemž je možné v~budoucnu tyto exporty jednoduše rozšířit o~formáty PDF a~HTML. Pokaždé, když si uživatel dokument otevře nebo exportuje, vidí aktuální stav jednotlivých metrik. Celý dokument je tedy živá stránka, která se aktualizuje dle nejnovějších dat. Proces vytváření dokumentu je možno vidět na obrázku \ref{fig:report_document}. Detailní výpis ve webovém nástroji vygenerovaného dokumentu můžeme vidět na obrázku \ref{fig:report_document_detail}.
 
 \begin{figure}[!ht]
     \centering
