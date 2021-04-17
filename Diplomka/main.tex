@@ -770,7 +770,7 @@ administraci, kde má administrátor přístup.
 
 % \newpage
 \subsection{Případ užití pro vytváření definic metrik}
-Jeden z~nejdůležitějších scénářů, které se v~nástroji vyskytují je vytváření definic metrik, které následně slouží pro vytváření samotných metrik. Tento případ užití může vykonávat pouze přihlášený administrátor. Definice metrik se vytvářejí v administraci samotného nástroje. Více informací o samotném procesu vytváření definic metrik se nachází v kapitole \ref{sec:definice_a_meriky}. Popis tohoto případu užití lze nalézt ve specifikaci v tabulce  \ref{tab:use_case_definition_metric}.
+Jeden z~nejdůležitějších scénářů, které se v~nástroji vyskytují je vytváření definic metrik, které následně slouží pro vytváření samotných metrik. Tento případ užití může vykonávat pouze přihlášený administrátor. Definice metrik se vytvářejí v~administraci samotného nástroje. Více informací o~samotném procesu vytváření definic metrik se nachází v~kapitole \ref{sec:definice_a_meriky}. Popis tohoto případu užití lze nalézt ve specifikaci v~tabulce  \ref{tab:use_case_definition_metric}.
 
 \begin{table}[htp]
 \begin{center}
@@ -793,7 +793,7 @@ Jeden z~nejdůležitějších scénářů, které se v~nástroji vyskytují je v
 \hline
 \textbf{Základní tok} &                                                                              
 \begin{enumerate}
-\item Administrátor na výpise definic metrik v administraci klikne na tlačítko pro přesměrování na formulář.
+\item Administrátor na výpise definic metrik v~administraci klikne na tlačítko pro přesměrování na formulář.
 \item Administrátor vyplní v~prvním kroku formuláře základní údaje jako například název a popis a zvolí, zda je metrika podílová, nebo ne.
 \item Administrátor zvolí jednotlivé podmínky pomocí artefaktů.
 \item Administrátor si zkontroluje zadané údaje na další stránce.
@@ -821,7 +821,7 @@ Jeden z~nejdůležitějších scénářů, které se v~nástroji vyskytují je v
 
 
 \subsection{Případ užití pro vytváření metrik}
-Mezi další důležitý případ užití patří samotné vytváření metrik. Ty jsou vytvářeny uživateli, nebo administrátory v uživatelské sekci nástroje. Jednotlivé metriky jsou vytvářeny z administrátorem definovaných definic metrik. Metriky jsou tedy již závislé na daném typu grafu a projektu, ke kterému patří. Na základě těchto informací se poté agregují data pro danou metriku. Více informací o samotném procesu se nachází v kapitole \ref{sec:definice_a_meriky}. Podrobný popis tohoto případu užití se nachází v tabulce \ref{tab:use_case_create_metric}.
+Mezi další důležitý případ užití patří samotné vytváření metrik. Ty jsou vytvářeny uživateli, nebo administrátory v~uživatelské sekci nástroje. Jednotlivé metriky jsou vytvářeny z~administrátorem definovaných definic metrik. Metriky jsou tedy již závislé na daném typu grafu a projektu, ke kterému patří. Na základě těchto informací se poté agregují data pro danou metriku. Více informací o~samotném procesu se nachází v~kapitole \ref{sec:definice_a_meriky}. Podrobný popis tohoto případu užití se nachází v~tabulce \ref{tab:use_case_create_metric}.
 
 \begin{table}[htp]
 \begin{center}
@@ -933,24 +933,24 @@ Docker je v~rámci prototypového nástroje použit právě na vytvoření vývo
 Největší výhoda tkví v~jednodušší instalaci, jelikož stačí nainstalovat pouze Docker a veškeré závislosti se doinstalují do kontejneru samy. Dále můžeme jednoduše spravovat a povyšovat verze všech závislostí. Jelikož všichni potencionální vývojáři mají stejné vývojové a následně produkční prostředí, nedochází k~nesrovnalostem mezi vývojovým, testovacím a produkčním prostředím. Aplikace samozřejmě může běžet bez Dockeru nativně přímo na systému. Poté je ale nutno zajistit stejné verze všech závislostí a případně je manuálně povyšovat dle potřeb.
 
 \subsection{Gitlab CI/CD a automatické testování}
-V rámci vývoje prototypového nástroje byl pro automatické testování a nahrání na produkční server využit nástroj Gitlab CI/CD.  Testování probíhá automaticky při každém commitu v prostředí Gitlab přičemž automatické testy jsou implementovány pomocí knihovny PHPUnit \cite{PHPUnit} a kontrola standardů pomocí ECS \cite{ECS} a PHPStan \cite{PHPStan}.
+V~rámci vývoje prototypového nástroje byl pro automatické testování a nahrání na produkční server využit nástroj Gitlab CI/CD.  Testování probíhá automaticky při každém commitu v~prostředí Gitlab přičemž automatické testy jsou implementovány pomocí knihovny PHPUnit \cite{PHPUnit} a kontrola standardů pomocí ECS \cite{ECS} a PHPStan \cite{PHPStan}.
 
-Pro každý typ kontroly a testu je nakonfigurován samostatný tzv. \texttt{stage} v \texttt{.gitlab-ci.yml} souboru. Standardy a automatické testy je nutné kontrolovat na spuštěném nástroji se všemi závislostmi. Proto se vždy prototypový nástroj při kontrole nainstaluje v Docker prostředí přímo na Gitlab serveru v Docker kontejneru. Prakticky se tedy prototypový nástroj nainstaluje jako Docker kontejner v Docker kontejneru. Tento přístup má výhodu v tom, že se nemusí standardy a automatické testy spouštět na jiném existujícím prostředí. 
+Pro každý typ kontroly a testu je nakonfigurován samostatný tzv. \texttt{stage} v~\texttt{.gitlab-ci.yml} souboru. Standardy a automatické testy je nutné kontrolovat na spuštěném nástroji se všemi závislostmi. Proto se vždy prototypový nástroj při kontrole nainstaluje v~Docker prostředí přímo na Gitlab serveru v~Docker kontejneru. Prakticky se tedy prototypový nástroj nainstaluje jako Docker kontejner v~Docker kontejneru. Tento přístup má výhodu v~tom, že se nemusí standardy a automatické testy spouštět na jiném existujícím prostředí. 
 
-Jako první se spouští kontrola standardů v samostatné \texttt{stage} \texttt{test:standards}. V tomto kroku se zkontroluje, zda veškeré zdrojové kódy jsou v souladu s platnými standardy daného jazyka. Pro kontrolu zdrojových kódů jazyka PHP se používá nástroj ECS a PHPstan. Nástroj ECS slouží pro kontrolu překlepů, mezer a PSR standardů. Nástroj PHPStan naopak pomocí statické analýzy kontroluje komplexitu kódu a případné logické chyby. Pro kontrolu ostatních souborů, mezi které patří JavaScript, Less, nebo Yaml slouží nástroj \textit{Prettier}.
+Jako první se spouští kontrola standardů v~samostatné \texttt{stage} \texttt{test:standards}. V~tomto kroku se zkontroluje, zda veškeré zdrojové kódy jsou v~souladu s~platnými standardy daného jazyka. Pro kontrolu zdrojových kódů jazyka PHP se používá nástroj ECS a PHPstan. Nástroj ECS slouží pro kontrolu překlepů, mezer a PSR standardů. Nástroj PHPStan naopak pomocí statické analýzy kontroluje komplexitu kódu a případné logické chyby. Pro kontrolu ostatních souborů, mezi které patří JavaScript, Less, nebo Yaml slouží nástroj \textit{Prettier}.
 
-Dále následuje \texttt{stage} s názvem \texttt{test:acceptance}, která spouští jednak jednotkové testy, tak i akceptační testy. Jednotkové testy se spouští pomocí knihovny PHPUnit a kontrolují základní funkčnosti prototypového nástroje. Následně jsou pomocí knihovny Panther spouštěny akceptační testy, které kontrolují pomocí naprogramovaných scénářů webovou stránku stejně jako uživatel.
+Dále následuje \texttt{stage} s~názvem \texttt{test:acceptance}, která spouští jednak jednotkové testy, tak i akceptační testy. Jednotkové testy se spouští pomocí knihovny PHPUnit a kontrolují základní funkčnosti prototypového nástroje. Následně jsou pomocí knihovny Panther spouštěny akceptační testy, které kontrolují pomocí naprogramovaných scénářů webovou stránku stejně jako uživatel.
 
-Při commitu do hlavní produkční větve je spuštěna \texttt{stage} \texttt{deploy}, která nahraje veškeré soubory z repositáře na definovaný server. Nahrání souborů probíhá připojením pomocí služby SSH na daný server. Na serveru se nejprve vypne Docker kontejner s běžící aplikací, poté se stáhnou změněné soubory pomocí gitu a následně se znova spustí Docker kontejner. Dále se po nahrání spustí instalace nových závislostí a překompilují se veškeré styly. V budoucnu je možné tyto kroky provést tak, aby nasazení probíhálo bez výpadku. Celý proces je možné vidět na obrázku \ref{fig:gitlab_ci}.
+Při commitu do hlavní produkční větve je spuštěna \texttt{stage} \texttt{deploy}, která nahraje veškeré soubory z~repositáře na definovaný server. Nahrání souborů probíhá připojením pomocí služby SSH na daný server. Na serveru se nejprve vypne Docker kontejner s~běžící aplikací, poté se stáhnou změněné soubory pomocí gitu a následně se znova spustí Docker kontejner. Dále se po nahrání spustí instalace nových závislostí a překompilují se veškeré styly. V~budoucnu je možné tyto kroky provést tak, aby nasazení probíhálo bez výpadku. Celý proces je možné vidět na obrázku \ref{fig:gitlab_ci}.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1\textwidth]{Diplomka/Figures/gitlab_ci.jpg}
-    \caption{Pipeline v Gitlab CI}
+    \caption{Pipeline v~Gitlab CI}
     \label{fig:gitlab_ci}
 \end{figure}
 
-Místo Gitlab CI/CD by bylo možné použít například nástroj Jenkins, ten ale nebyl využit z důvodu velké náročnosti a komplexnosti. Velkou výhodou Gitlab CI/CD je, že stačí použít jeden nástroj, který je provázán se samotným repositářem v aplikaci Gitlab a nemusí být udržováno a aktualizováno více nástrojů a závislostí.
+Místo Gitlab CI/CD by bylo možné použít například nástroj Jenkins, ten ale nebyl využit z~důvodu velké náročnosti a komplexnosti. Velkou výhodou Gitlab CI/CD je, že stačí použít jeden nástroj, který je provázán se samotným repositářem v~aplikaci Gitlab a nemusí být udržováno a aktualizováno více nástrojů a závislostí.
 
 
 \subsection{Třídní diagram - pracovní název}
