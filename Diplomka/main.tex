@@ -764,7 +764,106 @@ Funkcionality celého nástroje lze rozdělit do funkčností, které ovládá u
 
 Základním typem uživatele je klasický uživatel bez administrátorských práv. Kromě samozřejmosti v~podobě přihlášení může uživatel spravovat metriky. Tedy může metriky vytvářet, upravovat či případně mazat. Metriky může také pomocí speciálního nástroje v~podobě dokumentu exportovat do formátu PowerPoint a Excel. Uživatel může také vytvářet, upravovat, zobrazovat a exportovat dokumenty do různých formátů. Dokumenty slouží jako hromadné reporty (viz kapitola \ref{sec:reports}). Dále si může uživatel spravovat svůj účet a měnit různá nastavení. Každý uživatel má svou nástěnku, kterou si může libovolně spravovat. Kromě změny pozic jednotlivých metrik, přidávání a mazání metrik z~nástěnky může uživatel také exportovat nástěnku do formátu XML a poté ji sdílet například kolegovi pro samotný import nástěnky.
 
-Uživatel s~právy administrátora má největší práva a přístup ke všem funkcionalitám, které nástroj nabízí. Kromě stejných funkcionalit jako běžný uživatel může administrátor využívat další funkčnosti celé aplikace. Administrátor může vytvářet ostatním uživatelům účty a přiřazovat jim jednotlivá práva a role. Důležitou funkcí administrátora je správa definic metrik. Pomocí těch administrátor může vytvářet, upravovat a mazat definice metrik, které poté používají uživatelé pro vytváření samotných metrik. Pomocí těchto definic je například poté možno vytvářet metriky v~souladu se standardem Automotive SPICE. Dále je požadováno, aby administrátor mohl vytvářet projekty, do kterých budou následně automaticky importovány jednotlivé artefakty z~platformy IBM Jazz. Import probíhá poté periodicky na pozadí celého nástroje dle definovaného rozvrhu v~CRON tabulce. Veškeré tyto funkcionality jsou přístupné přes administraci, kde má administrátor přístup.
+Uživatel s~právy administrátora má největší práva a přístup ke všem funkcionalitám, které nástroj nabízí. Kromě stejných funkcionalit jako běžný uživatel může administrátor využívat další funkčnosti celé aplikace. Administrátor může vytvářet ostatním uživatelům účty a přiřazovat jim jednotlivá práva a role. Důležitou funkcí administrátora je správa definic metrik. Pomocí těch administrátor může vytvářet, upravovat a mazat definice metrik, které poté používají uživatelé pro vytváření samotných metrik. Pomocí těchto definic je například poté možno vytvářet metriky v~souladu se standardem Automotive SPICE. Dále je požadováno, aby administrátor mohl vytvářet projekty, do kterých budou následně automaticky importovány jednotlivé artefakty z~platformy IBM Jazz. Import probíhá poté periodicky na pozadí celého nástroje dle definovaného rozvrhu v~CRON tabulce. Veškeré tyto funkcionality jsou přístupné přes 
+administraci, kde má administrátor přístup.
+
+\subsection{Případ užití pro vytváření definic metrik}
+
+
+\begin{table}[htp]
+\begin{center}
+\begin{tabular}{c | m{10cm}}
+
+\textbf{Název} & Vytváření definic metrik \\ 
+\hline
+\textbf{Aktéři} & 
+\begin{itemize}
+\item Administrátor
+\end{itemize}
+\\ 
+\hline
+\textbf{Podmínky} & 
+\begin{enumerate}
+\item Musí existovat artefakty v~nástroji.
+\end{enumerate}
+ 
+\\ 
+\hline
+\textbf{Základní tok} &                                                                              
+\begin{enumerate}
+\item Administrátor na výpise definic metrik klikne na tlačítko pro přesměrování na formulář.
+\item Administrátor vyplní v~prvním kroku formuláře základní údaje jako například název a popis a zvolí, zda je metrika podílová, nebo ne.
+\item Administrátor zvolí jednotlivé podmínky pomocí artefaktů.
+\item Administrátor si zkontroluje zadané údaje na další stránce.
+\item Administrátor uloží definici metriky.
+\end{enumerate}                                                                                        \\ 
+\hline
+
+\textbf{Alternativní tok} &            
+\begin{itemize}
+    \item [2.1.] Pokud uživatel zvolí definici metriky jako podílovou, vyplní také druhou skupinu podmínek, které budou použity pro vytvoření podílu.
+\end{itemize}
+\\ 
+\hline
+
+\textbf{Podmínky pro dokončení} & 
+\begin{enumerate}
+\item Definice metriky bude uložena v databázi.
+\item Definici metriky je možné použít pro jednotlivé metriky v rámci definovaných projektů.
+\end{enumerate}                                                                                          
+\end{tabular}
+\caption{Případ užití pro vytváření definic metrik}
+\label{tab:use_case_definition_metric}
+\end{center}
+\end{table}
+
+
+\subsection{Případ užití pro vytváření metrik}
+
+
+\begin{table}[htp]
+\begin{center}
+\begin{tabular}{c | m{10cm}}
+
+\textbf{Název} & Vytváření metrik \\ 
+\hline
+\textbf{Aktéři} & 
+\begin{itemize}
+\item Administrátor
+\item Uživatel
+\end{itemize}
+\\ 
+\hline
+\textbf{Podmínky} & 
+\begin{enumerate}
+\item Musí existovat alespoň jedna definice metriky.
+\item Musí existovat projekt, do kterého bude metrika zařazena.
+\end{enumerate}
+ 
+\\ 
+\hline
+\textbf{Základní tok} &                                                                              
+\begin{enumerate}
+\item Uživatel, nebo administrátor na stránce s~metrikami klikne na tlačítko pro vytvoření nové metriky.
+\item Uživatel, nebo administrátor v zobrazeném formuláři vyplní základní informace o~dané metrice. Jako například název, popis, projekt, typ grafu a další.
+\item Uživatel, nebo administrátor zvolí definici metriky, ze které má být metrika vytvořena.
+\item Uživatel, nebo administrátor uloží formulář a tím vytvoří metriku.
+\end{enumerate}
+\\ 
+\hline
+
+\textbf{Podmínky pro dokončení} & 
+\begin{enumerate}
+\item Metriky bude uložena v~databázi.
+\item Metriku je možné zobrazit na nástěnce a výpisu metrik.
+\item Metriku je možné exportovat, vytvářet z ní dokumenty a reporty.
+\end{enumerate}                                                                                          
+\end{tabular}
+\caption{Případ užití pro vytváření metrik}
+\label{tab:use_case_create_metric}
+\end{center}
+\end{table}
+
 
 \section{Architektura a použité technologie}
 Vzhledem ke kladeným požadavkům na výsledný prototypový nástroj, které vyžadují, aby byl nástroj použitelný na jakékoli zařízení, bylo rozhodnuto, že nástroj bude realizován jako webová aplikace. Tento způsob je proti klasické klientské aplikace výhodnější v~několika ohledech. Největší výhodou je nezávislost platformy, na které je nástroj provozován. Uživatel nemusí kromě webového prohlížeče instalovat žádnou další aplikaci potřebnou pro běh nástroje. Dalším kladem je jednodušší správa a aktualizace celého nástroje. Nástroj bude do budoucna připraven na vytvoření progresivní webové aplikace. Celá aplikace je v~souladu s~architekturou Model-View-Controller.
@@ -776,7 +875,6 @@ Další vrstvou je aplikační vrstva, která vykonává většinu aplikační l
 Vrstva, kterou je možno považovat i za aplikační vrstvu, je servisní vrstva, která zajišťuje automatické stahování dat z~platformy IBM Jazz. Stahování dat, zejména artefaktů, probíhá pro definované projekty pomocí \textit{Cron} modulu. Toto stahování probíhá na pozadí dle definovaného času spuštění. Stažení dat je možno vyvolat také z~příkazové řádky. Dále je k~dispozici v~případě potřeb jednoduchá a pohodlná možnost přidat zavolání a spuštění servisního modulu pomocí prezentační vrstvy.
 
 Další nedílnou součástí celého nástroje je datová vrstva. Tato část komunikuje s~aplikační vrstvou pomoci již zmíněných repositářů. Datová vrstva ve skutečnosti používá dvě různé technologie pro ukládání dat. Prvním používaným úložištěm je relační databáze PostgreSQL, která slouží zejména pro ukládání uživatelů a uživatelských rolí. Tato technologie byla zvolena pro tento účel zejména pro bezpečné a rychlé ukládání hesel, dat uživatelů a jednotlivých uživatelských rolí. Objekty namapované na relační databázi jsou nazývány entity. Druhým používaným úložištěm je \textit{NoSQL} databáze MongoDB. V~tomto úložišti je uložena drtivá většina dat celého nástroje. Jsou zde uloženy například veškeré definice metrik, metriky, artefakty, nástěnky a další uživatelská data. Tato technologie byla zvolena po konzultaci s~vedoucím práce díky vlastnostem lépe a pohodlněji ukládat celé objekty, rychlosti a lepší správě většího počtu dat. Tohoto benefitu bylo využito zejména při ukládání velkého množství artefaktů. Další velkou výhodou této technologie je možnost pohodlné správy celé struktury databáze. Velkou výhodou využití technologie MongoDB bylo při ukládání artefaktů a definic metriky to, že celá struktura objektů je tvořena pomocí vnořených či případně propojených objektů což umožňuje jednodušší a pohodlnější dotazování na objekty. Jednotlivé objekty jsou nazývány dokumenty.
-
 
 
 \begin{figure}[!ht]
@@ -832,7 +930,9 @@ Docker je v~rámci prototypového nástroje použit právě na vytvoření vývo
 
 Největší výhoda tkví v~jednodušší instalaci, jelikož stačí nainstalovat pouze Docker a veškeré závislosti se doinstalují do kontejneru samy. Dále můžeme jednoduše spravovat a povyšovat verze všech závislostí. Jelikož všichni potencionální vývojáři mají stejné vývojové a následně produkční prostředí, nedochází k~nesrovnalostem mezi vývojovým, testovacím a produkčním prostředím. Aplikace samozřejmě může běžet bez Dockeru nativně přímo na systému. Poté je ale nutno zajistit stejné verze všech závislostí a případně je manuálně povyšovat dle potřeb.
 
+\subsection{Třídní diagram - pracovní název}
 
+\subsection{Sekvenční diagram - pracovní název}
 
 \section{Export dat z~IBM Jazz}
 \label{sec:ibm_export}
