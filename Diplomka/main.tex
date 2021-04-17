@@ -13,6 +13,7 @@
 \usepackage{pgfplots}
 \usepackage{diplomalst}
 \usepackage{dirtree}
+\usepackage{longtable}
 
 \pgfplotsset{compat = newest}
 
@@ -48,7 +49,7 @@
 
 
 \AddAcronym{AJAX}{Asynchronous JavaScript and XML}
-\AddAcronym{ALM}{Application lifecycle anagement}
+\AddAcronym{ALM}{Application Lifecycle Management}
 \AddAcronym{API}{Application Programming Interface}
 \AddAcronym{ASPICE}{Automotive Software Process Improvement and Capability Determination}
 \AddAcronym{BIRT}{Business Intelligence and Reporting Tools}
@@ -504,7 +505,7 @@ Automotive SPICE klade velké nároky na kvalitní výsledky při vývoji a dodr
 
 
 
-\chapter{Application Lifecycle Management}
+\chapter{Analýza existujících ALM aplikací a nástrojů}
 \label{sec:alm}
 Application Lifecycle Management není pouze proces samotného vývoje a programování softwaru. Je to možno přirovnat k~životě člověka, kdy jde o~kompletní proces od první myšlenky a požadavku zákazníka přes samotný vývoj softwaru po nasazení do produkčního prostředí. Application Lifecycle Management končí, jakmile končí samotný software, kdy například přestane dávat z~obchodního hlediska smysl -- software již není konkurenceschopný nebo je vyvinuta nová verze daného systému. \cite{alm_chappell}
 
@@ -744,7 +745,7 @@ Dále kromě nástrojů sledujících životní cyklus celé aplikace byly prozk
 \label{sec:my_app}
 V~rámci  praktické části této diplomové práce bylo potřeba vytvořit  prototypový nástroj pro sledování a zobrazování metrik potřebných pro splnění standardu Automotive SPICE. To znamená především definovat, vytvářet a sledovat metriky v~čase a následně vytvářet sestavy, které je možno exportovat do různých formátů. Základní vize byla, aby byl nástroj místem shromáždění dat a artefaktů z~platformy IBM Jazz v~čase. Hlavním důvodem pro vytvoření tohoto nástroje je, že platforma IBM Jazz a další podobné aplikace nepodporují sledování metrik potřebných pro splnění standardu Automotive SPICE. Zejména například generování trendových metrik v~určitém časovém období.
 
-\section{Požadavky}
+\section{Požadavky a případy užití}
 \label{sec:requirements}
 Základním požadavkem pro aplikaci bylo, aby uživatel v~aplikaci mohl definovat a následně zobrazovat metriky v~čase. Nástroj bude umět definovat takové metriky, které jsou potřebné pro naplnění standardu Automotive SPICE. Dalším důležitým požadavkem bylo, aby aplikace byla realizována jako webová aplikace a byla tedy přístupná prakticky z~jakéhokoli zařízení. Aplikace bude nabízet role uživatelů, na něž budou navázány jednotlivé funkcionality nástroje. Přístup do nástroje bude mít pouze registrovaný uživatel.
 
@@ -767,9 +768,9 @@ Základním typem uživatele je klasický uživatel bez administrátorských pr�
 Uživatel s~právy administrátora má největší práva a přístup ke všem funkcionalitám, které nástroj nabízí. Kromě stejných funkcionalit jako běžný uživatel může administrátor využívat další funkčnosti celé aplikace. Administrátor může vytvářet ostatním uživatelům účty a přiřazovat jim jednotlivá práva a role. Důležitou funkcí administrátora je správa definic metrik. Pomocí těch administrátor může vytvářet, upravovat a mazat definice metrik, které poté používají uživatelé pro vytváření samotných metrik. Pomocí těchto definic je například poté možno vytvářet metriky v~souladu se standardem Automotive SPICE. Dále je požadováno, aby administrátor mohl vytvářet projekty, do kterých budou následně automaticky importovány jednotlivé artefakty z~platformy IBM Jazz. Import probíhá poté periodicky na pozadí celého nástroje dle definovaného rozvrhu v~CRON tabulce. Veškeré tyto funkcionality jsou přístupné přes 
 administraci, kde má administrátor přístup.
 
+% \newpage
 \subsection{Případ užití pro vytváření definic metrik}
-Jeden z~nejdůležitějších scénářů, které se v~nástroji vyskytují je vytváření definic metrik, které následně slouží pro vytváření samotných metrik.
-todo ref viz tabulka \ref{tab:use_case_definition_metric}
+Jeden z~nejdůležitějších scénářů, které se v~nástroji vyskytují je vytváření definic metrik, které následně slouží pro vytváření samotných metrik. Tento případ užití může vykonávat pouze přihlášený administrátor. Definice metrik se vytvářejí v administraci samotného nástroje. Více informací o samotném procesu vytváření definic metrik se nachází v kapitole \ref{sec:definice_a_meriky}. Popis tohoto případu užití lze nalézt ve specifikaci v tabulce  \ref{tab:use_case_definition_metric}.
 
 \begin{table}[htp]
 \begin{center}
@@ -792,7 +793,7 @@ todo ref viz tabulka \ref{tab:use_case_definition_metric}
 \hline
 \textbf{Základní tok} &                                                                              
 \begin{enumerate}
-\item Administrátor na výpise definic metrik klikne na tlačítko pro přesměrování na formulář.
+\item Administrátor na výpise definic metrik v administraci klikne na tlačítko pro přesměrování na formulář.
 \item Administrátor vyplní v~prvním kroku formuláře základní údaje jako například název a popis a zvolí, zda je metrika podílová, nebo ne.
 \item Administrátor zvolí jednotlivé podmínky pomocí artefaktů.
 \item Administrátor si zkontroluje zadané údaje na další stránce.
@@ -820,7 +821,7 @@ todo ref viz tabulka \ref{tab:use_case_definition_metric}
 
 
 \subsection{Případ užití pro vytváření metrik}
-todo viz \ref{tab:use_case_create_metric}
+Mezi další důležitý případ užití patří samotné vytváření metrik. Ty jsou vytvářeny uživateli, nebo administrátory v uživatelské sekci nástroje. Jednotlivé metriky jsou vytvářeny z administrátorem definovaných definic metrik. Metriky jsou tedy již závislé na daném typu grafu a projektu, ke kterému patří. Na základě těchto informací se poté agregují data pro danou metriku. Více informací o samotném procesu se nachází v kapitole \ref{sec:definice_a_meriky}. Podrobný popis tohoto případu užití se nachází v tabulce \ref{tab:use_case_create_metric}.
 
 \begin{table}[htp]
 \begin{center}
@@ -857,7 +858,7 @@ todo viz \ref{tab:use_case_create_metric}
 \begin{enumerate}
 \item Metriky bude uložena v~databázi.
 \item Metriku je možné zobrazit na nástěnce a výpisu metrik.
-\item Metriku je možné exportovat, vytvářet z~ní dokumenty a reporty.
+\item Metriku je možné exportovat a vytvářet z~ní dokumenty a reporty.
 \end{enumerate}                                                                                          
 \end{tabular}
 \caption{Případ užití pro vytváření metrik}
@@ -930,6 +931,27 @@ Docker je v~rámci prototypového nástroje použit právě na vytvoření vývo
 \lstinputlisting[label=src:docker_compose,caption={Část konfiguračního souboru docker-compose.yaml sestavující PostgreSQL}, language=xml]{SourceCodes/docker-compose.yml}
 
 Největší výhoda tkví v~jednodušší instalaci, jelikož stačí nainstalovat pouze Docker a veškeré závislosti se doinstalují do kontejneru samy. Dále můžeme jednoduše spravovat a povyšovat verze všech závislostí. Jelikož všichni potencionální vývojáři mají stejné vývojové a následně produkční prostředí, nedochází k~nesrovnalostem mezi vývojovým, testovacím a produkčním prostředím. Aplikace samozřejmě může běžet bez Dockeru nativně přímo na systému. Poté je ale nutno zajistit stejné verze všech závislostí a případně je manuálně povyšovat dle potřeb.
+
+\subsection{Gitlab CI/CD a automatické testování}
+V rámci vývoje prototypového nástroje byl pro automatické testování a nahrání na produkční server využit nástroj Gitlab CI/CD.  Testování probíhá automaticky při každém commitu v prostředí Gitlab přičemž automatické testy jsou implementovány pomocí knihovny PHPUnit \cite{PHPUnit} a kontrola standardů pomocí ECS \cite{ECS} a PHPStan \cite{PHPStan}.
+
+Pro každý typ kontroly a testu je nakonfigurován samostatný tzv. \texttt{stage} v \texttt{.gitlab-ci.yml} souboru. Standardy a automatické testy je nutné kontrolovat na spuštěném nástroji se všemi závislostmi. Proto se vždy prototypový nástroj při kontrole nainstaluje v Docker prostředí přímo na Gitlab serveru v Docker kontejneru. Prakticky se tedy prototypový nástroj nainstaluje jako Docker kontejner v Docker kontejneru. Tento přístup má výhodu v tom, že se nemusí standardy a automatické testy spouštět na jiném existujícím prostředí. 
+
+Jako první se spouští kontrola standardů v samostatné \texttt{stage} \texttt{test:standards}. V tomto kroku se zkontroluje, zda veškeré zdrojové kódy jsou v souladu s platnými standardy daného jazyka. Pro kontrolu zdrojových kódů jazyka PHP se používá nástroj ECS a PHPstan. Nástroj ECS slouží pro kontrolu překlepů, mezer a PSR standardů. Nástroj PHPStan naopak pomocí statické analýzy kontroluje komplexitu kódu a případné logické chyby. Pro kontrolu ostatních souborů, mezi které patří JavaScript, Less, nebo Yaml slouží nástroj \textit{Prettier}.
+
+Dále následuje \texttt{stage} s názvem \texttt{test:acceptance}, která spouští jednak jednotkové testy, tak i akceptační testy. Jednotkové testy se spouští pomocí knihovny PHPUnit a kontrolují základní funkčnosti prototypového nástroje. Následně jsou pomocí knihovny Panther spouštěny akceptační testy, které kontrolují pomocí naprogramovaných scénářů webovou stránku stejně jako uživatel.
+
+Při commitu do hlavní produkční větve je spuštěna \texttt{stage} \texttt{deploy}, která nahraje veškeré soubory z repositáře na definovaný server. Nahrání souborů probíhá připojením pomocí služby SSH na daný server. Na serveru se nejprve vypne Docker kontejner s běžící aplikací, poté se stáhnou změněné soubory pomocí gitu a následně se znova spustí Docker kontejner. Dále se po nahrání spustí instalace nových závislostí a překompilují se veškeré styly. V budoucnu je možné tyto kroky provést tak, aby nasazení probíhálo bez výpadku. Celý proces je možné vidět na obrázku \ref{fig:gitlab_ci}.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/gitlab_ci.jpg}
+    \caption{Pipeline v Gitlab CI}
+    \label{fig:gitlab_ci}
+\end{figure}
+
+Místo Gitlab CI/CD by bylo možné použít například nástroj Jenkins, ten ale nebyl využit z důvodu velké náročnosti a komplexnosti. Velkou výhodou Gitlab CI/CD je, že stačí použít jeden nástroj, který je provázán se samotným repositářem v aplikaci Gitlab a nemusí být udržováno a aktualizováno více nástrojů a závislostí.
+
 
 \subsection{Třídní diagram - pracovní název}
 
@@ -1136,6 +1158,7 @@ Jak již bylo zmíněno, možnost zobrazení všech stahovaných dat se také na
 % předpříprava dat query language
 
 \section{Definice a vytváření metrik}
+\label{sec:definice_a_meriky}
 Pokud si uživatel přeje vytvořit metriku úplně od základu včetně nové definice metriky, bude nejprve potřebovat vytvořit definici dané metriky. Definice metriky může aktuálně vytvořit pouze administrátor v~administraci prototypového nástroje. Tento způsob byl zvolen z~toho důvodu, že administrátor vytvoří jednotlivé definice dle používaného standardu, nebo dle potřeb měření procesů daného projektu a společnosti, a až poté si uživatelé vytvářejí metriky. Veškeré definice se ukládají do NoSQL databáze pro snadnou a přehlednou manipulací s~celými objekty.
 
 Administrátor vytváří definice metrik pomocí vícekrokového formuláře. V~prvním kroku vytvoření definice metriky se nachází základní údaje o~definici, jako je například název, popis nebo zda je daná metrika podílová či nikoli. Dále se v~druhém kroku formuláře nacházejí dynamická pole pro definování jednotlivých podmínek, dle kterých se bude řídit zobrazení konečné metriky. Jestliže uživatel zvolí, aby byla definice metriky podílová, může zvolit podmínky pro druhé měření, které bude první podmínky dělit. Podmínky je možno volit pomocí polí, v~nichž lze vyhledávat. Třetí krok slouží pro kontrolu vygenerovaných podmínek, které z~formuláře vzniknou. Celá definice metriky je nezávislá na modulech a projektu. Tyto údaje se poté volí až při vytváření samotné metriky. Daný způsob byl zvolen jednak pro možnost využití různých definic pro více druhů metrik, jednak i na doporučení vedoucího práce Ing. Svatopluka Štolfy, PhD. Celý proces vytváření definice metriky byl inspirován nástrojem \textit{Report builder}, který se nachází na platformě IBM Jazz. Druhý krok procesu vytváření definice metriky je možno vidět na obrázku \ref{fig:report_builder_admin}.
@@ -1227,7 +1250,6 @@ Dokumenty můžeme vytvořit na stránce nazvané \textit{Dokumenty}. Stránka s
 \end{figure}
 
 Veškeré exporty do formátů pro programy Microsoft Office jsou naprogramovány pomocí knihovny \textit{PhpOffice}, která je volně dostupná na platformě \textit{GitHub} \cite{ref:phpoffice}. V~rámci knihovny se používají moduly \textit{PhpSpreadsheet} pro export do formátu Excel, \textit{PhpPresentation}pro export dat do formátu PowerPoint a \textit{PHPWord} pro exportování do formátu Word. Pro exportování do ostatních formátů, mezi něž patří například CSV, je použito klasických knihoven jazyka PHP.
-
 
 \chapter{Závěr}
 Clem práce bylo kromě vytvoření prototypového nástroje pro sledování a zobrazení metrik potřebných pro splnění standardu Automotive SPICE také analyzovat a prozkoumat již existující nástroje pro správu životního cyklu vývoje celého produktu, měření kvalit softwarových procesů, sběru artefaktů a nakonec i samotná správa softwarových procesů.
@@ -1372,6 +1394,12 @@ Vizualizace dat | Microsoft Power BI. \textit{Microsoft Power BI} [online]. Redm
 
 \bibitem{ref:php_trend}
 Historical trends in the usage statistics of server-side programming languages for websites. \textit{W3Techs} [online]. Maria Enzersdorf: Q-Success, c2009-2021 [cit. 2021-02-25]. Dostupné z: https://w3techs.com/technologies/history\_overview/programming\_language
+
+\bibitem{PHPUnit} The PHP Unit Testing framework. [online]. [cit. 2021-02-12] Dostupné z: https://github.com/sebastianbergmann/phpunit
+
+\bibitem{PHPStan} PHP Static Analysis Tool - discover bugs in your code without running it! [online]. [cit. 2021-02-12] Dostupné z: https://github.com/phpstan/phpstan
+
+\bibitem{ECS} Easiest way to start using PHP CS Fixer and PHP\_CodeSniffer with 0-knowledge. [online]. [cit. 2021-02-12] Dostupné z: https://github.com/symplify/easy-coding-standard
 
 \bibitem{ref:metrics_and_dashboard_for_level_two}
 BERNHARDT, Steger, Damjan EKERT, Richard MESSNARZ, Jakub ŠTOLFA, Svatopluk ŠTOLFA a Zdeněk VELART. \textit{Metrics and Dashboard for Level 2 – Experience}: Systems, Software and Services Process Improvement. Cham: Springer International Publishing, 2020. ISBN 978-3-030-56440-7.
