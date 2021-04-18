@@ -872,22 +872,30 @@ Vzhledem ke kladeným požadavkům na výsledný prototypový nástroj, které v
 
 Architektura se skládá z~několika důležitých komponent a vrstev. Celou architekturu systému včetně napojení na platformu IBM Jazz je možno vidět na obrázku \ref{fig:architektura_nastroje}. Nejvyšší vrstvou nástroje je prezentační vrstva sloužící zejména pro komunikaci mezi uživatelem a celým nástrojem. Uživatel pomocí prezentační vrstvy nástroj ovládá a provádí různé úkony vedoucí k~vytvoření projektů, metrik nebo například definicí metriky. Veškeré tyto úkony jsou definovány v~kapitole \ref{sec:requirements}. Celý nástroj je ovládán pomocí grafického uživatelského rozhraní ve webovém prohlížeči. Tuto vrstvu řadíme v~architektuře Model-View-Controler k~\textit{View}. Prezentační vrstva je realizována pomocí šablonovacího systému Twig.
 
-Další vrstvou je aplikační vrstva, která vykonává většinu aplikační logiky, kontroluje vstupy od uživatele, provádí výpočty a zpracovává data. Tato vrstva je provozována pomocí frameworku Symfony v~jazyce PHP. Této technologii je podrobněji věnována kapitola \ref{sec:symfony}. V~této vrstvě jsou zahrnuty veškeré kontrolery, které komunikují s~prezentační vrstvou, z~níž přijímají data a pokyny od uživatele. Dále do této vrstvy můžeme zařadit jednotlivé modely, které přistupují k~datové vrstvě. Komunikace mezi datovou a aplikační vrstvou probíhá pomocí repositářů. V~rámci přístupu k~repositářům je použit návrhový vzor fasáda z~důvodu uceleného přístupu k~datům a repositářům.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Diplomka/Figures/architektura.png}
+    \caption{Architektura nástroje pro vytváření metriky}
+    \label{fig:architektura_nastroje}
+\end{figure}
+
+Další vrstvou je aplikační vrstva, která vykonává většinu aplikační logiky, kontroluje vstupy od uživatele, provádí výpočty a zpracovává data. Tato vrstva je provozována pomocí frameworku Symfony v~jazyce PHP. Této technologii je podrobněji věnována kapitola \ref{sec:symfony}. V~této vrstvě jsou zahrnuty veškeré kontrolery, které komunikují s~prezentační vrstvou, z~níž přijímají data a pokyny od uživatele. Dále do této vrstvy můžeme zařadit jednotlivé modely, které přistupují k~datové vrstvě. Komunikace mezi datovou a aplikační vrstvou probíhá pomocí repositářů. V~rámci přístupu k~repositářům z aplikační vrstvy je použit návrhový vzor fasáda z~důvodu uceleného přístupu k~datům a repositářům. Jednotlivé repositáře pro dokumenty lze vidět v třídním diagram na obrázku \ref{fig:class_diagram_repository}.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/class_diagram_repository.png}
+    \caption{Třídní diagram repozitářů}
+    \label{fig:class_diagram_repository}
+\end{figure}
 
 Vrstva, kterou je možno považovat i za aplikační vrstvu, je servisní vrstva, která zajišťuje automatické stahování dat z~platformy IBM Jazz. Stahování dat, zejména artefaktů, probíhá pro definované projekty pomocí \textit{Cron} modulu. Toto stahování probíhá na pozadí dle definovaného času spuštění. Stažení dat je možno vyvolat také z~příkazové řádky. Dále je k~dispozici v~případě potřeb jednoduchá a pohodlná možnost přidat zavolání a spuštění servisního modulu pomocí prezentační vrstvy.
 
 Další nedílnou součástí celého nástroje je datová vrstva. Tato část komunikuje s~aplikační vrstvou pomoci již zmíněných repositářů. Datová vrstva ve skutečnosti používá dvě různé technologie pro ukládání dat. Prvním používaným úložištěm je relační databáze PostgreSQL, která slouží zejména pro ukládání uživatelů a uživatelských rolí. Tato technologie byla zvolena pro tento účel zejména pro bezpečné a rychlé ukládání hesel, dat uživatelů a jednotlivých uživatelských rolí. Objekty namapované na relační databázi jsou nazývány entity. Druhým používaným úložištěm je \textit{NoSQL} databáze MongoDB. V~tomto úložišti je uložena drtivá většina dat celého nástroje. Jsou zde uloženy například veškeré definice metrik, metriky, artefakty, nástěnky a další uživatelská data. Tato technologie byla zvolena po konzultaci s~vedoucím práce díky vlastnostem lépe a pohodlněji ukládat celé objekty, rychlosti a lepší správě většího počtu dat. Tohoto benefitu bylo využito zejména při ukládání velkého množství artefaktů. Další velkou výhodou této technologie je možnost pohodlné správy celé struktury databáze. Velkou výhodou využití technologie MongoDB bylo při ukládání artefaktů a definic metriky to, že celá struktura objektů je tvořena pomocí vnořených či případně propojených objektů což umožňuje jednodušší a pohodlnější dotazování na objekty. Jednotlivé objekty jsou nazývány dokumenty.
 
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=1\textwidth]{Diplomka/Figures/architektura.png}
-    \caption{Architektura nástroje pro vytváření metriky}
-    \label{fig:architektura_nastroje}
-\end{figure}
-
-
 Celou aplikaci je možno provozovat buď nativně přímo na operačním systému, nebo pomocí technologie Docker. Při instalaci nativní je nutno nainstalovat veškeré závislosti, které nástroj využívá. Mezi takové závislosti můžeme zařadit například relační a NoSQL databázi, přesnou verzi PHP, webserver a mnoho dalších. Pro pohodlnější a jednodušší instalaci je vhodné použít virtualizačního nástroje Docker. Výhodou použití této technologie je, že aplikace je nasazena v~produkčním, testovacím a vývojovém prostředí na stejných verzích závislostí a podpůrných nástrojů. V~rámci instalace pomocí Dockeru se nainstaluje i nástroj Kibana a NoSQL databáze Elasticsearch pro správu všech logů aplikace. Dále se nainstalují nástroje jako například Adminer pro správu databází,  Mongo-gui pro grafickou vizualizaci dokumentů v~MongoDB databázi a další. Technologii Docker a použití využívaných nástrojů se věnuje kapitola \ref{sec:docker}.
+
+% \newpage % TODO LS ?
 
 \subsection{Symfony}
 \label{sec:symfony}
@@ -953,11 +961,7 @@ Při commitu do hlavní produkční větve je spuštěna \texttt{stage} \texttt{
 Místo Gitlab CI/CD by bylo možné použít například nástroj Jenkins, ten ale nebyl využit z~důvodu velké náročnosti a komplexnosti. Velkou výhodou Gitlab CI/CD je, že stačí použít jeden nástroj, který je provázán se samotným repositářem v~aplikaci Gitlab a nemusí být udržováno a aktualizováno více nástrojů a závislostí.
 
 
-\subsection{Třídní diagram - pracovní název}
-
-\subsection{Sekvenční diagram - pracovní název}
-
-\section{Export dat z~IBM Jazz}
+\section{Analýza stahování dat z~IBM Jazz}
 \label{sec:ibm_export}
 
 Jednotlivá data a artefakty se nevytvářejí v~prototypovém nástroji pro sledování metrik, ale importují se a stahují z~platformy IBM Jazz. Tyto požadavky a artefakty je tedy nutno nejprve vložit do platformy IBM Jazz. Artefakty je vhodné zařadit do modulů dle jejich oblasti. V~rámci Automotive SPICE můžeme mezi takové moduly zařadit například hardwarové požadavky se zkratkou HWRS. Používání těchto modulů je vhodné pro následné vytváření metrik a selekci pouze určitých typů artefaktů.
@@ -1277,34 +1281,6 @@ SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-We
 \bibitem{ref:cmm_cmmi}
 Software measurement and metrics. SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~721-722. ISBN 978-0-13-703515-1.
 
-\bibitem{ref:sommerrville_waterfall}
-SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~29-32. ISBN 978-0-13-703515-1.
-
-\bibitem{ref:rup_ibm_about}
-\textit{Rational Unified Process: Best Practices for Software Development Teams} [online]. In: . Rev 11/01. Cupertino: Rational Software, 1998, s.~1 [cit. 2020-11-21]. Dostupné z: https://www.ibm.com/developerworks/rational/library/content/03July/
-1000/1251/1251\_bestpractices\_TP026B.pdf
-
-\bibitem{ref:rup_ibm}
-\textit{Rational Unified Process: Best Practices for Software Development Teams} [online]. In: . Rev 11/01. Cupertino: Rational Software, 1998, s.~3 [cit. 2020-11-21]. Dostupné z: https://www.ibm.com/developerworks/rational/library/content/03July/
-1000/1251/1251\_bestpractices\_TP026B.pdf
-
-\bibitem{ref:agilne_manifesto}
-\textit{Manifest Agilního vývoje software} [online]. 2001 [cit. 2020-11-21]. Dostupné z: https://agilemanifesto.org/iso/cs/manifesto.html
-
-\bibitem{ref:sommerrville_agile_products}
-SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~59. ISBN 978-0-13-703515-1.
-
-\bibitem{ref:what_is_xp}
-BECK, Kent a Cynthia ANDRES. \textit{Extrémní programování: embrace change}. 2nd ed. Praha: Grada, 2002, s.~1---7. Moderní programování. ISBN 80-247-0300-9.
-
-\bibitem{ref:scrum_myslin}
-MYSLÍN, Josef. \textit{Scrum: průvodce agilním vývojem softwaru}. Brno: Computer Press, 2016. ISBN 978-80-251-4650-7.
-
-\bibitem{ref:scrum_myslin_cyklus_img}
-MYSLÍN, Josef. \textit{Scrum: průvodce agilním vývojem softwaru}. Brno: Computer Press, 2016 s.~85. ISBN 978-80-251-4650-7.
-
-\bibitem{ref:scrum_myslin_us}
-MYSLÍN, Josef. \textit{Scrum: průvodce agilním vývojem softwaru}. Brno: Computer Press, 2016 s.~89. ISBN 978-80-251-4650-7.
 
 \bibitem{ref:vmodel_Tierno2016}
 TIERNO, Antonio, Max M. SANTOS, Benedito A. ARRUDA a Joao N. H. DA ROSA. Open issues for the automotive software testing. \textit{2016 12th IEEE International Conference on Industry Applications (INDUSCON)} [online]. IEEE, 2016, 2016, , 1-8 [cit. 2020-11-27]. ISBN 978-1-5090-5127-4. Dostupné z: doi:10.1109/INDUSCON.2016.7874609
@@ -1383,15 +1359,6 @@ IBM Jazz Products. Jazz Comunity Site [online]. IBM, c2021 [cit. 2021-01-24]. Do
 \bibitem{ref:ibm_jazz_erm_dn}
 IBM Engineering Requirements Management DOORS Next. \textit{IBM} [online]. IBM, c2021 [cit. 2021-01-24]. Dostupné z: https://www.ibm.com/products/requirements-management-doors-next
 
-\bibitem{ref:bi_loshin_david}
-LOSHIN, David. \textit{Business Intelligence: The Savvy Manager's Guide}. San Francisco: Morgan Kaufmann, 2003, 1 - 9. ISBN 978-1-55860-916-7.
-
-\bibitem{ref:qlik_general}
-Qlik Sense | Data Analytics Platform: Agent of transformation. Qlik [online]. King of Prussia: Qlik Technologies, c1993-2021 [cit. 2021-01-30]. Dostupné z: https://www.qlik.com/us/products/qlik-sense
-
-\bibitem{ref:microsoft_bi_general}
-Vizualizace dat | Microsoft Power BI. \textit{Microsoft Power BI} [online]. Redmond: Microsoft, c2021 [cit. 2021-01-27]. Dostupné z: https://powerbi.microsoft.com/cs-cz/
-
 \bibitem{ref:php_trend}
 Historical trends in the usage statistics of server-side programming languages for websites. \textit{W3Techs} [online]. Maria Enzersdorf: Q-Success, c2009-2021 [cit. 2021-02-25]. Dostupné z: https://w3techs.com/technologies/history\_overview/programming\_language
 
@@ -1407,6 +1374,45 @@ BERNHARDT, Steger, Damjan EKERT, Richard MESSNARZ, Jakub ŠTOLFA, Svatopluk ŠTO
 \bibitem{ref:phpoffice}
 \textit{PHPOffice: GitHub} [online]. c2021 [cit. 2021-03-13]. Dostupné z: https://github.com/PHPOffice
 
+
+
+\bibitem{ref:sommerrville_waterfall}
+SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~29-32. ISBN 978-0-13-703515-1.
+
+\bibitem{ref:rup_ibm_about}
+\textit{Rational Unified Process: Best Practices for Software Development Teams} [online]. In: . Rev 11/01. Cupertino: Rational Software, 1998, s.~1 [cit. 2020-11-21]. Dostupné z: https://www.ibm.com/developerworks/rational/library/content/03July/
+1000/1251/1251\_bestpractices\_TP026B.pdf
+
+\bibitem{ref:rup_ibm}
+\textit{Rational Unified Process: Best Practices for Software Development Teams} [online]. In: . Rev 11/01. Cupertino: Rational Software, 1998, s.~3 [cit. 2020-11-21]. Dostupné z: https://www.ibm.com/developerworks/rational/library/content/03July/
+1000/1251/1251\_bestpractices\_TP026B.pdf
+
+\bibitem{ref:agilne_manifesto}
+\textit{Manifest Agilního vývoje software} [online]. 2001 [cit. 2020-11-21]. Dostupné z: https://agilemanifesto.org/iso/cs/manifesto.html
+
+\bibitem{ref:sommerrville_agile_products}
+SOMMERVILLE, Ian. \textit{Software engineering}. 9th edition. Boston: Addison-Wesley, 2011, s.~59. ISBN 978-0-13-703515-1.
+
+\bibitem{ref:what_is_xp}
+BECK, Kent a Cynthia ANDRES. \textit{Extrémní programování: embrace change}. 2nd ed. Praha: Grada, 2002, s.~1---7. Moderní programování. ISBN 80-247-0300-9.
+
+\bibitem{ref:scrum_myslin}
+MYSLÍN, Josef. \textit{Scrum: průvodce agilním vývojem softwaru}. Brno: Computer Press, 2016. ISBN 978-80-251-4650-7.
+
+\bibitem{ref:scrum_myslin_cyklus_img}
+MYSLÍN, Josef. \textit{Scrum: průvodce agilním vývojem softwaru}. Brno: Computer Press, 2016 s.~85. ISBN 978-80-251-4650-7.
+
+\bibitem{ref:scrum_myslin_us}
+MYSLÍN, Josef. \textit{Scrum: průvodce agilním vývojem softwaru}. Brno: Computer Press, 2016 s.~89. ISBN 978-80-251-4650-7.
+
+\bibitem{ref:bi_loshin_david}
+LOSHIN, David. \textit{Business Intelligence: The Savvy Manager's Guide}. San Francisco: Morgan Kaufmann, 2003, 1 - 9. ISBN 978-1-55860-916-7.
+
+\bibitem{ref:qlik_general}
+Qlik Sense | Data Analytics Platform: Agent of transformation. Qlik [online]. King of Prussia: Qlik Technologies, c1993-2021 [cit. 2021-01-30]. Dostupné z: https://www.qlik.com/us/products/qlik-sense
+
+\bibitem{ref:microsoft_bi_general}
+Vizualizace dat | Microsoft Power BI. \textit{Microsoft Power BI} [online]. Redmond: Microsoft, c2021 [cit. 2021-01-27]. Dostupné z: https://powerbi.microsoft.com/cs-cz/
 
 \end{thebibliography}
 
