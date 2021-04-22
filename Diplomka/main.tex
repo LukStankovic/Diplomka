@@ -741,7 +741,7 @@ Všechny tři aplikace obsahují možnost přístupu pomocí webové aplikace, p
 
 Dále kromě nástrojů sledujících životní cyklus celé aplikace byly prozkoumány \textit{Business Intelligence} aplikace. Ty slouží zejména pro shromažďovaní a zpracování velkých objemů dat, které například pocházejí z~interních nebo externích systémů při vývoji a správě daného produktu. Nástroje poskytují také možnosti pro tvorbu a správu sestav, grafů a metrik. Podrobné informace o~\textit{Business Intelligence} a analýzu aplikací Qlik Sense a Microsoft BI lze nalézt v~příloze \ref{sec:bi}. V~rámci praktické části bylo rozhodnuto o~vytvoření vlastního nástroje pro správu metrik zejména z~důvodu specifik požadavků Automotive SPICE a složitosti analyzovaných aplikací, které nejsou pro naplnění standardu plně vyhovující.
 
-\chapter{Vlastní aplikace}
+\chapter{Analýza a architektura vlastního nástroje}
 \label{sec:my_app}
 V~rámci  praktické části této diplomové práce bylo potřeba vytvořit  prototypový nástroj pro sledování a zobrazování metrik potřebných pro splnění standardu Automotive SPICE. To znamená především definovat, vytvářet a sledovat metriky v~čase a následně vytvářet sestavy, které je možno exportovat do různých formátů. Základní vize byla, aby byl nástroj místem shromáždění dat a artefaktů z~platformy IBM Jazz v~čase. Hlavním důvodem pro vytvoření tohoto nástroje je, že platforma IBM Jazz a další podobné aplikace nepodporují sledování metrik potřebných pro splnění standardu Automotive SPICE. Zejména například generování trendových metrik v~určitém časovém období.
 
@@ -757,7 +757,7 @@ Funkcionality celého nástroje lze rozdělit do funkčností, které ovládá u
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.95\textwidth]{Diplomka/Figures/use_case_jazz.png}
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/use_case_jazz.png}
     \caption{Diagram případu užití vlastní aplikace pro metriky}
     \label{fig:jazz_metrics_use_case}
 \end{figure}
@@ -768,9 +768,9 @@ Základním typem uživatele je klasický uživatel bez administrátorských pr�
 Uživatel s~právy administrátora má největší práva a přístup ke všem funkcionalitám, které nástroj nabízí. Kromě stejných funkcionalit jako běžný uživatel může administrátor využívat další funkčnosti celé aplikace. Administrátor může vytvářet ostatním uživatelům účty a přiřazovat jim jednotlivá práva a role. Důležitou funkcí administrátora je správa definic metrik. Pomocí těch administrátor může vytvářet, upravovat a mazat definice metrik, které poté používají uživatelé pro vytváření samotných metrik. Pomocí těchto definic je například poté možno vytvářet metriky v~souladu se standardem Automotive SPICE. Dále je požadováno, aby administrátor mohl vytvářet projekty, do kterých budou následně automaticky importovány jednotlivé artefakty z~platformy IBM Jazz. Import probíhá poté periodicky na pozadí celého nástroje dle definovaného rozvrhu v~CRON tabulce. Veškeré tyto funkcionality jsou přístupné přes 
 administraci, kde má administrátor přístup.
 
-% \newpage
+\newpage
 \subsection{Případ užití pro vytváření definic metrik}
-Jeden z~nejdůležitějších scénářů, které se v~nástroji vyskytují je vytváření definic metrik, které následně slouží pro vytváření samotných metrik. Tento případ užití může vykonávat pouze přihlášený administrátor. Definice metrik se vytvářejí v~administraci samotného nástroje. Více informací o~samotném procesu vytváření definic metrik se nachází v~kapitole \ref{sec:definice_a_meriky}. Popis tohoto případu užití lze nalézt ve specifikaci v~tabulce  \ref{tab:use_case_definition_metric}.
+Jeden z~nejdůležitějších scénářů, které se v~nástroji vyskytují je vytváření definic metrik, které následně slouží pro vytváření samotných metrik. Tento případ užití může vykonávat pouze přihlášený administrátor. Definice metrik se vytvářejí v~administraci samotného nástroje. Více informací o~samotném procesu vytváření definic metrik se nachází v~kapitole \ref{sec:definice_a_meriky}. Popis tohoto případu užití lze nalézt ve specifikaci v~tabulce  \ref{tab:use_case_definition_metric}. Samotný sekvenční diagram lze nalézt na obrázku \ref{fig:sd_metric_definition}.
 
 \begin{table}[htp]
 \begin{center}
@@ -820,8 +820,17 @@ Jeden z~nejdůležitějších scénářů, které se v~nástroji vyskytují je v
 \end{table}
 
 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/sd_metric_definition.png}
+    \caption{Sekvenční diagram pro vytváření a definic metrik}
+    \label{fig:sd_metric_definition}
+\end{figure}
+
+\newpage
+
 \subsection{Případ užití pro vytváření metrik}
-Mezi další důležitý případ užití patří samotné vytváření metrik. Ty jsou vytvářeny uživateli, nebo administrátory v~uživatelské sekci nástroje. Jednotlivé metriky jsou vytvářeny z~administrátorem definovaných definic metrik. Metriky jsou tedy již závislé na daném typu grafu a projektu, ke kterému patří. Na základě těchto informací se poté agregují data pro danou metriku. Více informací o~samotném procesu se nachází v~kapitole \ref{sec:definice_a_meriky}. Podrobný popis tohoto případu užití se nachází v~tabulce \ref{tab:use_case_create_metric}.
+Mezi další důležitý případ užití patří samotné vytváření metrik. Ty jsou vytvářeny uživateli, nebo administrátory v~uživatelské sekci nástroje. Jednotlivé metriky jsou vytvářeny z~administrátorem definovaných definic metrik. Metriky jsou tedy již závislé na daném typu grafu a projektu, ke kterému patří. Na základě těchto informací se poté agregují data pro danou metriku. Více informací o~samotném procesu se nachází v~kapitole \ref{sec:definice_a_meriky}. Podrobný popis tohoto případu užití se nachází v~tabulce \ref{tab:use_case_create_metric}. Sekvenční diagram pro tento případ užití lze nalézt na obrázku \ref{fig:sd_metric}.
 
 \begin{table}[htp]
 \begin{center}
@@ -866,6 +875,13 @@ Mezi další důležitý případ užití patří samotné vytváření metrik. 
 \end{center}
 \end{table}
 
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Diplomka/Figures/sd_metric.png}
+    \caption{Sekvenční diagram pro vytváření metrik}
+    \label{fig:sd_metric}
+\end{figure}
 
 \section{Architektura a použité technologie}
 Vzhledem ke kladeným požadavkům na výsledný prototypový nástroj, které vyžadují, aby byl nástroj použitelný na jakékoli zařízení, bylo rozhodnuto, že nástroj bude realizován jako webová aplikace. Tento způsob je proti klasické klientské aplikace výhodnější v~několika ohledech. Největší výhodou je nezávislost platformy, na které je nástroj provozován. Uživatel nemusí kromě webového prohlížeče instalovat žádnou další aplikaci potřebnou pro běh nástroje. Dalším kladem je jednodušší správa a aktualizace celého nástroje. Nástroj bude do budoucna připraven na vytvoření progresivní webové aplikace. Celá aplikace je v~souladu s~architekturou Model-View-Controller.
@@ -960,7 +976,6 @@ Při commitu do hlavní produkční větve je spuštěna \texttt{stage} \texttt{
 
 Místo Gitlab CI/CD by bylo možné použít například nástroj Jenkins, ten ale nebyl využit z~důvodu velké náročnosti a komplexnosti. Velkou výhodou Gitlab CI/CD je, že stačí použít jeden nástroj, který je provázán se samotným repositářem v~aplikaci Gitlab a nemusí být udržováno a aktualizováno více nástrojů a závislostí.
 
-
 \section{Analýza stahování dat z~IBM Jazz}
 \label{sec:ibm_export}
 
@@ -1025,6 +1040,7 @@ Platforma IBM Jazz nabízí velké množství možností pro export dat. Jeliko�
 
 Na základě porovnání vychází, že ideálním nástrojem pro automatické stahování dat z~platformy IBM Jazz je  DOORS Next Generation Rest API, které kromě horší dokumentace nabízí veškeré vlastnosti, které jsou potřeba pro stahování dat, z~nichž se budou definovat a vytvářet metriky. Pakliže by neexistoval požadavek na pokročilé stahování uživatelských atributů artefaktů, jeví se jako lepší řešení Work Items Service provider for OSLC 2.0 CM, jelikož nabízí lépe zdokumentované metody. Dále je možno veškeré informace stahovat rovnou z~databáze celé platformy IBM Jazz. Tento způsob je však neperspektivní a hrozí, že kdykoli se databáze změní, stahování dat přestane fungovat.
 
+\chapter{Implementace vlastního nástroje}
 \section{Stahování a ukládání dat}
 Na základě výsledků analýzy v~kapitole \ref{sec:ibm_export} byl vybrán export dat pomocí IBM Jazz je  DOORS Next Generation Rest API. Aby bylo zajištěno pravidelné stahování dat z~REST API, byl vytvořen cron modul, který je možno spouštět pravidelně v~definované periodě. Tento skript stahuje data pro veškeré definované projekty v~prototypovém nástroji z~nastavené URL k~platformě IBM Jazz.
 
