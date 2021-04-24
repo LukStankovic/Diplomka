@@ -321,24 +321,27 @@ V~současné době se automobily skládají z~velkého množství součástí. A
 V~rámci vývoje v~automobilovém průmyslu je většina systémů vyvíjena pomocí V-Modelu. Každá část  vývojového procesu musí mít definovány cíle. Aby bylo možno určit, zda jsou cíle splněny, jsou používány metriky (viz kapitola \ref{sec:metrics}).
 
 \section{Referenční procesní model}
-Je to jeden z~procesních modelů v~rámci standardu Automotive SPICE.
-Každý proces obsahuje kromě popisu také funkční cíle v~daném prostředí a seznam výsledků a výstupů, jichž má proces dosáhnout.
-%Každý proces  je popsán v podmínkách prohlášení o účelu. Prohlášení o účelu obsahuje jedinečné funkční cíle procesu při provádění v konkrétním prostředí. Ke každému prohlášení o účelu je přidružen seznam konkrétních výsledků jako seznam očekávaných pozitivních výsledků výkonu procesu.
-%Each process is described in terms of a purpose statement. The purpose statement contains the unique functional objectives of the process when performed in a particular environment. For each purpose statement a list of specific outcomes is associated, as a list of expected positive results of the process performance.
-\cite{ref:aspice_download_procesni_modely}
-
-
-Referenční procesní model definuje několik procesů ve třech základních kategoriích:
+Je to jeden z~procesních modelů v~rámci standardu Automotive SPICE, který obsahuje samotné procesy standardu. Každý proces obsahuje kromě popisu také funkční cíle v~daném prostředí a seznam výsledků a výstupů, jichž má proces dosáhnout. V rámci standardu se dále vyskytují také podmínky pro úspěšné splnění a použití daných procesů. \cite{ref:aspice_download_procesni_modely} Referenční procesní model definuje několik procesů ve třech základních kategoriích:
 
 \begin{itemize}
-
 \item primární procesy,
 \item podpůrné procesy,
 \item organizační procesy.
-
 \end{itemize}
 
-Jednotlivé kategorie procesů a samotné procesy jsou detailně probrány v~kapitole \ref{sec:aspice_processes} a je možno je graficky seskupené vidět na obrázku \ref{fig:prm}.
+V~rámci každé základní kategorie procesů existují v~referenčním procesním modelu podkategorie procesů podle toho, jakým okruhem činností se zaobírají. Procesy jsou pojmenovány pomocí třímístného identifikátoru, který určuje podkategorii procesu. Dále název procesu obsahuje číslo, které identifikuje proces v~rámci své podkategorie. Mezi takové podkategorie například patří:
+
+\begin{itemize}
+\item akviziční procesy,
+\item dodavatelské procesy,
+\item procesy systémového inženýrství,
+\item procesy softwarového inženýrství,
+\item procesy managementu,
+\item procesy vylepšení procesů,
+\item procesy opětovného použití.
+\end{itemize}
+
+Jednotlivé kategorie a podkategorie procesů a samotné procesy jsou detailně probrány v~příloze \ref{sec:aspice_processes_apendix}. Graficky je možno seskupené procesy vidět na obrázku \ref{fig:prm}.
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1\textwidth]{Diplomka/Figures/prm.png}
@@ -346,102 +349,19 @@ Jednotlivé kategorie procesů a samotné procesy jsou detailně probrány v~kap
     \label{fig:prm}
 \end{figure}
 
+% Kompletní znění a definice všech jednotlivých procesů je možno nalézt ve standardu Automotive SPICE. \cite{ref:aspice_procesy} 
 
 % ) a je určen pro provádění hodnocení schopnosti používání tohoto softwarového procesu dodavatelem pro automobilový průmysl.
 % V rámci ASPICE existují dva druhy procesních modelů. První z nich je model hodnocení procesů (PAM), který byl vyvinut v souladu se standardem ISO/IEC 33004. Tento procesní model obsahuje několik hodnotících ukazatelů
-
-% PAM [3, str. 10] obsahuje sadu hodnotících ukazatelů výkonnosti a způsobilosti procesů. Tyto indikátory jsou základem pro shromažďování objektivních důkazů, které model umožňuje s posuzováním přiřadit hodnocení. Dále PAM definuje dvoudimenzionální model způsobilosti procesu. V první dimenzi proces jsou procesy definovány a rozděleny do kategorií procesů, kde v rámci kategorie procesů jsou procesy seskupeny do skupin procesů v druhém stupni v souladu se zabývanou druhou činností. V druhé dimenzi schopnost je definován soubor atributů procesu seskupených do úrovně schopností. Atributy procesu poskytují měřitelné vlastnosti způsobilosti procesu. Ještě dodáváme, že [4, str. 8] PAM poskytuje další ukazatele výkonnosti a způsobilosti procesů přizpůsobených potřebám k provádění posouzení softwarového procesu schopnosti dodavatelů pro automobilový průmysl.
-
 
 
 %Druhý procesní model je procesní referenční model (PRM). Ten se používá ve spojení s modelem hodnocení procesu při provádění hodnocení dané společnosti.
 % \cite{ref:aspice_download_procesni_modely}
 
-\section{Procesy Automotive SPICE}
-\label{sec:aspice_processes}
-V~rámci každé základní kategorie procesů existují v~referenčním procesním modelu podkategorie procesů podle toho, jakým okruhem činností se zaobírají. Procesy jsou pojmenovány pomocí třímístného identifikátoru, který určuje podkategorii procesu. Dále název procesu obsahuje číslo, které identifikuje proces v~rámci své podkategorie.
-
-\subsection{Primární procesy}
-Kategorie primárních procesů životního cyklu sestává z~procesů, které mohou být použity zákazníkem při získávání produktů od dodavatele a dodavatelem při reakci a dodávce produktů zákazníkovi, včetně technických procesů potřebných pro specifikaci, návrh, vývoj, integraci a testování.
-
-Mezi první podkategorii primárních procesů patří akviziční procesy. Do této podkategorie patří procesy, jež jsou prováděny zákazníkem případně dodavatelem, který je v~roli zákazníka požadujícího službu nebo produkt. Tato podkategorie akvizičních procesů obsahuje sedm procesů:
-
-\begin{itemize}
-\item ACQ.3 -- Dohoda o~smlouvě. Během tohoto procesu probíhá dohoda o~samotné smlouvě a schválení smlouvy. Po úspěšném dokončení procesu je dohodnutá smlouva podepsána a odsouhlasena všemi stranami.
-\item ACQ.4 -- Monitorování dodavatele. V~průběhu procesu se monitoruje, zda dodavatel plní předem definované požadavky.
-\item ACQ.11 -- Technické požadavky. Jsou zde definovány technické požadavky, které je nutno plnit a kontrolovat. Do technických požadavků můžeme zařadit jak funkční, tak nefunkční požadavky na systém.
-\item ACQ.12 -- Právní a administrativní požadavky. V~rámci tohoto procesu jsou řešeny veškeré právní závazky, definované jak ve smlouvě, tak i  na základě platné legislativy.
-\item ACQ.13 -- Požadavky na projekt. V~průběhu procesu jsou definovány a ověřeny veškeré požadavky související s~celým projektem. Můžeme zde zařadit například personální obsazení a další organizační aktivity.
-\item ACQ.14 -- Žádost o~návrhy.  Během tohoto procesu jsou řešeny přípravy a vydání požadavků na daný systém.
-\item ACQ.15 -- Kvalifikace dodavatele. V~tomto procesu jsou kontrolovány způsobilosti a kvalifikace dodavatele. V~rámci procesu se ověřuje, zda dodavatel splňuje potřebné kvality pro výběrové řízení.
-\end{itemize}
-
-Dalším typem procesů jsou dodavatelské procesy. Tyto procesy jsou prováděny dodavatelem a výsledkem je dodání služby nebo produktu.
-
-\begin{itemize}
-\item SPL.1 -- Výběrové řízení na dodavatele. Hlavní myšlenkou tohoto procesu je příprava a vytvoření nabídky do výběrového řízení.  Dále je v~tomto procesu řešeno samotné podání nabídky do výběrového řízení.
-\item SPL.2 -- Vydání produktu. V~rámci tohoto procesu se provádí předávání vyvinutého produktu zákazníkovi. Předávání produktu probíhá řízeně pomocí definovaných podprocesů. Během tohoto procesu se také vytváří předávací dokumentace.
-\end{itemize}
-
-Procesní skupina systémového inženýrství se skládá z~procesů zaměřených na získávání a správu zákaznických a interních požadavků. Dále tyto procesy definují samotnou architekturu vyvíjeného systému. Procesy také řeší celkovou integraci systému a testování produktu na systémové úrovni.
-
-\begin{itemize}
-\item SYS.1 -- Získání požadavků. Během procesu jsou požadavky nejen od zákazníka získány a zadefinovány do projektu. Řadíme zde i další požadavky, například interní a systémové.
-\item SYS.2 -- Analýza systémových požadavků. V~rámci tohoto procesu probíhá samotná analýza již nadefinovaných požadavků v~předešlém procesu.
-\item SYS.3 -- Návrh architektury systému. Dochází k~navržení a vytvoření systémové architektury na základě definovaných požadavků na celý systém.
-\item SYS.4 -- Systémová integrace a testování integrace. Během procesu se provádí integrace jednotlivých částí systému a následné testování provedené integrace. Výsledkem procesu je otestovaný a zintegrovaný systém.
-\item SYS.5 -- Testování kvalifikace systému. V~rámci procesu je provedeno otestování a schválení, zda výsledný systém splňuje všechny systémové požadavky. Výsledkem procesu je schválený systém, který je nachystaný pro samotné předání zákazníkovi.
-\end{itemize}
-
-Mezi poslední typ primárních procesů patří procesy softwarového inženýrství. Tyto procesy se starají o~správu softwarových požadavků, mezi něž například patří například analýza softwarových požadavků, softwarová architektura a další.
-
-\begin{itemize}
-\item SWE.1 -- Analýza softwarových požadavků. Během tohoto procesu dochází k~analýze veškerých softwarových požadavků na systém, které vznikají ze systémových požadavků.
-\item SWE.2 -- Softwarový architektonický návrh. V~procesu dochází k~vytvoření architektonického návrhu. Dále se během procesu určí, které požadavky z~procesu \textit{SWE.1} patří k~jednotlivým částem systému.
-\item SWE.3 -- Podrobný návrh softwaru a konstrukce jednotky. V~rámci procesu je vytvořen podrobný návrh systémových komponent a jednotek.
-\item SWE.4 -- Ověření softwarových jednotek. Během procesu dochází k~verifikaci navržených softwarových jednotek. Toto ověření probíhá na základě porovnání s~funkčními a nefunkčními požadavky na systém.
-\item SWE.5 -- Integrace softwaru a test integrace. Dochází zejména k~integraci navržených softwarových jednotek do celého systému, který je poté zevrubně kompletně otestován.
-\item SWE.6 -- Kvalifikační testy softwaru. Během procesu je prováděno kvalifikační testování celého integrovaného systému ve shodě se všemi požadavky.
-\end{itemize}
-
-\subsection{Podpůrné procesy}
-Procesy zařazené v~rámci sekce podpůrných procesů jsou použity v~kterémkoli procesu v~různých bodech celého vývojového životního cyklu. Procesy v~této kategorii mají zkratku SUP.
-
-\begin{itemize}
-\item SUP.1 -- Zajištění kvality. Proces zajišťuje, že veškeré používané procesy a pracovní nástroje splňují předem stanovené plány a potřebné kvality.
-\item SUP.2 -- Ověření. Proces je také nazýván verifikace a zajišťuje, že všechny pracovní nástroje a procesy splňují to, co je požadováno.
-\item SUP.4 -- Společná kontrola. V~rámci procesu probíhá společná kontrola a revize mezi všemi stranami podílejícími se na projektu. Je tedy zajištěno, že všechny strany vývoj systému a následný výsledek uspokojuje.
-\item SUP.7 -- Dokumentace. Během procesu je vytvářena důležitá dokumentace všech informací vzniklých během jiných procesů.
-\item SUP.8 -- Správa konfigurace. Proces zajišťuje vytváření a údržbu všech pracovních nástrojů a produktů procesů nebo daného projektu.
-\item SUP.9 -- Správa řešení problémů. Veškeré problémy vzniklé během celého vývoje systému musí být identifikovány a poté analyzovány. V~rámci procesu se poté také pracuje se samotnou správou na vyřešení problémů.
-\item SUP.10 -- Správa požadavků na změnu. Dodržení procesu zajišťuje, že veškeré navržené změny jsou řízeny a sledovány.
-\end{itemize}
-
-\subsection{Organizační procesy}
-Poslední skupinou v~rámci Automotive SPICE jsou organizační procesy, které se zaměřují na produktová, procesní a zdrojová aktiva. Ta, pokud jsou používaná v~rámci projektů dané společnosti, pomohou v~dosahování obchodních cílů.
-
-Skupina procesů řízení se skládá z~procesů, které může použít kdokoli, kdo v~rámci vývojového životního cyklu řídí libovolný typ projektu nebo procesu. Tato skupina procesů má zkratku MAN.
-
-\begin{itemize}
-\item MAN.3 -- Projektový management. Proces zahrnuje celé projektové řízení a je důležitý pro nalezení aktivit a nutné zdroje k~vytvoření celého systému.
-\item MAN.5 -- Řízení rizik. Veškerá rizika spojená s~vývojem systému musí být identifikována a poté řízena tak, aby nedošlo k~problémům.
-\item MAN.6 -- Měření. V~rámci procesu jsou měřena a sbírána data týkající se celého vývoje. Na základě naměřených dat můžeme zajistit lepší a efektivnější směrování celého projektu. Dále měřením můžeme reflektovat určitou kvalitu celého systému nebo jeho části.
-\end{itemize}
-
-Další skupinou v~rámci organizačních procesů je skupina vylepšení procesů se zkratkou PIM. V~této skupině existuje jeden proces. Tento proces obsahuje postupy pro zlepšení jednotlivých procesů prováděných v~rámci společnosti.
-
-\begin{itemize}
-\item PIM.3 -- Vylepšení procesu. Proces je velmi důležitý pro zajištění neustálého zlepšování efektivity při vykonávání všech ostatních procesů v~rámci celé společnosti vyvíjející daný systém. Proces nám zajistí, že veškeré procesy jsou efektivní a vyhovující.
-\end{itemize}
-
-Poslední skupinou organizačních procesů je skupina procesu opětovného použití. Tato skupina má zkratku REU a obsahuje pouze jeden proces. Tento proces slouží k~zavádění opětovného použití procesů v~rámci společnosti.
-
-\begin{itemize}
-\item REU.2 -- Opětovné použití správy programu. Během procesu je zajištěna celá správa znovupoužití programu v~celé společnosti vyvíjející daný systém. Důležité je zajistit, aby byl použitý program využíván systematicky a efektivně.
-\end{itemize}
+%\section{Procesy Automotive SPICE}
 
 
-Kompletní znění a definice všech jednotlivých procesů je možno nalézt ve standardu Automotive SPICE. \cite{ref:aspice_procesy} Ve standardu se dále vyskytují také podmínky pro úspěšné splnění a použití daných procesů.
+
 
 
 \section{Hodnotící framework}
@@ -451,7 +371,7 @@ Hodnotící framework poskytuje nezbytné požadavky a pravidla pro zjištění,
 Jak již bylo zmíněno v~předchozí kapitole, Automotive SPICE používá pro úrovně způsobilosti standard ISO/IEC 3302. Procesní atributy jsou vlastnosti procesu, které lze hodnotit na stupnici 0 až 5 a poskytují měřítko schopnosti procesu. Úrovně způsobilosti jsou použitelné pro všechny druhy procesů. Jednotlivé dodržení úrovní způsobilosti hodnotí hodnotitel na základě dodržení definovaných procesních atributů pro každou úroveň. Každá vyšší úroveň obsahuje rovněž podmínku pro 100\% splnění předchozí úrovně.
 
 \begin{itemize}
-\item Úroveň 0: neúplný proces -- proces na této úrovni není vůbec implementován a definován nebo nedosahuje cíle. Patří zde také procesy dodržující procesní atributy, které ASPICE definuje nejvýše na úroveň \textit{částečně dosaženo} (P) (viz kapitola \ref{sec:process_atributes}).
+\item Úroveň 0: neúplný proces -- proces na této úrovni není vůbec implementován a definován nebo nedosahuje cíle. Patří zde také procesy dodržující procesní atributy, které Automotive SPICE definuje nejvýše na úroveň \textit{částečně dosaženo} (P) (viz kapitola \ref{sec:process_atributes}).
 
 \item Úroveň 1: vykonávaný proces -- implementovaný proces na této úrovni plní svůj procesní účel. Během procesu projde vývoj celým V-Modelem, ale budou v~něm mezery a nedokonalosti. K~dosažení této úrovně musí být splněn atribut PA 1.1 -- výkonnostní atribut procesu.
 
@@ -501,8 +421,17 @@ F  & Plně dosaženo & dosažení  85 \% až 100 \% & V~projektu se úplně a sy
 
 
 \section{Metriky a monitorování procesu}
-Automotive SPICE klade velké nároky na kvalitní výsledky při vývoji a dodržování standardu. Proto jsou také v~rámci standardu definovány procesy, které sledují dodržování kvality jiných procesů a podporují měření a monitorování samotného vývoje.
+Automotive SPICE klade velké nároky na kvalitní výsledky při vývoji a dodržování standardu. Proto jsou také v~rámci standardu definovány procesy, které sledují dodržování kvality jiných procesů a podporují měření a monitorování samotného vývoje. 
 
+Mezi základní proces, který se zaobírá zajištění kvality je SUP.1. Tento proces zajišťuje, že všechny pracovní nástroje a využívané procesy splňují předem stanovené cíle a kvality. Jedním z nejdůležitějšího výstupu procesu jsou nalezené problémy a neshody se stanovenými plány. Pomocí těchto výsledků jsou zjištěny důsledky problémů a jejich následné řešení.
+
+Pro hodnocení procesních atributů na první úrovni je potřeba zjišťovat, zda je cíl procesu naplňován. Tyto požadavky jsou definovány v standardu v rámci tzv. \textit{base practice}. Aby bylo možné postoupit na druhou úroveň, je nutné splňovat požadavky kladené v rámci tzv. \textit{general practice} -- plánování, monitorování a uzpůsobení. Právě monitorování v rámci Automotive SPICE specifikuje proces MAN.6. Účelem procesu je sběr dat vzniklých během vývoje daného produktu. Veškerá nasbíraná a naměřená data jsou uložena a slouží poté pro následnou analýzu a uzpůsobení procesu. Pomocí naměřených dat dokážeme proces upravit tak, aby byl například efektivnější. 
+
+Samotné měření procesu je nejčastěji prováděno pomocí metrik, pomocí kterých dokážeme celý proces sledovat. Aby bylo zajištěno kompletní měření celého vývoje, je nutné aby každý proces měl definované metriky. V rámci standardu Automotive SPICE můžeme metriky rozdělit do dvou základních typů. Prvním typem jsou základní metriky, které zobrazují množství měřeného atributu. Nejvhodnějším grafem pro zobrazení metriky může být například sloupcový graf. Pomocí sloupcového grafu je možné například získat povědomí o tom, v jakém stavu se vývoj daného produktu nachází. Můžeme takto například měřit počet požadavků, které jsou v určitém stavu. Mezi takové stavy může například patřit, zda je požadavek již schválený, implementovaný, nebo otestovaný.
+
+Druhým typem jsou poměrové metriky, které mají na starost měření pokrytí. Nejčastějším výsledkem metrik tohoto typu je procentuální vyjádření určitého poměru. Mezi metriky měřící pokrytí můžeme zařadit například pokrytí požadavků s určitým atributem v poměru se všemi požadavky. Vhodnou grafickou reprezentací může být spojnicový graf. Stejně jako při prvním typu metriky je vhodné sledovat jak historické tak aktuální hodnoty. Obecné informace o metrikách lze nalézt v kapitole \ref{sec:metrics}.
+
+Většinou je celý vývojový proces zachycen v ALM nástrojích, které mají za cíl sledovat celý v-model a případně zajistit podporu pro generování a sledování metrik. Podrobná analýza a zhodnocení existujících a nejpoužívanějších ALM nástrojů a aplikací se nachází v rámci následující kapitoly \ref{sec:alm}.
 
 
 \chapter{Analýza existujících ALM aplikací a nástrojů}
@@ -1594,6 +1523,92 @@ Jednotlivé schůzky by se poté daly rozdělit do tří základních skupin:
 
 Jednotlivá zadání úkolů jsou psána pomocí uživatelských příběhů (takzvané \textit{User stories}), přičemž většinou obsahují jen minimum technických informací. Jednotlivé uživatelské příběhy nepopisují technickou interakci ze systémem. Uživatelské příběhy mají  sjednocenou podobu například ve tvaru: \uv{Jako \textit{role} chci \textit{cíl} tak, aby \textit{užitek}.} Tedy například: \uv{Jako uživatel chci vidět seznam zboží v~objednávce tak, aby si uživatel mohl zboží zkontrolovat.} \cite{ref:scrum_myslin_us}
 
+
+\chapter{Procesy Automotive SPICE}
+\label{sec:aspice_processes_apendix}
+V~rámci každé základní kategorie procesů existují v~referenčním procesním modelu podkategorie procesů podle toho, jakým okruhem činností se zaobírají. Procesy jsou pojmenovány pomocí třímístného identifikátoru, který určuje podkategorii procesu. Dále název procesu obsahuje číslo, které identifikuje proces v~rámci své podkategorie.
+
+\subsection{Primární procesy}
+Kategorie primárních procesů životního cyklu sestává z~procesů, které mohou být použity zákazníkem při získávání produktů od dodavatele a dodavatelem při reakci a dodávce produktů zákazníkovi, včetně technických procesů potřebných pro specifikaci, návrh, vývoj, integraci a testování.
+
+Mezi první podkategorii primárních procesů patří akviziční procesy. Do této podkategorie patří procesy, jež jsou prováděny zákazníkem případně dodavatelem, který je v~roli zákazníka požadujícího službu nebo produkt. Tato podkategorie akvizičních procesů obsahuje sedm procesů:
+
+\begin{itemize}
+\item ACQ.3 -- Dohoda o~smlouvě. Během tohoto procesu probíhá dohoda o~samotné smlouvě a schválení smlouvy. Po úspěšném dokončení procesu je dohodnutá smlouva podepsána a odsouhlasena všemi stranami.
+\item ACQ.4 -- Monitorování dodavatele. V~průběhu procesu se monitoruje, zda dodavatel plní předem definované požadavky.
+\item ACQ.11 -- Technické požadavky. Jsou zde definovány technické požadavky, které je nutno plnit a kontrolovat. Do technických požadavků můžeme zařadit jak funkční, tak nefunkční požadavky na systém.
+\item ACQ.12 -- Právní a administrativní požadavky. V~rámci tohoto procesu jsou řešeny veškeré právní závazky, definované jak ve smlouvě, tak i  na základě platné legislativy.
+\item ACQ.13 -- Požadavky na projekt. V~průběhu procesu jsou definovány a ověřeny veškeré požadavky související s~celým projektem. Můžeme zde zařadit například personální obsazení a další organizační aktivity.
+\item ACQ.14 -- Žádost o~návrhy.  Během tohoto procesu jsou řešeny přípravy a vydání požadavků na daný systém.
+\item ACQ.15 -- Kvalifikace dodavatele. V~tomto procesu jsou kontrolovány způsobilosti a kvalifikace dodavatele. V~rámci procesu se ověřuje, zda dodavatel splňuje potřebné kvality pro výběrové řízení.
+\end{itemize}
+
+Dalším typem procesů jsou dodavatelské procesy. Tyto procesy jsou prováděny dodavatelem a výsledkem je dodání služby nebo produktu.
+
+\begin{itemize}
+\item SPL.1 -- Výběrové řízení na dodavatele. Hlavní myšlenkou tohoto procesu je příprava a vytvoření nabídky do výběrového řízení.  Dále je v~tomto procesu řešeno samotné podání nabídky do výběrového řízení.
+\item SPL.2 -- Vydání produktu. V~rámci tohoto procesu se provádí předávání vyvinutého produktu zákazníkovi. Předávání produktu probíhá řízeně pomocí definovaných podprocesů. Během tohoto procesu se také vytváří předávací dokumentace.
+\end{itemize}
+
+Procesní skupina systémového inženýrství se skládá z~procesů zaměřených na získávání a správu zákaznických a interních požadavků. Dále tyto procesy definují samotnou architekturu vyvíjeného systému. Procesy také řeší celkovou integraci systému a testování produktu na systémové úrovni.
+
+\begin{itemize}
+\item SYS.1 -- Získání požadavků. Během procesu jsou požadavky nejen od zákazníka získány a zadefinovány do projektu. Řadíme zde i další požadavky, například interní a systémové.
+\item SYS.2 -- Analýza systémových požadavků. V~rámci tohoto procesu probíhá samotná analýza již nadefinovaných požadavků v~předešlém procesu.
+\item SYS.3 -- Návrh architektury systému. Dochází k~navržení a vytvoření systémové architektury na základě definovaných požadavků na celý systém.
+\item SYS.4 -- Systémová integrace a testování integrace. Během procesu se provádí integrace jednotlivých částí systému a následné testování provedené integrace. Výsledkem procesu je otestovaný a zintegrovaný systém.
+\item SYS.5 -- Testování kvalifikace systému. V~rámci procesu je provedeno otestování a schválení, zda výsledný systém splňuje všechny systémové požadavky. Výsledkem procesu je schválený systém, který je nachystaný pro samotné předání zákazníkovi.
+\end{itemize}
+
+Mezi poslední typ primárních procesů patří procesy softwarového inženýrství. Tyto procesy se starají o~správu softwarových požadavků, mezi něž například patří například analýza softwarových požadavků, softwarová architektura a další.
+
+\begin{itemize}
+\item SWE.1 -- Analýza softwarových požadavků. Během tohoto procesu dochází k~analýze veškerých softwarových požadavků na systém, které vznikají ze systémových požadavků.
+\item SWE.2 -- Softwarový architektonický návrh. V~procesu dochází k~vytvoření architektonického návrhu. Dále se během procesu určí, které požadavky z~procesu \textit{SWE.1} patří k~jednotlivým částem systému.
+\item SWE.3 -- Podrobný návrh softwaru a konstrukce jednotky. V~rámci procesu je vytvořen podrobný návrh systémových komponent a jednotek.
+\item SWE.4 -- Ověření softwarových jednotek. Během procesu dochází k~verifikaci navržených softwarových jednotek. Toto ověření probíhá na základě porovnání s~funkčními a nefunkčními požadavky na systém.
+\item SWE.5 -- Integrace softwaru a test integrace. Dochází zejména k~integraci navržených softwarových jednotek do celého systému, který je poté zevrubně kompletně otestován.
+\item SWE.6 -- Kvalifikační testy softwaru. Během procesu je prováděno kvalifikační testování celého integrovaného systému ve shodě se všemi požadavky.
+\end{itemize}
+
+\subsection{Podpůrné procesy}
+Procesy zařazené v~rámci sekce podpůrných procesů jsou použity v~kterémkoli procesu v~různých bodech celého vývojového životního cyklu. Procesy v~této kategorii mají zkratku SUP.
+
+\begin{itemize}
+\item SUP.1 -- Zajištění kvality. Proces zajišťuje, že veškeré používané procesy a pracovní nástroje splňují předem stanovené plány a potřebné kvality.
+\item SUP.2 -- Ověření. Proces je také nazýván verifikace a zajišťuje, že všechny pracovní nástroje a procesy splňují to, co je požadováno.
+\item SUP.4 -- Společná kontrola. V~rámci procesu probíhá společná kontrola a revize mezi všemi stranami podílejícími se na projektu. Je tedy zajištěno, že všechny strany vývoj systému a následný výsledek uspokojuje.
+\item SUP.7 -- Dokumentace. Během procesu je vytvářena důležitá dokumentace všech informací vzniklých během jiných procesů.
+\item SUP.8 -- Správa konfigurace. Proces zajišťuje vytváření a údržbu všech pracovních nástrojů a produktů procesů nebo daného projektu.
+\item SUP.9 -- Správa řešení problémů. Veškeré problémy vzniklé během celého vývoje systému musí být identifikovány a poté analyzovány. V~rámci procesu se poté také pracuje se samotnou správou na vyřešení problémů.
+\item SUP.10 -- Správa požadavků na změnu. Dodržení procesu zajišťuje, že veškeré navržené změny jsou řízeny a sledovány.
+\end{itemize}
+
+\subsection{Organizační procesy}
+Poslední skupinou v~rámci Automotive SPICE jsou organizační procesy, které se zaměřují na produktová, procesní a zdrojová aktiva. Ta, pokud jsou používaná v~rámci projektů dané společnosti, pomohou v~dosahování obchodních cílů.
+
+Skupina procesů řízení se skládá z~procesů, které může použít kdokoli, kdo v~rámci vývojového životního cyklu řídí libovolný typ projektu nebo procesu. Tato skupina procesů má zkratku MAN.
+
+\begin{itemize}
+\item MAN.3 -- Projektový management. Proces zahrnuje celé projektové řízení a je důležitý pro nalezení aktivit a nutné zdroje k~vytvoření celého systému.
+\item MAN.5 -- Řízení rizik. Veškerá rizika spojená s~vývojem systému musí být identifikována a poté řízena tak, aby nedošlo k~problémům.
+\item MAN.6 -- Měření. V~rámci procesu jsou měřena a sbírána data týkající se celého vývoje. Na základě naměřených dat můžeme zajistit lepší a efektivnější směrování celého projektu. Dále měřením můžeme reflektovat určitou kvalitu celého systému nebo jeho části.
+\end{itemize}
+
+Další skupinou v~rámci organizačních procesů je skupina vylepšení procesů se zkratkou PIM. V~této skupině existuje jeden proces. Tento proces obsahuje postupy pro zlepšení jednotlivých procesů prováděných v~rámci společnosti.
+
+\begin{itemize}
+\item PIM.3 -- Vylepšení procesu. Proces je velmi důležitý pro zajištění neustálého zlepšování efektivity při vykonávání všech ostatních procesů v~rámci celé společnosti vyvíjející daný systém. Proces nám zajistí, že veškeré procesy jsou efektivní a vyhovující.
+\end{itemize}
+
+Poslední skupinou organizačních procesů je skupina procesu opětovného použití. Tato skupina má zkratku REU a obsahuje pouze jeden proces. Tento proces slouží k~zavádění opětovného použití procesů v~rámci společnosti.
+
+\begin{itemize}
+\item REU.2 -- Opětovné použití správy programu. Během procesu je zajištěna celá správa znovupoužití programu v~celé společnosti vyvíjející daný systém. Důležité je zajistit, aby byl použitý program využíván systematicky a efektivně.
+\end{itemize}
+
+
+Kompletní znění a definice všech jednotlivých procesů je možno nalézt ve standardu Automotive SPICE. \cite{ref:aspice_procesy} Ve standardu se dále vyskytují také podmínky pro úspěšné splnění a použití daných procesů.
 
 
 \chapter{Business intelligence}
