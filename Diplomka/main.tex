@@ -35,17 +35,17 @@
 % \SubmissionDate{20. dubna 2021}
 \SubmissionYear{2021}
 
-\Acknowledgement{Rád bych poděkoval všem, kteří mě při tvorbě diplomové práce podporovali, především panu Ing. Svatopluku Štolfovi, Ph.D. za odbornou pomoc, praktické rady a vedení této diplomové práce a panu Ing. Zdeňku Velartovi, Ph.D za odborné a věcné připomínky při implementaci nástroje.}
+\Acknowledgement{Rád bych poděkoval všem, kteří mě při tvorbě diplomové práce podporovali, především panu Ing.~Svatopluku Štolfovi, Ph.D. za odbornou pomoc, praktické rady a vedení této diplomové práce a panu Ing. Zdeňku Velartovi, Ph.D. za odborné a věcné připomínky při implementaci nástroje.}
 
 
 \CzechAbstract{Tato diplomová práce se zabývá zejména kvalitou a měřením softwarových procesů. Cílem bylo rozebrat standard Automotive SPICE, problematiku správy, měření a zlepšování procesů. V~rámci práce jsou analyzovány existující nástroje a aplikace pro správu procesů a životního cyklu aplikace. Na základě této analýzy byl vytvořen prototypový nástroj ve formě webové aplikace pro vytváření a zobrazování trendových metrik. Veškerá důležitá data pro vytváření metrik ve formě artefaktů jsou do prototypového nástroje automaticky stahována z~platformy IBM Jazz pomocí API. Vyvinutý nástroj nabízí také generování reportů. Takto vytvořený nástroj je možno například využít pro zobrazení metrik potřebných pro splnění standardu Automotive SPICE.}
 
 
-\CzechKeywords{IBM Jazz, trendové metriky, kvalita softwarového procesu, softwarové inženýrství, Automotive SPICE, REST API, PHP, Symfony, MongoDB, Docker}
+\CzechKeywords{IBM Jazz, ALM, trendové metriky, kvalita softwarového procesu, softwarové inženýrství, Automotive SPICE, REST API, PHP, Symfony, MongoDB, Docker}
 
 \EnglishAbstract{This thesis is aimed at software process quality and measurement. The goal was to analyze Automotive SPICE standard, software process management, measurement and improvement. There are analyzed existing tools and applications for process management and for application lifecycle management. Based on this analysis a prototype tool for creating and displaying trend metrics was developed. The tool is built as a web application. All important data for creating metrics are automatically downloaded to the prototype tool from the IBM Jazz platform using the API. The developed tool also offers ability to generate custom reports. The tool can be used to display the metrics needed to meet the Automotive SPICE standard.}
 
-\EnglishKeywords{IBM Jazz, trend metrics, software process quality, software engineering, Automotive SPICE, REST API, PHP, Symfony, MongoDB, Docker}
+\EnglishKeywords{IBM Jazz, ALM, coverage metrics, software process quality, software engineering, Automotive SPICE, REST API, PHP, Symfony, MongoDB, Docker}
 
 
 \AddAcronym{AJAX}{Asynchronous JavaScript and XML}
@@ -54,6 +54,7 @@
 \AddAcronym{ASPICE}{Automotive Software Process Improvement and Capability Determination}
 \AddAcronym{BIRT}{Business Intelligence and Reporting Tools}
 \AddAcronym{CCM}{Change and Configuration Managemet}
+\AddAcronym{CM}{Configuration Management}
 \AddAcronym{CMMI}{Capability Maturity Model Integration}
 \AddAcronym{CMM}{Capability Maturity Model}
 \AddAcronym{CSV}{Comma-separated values}
@@ -194,17 +195,17 @@ Je to iterativní metoda, jejíž cílem je dosáhnout stálého zdokonalování
 \end{enumerate}
 
 
-\section{V-Model}
-V-model je grafické znázornění vývojového cyklu používaného prakticky u~jakéhokoli vývoje, u~něhož je důležité nepřetržité fungování a bezchybnost systému. Model je tedy využíván prakticky v~každém odvětví, nejen v~automobilovém průmyslu nebo softwarovém vývoji kritických systémů. Tento model zdědil po vodopádovém modelu jistou kaskádovitost, kdy každý krok je proveden až po předchozím kroku. Za rozdílnost V-Modelu lze považovat to, že je oproti agilním přístupům zaměřen na velmi důkladnou kontrolu a testování systému. Kontrola a testování probíhá již v~počátečních etapách návrhu systému. Jednotlivé testování systému se provádí ve stejné době jako určitá část vývoje. Tedy například jednotkové testy se píšou během implementační části nebo například integrační testování probíhá při integraci jednotlivých komponent systému. Je vhodný zejména pro projekty, kde je většina požadavků jasná a předem daná. Grafické znázornění V-Modelu je možno vidět na obrázku \ref{fig:v_model}.
+\section{V-model}
+V-model je grafické znázornění vývojového cyklu používaného prakticky u~jakéhokoli vývoje, u~něhož je důležité nepřetržité fungování a bezchybnost systému. Model je tedy využíván prakticky v~každém odvětví, nejen v~automobilovém průmyslu nebo softwarovém vývoji kritických systémů. Tento model zdědil po vodopádovém modelu jistou kaskádovitost, kdy každý krok je proveden až po předchozím kroku. Za rozdílnost V-modelu lze považovat to, že je oproti agilním přístupům zaměřen na velmi důkladnou kontrolu a testování systému. Kontrola a testování probíhá již v~počátečních etapách návrhu systému. Jednotlivé testování systému se provádí ve stejné době jako určitá část vývoje. Tedy například jednotkové testy se píšou během implementační části nebo například integrační testování probíhá při integraci jednotlivých komponent systému. Je vhodný zejména pro projekty, kde je většina požadavků jasná a předem daná. Grafické znázornění V-modelu je možno vidět na obrázku \ref{fig:v_model}.
 
-V-Model je graficky definován do tvaru velkého písmene V. Na levé straně modelu se nachází fáze spojené s~verifikací. První fází v~rámci verifikační části je sběr požadavků, v~němž jsou od zákazníka získány požadavky. Tyto požadavky jsou následně analyzovány. V~další fázi se provede na základě těchto nasbíraných požadavků návrh systému. Dále následuje vytvoření architektury systému a návrh jednotlivých modulů. Poté je na základě veškeré analýzy provedena implementace.
+V-model je graficky definován do tvaru velkého písmene V. Na levé straně modelu se nachází fáze spojené s~verifikací. První fází v~rámci verifikační části je sběr požadavků, v~němž jsou od zákazníka získány požadavky. Tyto požadavky jsou následně analyzovány. V~další fázi se provede na základě těchto nasbíraných požadavků návrh systému. Dále následuje vytvoření architektury systému a návrh jednotlivých modulů. Poté je na základě veškeré analýzy provedena implementace.
 
 Na pravé straně jsou fáze validační, v~nichž se produkt testuje a validuje se jeho funkčnost. Jednotlivé fáze jsou vzájemně propojeny. V~nejnižší vrstvě probíhá jednotkové testování, jež testuje chování malých modulů. Dále probíhá integrační testování, jež je prováděno proti návrhu architektury. Jakmile je úspěšně provedeno integrační testování, je testován návrh systému systémovými testy. Na nejvyšší úrovní probíhá akceptační testování, jež ověřuje, zda jsou správně implementovány veškeré definované požadavky zákazníka. Každý přechod do jiné fáze probíhá, jakmile je kompletně splněna předchozí fáze.
 
  \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.7\textwidth]{Diplomka/Figures/v-model-in-software-testing.png}
-    \caption{Grafické znázornění V-Modelu (převzato z~\cite{ref:vmodel_Tierno2016})}
+    \caption{Grafické znázornění V-modelu (převzato z~\cite{ref:vmodel_Tierno2016})}
     \label{fig:v_model}
 \end{figure}
 
@@ -318,7 +319,7 @@ Standard Automotive SPICE byl vyvinut v~rámci spolupráce evropských automobil
 
 V~současné době se automobily skládají z~velkého množství součástí. Automobily se tedy již neskládají pouze z~mechanických součástí. V~poslední době roste množství používaného softwaru nejen při vývoji, ale i v~samotných automobilech. Většina softwaru v~automobilu slouží  pro zajištění nejen bezpečnostních funkcí, ale také pro zajištění životně důležitých funkcí automobilu včetně brzd a samotného řízení. Nesmí se tedy stát, že software v~automobilu selže a například zablokuje brzdy a způsobí havárii. Dodržování tohoto standardu je rozhodující kritériem při volbě dodavatelů dané automobilové společnosti, jelikož zajišťuje, že dodavatel splňuje určité standardy vývoje.
 
-V~rámci vývoje v~automobilovém průmyslu je většina systémů vyvíjena pomocí V-Modelu. Každá část  vývojového procesu musí mít definovány cíle. Aby bylo možno určit, zda jsou cíle splněny, jsou používány metriky (viz kapitola \ref{sec:metrics}).
+V~rámci vývoje v~automobilovém průmyslu je většina systémů vyvíjena pomocí V-modelu. Každá část  vývojového procesu musí mít definovány cíle. Aby bylo možno určit, zda jsou cíle splněny, jsou používány metriky (viz kapitola \ref{sec:metrics}).
 
 \section{Referenční procesní model}
 Je to jeden z~procesních modelů v~rámci standardu Automotive SPICE, který obsahuje samotné procesy standardu. Každý proces obsahuje kromě popisu také funkční cíle v~daném prostředí a seznam výsledků a výstupů, jichž má proces dosáhnout. V~rámci standardu se dále vyskytují také podmínky pro úspěšné splnění a použití daných procesů. \cite{ref:aspice_download_procesni_modely} Referenční procesní model definuje několik procesů ve třech základních kategoriích:
@@ -373,7 +374,7 @@ Jak již bylo zmíněno v~předchozí kapitole, Automotive SPICE používá pro 
 \begin{itemize}
 \item Úroveň 0: neúplný proces -- proces na této úrovni není vůbec implementován a definován nebo nedosahuje cíle. Patří zde také procesy dodržující procesní atributy, které Automotive SPICE definuje nejvýše na úroveň \textit{částečně dosaženo} (P) (viz kapitola \ref{sec:process_atributes}).
 
-\item Úroveň 1: vykonávaný proces -- implementovaný proces na této úrovni plní svůj procesní účel. Během procesu projde vývoj celým V-Modelem, ale budou v~něm mezery a nedokonalosti. K~dosažení této úrovně musí být splněn atribut PA 1.1 -- výkonnostní atribut procesu.
+\item Úroveň 1: vykonávaný proces -- implementovaný proces na této úrovni plní svůj procesní účel. Během procesu projde vývoj celým V-modelem, ale budou v~něm mezery a nedokonalosti. K~dosažení této úrovně musí být splněn atribut PA 1.1 -- výkonnostní atribut procesu.
 
 \item Úroveň 2: řízený proces -- vykonávaný proces je nyní implementován v~řízeném prostředí. Proces je plánován, monitorován a uzpůsoben dle požadavků. Vyvinuté produkty jsou náležitě zavedeny, kontrolovány a udržovány. V~rámci této úrovně musí být splněny procesní atributy PA 2.1 -- řízení výkonu a PA 2.2 - řízení pracovního produktu.
 
@@ -431,7 +432,7 @@ Samotné měření procesu je nejčastěji prováděno pomocí metrik, pomocí k
 
 Druhým typem jsou poměrové metriky, které mají na starost měření pokrytí. Nejčastějším výsledkem metrik tohoto typu je procentuální vyjádření určitého poměru. Mezi metriky měřící pokrytí můžeme zařadit například pokrytí požadavků s~určitým atributem v~poměru se všemi požadavky. Vhodnou grafickou reprezentací může být spojnicový graf. Stejně jako při prvním typu metriky je vhodné sledovat jak historické tak aktuální hodnoty. Obecné informace o~metrikách lze nalézt v~kapitole \ref{sec:metrics}.
 
-Většinou je celý vývojový proces zachycen v~ALM nástrojích, které mají za cíl sledovat kompletní V-Model a případně zajistit podporu pro generování, zobrazení a sledování metrik. Podrobná analýza a zhodnocení existujících a nejpoužívanějších ALM nástrojů a aplikací se nachází v~rámci následující kapitoly \ref{sec:alm}.
+Většinou je celý vývojový proces zachycen v~ALM nástrojích, které mají za cíl sledovat kompletní V-model a případně zajistit podporu pro generování, zobrazení a sledování metrik. Podrobná analýza a zhodnocení existujících a nejpoužívanějších ALM nástrojů a aplikací se nachází v~rámci následující kapitoly \ref{sec:alm}.
 
 
 \chapter{Analýza existujících ALM aplikací a nástrojů}
@@ -468,7 +469,7 @@ Každá část životního aplikačního cyklu se liší dle použitého vývojo
 \label{sec:codebeamer}
 Aplikace codeBeamer obsahuje několik nástrojů používaných pro kompletní správu celého životního cyklu systému, který začíná vývojem systému a pokračuje až do vydání jeho funkční verze. Prakticky životní cyklus systému nekončí vydáním první funkční verze, ale systém je dále udržován a zlepšován dokud je konkurenceschopný nebo využitelný v~daném prostředí. V~rámci aplikace codeBeamer tedy existuje mnoho nástrojů, jež dokáží zajistit správu celého životního cyklu, například správa požadavků, správa testů, správa kvality, správa zacházení s~riziky a mnoho dalších nástrojů. Aplikace je vhodná pro všechny varianty agilního přístupu vývoje. Aplikace také podporuje verzování vyvíjeného systému a následnou práci s~jednotlivými verzemi. \cite{ref:about_codebeamer}
 
-CodeBeamer je koncipován jako jedna velká aplikace obsahující všechny nástroje pro správu životního cyklu aplikace na jednom místě. Velká výhoda tohoto přístupu spočívá v~tom, že máme na jednom místě veškeré informace od úplného začátku životního cyklu až do konce životního cyklu aplikace. Můžeme tedy i zpětně trasovat jednotlivé fáze celého vývoje. CodeBeamer poskytuje několik předdefinovaných šablon pro různé typy vývoje. Mezi ty patří například šablona pro vývoj v~leteckém průmyslu, v~automobilovém průmyslu (šablona pro standard ASPICE) nebo například pro zdravotnictví. Obsahuje také šablony pro různé ostatní procesy, například pro testování, pro zákaznickou podporu nebo SCRUM.  \cite{ref:codebeamer_templates} Šablony jsou užitečné jednak pro začínající tým, který s~vývojem teprve začíná, ale jsou také vhodné pro zajištění dodržování daných procesů, standardů a také pro snížení celkových nákladů na samotný vývoj.
+CodeBeamer je koncipován jako jedna velká aplikace obsahující všechny nástroje pro správu životního cyklu aplikace na jednom místě. Velká výhoda tohoto přístupu spočívá v~tom, že máme na jednom místě veškeré informace od úplného začátku životního cyklu až do konce životního cyklu aplikace. Můžeme tedy i zpětně trasovat jednotlivé fáze celého vývoje. CodeBeamer poskytuje několik předdefinovaných šablon pro různé typy vývoje. Mezi ty patří například šablona pro vývoj v~leteckém průmyslu, v~automobilovém průmyslu (šablona pro standard ASPICE) nebo například pro zdravotnictví. Obsahuje také šablony pro různé ostatní procesy, například pro testování, pro zákaznickou podporu nebo scrum.  \cite{ref:codebeamer_templates} Šablony jsou užitečné jednak pro začínající tým, který s~vývojem teprve začíná, ale jsou také vhodné pro zajištění dodržování daných procesů, standardů a také pro snížení celkových nákladů na samotný vývoj.
 
 Další výhodou nástroje codeBeamer je, že nabízí velké množství přídavných aplikací či propojení s~jinými, nejen vývojovými nástroji. To je vhodné například pro propojení s~nástroji zákazníka nebo s~ostatními nástroji poskytujícími služby, které codeBeamer neobsahuje. Mezi platformy a nástroje, které lze propojit, patří například Jira, Git, JUnit, Docker, IBM Rational DOORS, Slack a mnoho dalších nástrojů používaných v~rámci celého životního cyklu vyvíjeného systému či aplikace.
 
@@ -1372,7 +1373,7 @@ Vizualizace dat | Microsoft Power BI. \textit{Microsoft Power BI} [online]. Redm
 
 \dirtree{%
 .1 /.
-.2 metrics \DTcomment{Zdrojové kódy nástroje}.
+.2 app \DTcomment{Zdrojové kódy nástroje}.
 .3 assets \DTcomment{Kaskádové styly a JavaScript}.
 .3 bin \DTcomment{Symfony konzole a další nástroje}.
 .3 config \DTcomment{Konfigurační soubory}.
