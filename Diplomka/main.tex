@@ -431,7 +431,7 @@ Samotné měření procesu je nejčastěji prováděno pomocí metrik, pomocí k
 
 Druhým typem jsou poměrové metriky, které mají na starost měření pokrytí. Nejčastějším výsledkem metrik tohoto typu je procentuální vyjádření určitého poměru. Mezi metriky měřící pokrytí můžeme zařadit například pokrytí požadavků s~určitým atributem v~poměru se všemi požadavky. Vhodnou grafickou reprezentací může být spojnicový graf. Stejně jako při prvním typu metriky je vhodné sledovat jak historické tak aktuální hodnoty. Obecné informace o~metrikách lze nalézt v~kapitole \ref{sec:metrics}.
 
-Většinou je celý vývojový proces zachycen v~ALM nástrojích, které mají za cíl sledovat celý v-model a případně zajistit podporu pro generování a sledování metrik. Podrobná analýza a zhodnocení existujících a nejpoužívanějších ALM nástrojů a aplikací se nachází v~rámci následující kapitoly \ref{sec:alm}.
+Většinou je celý vývojový proces zachycen v~ALM nástrojích, které mají za cíl sledovat kompletní V-Model a případně zajistit podporu pro generování, zobrazení a sledování metrik. Podrobná analýza a zhodnocení existujících a nejpoužívanějších ALM nástrojů a aplikací se nachází v~rámci následující kapitoly \ref{sec:alm}.
 
 
 \chapter{Analýza existujících ALM aplikací a nástrojů}
@@ -668,7 +668,7 @@ Metriky potřebné pro ASPICE  & ne                      & ne                   
 Všechny tři aplikace obsahují možnost přístupu pomocí webové aplikace, přičemž pouze codeBeamer a Siemens Polarion poskytují přístup pomocí počítačové aplikace. Další rozdíl mezi platformou IBM Jazz a ostatními aplikacemi, které jsou řešeny jako jedna velká robustní aplikace, spočívá v~tom, že IBM Jazz je koncipována jako více menších aplikací. Všechny aplikace obsahují export dat pomocí API, přičemž Siemens Polarion nabízí export i přímo z~databáze poskytující více možností než jen API, které je řešeno pomocí webových služeb. IBM Jazz a codeBeamer podporují export pomocí REST API. Až na aplikaci Polarion neposkytuje IBM Jazz ani codeBeamer historické údaje v~metrikách. Bohužel Siemens Polarion nabízí tyto informace pouze omezeně. Jediná platforma IBM Jazz podporuje pomocí \textit{Jazz Reporting Service} pokročilejší zobrazení metriky pomocí grafů. Ostatní dvě aplikace v~základu podporují zobrazení metrik pomocí grafů limitovaně. Ani jedna z~analyzovaných aplikací však neposkytuje zobrazení a definice metrik pro sběr požadavků, které je nutné sledovat dle standardu Automotive SPICE. Rychlý přehled analyzovaných aplikací a nástrojů je možno nalézt v~tabulce \ref{tab:alm_porovnani}.
 
 
-Dále kromě nástrojů sledujících životní cyklus celé aplikace byly prozkoumány \textit{Business Intelligence} aplikace. Ty slouží zejména pro shromažďovaní a zpracování velkých objemů dat, které například pocházejí z~interních nebo externích systémů při vývoji a správě daného produktu. Nástroje poskytují také možnosti pro tvorbu a správu sestav, grafů a metrik. Podrobné informace o~\textit{Business Intelligence} a analýzu aplikací Qlik Sense a Microsoft BI lze nalézt v~příloze \ref{sec:bi}. V~rámci praktické části bylo rozhodnuto o~vytvoření vlastního nástroje pro správu metrik zejména z~důvodu specifik požadavků Automotive SPICE a složitosti analyzovaných aplikací, které nejsou pro naplnění standardu plně vyhovující.
+Dále kromě nástrojů sledujících životní cyklus celé aplikace byly prozkoumány \textit{Business Intelligence} aplikace. Ty slouží zejména pro shromažďovaní a zpracování velkých objemů dat, které například pocházejí z~interních nebo externích systémů při vývoji a správě daného produktu. Nástroje poskytují také možnosti pro tvorbu a správu sestav, grafů a metrik. Podrobné informace o~\textit{Business Intelligence} a analýzu aplikací Qlik Sense a Microsoft BI lze nalézt v~příloze \ref{sec:bi}. V~rámci praktické části bylo rozhodnuto o~vytvoření vlastního nástroje pro správu metrik zejména z~důvodu specifik požadavků Automotive SPICE, složitosti a nevyhovujícím vlastnostem analyzovaných aplikací, které nejsou pro naplnění standardu plně vyhovující.
 
 \chapter{Analýza a architektura vlastního nástroje}
 \label{sec:my_app}
@@ -1265,9 +1265,6 @@ Automotive SPICE | Download. \textit{Automotive SPICE} [online]. 2005, 2018 [cit
 \textit{Automotive SPICE Process Reference and Assessment Model - Release 3.1} [online]. \textbf{1 November 2017}, s.~12-15 [cit. 2020-11-17]. Dostupné z: http://www.automotivespice.com/download/
 
 
-\bibitem{ref:aspice_procesy}
-\textit{Automotive SPICE Process Reference and Assessment Model - Release 3.1} [online]. \textbf{1 November 2017}, s.~13-15 [cit. 2021-01-01]. Dostupné z: http://www.automotivespice.com/download/
-
 \bibitem{ref:aspice_download_1523}
 \textit{Automotive SPICE Process Reference and Assessment Model - Release 3.1} [online]. \textbf{1 November 2017}, s.~15-23 [cit. 2020-11-18]. Dostupné z: http://www.automotivespice.com/download/
 
@@ -1349,6 +1346,13 @@ MYSLÍN, Josef. \textit{Scrum: průvodce agilním vývojem softwaru}. Brno: Comp
 
 \bibitem{ref:scrum_myslin_us}
 MYSLÍN, Josef. \textit{Scrum: průvodce agilním vývojem softwaru}. Brno: Computer Press, 2016 s.~89. ISBN 978-80-251-4650-7.
+
+
+
+\bibitem{ref:aspice_procesy}
+\textit{Automotive SPICE Process Reference and Assessment Model - Release 3.1} [online]. \textbf{1 November 2017}, s.~13-15 [cit. 2021-01-01]. Dostupné z: http://www.automotivespice.com/download/
+
+
 
 \bibitem{ref:bi_loshin_david}
 LOSHIN, David. \textit{Business Intelligence: The Savvy Manager's Guide}. San Francisco: Morgan Kaufmann, 2003, 1 - 9. ISBN 978-1-55860-916-7.
