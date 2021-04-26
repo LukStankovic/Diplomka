@@ -1764,10 +1764,10 @@ Nyní můžeme přejít k~instalaci samotného nástroje:
 \item Zkopírujeme konfigurační soubor pro Docker: \texttt{cp docker/conf/docker-compose-win.yml.dist docker-compose.yml}.
 \item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{docker-compose up -d}.
 \item Přepneme se do kontejneru pomocí příkazu \texttt{sudo docker exec -it metriky-php-fpm bash}.
+\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru pomocí \texttt{APP\_ENV=dev}. Aby bylo možné nahrát ukázková data, je nutné nastavit \texttt{dev} prostředí.
 \item Nainstalujeme veškeré závislosti a knihovny pomocí \texttt{composer install}.
-\item Nainstalujeme ukázková data pomocí příkazu \texttt{composer build}.
+\item Nainstalujeme ukázková data a front-end pomocí příkazu \texttt{composer build} (nutné definovat \texttt{dev} prostředí). Pro instalaci pouze front-endu bez ukázkových dat je nutné spustit příkaz \texttt{composer npm}. Tento přístup je například vhodný na produkčním prostředí.
 \item V~rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s~heslem \texttt{admin123}.
-\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru, který bude obsahovat \texttt{APP\_ENV=dev}.
 \end{enumerate}
 
 \subsection{Linux}
@@ -1785,10 +1785,10 @@ Pokud operační systém splňuje výše uvedené požadavky, můžeme přejít 
 \item Zkopírujeme konfigurační soubor pro Docker: \texttt{cp docker/conf/docker-compose.yml.dist docker-compose.yml}.
 \item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{docker-compose up -d --build}.
 \item Přepneme se do kontejneru pomocí příkazu \texttt{docker exec -it metriky-php-fpm bash}.
+\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru pomocí \texttt{APP\_ENV=dev}. Aby bylo možné nahrát ukázková data, je nutné nastavit \texttt{dev} prostředí.
 \item Nainstalujeme veškeré závislosti a knihovny pomocí \texttt{composer install}.
-\item Nainstalujeme ukázková data pomocí příkazu \texttt{composer build}.
+\item Nainstalujeme ukázková data a front-end pomocí příkazu \texttt{composer build} (nutné definovat \texttt{dev} prostředí). Pro instalaci pouze front-endu bez ukázkových dat je nutné spustit příkaz \texttt{composer npm}. Tento přístup je například vhodný na produkčním prostředí.
 \item V~rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s~heslem \texttt{admin123}.
-\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru, který bude obsahovat \texttt{APP\_ENV=dev}.
 \end{enumerate}
 
 \subsection{macOS}
@@ -1809,10 +1809,10 @@ Jakmile máme připravený a nainstalovaný virtualizační nástroj Docker, nai
 \item Spustíme synchronizaci souborů pomocí příkazu \texttt{docker-sync start}.
 \item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{docker-compose up -d --build}.
 \item Přepneme se do kontejneru pomocí příkazu \texttt{docker exec -it metriky-php-fpm bash}.
+\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru pomocí \texttt{APP\_ENV=dev}. Aby bylo možné nahrát ukázková data, je nutné nastavit \texttt{dev} prostředí.
 \item Nainstalujeme veškeré závislosti a knihovny pomocí \texttt{composer install}.
-\item Nainstalujeme ukázková data pomocí příkazu \texttt{composer build}.
+\item Nainstalujeme ukázková data a front-end pomocí příkazu \texttt{composer build} (nutné definovat \texttt{dev} prostředí). Pro instalaci pouze front-endu bez ukázkových dat je nutné spustit příkaz \texttt{composer npm}. Tento přístup je například vhodný na produkčním prostředí.
 \item V~rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s~heslem \texttt{admin123}.
-\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru, který bude obsahovat \texttt{APP\_ENV=dev}.
 \end{enumerate}
 
 \section{Bez virtualizačního nástroje Docker}
