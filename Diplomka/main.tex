@@ -1761,10 +1761,11 @@ Nyní můžeme přejít k~instalaci samotného nástroje:
 \begin{enumerate}
 \item V~terminálu Debianu se přepneme do domácího adresáře \texttt{cd \textasciitilde}.
 \item Zde vložíme zdrojové kódy prototypového nástroje, například do adresáře \texttt{metrics}, do kterého se následně přesuneme.
+\item Nyní je možno využít instalační skript pomocí \texttt{./scripts/install.sh}, nebo pokračovat v manuální instalaci níže. Je možné, že bude nutno nastavit skriptu práva pro spuštění pomocí \texttt{chmod +x scripts/install.sh}.
 \item Zkopírujeme konfigurační soubor pro Docker: \texttt{cp docker/conf/docker-compose-win.yml.dist docker-compose.yml}.
-\item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{docker-compose up -d}.
+\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru a v něm pomocí \texttt{APP\_ENV=dev}.  Aby bylo možno nahrát ukázková data, je nutno nastavit právě vývojové prostředí. V rámci vývojového prostředí je také zobrazená vývojová lišta.
+\item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{sudo docker-compose up -d}.
 \item Přepneme se do kontejneru pomocí příkazu \texttt{sudo docker exec -it metriky-php-fpm bash}.
-\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru pomocí \texttt{APP\_ENV=dev}. Aby bylo možné nahrát ukázková data, je nutné nastavit \texttt{dev} prostředí.
 \item Nainstalujeme veškeré závislosti a knihovny pomocí \texttt{composer install}.
 \item Nainstalujeme ukázková data a front-end pomocí příkazu \texttt{composer build} (nutné definovat \texttt{dev} prostředí). Pro instalaci pouze front-endu bez ukázkových dat je nutné spustit příkaz \texttt{composer npm}. Tento přístup je například vhodný na produkčním prostředí.
 \item V~rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s~heslem \texttt{admin123}.
@@ -1782,10 +1783,11 @@ Při instalaci na operačním systému jsou potřeba tyto požadavky:
 Pokud operační systém splňuje výše uvedené požadavky, můžeme přejít k~instalaci samotného nástroje:
 \begin{enumerate}
 \item Do požadovaného adresáře, kde potřebujeme nástroj nainstalovat, nakopírujeme zdrojové kódy nástroje.
+\item Nyní je možno využít instalační skript pomocí \texttt{./scripts/install.sh}, nebo pokračovat v manuální instalaci níže. Je možné, že bude nutno nastavit skriptu práva pro spuštění pomocí \texttt{chmod +x scripts/install.sh}.
 \item Zkopírujeme konfigurační soubor pro Docker: \texttt{cp docker/conf/docker-compose.yml.dist docker-compose.yml}.
+\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru a v něm pomocí \texttt{APP\_ENV=dev}.  Aby bylo možno nahrát ukázková data, je nutno nastavit právě vývojové prostředí. V rámci vývojového prostředí je také zobrazená vývojová lišta.
 \item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{docker-compose up -d --build}.
 \item Přepneme se do kontejneru pomocí příkazu \texttt{docker exec -it metriky-php-fpm bash}.
-\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru pomocí \texttt{APP\_ENV=dev}. Aby bylo možné nahrát ukázková data, je nutné nastavit \texttt{dev} prostředí.
 \item Nainstalujeme veškeré závislosti a knihovny pomocí \texttt{composer install}.
 \item Nainstalujeme ukázková data a front-end pomocí příkazu \texttt{composer build} (nutné definovat \texttt{dev} prostředí). Pro instalaci pouze front-endu bez ukázkových dat je nutné spustit příkaz \texttt{composer npm}. Tento přístup je například vhodný na produkčním prostředí.
 \item V~rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s~heslem \texttt{admin123}.
@@ -1805,11 +1807,13 @@ Jakmile máme připravený a nainstalovaný virtualizační nástroj Docker, nai
 
 \begin{enumerate}
 \item Do požadovaného adresáře, kde potřebujeme nástroj nainstalovat, nakopírujeme zdrojové kódy prototypového nástroje.
+\item Nyní je možno využít instalační skript pomocí \texttt{./scripts/install.sh}, nebo pokračovat v manuální instalaci níže. Je možné, že bude nutno nastavit skriptu práva pro spuštění pomocí \texttt{chmod +x scripts/install.sh}.
 \item Zkopírujeme konfigurační soubor pro Docker: \texttt{cp docker/conf/docker-compose-mac.yml.dist docker-compose.yml}.
+\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru a v něm pomocí \texttt{APP\_ENV=dev}.  Aby bylo možno nahrát ukázková data, je nutno nastavit právě vývojové prostředí. V rámci vývojového prostředí je také zobrazená vývojová lišta.
 \item Spustíme synchronizaci souborů pomocí příkazu \texttt{docker-sync start}.
 \item Spustíme a nainstalujeme všechny kontejnery pomocí příkazu \texttt{docker-compose up -d --build}.
 \item Přepneme se do kontejneru pomocí příkazu \texttt{docker exec -it metriky-php-fpm bash}.
-\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru pomocí \texttt{APP\_ENV=dev}. Aby bylo možné nahrát ukázková data, je nutné nastavit \texttt{dev} prostředí.
+\item Ve výchozím stavu je deklarováno produkční prostředí, které lze změnit na vývojové vytvořením \texttt{.env.local} souboru a v něm pomocí \texttt{APP\_ENV=dev}. Aby bylo možné nahrát ukázková data, je nutné nastavit \texttt{dev} prostředí.
 \item Nainstalujeme veškeré závislosti a knihovny pomocí \texttt{composer install}.
 \item Nainstalujeme ukázková data a front-end pomocí příkazu \texttt{composer build} (nutné definovat \texttt{dev} prostředí). Pro instalaci pouze front-endu bez ukázkových dat je nutné spustit příkaz \texttt{composer npm}. Tento přístup je například vhodný na produkčním prostředí.
 \item V~rámci ukázkových dat bude vytvořen uživatel \texttt{admin@vsb.cz} s~heslem \texttt{admin123}.
